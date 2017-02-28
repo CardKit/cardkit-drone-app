@@ -1,0 +1,9 @@
+git "git@github.ibm.com:ETX-CardKit/card-kit-runtime.git" "master"
+
+# for the pixhawk, which we aren't implementing (yet?)
+#github "mavlink/c_library_v1" "master"
+#github "mavlink/c_library_v2" "master"
+#git "https://bitbucket.org/boland/redparkserialcable.git" "master"
+
+# dji no longer distributes DJISDK.framework in their github project, it's a separate .zip download
+#github "dji-sdk/Mobile-SDK-iOS" ~> 3.3

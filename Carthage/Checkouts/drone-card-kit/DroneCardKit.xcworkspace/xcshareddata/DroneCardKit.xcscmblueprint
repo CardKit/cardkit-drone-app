@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B9DBB42E70CA3C1BCC85171BF8F3EAAC1E75F3CF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "697D6D019C667A7F357F5BB879F79A2824CA12EB" : 9223372036854775807,
+    "B9DBB42E70CA3C1BCC85171BF8F3EAAC1E75F3CF" : 9223372036854775807,
+    "CAA449FE015D93E5CCEAF955F604D6B28C2AEE27" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D8B1E49B-419F-4178-920A-B1C8272D69DF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "697D6D019C667A7F357F5BB879F79A2824CA12EB" : "card-kit\/",
+    "B9DBB42E70CA3C1BCC85171BF8F3EAAC1E75F3CF" : "drone-card-kit\/",
+    "CAA449FE015D93E5CCEAF955F604D6B28C2AEE27" : "card-kit-runtime\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DroneCardKit",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DroneCardKit.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.ibm.com:CMER\/card-kit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "697D6D019C667A7F357F5BB879F79A2824CA12EB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.ibm.com:CMER\/drone-card-kit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B9DBB42E70CA3C1BCC85171BF8F3EAAC1E75F3CF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.ibm.com:CMER\/card-kit-runtime.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CAA449FE015D93E5CCEAF955F604D6B28C2AEE27"
+    }
+  ]
+}

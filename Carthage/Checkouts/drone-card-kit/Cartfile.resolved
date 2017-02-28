@@ -1,0 +1,3 @@
+github "bignerdranch/Freddy" "3.0.2"
+git "git@github.ibm.com:ETX-CardKit/card-kit.git" "9a3c3fc9894d902fbad0ea7a8f89c0627f9d8171"
+git "git@github.ibm.com:ETX-CardKit/card-kit-runtime.git" "9d574e6b56c9f26fc68e45534cb656f89f45f479"

@@ -1,0 +1,688 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3AB397061E64A44900DA1800 /* Canvas.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397011E64A44900DA1800 /* Canvas.storyboard */; };
+		3AB397071E64A44900DA1800 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397021E64A44900DA1800 /* CanvasViewController.swift */; };
+		3AB397081E64A44900DA1800 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397041E64A44900DA1800 /* Library.storyboard */; };
+		3AB397091E64A44900DA1800 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397051E64A44900DA1800 /* LibraryViewController.swift */; };
+		3AB3970B1E64A46700DA1800 /* CardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3970A1E64A46700DA1800 /* CardsTableViewController.swift */; };
+		3AB3970D1E64A48A00DA1800 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3970C1E64A48A00DA1800 /* LogsViewController.swift */; };
+		3AB3970F1E64A58900DA1800 /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3970E1E64A58900DA1800 /* Cards.storyboard */; };
+		3AB397111E64A6A200DA1800 /* Logs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397101E64A6A200DA1800 /* Logs.storyboard */; };
+		3AB397131E64CBC100DA1800 /* CanvasToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397121E64CBC100DA1800 /* CanvasToolBar.swift */; };
+		3AB397161E64CCC000DA1800 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397151E64CCC000DA1800 /* UITableViewExtension.swift */; };
+		3AB397181E64CD1400DA1800 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397171E64CD1400DA1800 /* Reusable.swift */; };
+		3AB3971A1E64CD9A00DA1800 /* HandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397191E64CD9A00DA1800 /* HandTableViewCell.swift */; };
+		3AB3971C1E64D03700DA1800 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3971B1E64D03700DA1800 /* UIColorExtension.swift */; };
+		3AB3971E1E6512D200DA1800 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3971D1E6512D200DA1800 /* CardTableViewCell.swift */; };
+		3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F6761E64924C00D67889 /* AppDelegate.swift */; };
+		3AE7F67E1E64924C00D67889 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67D1E64924C00D67889 /* Assets.xcassets */; };
+		3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */; };
+		3AE7F68C1E64924C00D67889 /* DroneProtoZeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F68B1E64924C00D67889 /* DroneProtoZeroTests.swift */; };
+		3AE7F6971E64924C00D67889 /* DroneProtoZeroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F6961E64924C00D67889 /* DroneProtoZeroUITests.swift */; };
+		D530A3121E65E280003974CB /* CardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30E1E65E280003974CB /* CardKit.framework */; };
+		D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30F1E65E280003974CB /* CardKitRuntime.framework */; };
+		D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3101E65E280003974CB /* DroneCardKit.framework */; };
+		D530A3151E65E280003974CB /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3111E65E280003974CB /* Freddy.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3AE7F6881E64924C00D67889 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AE7F66B1E64924C00D67889 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AE7F6721E64924C00D67889;
+			remoteInfo = DroneProtoZero;
+		};
+		3AE7F6931E64924C00D67889 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AE7F66B1E64924C00D67889 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AE7F6721E64924C00D67889;
+			remoteInfo = DroneProtoZero;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3AB397011E64A44900DA1800 /* Canvas.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Canvas.storyboard; sourceTree = "<group>"; };
+		3AB397021E64A44900DA1800 /* CanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
+		3AB397041E64A44900DA1800 /* Library.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
+		3AB397051E64A44900DA1800 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		3AB3970A1E64A46700DA1800 /* CardsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsTableViewController.swift; sourceTree = "<group>"; };
+		3AB3970C1E64A48A00DA1800 /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
+		3AB3970E1E64A58900DA1800 /* Cards.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
+		3AB397101E64A6A200DA1800 /* Logs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logs.storyboard; sourceTree = "<group>"; };
+		3AB397121E64CBC100DA1800 /* CanvasToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasToolBar.swift; sourceTree = "<group>"; };
+		3AB397151E64CCC000DA1800 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		3AB397171E64CD1400DA1800 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		3AB397191E64CD9A00DA1800 /* HandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandTableViewCell.swift; sourceTree = "<group>"; };
+		3AB3971B1E64D03700DA1800 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		3AB3971D1E6512D200DA1800 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		3AE7F6731E64924C00D67889 /* DroneProtoZero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneProtoZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AE7F6761E64924C00D67889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3AE7F67D1E64924C00D67889 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3AE7F6801E64924C00D67889 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3AE7F6821E64924C00D67889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AE7F6871E64924C00D67889 /* DroneProtoZeroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DroneProtoZeroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AE7F68B1E64924C00D67889 /* DroneProtoZeroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneProtoZeroTests.swift; sourceTree = "<group>"; };
+		3AE7F68D1E64924C00D67889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AE7F6921E64924C00D67889 /* DroneProtoZeroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DroneProtoZeroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AE7F6961E64924C00D67889 /* DroneProtoZeroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneProtoZeroUITests.swift; sourceTree = "<group>"; };
+		3AE7F6981E64924C00D67889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D530A3001E65D96A003974CB /* CardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKit.framework; path = ../Carthage/Build/iOS/CardKit.framework; sourceTree = "<group>"; };
+		D530A3011E65D96A003974CB /* CardKitRuntime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKitRuntime.framework; path = ../Carthage/Build/iOS/CardKitRuntime.framework; sourceTree = "<group>"; };
+		D530A3021E65D96A003974CB /* DroneCardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DroneCardKit.framework; path = ../Carthage/Build/iOS/DroneCardKit.framework; sourceTree = "<group>"; };
+		D530A3031E65D96A003974CB /* Freddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Freddy.framework; path = ../Carthage/Build/iOS/Freddy.framework; sourceTree = "<group>"; };
+		D530A30E1E65E280003974CB /* CardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKit.framework; path = Carthage/Build/iOS/CardKit.framework; sourceTree = "<group>"; };
+		D530A30F1E65E280003974CB /* CardKitRuntime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKitRuntime.framework; path = Carthage/Build/iOS/CardKitRuntime.framework; sourceTree = "<group>"; };
+		D530A3101E65E280003974CB /* DroneCardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DroneCardKit.framework; path = Carthage/Build/iOS/DroneCardKit.framework; sourceTree = "<group>"; };
+		D530A3111E65E280003974CB /* Freddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Freddy.framework; path = Carthage/Build/iOS/Freddy.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3AE7F6701E64924C00D67889 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D530A3121E65E280003974CB /* CardKit.framework in Frameworks */,
+				D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */,
+				D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */,
+				D530A3151E65E280003974CB /* Freddy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AE7F6841E64924C00D67889 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AE7F68F1E64924C00D67889 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3AB397001E64A44900DA1800 /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
+				3AB397011E64A44900DA1800 /* Canvas.storyboard */,
+				3AB397021E64A44900DA1800 /* CanvasViewController.swift */,
+				3AB397121E64CBC100DA1800 /* CanvasToolBar.swift */,
+				3AB397191E64CD9A00DA1800 /* HandTableViewCell.swift */,
+			);
+			path = Canvas;
+			sourceTree = "<group>";
+		};
+		3AB397031E64A44900DA1800 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3AB397041E64A44900DA1800 /* Library.storyboard */,
+				3AB397051E64A44900DA1800 /* LibraryViewController.swift */,
+				3AB3970A1E64A46700DA1800 /* CardsTableViewController.swift */,
+				3AB3970C1E64A48A00DA1800 /* LogsViewController.swift */,
+				3AB3970E1E64A58900DA1800 /* Cards.storyboard */,
+				3AB397101E64A6A200DA1800 /* Logs.storyboard */,
+				3AB3971D1E6512D200DA1800 /* CardTableViewCell.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		3AB397141E64CCC000DA1800 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3AB3971B1E64D03700DA1800 /* UIColorExtension.swift */,
+				3AB397171E64CD1400DA1800 /* Reusable.swift */,
+				3AB397151E64CCC000DA1800 /* UITableViewExtension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3AE7F66A1E64924C00D67889 = {
+			isa = PBXGroup;
+			children = (
+				3AE7F6751E64924C00D67889 /* DroneProtoZero */,
+				3AE7F68A1E64924C00D67889 /* DroneProtoZeroTests */,
+				3AE7F6951E64924C00D67889 /* DroneProtoZeroUITests */,
+				3AE7F6741E64924C00D67889 /* Products */,
+				D530A2FF1E65D969003974CB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3AE7F6741E64924C00D67889 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3AE7F6731E64924C00D67889 /* DroneProtoZero.app */,
+				3AE7F6871E64924C00D67889 /* DroneProtoZeroTests.xctest */,
+				3AE7F6921E64924C00D67889 /* DroneProtoZeroUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3AE7F6751E64924C00D67889 /* DroneProtoZero */ = {
+			isa = PBXGroup;
+			children = (
+				3AE7F6761E64924C00D67889 /* AppDelegate.swift */,
+				3AE7F6A91E64966800D67889 /* Features */,
+				3AB397141E64CCC000DA1800 /* Utils */,
+				3AE7F67D1E64924C00D67889 /* Assets.xcassets */,
+				3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */,
+				3AE7F6821E64924C00D67889 /* Info.plist */,
+			);
+			path = DroneProtoZero;
+			sourceTree = "<group>";
+		};
+		3AE7F68A1E64924C00D67889 /* DroneProtoZeroTests */ = {
+			isa = PBXGroup;
+			children = (
+				3AE7F68B1E64924C00D67889 /* DroneProtoZeroTests.swift */,
+				3AE7F68D1E64924C00D67889 /* Info.plist */,
+			);
+			path = DroneProtoZeroTests;
+			sourceTree = "<group>";
+		};
+		3AE7F6951E64924C00D67889 /* DroneProtoZeroUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3AE7F6961E64924C00D67889 /* DroneProtoZeroUITests.swift */,
+				3AE7F6981E64924C00D67889 /* Info.plist */,
+			);
+			path = DroneProtoZeroUITests;
+			sourceTree = "<group>";
+		};
+		3AE7F6A91E64966800D67889 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				3AB397031E64A44900DA1800 /* Library */,
+				3AB397001E64A44900DA1800 /* Canvas */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		D530A2FF1E65D969003974CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D530A30E1E65E280003974CB /* CardKit.framework */,
+				D530A30F1E65E280003974CB /* CardKitRuntime.framework */,
+				D530A3101E65E280003974CB /* DroneCardKit.framework */,
+				D530A3111E65E280003974CB /* Freddy.framework */,
+				D530A3001E65D96A003974CB /* CardKit.framework */,
+				D530A3011E65D96A003974CB /* CardKitRuntime.framework */,
+				D530A3021E65D96A003974CB /* DroneCardKit.framework */,
+				D530A3031E65D96A003974CB /* Freddy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3AE7F6721E64924C00D67889 /* DroneProtoZero */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AE7F69B1E64924C00D67889 /* Build configuration list for PBXNativeTarget "DroneProtoZero" */;
+			buildPhases = (
+				3AE7F66F1E64924C00D67889 /* Sources */,
+				3AE7F6701E64924C00D67889 /* Frameworks */,
+				3AE7F6711E64924C00D67889 /* Resources */,
+				3AB3971F1E6516C500DA1800 /* Swift Lint */,
+				D530A30D1E65DC40003974CB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DroneProtoZero;
+			productName = DroneProtoZero;
+			productReference = 3AE7F6731E64924C00D67889 /* DroneProtoZero.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3AE7F6861E64924C00D67889 /* DroneProtoZeroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AE7F69E1E64924C00D67889 /* Build configuration list for PBXNativeTarget "DroneProtoZeroTests" */;
+			buildPhases = (
+				3AE7F6831E64924C00D67889 /* Sources */,
+				3AE7F6841E64924C00D67889 /* Frameworks */,
+				3AE7F6851E64924C00D67889 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AE7F6891E64924C00D67889 /* PBXTargetDependency */,
+			);
+			name = DroneProtoZeroTests;
+			productName = DroneProtoZeroTests;
+			productReference = 3AE7F6871E64924C00D67889 /* DroneProtoZeroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3AE7F6911E64924C00D67889 /* DroneProtoZeroUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AE7F6A11E64924C00D67889 /* Build configuration list for PBXNativeTarget "DroneProtoZeroUITests" */;
+			buildPhases = (
+				3AE7F68E1E64924C00D67889 /* Sources */,
+				3AE7F68F1E64924C00D67889 /* Frameworks */,
+				3AE7F6901E64924C00D67889 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AE7F6941E64924C00D67889 /* PBXTargetDependency */,
+			);
+			name = DroneProtoZeroUITests;
+			productName = DroneProtoZeroUITests;
+			productReference = 3AE7F6921E64924C00D67889 /* DroneProtoZeroUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3AE7F66B1E64924C00D67889 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "IBM Research";
+				TargetAttributes = {
+					3AE7F6721E64924C00D67889 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 76CMF53Q35;
+						ProvisioningStyle = Automatic;
+					};
+					3AE7F6861E64924C00D67889 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 76CMF53Q35;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3AE7F6721E64924C00D67889;
+					};
+					3AE7F6911E64924C00D67889 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 76CMF53Q35;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3AE7F6721E64924C00D67889;
+					};
+				};
+			};
+			buildConfigurationList = 3AE7F66E1E64924C00D67889 /* Build configuration list for PBXProject "DroneProtoZero" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3AE7F66A1E64924C00D67889;
+			productRefGroup = 3AE7F6741E64924C00D67889 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3AE7F6721E64924C00D67889 /* DroneProtoZero */,
+				3AE7F6861E64924C00D67889 /* DroneProtoZeroTests */,
+				3AE7F6911E64924C00D67889 /* DroneProtoZeroUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3AE7F6711E64924C00D67889 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AB397061E64A44900DA1800 /* Canvas.storyboard in Resources */,
+				3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */,
+				3AB397081E64A44900DA1800 /* Library.storyboard in Resources */,
+				3AB397111E64A6A200DA1800 /* Logs.storyboard in Resources */,
+				3AB3970F1E64A58900DA1800 /* Cards.storyboard in Resources */,
+				3AE7F67E1E64924C00D67889 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AE7F6851E64924C00D67889 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AE7F6901E64924C00D67889 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3AB3971F1E6516C500DA1800 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"/usr/local/bin:$PATH\"\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		D530A30D1E65DC40003974CB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/CardKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CardKitRuntime.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DroneCardKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3AE7F66F1E64924C00D67889 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AB397071E64A44900DA1800 /* CanvasViewController.swift in Sources */,
+				3AB3971E1E6512D200DA1800 /* CardTableViewCell.swift in Sources */,
+				3AB397131E64CBC100DA1800 /* CanvasToolBar.swift in Sources */,
+				3AB397181E64CD1400DA1800 /* Reusable.swift in Sources */,
+				3AB397161E64CCC000DA1800 /* UITableViewExtension.swift in Sources */,
+				3AB3970B1E64A46700DA1800 /* CardsTableViewController.swift in Sources */,
+				3AB397091E64A44900DA1800 /* LibraryViewController.swift in Sources */,
+				3AB3971A1E64CD9A00DA1800 /* HandTableViewCell.swift in Sources */,
+				3AB3971C1E64D03700DA1800 /* UIColorExtension.swift in Sources */,
+				3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */,
+				3AB3970D1E64A48A00DA1800 /* LogsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AE7F6831E64924C00D67889 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AE7F68C1E64924C00D67889 /* DroneProtoZeroTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AE7F68E1E64924C00D67889 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AE7F6971E64924C00D67889 /* DroneProtoZeroUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3AE7F6891E64924C00D67889 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AE7F6721E64924C00D67889 /* DroneProtoZero */;
+			targetProxy = 3AE7F6881E64924C00D67889 /* PBXContainerItemProxy */;
+		};
+		3AE7F6941E64924C00D67889 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AE7F6721E64924C00D67889 /* DroneProtoZero */;
+			targetProxy = 3AE7F6931E64924C00D67889 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3AE7F6801E64924C00D67889 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3AE7F6991E64924C00D67889 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3AE7F69A1E64924C00D67889 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3AE7F69C1E64924C00D67889 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 76CMF53Q35;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = DroneProtoZero/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3AE7F69D1E64924C00D67889 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 76CMF53Q35;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = DroneProtoZero/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		3AE7F69F1E64924C00D67889 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 76CMF53Q35;
+				INFOPLIST_FILE = DroneProtoZeroTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZeroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DroneProtoZero.app/DroneProtoZero";
+			};
+			name = Debug;
+		};
+		3AE7F6A01E64924C00D67889 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 76CMF53Q35;
+				INFOPLIST_FILE = DroneProtoZeroTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZeroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DroneProtoZero.app/DroneProtoZero";
+			};
+			name = Release;
+		};
+		3AE7F6A21E64924C00D67889 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 76CMF53Q35;
+				INFOPLIST_FILE = DroneProtoZeroUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZeroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = DroneProtoZero;
+			};
+			name = Debug;
+		};
+		3AE7F6A31E64924C00D67889 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 76CMF53Q35;
+				INFOPLIST_FILE = DroneProtoZeroUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZeroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = DroneProtoZero;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3AE7F66E1E64924C00D67889 /* Build configuration list for PBXProject "DroneProtoZero" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AE7F6991E64924C00D67889 /* Debug */,
+				3AE7F69A1E64924C00D67889 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AE7F69B1E64924C00D67889 /* Build configuration list for PBXNativeTarget "DroneProtoZero" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AE7F69C1E64924C00D67889 /* Debug */,
+				3AE7F69D1E64924C00D67889 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AE7F69E1E64924C00D67889 /* Build configuration list for PBXNativeTarget "DroneProtoZeroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AE7F69F1E64924C00D67889 /* Debug */,
+				3AE7F6A01E64924C00D67889 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AE7F6A11E64924C00D67889 /* Build configuration list for PBXNativeTarget "DroneProtoZeroUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AE7F6A21E64924C00D67889 /* Debug */,
+				3AE7F6A31E64924C00D67889 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3AE7F66B1E64924C00D67889 /* Project object */;
+}
