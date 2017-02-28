@@ -21,7 +21,7 @@
 		3AB3971A1E64CD9A00DA1800 /* HandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397191E64CD9A00DA1800 /* HandTableViewCell.swift */; };
 		3AB3971C1E64D03700DA1800 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3971B1E64D03700DA1800 /* UIColorExtension.swift */; };
 		3AB3971E1E6512D200DA1800 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3971D1E6512D200DA1800 /* CardTableViewCell.swift */; };
-		3AB397221E65BB3200DA1800 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397211E65BB3200DA1800 /* Localizable.strings */; };
+		3AB3973B1E65F47F00DA1800 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3973A1E65F47F00DA1800 /* Localizable.strings */; };
 		3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F6761E64924C00D67889 /* AppDelegate.swift */; };
 		3AE7F67E1E64924C00D67889 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67D1E64924C00D67889 /* Assets.xcassets */; };
 		3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */; };
@@ -65,7 +65,7 @@
 		3AB397191E64CD9A00DA1800 /* HandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandTableViewCell.swift; sourceTree = "<group>"; };
 		3AB3971B1E64D03700DA1800 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		3AB3971D1E6512D200DA1800 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
-		3AB397211E65BB3200DA1800 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		3AB3973A1E65F47F00DA1800 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		3AE7F6731E64924C00D67889 /* DroneProtoZero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneProtoZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE7F6761E64924C00D67889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AE7F67D1E64924C00D67889 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -151,20 +151,18 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		3AB397201E65BB0600DA1800 /* Supporting Files */ = {
+		3AB397391E65F47F00DA1800 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3AB397211E65BB3200DA1800 /* Localizable.strings */,
+				3AB3973A1E65F47F00DA1800 /* Localizable.strings */,
 			);
-			name = "Supporting Files";
-			path = "DroneProtoZero/Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		3AE7F66A1E64924C00D67889 = {
 			isa = PBXGroup;
 			children = (
 				3AE7F6751E64924C00D67889 /* DroneProtoZero */,
-				3AB397201E65BB0600DA1800 /* Supporting Files */,
 				3AE7F68A1E64924C00D67889 /* DroneProtoZeroTests */,
 				3AE7F6951E64924C00D67889 /* DroneProtoZeroUITests */,
 				3AE7F6741E64924C00D67889 /* Products */,
@@ -191,6 +189,7 @@
 				3AE7F67D1E64924C00D67889 /* Assets.xcassets */,
 				3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */,
 				3AE7F6821E64924C00D67889 /* Info.plist */,
+				3AB397391E65F47F00DA1800 /* Supporting Files */,
 			);
 			path = DroneProtoZero;
 			sourceTree = "<group>";
@@ -352,7 +351,7 @@
 				3AB397061E64A44900DA1800 /* Canvas.storyboard in Resources */,
 				3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */,
 				3AB397081E64A44900DA1800 /* Library.storyboard in Resources */,
-				3AB397221E65BB3200DA1800 /* Localizable.strings in Resources */,
+				3AB3973B1E65F47F00DA1800 /* Localizable.strings in Resources */,
 				3AB397111E64A6A200DA1800 /* Logs.storyboard in Resources */,
 				3AB3970F1E64A58900DA1800 /* Cards.storyboard in Resources */,
 				3AE7F67E1E64924C00D67889 /* Assets.xcassets in Resources */,

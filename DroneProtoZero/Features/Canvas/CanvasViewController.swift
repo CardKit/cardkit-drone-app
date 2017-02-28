@@ -50,7 +50,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.size.width, height: 40.0))
         let insertHandButton = UIButton(type: .roundedRect)
         insertHandButton.frame = CGRect(x: (tableView.frame.size.width - 150.0)/2, y: 0.0, width: 150.0, height: 60.0)
-        insertHandButton.setTitle(NSLocalizedString("ADD_HAND_TITLE", comment: "Add Hand Title"), for: .normal)
+        insertHandButton.setTitle(NSLocalizedString("ADD_STEP_TITLE", comment: "Add Step Title"), for: .normal)
         footerView.addSubview(insertHandButton)
         NSLayoutConstraint.activate([
             footerView.centerXAnchor.constraint(equalTo: insertHandButton.centerXAnchor),
