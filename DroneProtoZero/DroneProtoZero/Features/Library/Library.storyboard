@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0I7-AL-PZw">
+    <device id="ipad12_9" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Library View Controller-->
+        <scene sceneID="Ala-gz-RWO">
+            <objects>
+                <viewController id="N40-s1-bfx" customClass="LibraryViewController" customModule="DroneProtoZero" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HKZ-mK-wyQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="P20-uf-BMe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LwL-Iu-wqO">
+                        <rect key="frame" x="0.0" y="0.0" width="315" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XIj-9D-dVZ">
+                                <rect key="frame" x="36" y="84" width="242" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="242" id="GrP-cl-oJo"/>
+                                    <constraint firstAttribute="height" constant="28" id="b1P-oa-ZY6"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Library"/>
+                                    <segment title="Logs"/>
+                                </segments>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkk-FD-YjR" userLabel="Current Contained View">
+                                <rect key="frame" x="0.0" y="132" width="315" height="892"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XIj-9D-dVZ" firstAttribute="top" secondItem="HKZ-mK-wyQ" secondAttribute="bottom" constant="20" id="AiB-bR-3qV"/>
+                            <constraint firstItem="vkk-FD-YjR" firstAttribute="leading" secondItem="LwL-Iu-wqO" secondAttribute="leading" id="KJl-pC-jCf"/>
+                            <constraint firstItem="P20-uf-BMe" firstAttribute="top" secondItem="vkk-FD-YjR" secondAttribute="bottom" id="PEh-Sa-TUz"/>
+                            <constraint firstItem="vkk-FD-YjR" firstAttribute="top" secondItem="XIj-9D-dVZ" secondAttribute="bottom" constant="20" id="a1A-tL-HbK"/>
+                            <constraint firstItem="XIj-9D-dVZ" firstAttribute="centerX" secondItem="LwL-Iu-wqO" secondAttribute="centerX" id="n1M-Dg-W9a"/>
+                            <constraint firstAttribute="trailing" secondItem="vkk-FD-YjR" secondAttribute="trailing" id="xdM-YY-ICN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="DYh-yu-qGM"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="315" height="1024"/>
+                    <connections>
+                        <outlet property="currContainedView" destination="vkk-FD-YjR" id="uM8-oq-4Hy"/>
+                        <outlet property="segmentControl" destination="XIj-9D-dVZ" id="sws-EO-8vT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d6B-cK-ueB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="445.60761346998532" y="-242.57812499999997"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bDE-nl-1DU">
+            <objects>
+                <navigationController id="0I7-AL-PZw" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kvk-Sh-B68">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="N40-s1-bfx" kind="relationship" relationship="rootViewController" id="LSU-ih-1On"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uhu-Px-84b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-237" y="-315"/>
+        </scene>
+        <!--Logs-->
+        <scene sceneID="GhW-6m-sQA">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Logs" storyboardName="Logs" id="bUH-qF-mY0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hbO-8v-aB6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="643" y="-206"/>
+        </scene>
+        <!--Cards-->
+        <scene sceneID="V8Y-up-4sz">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Cards" storyboardName="Cards" id="dNG-Mq-xOF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dg4-MM-1zJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="645" y="-328"/>
+        </scene>
+    </scenes>
+</document>
