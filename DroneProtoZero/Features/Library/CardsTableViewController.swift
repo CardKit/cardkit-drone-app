@@ -20,7 +20,7 @@ class CardsTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView()
         
         
-        allCards = DroneCardKit.allCards()
+//        allCards = DroneCardKit.
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
