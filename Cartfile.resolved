@@ -1,4 +1,4 @@
 github "bignerdranch/Freddy" "3.0.2"
 git "git@github.ibm.com:ETX-CardKit/card-kit.git" "5d1dedd419e98b77b2575f16903d30f91412ac6e"
 git "git@github.ibm.com:ETX-CardKit/card-kit-runtime.git" "606e3c65fb27f90cc75520cb869dbfd5008db7b9"
-git "file:///Users/kmbrimij/Documents/projects/CardKit/drone-card-kit" "41d03745c3e4dd9e230754cf29dd34c1c4122d14"
+git "git@github.ibm.com:ETX-CardKit/drone-card-kit.git" "ed1d2a737ee7c1761b69505ae53360239b1ca0d9"
