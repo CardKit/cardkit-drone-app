@@ -26,6 +26,10 @@
 		3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */; };
 		3AE7F68C1E64924C00D67889 /* DroneProtoZeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F68B1E64924C00D67889 /* DroneProtoZeroTests.swift */; };
 		3AE7F6971E64924C00D67889 /* DroneProtoZeroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F6961E64924C00D67889 /* DroneProtoZeroUITests.swift */; };
+		D530A3121E65E280003974CB /* CardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30E1E65E280003974CB /* CardKit.framework */; };
+		D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30F1E65E280003974CB /* CardKitRuntime.framework */; };
+		D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3101E65E280003974CB /* DroneCardKit.framework */; };
+		D530A3151E65E280003974CB /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3111E65E280003974CB /* Freddy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,14 @@
 		3AE7F6921E64924C00D67889 /* DroneProtoZeroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DroneProtoZeroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE7F6961E64924C00D67889 /* DroneProtoZeroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneProtoZeroUITests.swift; sourceTree = "<group>"; };
 		3AE7F6981E64924C00D67889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D530A3001E65D96A003974CB /* CardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKit.framework; path = ../Carthage/Build/iOS/CardKit.framework; sourceTree = "<group>"; };
+		D530A3011E65D96A003974CB /* CardKitRuntime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKitRuntime.framework; path = ../Carthage/Build/iOS/CardKitRuntime.framework; sourceTree = "<group>"; };
+		D530A3021E65D96A003974CB /* DroneCardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DroneCardKit.framework; path = ../Carthage/Build/iOS/DroneCardKit.framework; sourceTree = "<group>"; };
+		D530A3031E65D96A003974CB /* Freddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Freddy.framework; path = ../Carthage/Build/iOS/Freddy.framework; sourceTree = "<group>"; };
+		D530A30E1E65E280003974CB /* CardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKit.framework; path = Carthage/Build/iOS/CardKit.framework; sourceTree = "<group>"; };
+		D530A30F1E65E280003974CB /* CardKitRuntime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKitRuntime.framework; path = Carthage/Build/iOS/CardKitRuntime.framework; sourceTree = "<group>"; };
+		D530A3101E65E280003974CB /* DroneCardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DroneCardKit.framework; path = Carthage/Build/iOS/DroneCardKit.framework; sourceTree = "<group>"; };
+		D530A3111E65E280003974CB /* Freddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Freddy.framework; path = Carthage/Build/iOS/Freddy.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +90,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D530A3121E65E280003974CB /* CardKit.framework in Frameworks */,
+				D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */,
+				D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */,
+				D530A3151E65E280003974CB /* Freddy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +156,7 @@
 				3AE7F68A1E64924C00D67889 /* DroneProtoZeroTests */,
 				3AE7F6951E64924C00D67889 /* DroneProtoZeroUITests */,
 				3AE7F6741E64924C00D67889 /* Products */,
+				D530A2FF1E65D969003974CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,6 +210,21 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
+		D530A2FF1E65D969003974CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D530A30E1E65E280003974CB /* CardKit.framework */,
+				D530A30F1E65E280003974CB /* CardKitRuntime.framework */,
+				D530A3101E65E280003974CB /* DroneCardKit.framework */,
+				D530A3111E65E280003974CB /* Freddy.framework */,
+				D530A3001E65D96A003974CB /* CardKit.framework */,
+				D530A3011E65D96A003974CB /* CardKitRuntime.framework */,
+				D530A3021E65D96A003974CB /* DroneCardKit.framework */,
+				D530A3031E65D96A003974CB /* Freddy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -204,6 +236,7 @@
 				3AE7F6701E64924C00D67889 /* Frameworks */,
 				3AE7F6711E64924C00D67889 /* Resources */,
 				3AB3971F1E6516C500DA1800 /* Swift Lint */,
+				D530A30D1E65DC40003974CB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -343,6 +376,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"/usr/local/bin:$PATH\"\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		D530A30D1E65DC40003974CB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/CardKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CardKitRuntime.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DroneCardKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -506,6 +556,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 76CMF53Q35;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DroneProtoZero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
@@ -519,6 +573,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 76CMF53Q35;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DroneProtoZero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
