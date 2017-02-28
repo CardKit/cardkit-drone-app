@@ -12,6 +12,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var toolBar: CanvasToolBar!
     @IBOutlet weak var tableView: UITableView!
+    var footerView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,13 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.backgroundColor = UIColor.white
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .cornflowerBlue
+        registerNotifications()
+        
+        
+    }
+    
+    func registerNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(CanvasViewController.statusBarDidChange), name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,15 +56,18 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.size.width, height: 40.0))
+        footerView.autoresizingMask = UIViewAutoresizing.flexibleWidth
         let insertHandButton = UIButton(type: .roundedRect)
         insertHandButton.frame = CGRect(x: (tableView.frame.size.width - 150.0)/2, y: 0.0, width: 150.0, height: 60.0)
+        insertHandButton.autoresizingMask = UIViewAutoresizing.flexibleWidth
         insertHandButton.setTitle(NSLocalizedString("ADD_STEP_TITLE", comment: "Add Step Title"), for: .normal)
+        insertHandButton.tag = 0
         footerView.addSubview(insertHandButton)
         NSLayoutConstraint.activate([
             footerView.centerXAnchor.constraint(equalTo: insertHandButton.centerXAnchor),
             footerView.topAnchor.constraint(equalTo: insertHandButton.bottomAnchor, constant: 0)
             ])
-
+        self.footerView = footerView
         
         
         return footerView
@@ -78,4 +89,20 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     */
 
+}
+
+extension CanvasViewController {
+    
+    func statusBarDidChange(note: Notification) {
+        
+        tableView.setNeedsUpdateConstraints()
+        if let footerview = footerView {
+            print("TABLE Width \(tableView.frame.size.width)")
+//            if let insertButton = footerview.viewWithTag(0) {
+//                insertButton.frame = CGRect(x: (tableView.frame.size.width - 150.0)/2, y: 0.0, width: 150.0, height: 40.0)
+//            }
+            footerview.setNeedsUpdateConstraints()
+        }
+    }
+    
 }
