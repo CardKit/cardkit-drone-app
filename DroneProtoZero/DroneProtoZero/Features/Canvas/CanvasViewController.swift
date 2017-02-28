@@ -25,7 +25,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.backgroundColor = UIColor.white
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .cornflowerBlue
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,6 +44,26 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.size.width, height: 40.0))
+        let insertHandButton = UIButton(type: .roundedRect)
+        insertHandButton.frame = CGRect(x: (tableView.frame.size.width - 150.0)/2, y: 0.0, width: 150.0, height: 60.0)
+        insertHandButton.setTitle(NSLocalizedString("ADD_HAND_TITLE", comment: "Add Hand Title"), for: .normal)
+        footerView.addSubview(insertHandButton)
+        NSLayoutConstraint.activate([
+            footerView.centerXAnchor.constraint(equalTo: insertHandButton.centerXAnchor),
+            footerView.topAnchor.constraint(equalTo: insertHandButton.bottomAnchor, constant: 0)
+            ])
+
+        
+        
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 60.0
     }
 
     
