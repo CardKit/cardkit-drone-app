@@ -20,7 +20,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     
-    func setupTableView() -> Void {
+    func setupTableView() {
         //setup any tableview stuff here
         tableView.backgroundColor = UIColor.white
         tableView.tableFooterView = UIView()

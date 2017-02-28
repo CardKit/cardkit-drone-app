@@ -10,7 +10,7 @@ import UIKit
 
 class LibraryViewController: UIViewController {
     
-    enum Libs:Int {
+    enum CellType: Int {
         case cards
         case logs
         
@@ -39,13 +39,13 @@ class LibraryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setupView() -> Void {
+    func setupView() {
         //setup the segmented control to show first and cardsVC by default
         segmentControl.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
-        createContainedView(storyboardID: Libs.cards.storyboardID)
+        createContainedView(storyboardID: CellType.cards.storyboardID)
     }
     
-    func createContainedView(storyboardID: String) -> Void {
+    func createContainedView(storyboardID: String) {
         print("CONSTRAINTS \(view.constraints)\n\n\n")
         if let currViewController = self.storyboard?.instantiateViewController(withIdentifier: storyboardID) {
             currViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -62,7 +62,7 @@ class LibraryViewController: UIViewController {
         }
     }
     
-    func updateView(newView: Libs) -> Void {
+    func updateView(newView: CellType) {
         print("newVIEW \(newView)")
         if let currViewController = currentViewController {
             //something exists here so remocve it
@@ -74,8 +74,8 @@ class LibraryViewController: UIViewController {
         createContainedView(storyboardID: newView.storyboardID)
     }
     
-    func selectionDidChange(_ sender: UISegmentedControl) -> Void {
-        if let libs = Libs(rawValue: sender.selectedSegmentIndex) {
+    func selectionDidChange(_ sender: UISegmentedControl) {
+        if let libs = CellType(rawValue: sender.selectedSegmentIndex) {
             updateView(newView: libs)
         }
         
