@@ -53,6 +53,9 @@ class CardsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        //allCards is a dictionary and as such we cannot reference elements via section unless
+        //we get the array of keys in the dictionary.  as both are optional, allCards and cardKeys
+        //are wrapped in guard statement
         guard let cards = allCards, let keys = cardKeys else {
             return 0
         }
