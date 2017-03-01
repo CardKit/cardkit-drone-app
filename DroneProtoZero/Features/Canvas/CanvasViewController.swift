@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CardKit
 
 class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -65,6 +66,13 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+
+    // MARK: - Add card
+    
+    func addCardToHand(descriptor: ActionCardDescriptor, position: CGPoint) {
+        //indexPathForRowAtPoint:point
+        print("CARD DESCRIPTOR: \(descriptor)")
     }
     
     func addNewStep(sender: UIButton) {
@@ -126,5 +134,4 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Pass the selected object to the new view controller.
     }
     */
-
 }
