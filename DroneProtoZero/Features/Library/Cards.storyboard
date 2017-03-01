@@ -25,13 +25,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="315" height="234"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E78-dp-R0i">
-                                            <rect key="frame" x="136" y="106" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAN-C6-fO1">
                                             <rect key="frame" x="67" y="17.5" width="182" height="200"/>
                                             <subviews>
@@ -49,9 +42,20 @@
                                                 <constraint firstAttribute="width" constant="182" id="deH-IW-fxk"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E78-dp-R0i">
+                                            <rect key="frame" x="137" y="95" width="42" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="45" id="OQS-Tr-DwE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="E78-dp-R0i" firstAttribute="centerY" secondItem="0zn-w7-FOG" secondAttribute="centerY" id="Vsp-Co-s4W"/>
                                         <constraint firstItem="xAN-C6-fO1" firstAttribute="centerY" secondItem="0zn-w7-FOG" secondAttribute="centerY" id="Wkf-Yo-lLo"/>
+                                        <constraint firstItem="E78-dp-R0i" firstAttribute="centerX" secondItem="0zn-w7-FOG" secondAttribute="centerX" id="gXz-Ng-Mux"/>
                                         <constraint firstItem="xAN-C6-fO1" firstAttribute="centerX" secondItem="0zn-w7-FOG" secondAttribute="centerX" id="mxU-fH-Fko"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -74,7 +78,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PqI-QY-88V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1079.2" y="74.212893553223395"/>
+            <point key="canvasLocation" x="-1081.34765625" y="74.011713030746705"/>
         </scene>
     </scenes>
 </document>
