@@ -8,7 +8,11 @@ This project runs in Swift 3 and requires Xcode 8.  Like most projects this one 
 
 1. Clone the project `git@github.ibm.com:ETX-CardKit/drone-proto-zero.git`
 
-2. In the directory where the `Cartfile` exists run `carthage update`.  If you don't have Carthage installed on your machine, you will need to do that first. [Go Here](https://github.com/Carthage/Carthage) 
+2. In the directory where the `Cartfile` exists run... 
+
+ `carthage update --platform iOS --configuration Debug`  
+ 
+ This will update the dependency libraries associated with the ptoject but only build them for the iOS platform and the Debug configuration.  If you are trying to archive for Release then you will need to change the configuration to `Release`.  If you don't have Carthage installed on your machine, you will need to do that first. [Go Here](https://github.com/Carthage/Carthage) 
 
 3. open the `DroneProtoZero.xcodeproj` and build.  You should have a working version of the app.
 
