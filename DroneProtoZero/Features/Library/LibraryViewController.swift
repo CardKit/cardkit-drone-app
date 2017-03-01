@@ -78,9 +78,7 @@ class LibraryViewController: UIViewController {
         if let libs = CellType(rawValue: sender.selectedSegmentIndex) {
             updateView(newView: libs)
         }
-        
     }
-    
     
     private func add(asChildViewController viewController: UIViewController) {
         // Add Child View Controller
