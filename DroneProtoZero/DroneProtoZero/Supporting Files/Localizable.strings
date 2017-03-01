@@ -10,11 +10,4 @@
  * Copyright Office.
  */
 
-"ERROR" = "Error";
-"CANCEL" = "Cancel";
-"CLOSE" = "Close";
-"EDIT" = "Edit";
-"OK" = "OK";
-"ADD_HAND_TITLE" = "Add Step";
-
-
+"ADD_STEP_TITLE" = "Add Step";
