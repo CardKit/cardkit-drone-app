@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3AB3975A1E6678C300DA1800 /* AvailableHardwareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397451E6678C300DA1800 /* AvailableHardwareCell.swift */; };
-		3AB3975B1E6678C300DA1800 /* Canvas.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397461E6678C300DA1800 /* Canvas.storyboard */; };
-		3AB3975C1E6678C300DA1800 /* CanvasToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397471E6678C300DA1800 /* CanvasToolBar.swift */; };
-		3AB3975D1E6678C300DA1800 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397481E6678C300DA1800 /* CanvasViewController.swift */; };
-		3AB3975E1E6678C300DA1800 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397491E6678C300DA1800 /* CanvasViewModel.swift */; };
-		3AB3975F1E6678C300DA1800 /* DroneStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3974A1E6678C300DA1800 /* DroneStatusCell.swift */; };
-		3AB397601E6678C300DA1800 /* HandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3974B1E6678C300DA1800 /* HandTableViewCell.swift */; };
-		3AB397611E6678C300DA1800 /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3974D1E6678C300DA1800 /* Cards.storyboard */; };
-		3AB397621E6678C300DA1800 /* CardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3974E1E6678C300DA1800 /* CardsTableViewController.swift */; };
-		3AB397631E6678C300DA1800 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3974F1E6678C300DA1800 /* CardTableViewCell.swift */; };
-		3AB397641E6678C300DA1800 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397501E6678C300DA1800 /* Library.storyboard */; };
-		3AB397651E6678C300DA1800 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397511E6678C300DA1800 /* LibraryViewController.swift */; };
-		3AB397661E6678C300DA1800 /* Logs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397521E6678C300DA1800 /* Logs.storyboard */; };
-		3AB397671E6678C300DA1800 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397531E6678C300DA1800 /* LogsViewController.swift */; };
-		3AB397681E6678C300DA1800 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397551E6678C300DA1800 /* Localizable.strings */; };
-		3AB397691E6678C300DA1800 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397571E6678C300DA1800 /* Reusable.swift */; };
-		3AB3976A1E6678C300DA1800 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397581E6678C300DA1800 /* UIColorExtension.swift */; };
-		3AB3976B1E6678C300DA1800 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397591E6678C300DA1800 /* UITableViewExtension.swift */; };
+		3AB397831E667A5B00DA1800 /* AvailableHardwareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3976E1E667A5B00DA1800 /* AvailableHardwareCell.swift */; };
+		3AB397841E667A5B00DA1800 /* Canvas.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */; };
+		3AB397851E667A5B00DA1800 /* CanvasToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397701E667A5B00DA1800 /* CanvasToolBar.swift */; };
+		3AB397861E667A5B00DA1800 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397711E667A5B00DA1800 /* CanvasViewController.swift */; };
+		3AB397871E667A5B00DA1800 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */; };
+		3AB397881E667A5B00DA1800 /* DroneStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397731E667A5B00DA1800 /* DroneStatusCell.swift */; };
+		3AB397891E667A5B00DA1800 /* HandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397741E667A5B00DA1800 /* HandTableViewCell.swift */; };
+		3AB3978A1E667A5B00DA1800 /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397761E667A5B00DA1800 /* Cards.storyboard */; };
+		3AB3978B1E667A5B00DA1800 /* CardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397771E667A5B00DA1800 /* CardsTableViewController.swift */; };
+		3AB3978C1E667A5B00DA1800 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397781E667A5B00DA1800 /* CardTableViewCell.swift */; };
+		3AB3978D1E667A5B00DA1800 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397791E667A5B00DA1800 /* Library.storyboard */; };
+		3AB3978E1E667A5B00DA1800 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3977A1E667A5B00DA1800 /* LibraryViewController.swift */; };
+		3AB3978F1E667A5B00DA1800 /* Logs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3977B1E667A5B00DA1800 /* Logs.storyboard */; };
+		3AB397901E667A5B00DA1800 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3977C1E667A5B00DA1800 /* LogsViewController.swift */; };
+		3AB397911E667A5B00DA1800 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3977E1E667A5B00DA1800 /* Localizable.strings */; };
+		3AB397921E667A5B00DA1800 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397801E667A5B00DA1800 /* Reusable.swift */; };
+		3AB397931E667A5B00DA1800 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397811E667A5B00DA1800 /* UIColorExtension.swift */; };
+		3AB397941E667A5B00DA1800 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */; };
 		3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F6761E64924C00D67889 /* AppDelegate.swift */; };
 		3AE7F67E1E64924C00D67889 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67D1E64924C00D67889 /* Assets.xcassets */; };
 		3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */; };
@@ -54,24 +54,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3AB397451E6678C300DA1800 /* AvailableHardwareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableHardwareCell.swift; sourceTree = "<group>"; };
-		3AB397461E6678C300DA1800 /* Canvas.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Canvas.storyboard; sourceTree = "<group>"; };
-		3AB397471E6678C300DA1800 /* CanvasToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasToolBar.swift; sourceTree = "<group>"; };
-		3AB397481E6678C300DA1800 /* CanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
-		3AB397491E6678C300DA1800 /* CanvasViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewModel.swift; sourceTree = "<group>"; };
-		3AB3974A1E6678C300DA1800 /* DroneStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneStatusCell.swift; sourceTree = "<group>"; };
-		3AB3974B1E6678C300DA1800 /* HandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandTableViewCell.swift; sourceTree = "<group>"; };
-		3AB3974D1E6678C300DA1800 /* Cards.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
-		3AB3974E1E6678C300DA1800 /* CardsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsTableViewController.swift; sourceTree = "<group>"; };
-		3AB3974F1E6678C300DA1800 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
-		3AB397501E6678C300DA1800 /* Library.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
-		3AB397511E6678C300DA1800 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
-		3AB397521E6678C300DA1800 /* Logs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logs.storyboard; sourceTree = "<group>"; };
-		3AB397531E6678C300DA1800 /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
-		3AB397551E6678C300DA1800 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		3AB397571E6678C300DA1800 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
-		3AB397581E6678C300DA1800 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		3AB397591E6678C300DA1800 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		3AB3976E1E667A5B00DA1800 /* AvailableHardwareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableHardwareCell.swift; sourceTree = "<group>"; };
+		3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Canvas.storyboard; sourceTree = "<group>"; };
+		3AB397701E667A5B00DA1800 /* CanvasToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasToolBar.swift; sourceTree = "<group>"; };
+		3AB397711E667A5B00DA1800 /* CanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
+		3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewModel.swift; sourceTree = "<group>"; };
+		3AB397731E667A5B00DA1800 /* DroneStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneStatusCell.swift; sourceTree = "<group>"; };
+		3AB397741E667A5B00DA1800 /* HandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandTableViewCell.swift; sourceTree = "<group>"; };
+		3AB397761E667A5B00DA1800 /* Cards.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
+		3AB397771E667A5B00DA1800 /* CardsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsTableViewController.swift; sourceTree = "<group>"; };
+		3AB397781E667A5B00DA1800 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		3AB397791E667A5B00DA1800 /* Library.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
+		3AB3977A1E667A5B00DA1800 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		3AB3977B1E667A5B00DA1800 /* Logs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logs.storyboard; sourceTree = "<group>"; };
+		3AB3977C1E667A5B00DA1800 /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
+		3AB3977E1E667A5B00DA1800 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		3AB397801E667A5B00DA1800 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		3AB397811E667A5B00DA1800 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		3AE7F6731E64924C00D67889 /* DroneProtoZero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneProtoZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE7F6761E64924C00D67889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AE7F67D1E64924C00D67889 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,62 +122,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3AB397431E6678C300DA1800 /* Features */ = {
+		3AB3976C1E667A5B00DA1800 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				3AB397441E6678C300DA1800 /* Canvas */,
-				3AB3974C1E6678C300DA1800 /* Library */,
+				3AB3976D1E667A5B00DA1800 /* Canvas */,
+				3AB397751E667A5B00DA1800 /* Library */,
 			);
-			name = Features;
-			path = DroneProtoZero/Features;
+			path = Features;
 			sourceTree = "<group>";
 		};
-		3AB397441E6678C300DA1800 /* Canvas */ = {
+		3AB3976D1E667A5B00DA1800 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
-				3AB397451E6678C300DA1800 /* AvailableHardwareCell.swift */,
-				3AB397461E6678C300DA1800 /* Canvas.storyboard */,
-				3AB397471E6678C300DA1800 /* CanvasToolBar.swift */,
-				3AB397481E6678C300DA1800 /* CanvasViewController.swift */,
-				3AB397491E6678C300DA1800 /* CanvasViewModel.swift */,
-				3AB3974A1E6678C300DA1800 /* DroneStatusCell.swift */,
-				3AB3974B1E6678C300DA1800 /* HandTableViewCell.swift */,
+				3AB3976E1E667A5B00DA1800 /* AvailableHardwareCell.swift */,
+				3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */,
+				3AB397701E667A5B00DA1800 /* CanvasToolBar.swift */,
+				3AB397711E667A5B00DA1800 /* CanvasViewController.swift */,
+				3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */,
+				3AB397731E667A5B00DA1800 /* DroneStatusCell.swift */,
+				3AB397741E667A5B00DA1800 /* HandTableViewCell.swift */,
 			);
 			path = Canvas;
 			sourceTree = "<group>";
 		};
-		3AB3974C1E6678C300DA1800 /* Library */ = {
+		3AB397751E667A5B00DA1800 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				3AB3974D1E6678C300DA1800 /* Cards.storyboard */,
-				3AB3974E1E6678C300DA1800 /* CardsTableViewController.swift */,
-				3AB3974F1E6678C300DA1800 /* CardTableViewCell.swift */,
-				3AB397501E6678C300DA1800 /* Library.storyboard */,
-				3AB397511E6678C300DA1800 /* LibraryViewController.swift */,
-				3AB397521E6678C300DA1800 /* Logs.storyboard */,
-				3AB397531E6678C300DA1800 /* LogsViewController.swift */,
+				3AB397761E667A5B00DA1800 /* Cards.storyboard */,
+				3AB397771E667A5B00DA1800 /* CardsTableViewController.swift */,
+				3AB397781E667A5B00DA1800 /* CardTableViewCell.swift */,
+				3AB397791E667A5B00DA1800 /* Library.storyboard */,
+				3AB3977A1E667A5B00DA1800 /* LibraryViewController.swift */,
+				3AB3977B1E667A5B00DA1800 /* Logs.storyboard */,
+				3AB3977C1E667A5B00DA1800 /* LogsViewController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
 		};
-		3AB397541E6678C300DA1800 /* Supporting Files */ = {
+		3AB3977D1E667A5B00DA1800 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3AB397551E6678C300DA1800 /* Localizable.strings */,
+				3AB3977E1E667A5B00DA1800 /* Localizable.strings */,
 			);
-			name = "Supporting Files";
-			path = "DroneProtoZero/Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3AB397561E6678C300DA1800 /* Utils */ = {
+		3AB3977F1E667A5B00DA1800 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				3AB397571E6678C300DA1800 /* Reusable.swift */,
-				3AB397581E6678C300DA1800 /* UIColorExtension.swift */,
-				3AB397591E6678C300DA1800 /* UITableViewExtension.swift */,
+				3AB397801E667A5B00DA1800 /* Reusable.swift */,
+				3AB397811E667A5B00DA1800 /* UIColorExtension.swift */,
+				3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */,
 			);
-			name = Utils;
-			path = DroneProtoZero/Utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		3AE7F66A1E64924C00D67889 = {
@@ -204,10 +201,10 @@
 		3AE7F6751E64924C00D67889 /* DroneProtoZero */ = {
 			isa = PBXGroup;
 			children = (
+				3AB3976C1E667A5B00DA1800 /* Features */,
+				3AB3977D1E667A5B00DA1800 /* Supporting Files */,
+				3AB3977F1E667A5B00DA1800 /* Utils */,
 				3AE7F6761E64924C00D67889 /* AppDelegate.swift */,
-				3AB397431E6678C300DA1800 /* Features */,
-				3AB397541E6678C300DA1800 /* Supporting Files */,
-				3AB397561E6678C300DA1800 /* Utils */,
 				3AE7F67D1E64924C00D67889 /* Assets.xcassets */,
 				3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */,
 				3AE7F6821E64924C00D67889 /* Info.plist */,
@@ -360,12 +357,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AB397611E6678C300DA1800 /* Cards.storyboard in Resources */,
+				3AB3978A1E667A5B00DA1800 /* Cards.storyboard in Resources */,
 				3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */,
-				3AB397641E6678C300DA1800 /* Library.storyboard in Resources */,
-				3AB397681E6678C300DA1800 /* Localizable.strings in Resources */,
-				3AB397661E6678C300DA1800 /* Logs.storyboard in Resources */,
-				3AB3975B1E6678C300DA1800 /* Canvas.storyboard in Resources */,
+				3AB3978D1E667A5B00DA1800 /* Library.storyboard in Resources */,
+				3AB397911E667A5B00DA1800 /* Localizable.strings in Resources */,
+				3AB3978F1E667A5B00DA1800 /* Logs.storyboard in Resources */,
+				3AB397841E667A5B00DA1800 /* Canvas.storyboard in Resources */,
 				3AE7F67E1E64924C00D67889 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,20 +422,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AB397691E6678C300DA1800 /* Reusable.swift in Sources */,
-				3AB3975F1E6678C300DA1800 /* DroneStatusCell.swift in Sources */,
-				3AB3975E1E6678C300DA1800 /* CanvasViewModel.swift in Sources */,
-				3AB3975D1E6678C300DA1800 /* CanvasViewController.swift in Sources */,
+				3AB397921E667A5B00DA1800 /* Reusable.swift in Sources */,
+				3AB397881E667A5B00DA1800 /* DroneStatusCell.swift in Sources */,
+				3AB397871E667A5B00DA1800 /* CanvasViewModel.swift in Sources */,
+				3AB397861E667A5B00DA1800 /* CanvasViewController.swift in Sources */,
 				3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */,
-				3AB3975A1E6678C300DA1800 /* AvailableHardwareCell.swift in Sources */,
-				3AB3976A1E6678C300DA1800 /* UIColorExtension.swift in Sources */,
-				3AB397621E6678C300DA1800 /* CardsTableViewController.swift in Sources */,
-				3AB397671E6678C300DA1800 /* LogsViewController.swift in Sources */,
-				3AB397651E6678C300DA1800 /* LibraryViewController.swift in Sources */,
-				3AB3975C1E6678C300DA1800 /* CanvasToolBar.swift in Sources */,
-				3AB397631E6678C300DA1800 /* CardTableViewCell.swift in Sources */,
-				3AB397601E6678C300DA1800 /* HandTableViewCell.swift in Sources */,
-				3AB3976B1E6678C300DA1800 /* UITableViewExtension.swift in Sources */,
+				3AB397831E667A5B00DA1800 /* AvailableHardwareCell.swift in Sources */,
+				3AB397931E667A5B00DA1800 /* UIColorExtension.swift in Sources */,
+				3AB3978B1E667A5B00DA1800 /* CardsTableViewController.swift in Sources */,
+				3AB397901E667A5B00DA1800 /* LogsViewController.swift in Sources */,
+				3AB3978E1E667A5B00DA1800 /* LibraryViewController.swift in Sources */,
+				3AB397851E667A5B00DA1800 /* CanvasToolBar.swift in Sources */,
+				3AB3978C1E667A5B00DA1800 /* CardTableViewCell.swift in Sources */,
+				3AB397891E667A5B00DA1800 /* HandTableViewCell.swift in Sources */,
+				3AB397941E667A5B00DA1800 /* UITableViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

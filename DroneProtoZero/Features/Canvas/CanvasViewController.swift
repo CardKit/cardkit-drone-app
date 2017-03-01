@@ -70,7 +70,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func addNewStep(sender: UIButton) {
          let currentCount = viewModel.sectionCount
          viewModel.sectionCount += 1
-         print("insert new section \(viewModel.sectionCount)")
         tableView.beginUpdates()
         let index = [currentCount-1]
         tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
@@ -79,6 +78,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == viewModel.sectionCount-1 {
+            //TODO: need to add in header for steps section
             return UIView(frame: CGRect.zero)
         }
         return UIView(frame: CGRect.zero)
