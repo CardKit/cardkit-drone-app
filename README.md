@@ -24,7 +24,7 @@ If you are contributing to the repo, you should create a branch from develop add
 
 Also, in your pull request submit a brief explanation about what you did, and any other info that might be important.
 
-Make sure to include at least 2 reviewers in your PR otherwise it might get lost or forgotten and no one like an unreviewed PR.
+Make sure to include at least 2 reviewers in your PR otherwise it might get lost or forgotten and no one likes an unreviewed PR.
 
 ![zoidberg PR](https://cdn.meme.am/cache/instances/folder483/54180483.jpg)
 
