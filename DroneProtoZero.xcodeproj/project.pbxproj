@@ -134,8 +134,8 @@
 		3AB3976D1E667A5B00DA1800 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
-				3AB3976E1E667A5B00DA1800 /* AvailableHardwareCell.swift */,
 				3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */,
+				3AB3976E1E667A5B00DA1800 /* AvailableHardwareCell.swift */,
 				3AB397701E667A5B00DA1800 /* CanvasToolBar.swift */,
 				3AB397711E667A5B00DA1800 /* CanvasViewController.swift */,
 				3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */,

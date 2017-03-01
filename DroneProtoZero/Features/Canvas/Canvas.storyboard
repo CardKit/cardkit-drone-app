@@ -12,7 +12,7 @@
         <!--Canvas View Controller-->
         <scene sceneID="5mE-GG-HTl">
             <objects>
-                <viewController id="EgT-Ua-TXv" customClass="CanvasViewController" customModule="DroneProtoZero" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="EgT-Ua-TXv" customClass="CanvasViewController" customModule="DroneProtoZero" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IKc-Vg-Sks"/>
                         <viewControllerLayoutGuide type="bottom" id="8fF-pz-6JV"/>

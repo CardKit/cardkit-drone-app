@@ -21,7 +21,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func setupTableView() {
         self.view.backgroundColor = .athensGray
         //setup any tableview stuff here
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorColor = UIColor.white
         self.view.backgroundColor = .athensGray
     }
@@ -72,7 +72,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
          viewModel.sectionCount += 1
         tableView.beginUpdates()
         let index = [currentCount-1]
-        tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
+        tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.top)
         tableView.endUpdates()
     }
     
@@ -85,11 +85,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section < CanvasSection.steps.rawValue {
-            print("section \(section)")
-            return 1.0
-        }
-        return 50.0
+        return CGFloat(viewModel.headerHeight(section: section))
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
