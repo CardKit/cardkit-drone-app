@@ -22,6 +22,9 @@
 		3AB3971C1E64D03700DA1800 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3971B1E64D03700DA1800 /* UIColorExtension.swift */; };
 		3AB3971E1E6512D200DA1800 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3971D1E6512D200DA1800 /* CardTableViewCell.swift */; };
 		3AB3973B1E65F47F00DA1800 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3973A1E65F47F00DA1800 /* Localizable.strings */; };
+		3AB3973D1E660E0A00DA1800 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3973C1E660E0A00DA1800 /* CanvasViewModel.swift */; };
+		3AB3973F1E6617D900DA1800 /* DroneStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3973E1E6617D900DA1800 /* DroneStatusCell.swift */; };
+		3AB397411E6617EA00DA1800 /* AvailableHardwareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397401E6617EA00DA1800 /* AvailableHardwareCell.swift */; };
 		3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F6761E64924C00D67889 /* AppDelegate.swift */; };
 		3AE7F67E1E64924C00D67889 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67D1E64924C00D67889 /* Assets.xcassets */; };
 		3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */; };
@@ -66,6 +69,9 @@
 		3AB3971B1E64D03700DA1800 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		3AB3971D1E6512D200DA1800 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		3AB3973A1E65F47F00DA1800 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		3AB3973C1E660E0A00DA1800 /* CanvasViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewModel.swift; sourceTree = "<group>"; };
+		3AB3973E1E6617D900DA1800 /* DroneStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneStatusCell.swift; sourceTree = "<group>"; };
+		3AB397401E6617EA00DA1800 /* AvailableHardwareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableHardwareCell.swift; sourceTree = "<group>"; };
 		3AE7F6731E64924C00D67889 /* DroneProtoZero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneProtoZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE7F6761E64924C00D67889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AE7F67D1E64924C00D67889 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,6 +129,9 @@
 				3AB397021E64A44900DA1800 /* CanvasViewController.swift */,
 				3AB397121E64CBC100DA1800 /* CanvasToolBar.swift */,
 				3AB397191E64CD9A00DA1800 /* HandTableViewCell.swift */,
+				3AB3973C1E660E0A00DA1800 /* CanvasViewModel.swift */,
+				3AB3973E1E6617D900DA1800 /* DroneStatusCell.swift */,
+				3AB397401E6617EA00DA1800 /* AvailableHardwareCell.swift */,
 			);
 			path = Canvas;
 			sourceTree = "<group>";
@@ -414,13 +423,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AB397071E64A44900DA1800 /* CanvasViewController.swift in Sources */,
+				3AB397411E6617EA00DA1800 /* AvailableHardwareCell.swift in Sources */,
 				3AB3971E1E6512D200DA1800 /* CardTableViewCell.swift in Sources */,
 				3AB397131E64CBC100DA1800 /* CanvasToolBar.swift in Sources */,
 				3AB397181E64CD1400DA1800 /* Reusable.swift in Sources */,
 				3AB397161E64CCC000DA1800 /* UITableViewExtension.swift in Sources */,
+				3AB3973F1E6617D900DA1800 /* DroneStatusCell.swift in Sources */,
 				3AB3970B1E64A46700DA1800 /* CardsTableViewController.swift in Sources */,
 				3AB397091E64A44900DA1800 /* LibraryViewController.swift in Sources */,
 				3AB3971A1E64CD9A00DA1800 /* HandTableViewCell.swift in Sources */,
+				3AB3973D1E660E0A00DA1800 /* CanvasViewModel.swift in Sources */,
 				3AB3971C1E64D03700DA1800 /* UIColorExtension.swift in Sources */,
 				3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */,
 				3AB3970D1E64A48A00DA1800 /* LogsViewController.swift in Sources */,

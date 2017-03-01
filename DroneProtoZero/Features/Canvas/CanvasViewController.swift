@@ -10,29 +10,20 @@ import UIKit
 
 class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var toolBar: CanvasToolBar!
     @IBOutlet weak var tableView: UITableView!
-    var footerView: UIView?
+    var viewModel: CanvasViewModel = CanvasViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupTableView()
     }
-
     
     func setupTableView() {
+        self.view.backgroundColor = .athensGray
         //setup any tableview stuff here
-        tableView.backgroundColor = UIColor.white
         tableView.tableFooterView = UIView()
-        tableView.separatorColor = .cornflowerBlue
-        registerNotifications()
-        
-        
-    }
-    
-    func registerNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(CanvasViewController.statusBarDidChange), name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
+        tableView.separatorColor = UIColor.white
+        self.view.backgroundColor = .athensGray
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,9 +35,31 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(viewModel.cellHeight(for: indexPath))
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.sectionCount
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HandTableViewCell
+        guard let sectionType = CanvasSection(rawValue: indexPath.section) else { return UITableViewCell() }
+        let cell: UITableViewCell
+        switch  sectionType {
+        case .status:
+            cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as DroneStatusCell
+            break
+        case .hardware:
+            cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as AvailableHardwareCell
+            break
+        default:
+            cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HandTableViewCell
+            break
+        }
+        cell.layer.cornerRadius = 11.0
+        cell.layer.masksToBounds = true
         return cell
     }
     
@@ -54,30 +67,55 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return false
     }
     
+    func addNewStep(sender: UIButton) {
+         let currentCount = viewModel.sectionCount
+         viewModel.sectionCount += 1
+         print("insert new section \(viewModel.sectionCount)")
+        tableView.beginUpdates()
+        let index = [currentCount-1]
+        tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
+        tableView.endUpdates()
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == viewModel.sectionCount-1 {
+            return UIView(frame: CGRect.zero)
+        }
+        return UIView(frame: CGRect.zero)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section < CanvasSection.steps.rawValue {
+            print("section \(section)")
+            return 1.0
+        }
+        return 50.0
+    }
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.size.width, height: 40.0))
-        footerView.autoresizingMask = UIViewAutoresizing.flexibleWidth
-        let insertHandButton = UIButton(type: .roundedRect)
-        insertHandButton.frame = CGRect(x: (tableView.frame.size.width - 150.0)/2, y: 0.0, width: 150.0, height: 60.0)
-        insertHandButton.autoresizingMask = UIViewAutoresizing.flexibleWidth
-        insertHandButton.setTitle(NSLocalizedString("ADD_STEP_TITLE", comment: "Add Step Title"), for: .normal)
-        insertHandButton.tag = 0
-        footerView.addSubview(insertHandButton)
-        NSLayoutConstraint.activate([
-            footerView.centerXAnchor.constraint(equalTo: insertHandButton.centerXAnchor),
-            footerView.topAnchor.constraint(equalTo: insertHandButton.bottomAnchor, constant: 0)
-            ])
-        self.footerView = footerView
+        if section == viewModel.sectionCount-1 {
+            let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.size.width, height: 40.0))
+            footerView.autoresizingMask = UIViewAutoresizing.flexibleWidth
+            let insertHandButton = UIButton(type: .roundedRect)
+            insertHandButton.frame = CGRect(x: (tableView.frame.size.width - 150.0)/2, y: 0.0, width: 150.0, height: 60.0)
+            insertHandButton.addTarget(self, action: #selector(CanvasViewController.addNewStep), for: .touchUpInside)
+            insertHandButton.autoresizingMask = UIViewAutoresizing.flexibleWidth
+            insertHandButton.setTitle(NSLocalizedString("ADD_STEP_TITLE", comment: "Add Step Title"), for: .normal)
+            insertHandButton.tag = 0
+            footerView.addSubview(insertHandButton)
+            
+            return footerView
+        }
+        return UIView(frame: CGRect.zero)
         
-        
-        return footerView
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 60.0
+        if section == viewModel.sectionCount-1 {
+            return 60.0
+        }
+        return 0.0
     }
-
-    
 
     /*
     // MARK: - Navigation
@@ -89,20 +127,4 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     */
 
-}
-
-extension CanvasViewController {
-    
-    func statusBarDidChange(note: Notification) {
-        
-        tableView.setNeedsUpdateConstraints()
-        if let footerview = footerView {
-            print("TABLE Width \(tableView.frame.size.width)")
-//            if let insertButton = footerview.viewWithTag(0) {
-//                insertButton.frame = CGRect(x: (tableView.frame.size.width - 150.0)/2, y: 0.0, width: 150.0, height: 40.0)
-//            }
-            footerview.setNeedsUpdateConstraints()
-        }
-    }
-    
 }
