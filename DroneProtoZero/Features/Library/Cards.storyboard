@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="235"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MXg-jH-GBV" id="0zn-w7-FOG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="234.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAN-C6-fO1">
@@ -33,12 +33,22 @@
                                                 <constraint firstAttribute="width" constant="240" id="deH-IW-fxk"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9w-XK-ZoA">
+                                            <rect key="frame" x="84" y="93" width="206" height="49"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="xAN-C6-fO1" firstAttribute="centerY" secondItem="0zn-w7-FOG" secondAttribute="centerY" id="Wkf-Yo-lLo"/>
                                         <constraint firstItem="xAN-C6-fO1" firstAttribute="centerX" secondItem="0zn-w7-FOG" secondAttribute="centerX" id="mxU-fH-Fko"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="d9w-XK-ZoA" id="c1w-XN-UBQ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
