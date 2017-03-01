@@ -46,7 +46,9 @@
                             <constraint firstAttribute="trailing" secondItem="vkk-FD-YjR" secondAttribute="trailing" id="xdM-YY-ICN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="DYh-yu-qGM"/>
+                    <navigationItem key="navigationItem" id="DYh-yu-qGM">
+                        <nil key="title"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="315" height="1024"/>
                     <connections>

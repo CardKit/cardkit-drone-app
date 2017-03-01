@@ -39,8 +39,7 @@ class CardsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as CardTableViewCell
         if let cardDescriptor = DroneCardDescriptors.sharedInstance.descriptorAtIndexPath(indexPath: indexPath) {
-            cell.cardDescriptor = cardDescriptor
-            cell.label?.text = cardDescriptor.name
+            cell.setupCell(cardDescriptor: cardDescriptor)
         }
         return cell
     }

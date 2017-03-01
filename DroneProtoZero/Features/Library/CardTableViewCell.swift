@@ -11,17 +11,30 @@ import CardKit
 
 class CardTableViewCell: UITableViewCell, Reusable {
     
-    public static let cardWidth: CGFloat = 240.0
-    public static let cardHeight: CGFloat = 195.0
+    public static let cardWidth: CGFloat = 182.0
+    public static let cardHeight: CGFloat = 200.0
     
     @IBOutlet weak var cardView: UIView?
     @IBOutlet weak var label: UILabel?
+    @IBOutlet weak var cardImage: UIImageView!
     
     var cardDescriptor: ActionCardDescriptor?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func setupCell(cardDescriptor: ActionCardDescriptor) {
+        if let image = UIImage(named: cardDescriptor.name) {
+            cardImage.image = image
+            label?.isHidden = true
+            cardView?.backgroundColor = .clear
+        } else {
+            label?.isHidden = false
+            label?.text = cardDescriptor.name
+            cardView?.backgroundColor = .athensGray
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,6 +44,8 @@ class CardTableViewCell: UITableViewCell, Reusable {
     }
     
     override func prepareForReuse() {
-        cardDescriptor = nil
+        label?.text = ""
+        cardImage.image = nil
+         cardDescriptor = nil
     }
 }
