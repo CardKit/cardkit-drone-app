@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setUpSplitView() {
-        let splitView: UISplitViewController = UISplitViewController()
-        splitView.viewControllers = viewControllersArray()!
+        let splitView: SplitViewController = SplitViewController()
+        splitView.viewControllers = viewControllersArray()!        
         splitView.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
         splitView.presentsWithGesture = false
         splitView.maximumPrimaryColumnWidth = 350

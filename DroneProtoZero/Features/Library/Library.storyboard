@@ -56,13 +56,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6B-cK-ueB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="445.60761346998532" y="-242.57812499999997"/>
+            <point key="canvasLocation" x="143" y="-289"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bDE-nl-1DU">
             <objects>
                 <navigationController id="0I7-AL-PZw" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="500" height="500"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kvk-Sh-B68">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

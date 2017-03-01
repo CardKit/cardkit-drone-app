@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import CardKit
 
 class CardTableViewCell: UITableViewCell, Reusable {
     
+    public static let cardWidth: CGFloat = 240.0
+    public static let cardHeight: CGFloat = 195.0
+    
+    @IBOutlet weak var cardView: UIView?
     @IBOutlet weak var label: UILabel?
+    
+    var cardDescriptor: ActionCardDescriptor?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +29,8 @@ class CardTableViewCell: UITableViewCell, Reusable {
 
         // Configure the view for the selected state
     }
-
+    
+    override func prepareForReuse() {
+        cardDescriptor = nil
+    }
 }

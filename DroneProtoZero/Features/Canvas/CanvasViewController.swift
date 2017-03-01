@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CardKit
 
 class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -47,16 +48,10 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return false
     }
 
+    // MARK: - Add card
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func addCardToHand(descriptor: ActionCardDescriptor, position: CGPoint) {
+        //indexPathForRowAtPoint:point
+        print("CARD DESCRIPTOR: \(descriptor)")
     }
-    */
-
 }
