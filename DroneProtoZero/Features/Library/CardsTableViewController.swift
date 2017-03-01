@@ -28,13 +28,6 @@ class CardsTableViewController: UITableViewController {
         
         print("allCards \(allCards)\n\n\n")
         print("all keys \(cardKeys)")
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,7 +65,10 @@ class CardsTableViewController: UITableViewController {
         guard let cards = allCards, let keys = cardKeys else {
             return cell
         }
-        cell.label?.text = cards[keys[indexPath.section]]?[indexPath.row].name
+        if let cardDescriptor = cards[keys[indexPath.section]]?[indexPath.row] {
+            cell.setupCell(cardDescriptor: cardDescriptor)
+        }
+        
         return cell
     }
  
