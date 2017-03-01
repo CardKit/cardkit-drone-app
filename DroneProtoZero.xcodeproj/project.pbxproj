@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */; };
+		3A89F34C1E6763E3005A9D48 /* VisualRecognitionV3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */; };
+		3A89F34E1E6763EE005A9D48 /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A89F34D1E6763EE005A9D48 /* RestKit.framework */; };
 		3AB397831E667A5B00DA1800 /* AvailableHardwareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3976E1E667A5B00DA1800 /* AvailableHardwareCell.swift */; };
 		3AB397841E667A5B00DA1800 /* Canvas.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */; };
 		3AB397851E667A5B00DA1800 /* CanvasToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397701E667A5B00DA1800 /* CanvasToolBar.swift */; };
@@ -57,6 +59,8 @@
 
 /* Begin PBXFileReference section */
 		3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DroneCardDescriptors.swift; path = Features/Library/DroneCardDescriptors.swift; sourceTree = "<group>"; };
+		3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisualRecognitionV3.framework; path = Carthage/Build/iOS/VisualRecognitionV3.framework; sourceTree = "<group>"; };
+		3A89F34D1E6763EE005A9D48 /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestKit.framework; path = Carthage/Build/iOS/RestKit.framework; sourceTree = "<group>"; };
 		3AB3976E1E667A5B00DA1800 /* AvailableHardwareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableHardwareCell.swift; sourceTree = "<group>"; };
 		3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Canvas.storyboard; sourceTree = "<group>"; };
 		3AB397701E667A5B00DA1800 /* CanvasToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasToolBar.swift; sourceTree = "<group>"; };
@@ -102,10 +106,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A89F34C1E6763E3005A9D48 /* VisualRecognitionV3.framework in Frameworks */,
 				D530A3121E65E280003974CB /* CardKit.framework in Frameworks */,
 				D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */,
 				D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */,
 				D530A3151E65E280003974CB /* Freddy.framework in Frameworks */,
+				3A89F34E1E6763EE005A9D48 /* RestKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +245,8 @@
 		D530A2FF1E65D969003974CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A89F34D1E6763EE005A9D48 /* RestKit.framework */,
+				3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */,
 				D530A30E1E65E280003974CB /* CardKit.framework */,
 				D530A30F1E65E280003974CB /* CardKitRuntime.framework */,
 				D530A3101E65E280003974CB /* DroneCardKit.framework */,
@@ -262,7 +270,7 @@
 				3AE7F6701E64924C00D67889 /* Frameworks */,
 				3AE7F6711E64924C00D67889 /* Resources */,
 				3AB3971F1E6516C500DA1800 /* Swift Lint */,
-				D530A30D1E65DC40003974CB /* ShellScript */,
+				D530A30D1E65DC40003974CB /* Carthage Run Script */,
 			);
 			buildRules = (
 			);
@@ -404,7 +412,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"/usr/local/bin:$PATH\"\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		D530A30D1E65DC40003974CB /* ShellScript */ = {
+		D530A30D1E65DC40003974CB /* Carthage Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -414,7 +422,10 @@
 				"$(SRCROOT)/Carthage/Build/iOS/CardKitRuntime.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DroneCardKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RestKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/VisualRecognitionV3.framework",
 			);
+			name = "Carthage Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,6 +599,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 76CMF53Q35;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -605,6 +617,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 76CMF53Q35;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
