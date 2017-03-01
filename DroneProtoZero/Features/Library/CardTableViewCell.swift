@@ -8,13 +8,17 @@
 
 import UIKit
 import CardKit
-import DroneCardKit
 
 class CardTableViewCell: UITableViewCell, Reusable {
     
+    public static let cardWidth: CGFloat = 182.0
+    public static let cardHeight: CGFloat = 200.0
+    
+    @IBOutlet weak var cardView: UIView?
     @IBOutlet weak var label: UILabel?
     @IBOutlet weak var cardImage: UIImageView!
-    @IBOutlet weak var noCardView: UIView!
+    
+    var cardDescriptor: ActionCardDescriptor?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,13 +27,13 @@ class CardTableViewCell: UITableViewCell, Reusable {
     
     func setupCell(cardDescriptor: ActionCardDescriptor) {
         if let image = UIImage(named: cardDescriptor.name) {
-             cardImage.image = image
+            cardImage.image = image
             label?.isHidden = true
-            noCardView.backgroundColor = .white
+            cardView?.backgroundColor = .clear
         } else {
             label?.isHidden = false
             label?.text = cardDescriptor.name
-            noCardView.backgroundColor = .athensGray
+            cardView?.backgroundColor = .athensGray
         }
     }
 
@@ -42,6 +46,6 @@ class CardTableViewCell: UITableViewCell, Reusable {
     override func prepareForReuse() {
         label?.text = ""
         cardImage.image = nil
+         cardDescriptor = nil
     }
-
 }

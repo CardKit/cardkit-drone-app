@@ -25,6 +25,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="315" height="234"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E78-dp-R0i">
+                                            <rect key="frame" x="136" y="106" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAN-C6-fO1">
                                             <rect key="frame" x="67" y="17.5" width="182" height="200"/>
                                             <subviews>
@@ -42,13 +49,6 @@
                                                 <constraint firstAttribute="width" constant="182" id="deH-IW-fxk"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9w-XK-ZoA">
-                                            <rect key="frame" x="54" y="93" width="206" height="49"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="xAN-C6-fO1" firstAttribute="centerY" secondItem="0zn-w7-FOG" secondAttribute="centerY" id="Wkf-Yo-lLo"/>
@@ -56,9 +56,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="cardImage" destination="sN3-ES-Vs4" id="mkZ-03-cdJ"/>
-                                    <outlet property="label" destination="d9w-XK-ZoA" id="c1w-XN-UBQ"/>
-                                    <outlet property="noCardView" destination="xAN-C6-fO1" id="AH5-hR-fbs"/>
+                                    <outlet property="cardImage" destination="sN3-ES-Vs4" id="wcw-4m-g5a"/>
+                                    <outlet property="cardView" destination="xAN-C6-fO1" id="W1p-jh-U33"/>
+                                    <outlet property="label" destination="E78-dp-R0i" id="6Fe-bB-tmp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
