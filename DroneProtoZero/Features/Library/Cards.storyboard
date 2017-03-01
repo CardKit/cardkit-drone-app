@@ -58,6 +58,7 @@
                                 <connections>
                                     <outlet property="cardImage" destination="sN3-ES-Vs4" id="mkZ-03-cdJ"/>
                                     <outlet property="label" destination="d9w-XK-ZoA" id="c1w-XN-UBQ"/>
+                                    <outlet property="noCardView" destination="xAN-C6-fO1" id="AH5-hR-fbs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

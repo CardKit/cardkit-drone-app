@@ -14,6 +14,7 @@ class CardTableViewCell: UITableViewCell, Reusable {
     
     @IBOutlet weak var label: UILabel?
     @IBOutlet weak var cardImage: UIImageView!
+    @IBOutlet weak var noCardView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +25,11 @@ class CardTableViewCell: UITableViewCell, Reusable {
         if let image = UIImage(named: cardDescriptor.name) {
              cardImage.image = image
             label?.isHidden = true
+            noCardView.backgroundColor = .white
         } else {
             label?.isHidden = false
             label?.text = cardDescriptor.name
+            noCardView.backgroundColor = .athensGray
         }
     }
 
