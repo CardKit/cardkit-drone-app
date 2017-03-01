@@ -18,32 +18,59 @@
                         <viewControllerLayoutGuide type="bottom" id="8fF-pz-6JV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AE9-Sz-8mA">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUR-zt-gR2" customClass="CanvasToolBar" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="736" height="60"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="gaS-6D-MkG"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="182" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UYs-gc-AVz">
-                                <rect key="frame" x="0.0" y="124" width="736" height="290"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="1" sectionHeaderHeight="1" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="UYs-gc-AVz">
+                                <rect key="frame" x="20" y="64" width="696" height="936"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HandTableViewCell" rowHeight="182" id="Mb5-rm-2ff" customClass="HandTableViewCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="736" height="182"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DroneStatusCell" rowHeight="55" id="Mb5-rm-2ff" customClass="DroneStatusCell" customModule="DroneProtoZero" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.333333333333336" width="696" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mb5-rm-2ff" id="zEc-yZ-TkG">
-                                            <rect key="frame" x="0.0" y="0.0" width="736" height="181.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hands Go Here Brah" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Inm-bF-IHo">
-                                                    <rect key="frame" x="252" y="66" width="233" height="48"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Drone Status: Connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-Ha-7Jl">
+                                                    <rect key="frame" x="20" y="17.000000000000036" width="193" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.58039215686274503" green="0.58039215686274503" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableHardwareCell" rowHeight="70" id="ALr-BF-GuV" customClass="AvailableHardwareCell" customModule="DroneProtoZero" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="110.33333333333334" width="696" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ALr-BF-GuV" id="Ood-Nb-HjM">
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Available Hardware" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akY-6Q-CXN">
+                                                    <rect key="frame" x="22" y="25.000000000000028" width="146" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.58039215686274503" green="0.58039215686274503" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HandTableViewCell" rowHeight="228" id="Mpw-8K-Qsw" customClass="HandTableViewCell" customModule="DroneProtoZero" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="180.33333333333334" width="696" height="228"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mpw-8K-Qsw" id="GRx-wS-JCh">
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="228"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hands Go Here Brah" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qai-Cl-gTG">
+                                                    <rect key="frame" x="231.66666666666669" y="90.333333333333343" width="233.00000000000006" height="48.000000000000028"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="48" id="ZXF-06-yCG"/>
-                                                        <constraint firstAttribute="width" constant="233" id="aNS-qK-R1w"/>
+                                                        <constraint firstAttribute="width" constant="233" id="3e9-au-qB8"/>
+                                                        <constraint firstAttribute="height" constant="48" id="J0E-mF-yYj"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <nil key="textColor"/>
@@ -51,8 +78,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Inm-bF-IHo" firstAttribute="centerY" secondItem="zEc-yZ-TkG" secondAttribute="centerY" id="554-43-DpB"/>
-                                                <constraint firstItem="Inm-bF-IHo" firstAttribute="centerX" secondItem="zEc-yZ-TkG" secondAttribute="centerX" id="82m-bT-Wv3"/>
+                                                <constraint firstItem="Qai-Cl-gTG" firstAttribute="centerX" secondItem="GRx-wS-JCh" secondAttribute="centerX" id="Um8-82-S3A"/>
+                                                <constraint firstItem="Qai-Cl-gTG" firstAttribute="centerY" secondItem="GRx-wS-JCh" secondAttribute="centerY" id="hUr-Ql-eUu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -65,19 +92,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="UYs-gc-AVz" secondAttribute="trailing" id="3Fr-Pz-jUF"/>
-                            <constraint firstItem="UYs-gc-AVz" firstAttribute="top" secondItem="hUR-zt-gR2" secondAttribute="bottom" id="4ur-zt-TtO"/>
-                            <constraint firstAttribute="trailing" secondItem="hUR-zt-gR2" secondAttribute="trailing" id="Bo5-Qp-Zsl"/>
-                            <constraint firstItem="UYs-gc-AVz" firstAttribute="leading" secondItem="AE9-Sz-8mA" secondAttribute="leading" id="FAg-n0-qnu"/>
-                            <constraint firstItem="hUR-zt-gR2" firstAttribute="top" secondItem="IKc-Vg-Sks" secondAttribute="bottom" id="Q3Z-ht-dB2"/>
-                            <constraint firstItem="8fF-pz-6JV" firstAttribute="top" secondItem="UYs-gc-AVz" secondAttribute="bottom" id="QAA-to-eCc"/>
-                            <constraint firstItem="hUR-zt-gR2" firstAttribute="leading" secondItem="AE9-Sz-8mA" secondAttribute="leading" id="dhW-je-7sb"/>
+                            <constraint firstAttribute="trailing" secondItem="UYs-gc-AVz" secondAttribute="trailing" constant="20" id="3Fr-Pz-jUF"/>
+                            <constraint firstItem="UYs-gc-AVz" firstAttribute="leading" secondItem="AE9-Sz-8mA" secondAttribute="leading" constant="20" id="FAg-n0-qnu"/>
+                            <constraint firstItem="8fF-pz-6JV" firstAttribute="top" secondItem="UYs-gc-AVz" secondAttribute="bottom" id="IHg-V3-hRx"/>
+                            <constraint firstItem="UYs-gc-AVz" firstAttribute="top" secondItem="IKc-Vg-Sks" secondAttribute="bottom" id="f19-Hj-mGh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="z8B-3b-wAc"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="736" height="1000"/>
                     <connections>
                         <outlet property="tableView" destination="UYs-gc-AVz" id="fGx-GG-wo1"/>
-                        <outlet property="toolBar" destination="hUR-zt-gR2" id="1Ce-l0-n3I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2re-1V-xZG" userLabel="First Responder" sceneMemberID="firstResponder"/>

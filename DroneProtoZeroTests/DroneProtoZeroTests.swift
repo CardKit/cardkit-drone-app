@@ -21,9 +21,19 @@ class DroneProtoZeroTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testCanvasSections() {
+        let viewModel = CanvasViewModel()
+       
+        let statusSection = CanvasSection.status
+        XCTAssertEqual(statusSection, viewModel.sectionType(for: IndexPath(row: 0, section: 0)))
+        let hardwareSection = CanvasSection.hardware
+        XCTAssertEqual(hardwareSection, viewModel.sectionType(for: IndexPath(row: 0, section: 1)))
+        let steps = CanvasSection.steps
+        XCTAssertEqual(steps, viewModel.sectionType(for: IndexPath(row: 0, section: 2)))
+        XCTAssertEqual(steps, viewModel.sectionType(for: IndexPath(row: 0, section: 3)))
+
+        
+        
     }
     
     func testPerformanceExample() {
