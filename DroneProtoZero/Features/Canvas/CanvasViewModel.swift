@@ -19,7 +19,7 @@ struct CanvasViewModel {
     var sectionCount = 3
     
     func cellHeight(for indexPath: IndexPath) -> Float {
-        guard let section = sectionType(for: indexPath) else { return 0 }
+        guard let section = sectionType(for: indexPath.section) else { return 0 }
         switch section {
         case .status:
             return 55.0
@@ -30,12 +30,29 @@ struct CanvasViewModel {
         }
     }
     
-    func sectionType(for indexPath: IndexPath) -> CanvasSection? {
-        guard let section = CanvasSection(rawValue: indexPath.section) else { return CanvasSection.steps }
+    func headerHeight(section: Int) -> Float {
+        guard let section = sectionType(for: section) else { return 1.0 }
+        switch section {
+        case .status:
+            return 20.0
+        case .hardware:
+            return 1.0
+        case .steps:
+            return 50.0
+        }
+    }
+    
+    func sectionType(for section: Int) -> CanvasSection? {
+        guard let section = CanvasSection(rawValue: section) else { return CanvasSection.steps }
         return section
     }
     
-    
-    
+    func createIndexSet(section: Int) -> IndexSet {
+        let startIndex = section + 1
+        let endIndex = sectionCount
+        let otherSections = startIndex...endIndex
+        let arrayOfSections = Array(otherSections)
+        return IndexSet(arrayOfSections)
+    }
     
 }

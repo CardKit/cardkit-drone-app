@@ -22,7 +22,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func setupTableView() {
         self.view.backgroundColor = .athensGray
         //setup any tableview stuff here
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = createTableFooter()
         tableView.separatorColor = UIColor.white
         self.view.backgroundColor = .athensGray
     }
@@ -76,53 +76,38 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func addNewStep(sender: UIButton) {
-         let currentCount = viewModel.sectionCount
-         viewModel.sectionCount += 1
+        let currentCount = viewModel.sectionCount
+        viewModel.sectionCount += 1
         tableView.beginUpdates()
-        let index = [currentCount-1]
+        let index = [currentCount]
         tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
         tableView.endUpdates()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == viewModel.sectionCount-1 {
-            //TODO: need to add in header for steps section
-            return UIView(frame: CGRect.zero)
+        if viewModel.sectionType(for: section) == CanvasSection.steps {
+            return createStepHeader(section: section)
         }
         return UIView(frame: CGRect.zero)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section < CanvasSection.steps.rawValue {
-            print("section \(section)")
-            return 1.0
-        }
-        return 50.0
+        return CGFloat(viewModel.headerHeight(section: section))
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == viewModel.sectionCount-1 {
-            let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.size.width, height: 40.0))
-            footerView.autoresizingMask = UIViewAutoresizing.flexibleWidth
-            let insertHandButton = UIButton(type: .roundedRect)
-            insertHandButton.frame = CGRect(x: (tableView.frame.size.width - 150.0)/2, y: 0.0, width: 150.0, height: 60.0)
-            insertHandButton.addTarget(self, action: #selector(CanvasViewController.addNewStep), for: .touchUpInside)
-            insertHandButton.autoresizingMask = UIViewAutoresizing.flexibleWidth
-            insertHandButton.setTitle(NSLocalizedString("ADD_STEP_TITLE", comment: "Add Step Title"), for: .normal)
-            insertHandButton.tag = 0
-            footerView.addSubview(insertHandButton)
-            
-            return footerView
-        }
-        return UIView(frame: CGRect.zero)
-        
+    func createStepHeader(section: Int) -> UIView {
+        guard let views = Bundle.main.loadNibNamed("CanvasStepHeaderView", owner: self, options: nil),
+            let headerView = views[0] as? CanvasStepHeaderView else { return UIView(frame: CGRect.zero) }
+        headerView.setupHeader(section: section, delegate: self)
+        return headerView
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == viewModel.sectionCount-1 {
-            return 60.0
-        }
-        return 0.0
+    func createTableFooter() -> UIView {
+        guard let views = Bundle.main.loadNibNamed("AddStepFooterView", owner: self, options: nil),
+            let footerView = views[0] as? AddStepFooterView else { return UIView(frame: CGRect.zero) }
+        footerView.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        footerView.addStep.addTarget(self, action: #selector(CanvasViewController.addNewStep(sender:)), for: .touchUpInside)
+        return footerView
     }
 
     /*
@@ -134,4 +119,18 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Pass the selected object to the new view controller.
     }
     */
+}
+
+extension CanvasViewController: CanvasStepHeaderDelegate {
+    
+    func removeStepSection(for section: Int) {
+        viewModel.sectionCount -= 1
+        tableView.beginUpdates()
+        let index = [section]
+        tableView.deleteSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
+        if section < viewModel.sectionCount {
+            tableView.reloadSections(viewModel.createIndexSet(section: section), with: .automatic)
+        }
+        tableView.endUpdates()
+    }
 }
