@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CardKit
 
 class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -66,20 +67,32 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+
+    // MARK: - Add card
+    
+    func addCardToHand(descriptor: ActionCardDescriptor, position: CGPoint) {
+        //indexPathForRowAtPoint:point
+        print("CARD DESCRIPTOR: \(descriptor)")
+    }
     
     func addNewStep(sender: UIButton) {
          let currentCount = viewModel.sectionCount
          viewModel.sectionCount += 1
         tableView.beginUpdates()
-        let index = [currentCount-1]
-        tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.top)
+        let index = [currentCount]
+        tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
         tableView.endUpdates()
     }
     
+    func createStepHeader(section: Int) -> UIView {
+       guard let views = Bundle.main.loadNibNamed("CanvasStepHeaderView", owner: self, options: nil),
+             let headerView = views[0] as? CanvasStepHeaderView else { return UIView(frame: CGRect.zero) }
+        return headerView
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == viewModel.sectionCount-1 {
-            //TODO: need to add in header for steps section
-            return UIView(frame: CGRect.zero)
+        if viewModel.sectionType(for: section) == CanvasSection.steps {
+            return createStepHeader(section: section)
         }
         return UIView(frame: CGRect.zero)
     }
@@ -122,5 +135,4 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Pass the selected object to the new view controller.
     }
     */
-
 }
