@@ -8,6 +8,7 @@
 
 import UIKit
 import CardKit
+import DroneCardKit
 
 class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -17,6 +18,23 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        
+        
+        //TEMP
+        guard let cardDetailNavController = UIStoryboard(name: "CardDetail", bundle: nil).instantiateInitialViewController() as? UINavigationController else {
+            print("no card detail")
+            return
+        }
+        cardDetailNavController.modalPresentationStyle = .pageSheet
+        if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
+                cardDetailTableViewController.cardDescriptor = DroneCardKit.Action.Movement.Location.FlyTo
+        }
+        
+        self.present(cardDetailNavController, animated: true) { 
+            print("present card detail")
+        }
+        
+        
     }
     
     func setupTableView() {
