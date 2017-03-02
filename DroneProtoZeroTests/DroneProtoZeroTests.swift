@@ -25,15 +25,34 @@ class DroneProtoZeroTests: XCTestCase {
         let viewModel = CanvasViewModel()
        
         let statusSection = CanvasSection.status
-        XCTAssertEqual(statusSection, viewModel.sectionType(for: IndexPath(row: 0, section: 0)))
+        XCTAssertEqual(statusSection, viewModel.sectionType(for: 0))
         let hardwareSection = CanvasSection.hardware
-        XCTAssertEqual(hardwareSection, viewModel.sectionType(for: IndexPath(row: 0, section: 1)))
+        XCTAssertEqual(hardwareSection, viewModel.sectionType(for: 1))
         let steps = CanvasSection.steps
-        XCTAssertEqual(steps, viewModel.sectionType(for: IndexPath(row: 0, section: 2)))
-        XCTAssertEqual(steps, viewModel.sectionType(for: IndexPath(row: 0, section: 3)))
-
+        XCTAssertEqual(steps, viewModel.sectionType(for: 2))
+        XCTAssertEqual(steps, viewModel.sectionType(for: 3))
         
-        
+    }
+    
+    func testAddStepSection() {
+        var viewModel = CanvasViewModel()
+        let currentCount = viewModel.sectionCount
+        viewModel.sectionCount += 1
+        XCTAssertEqual(currentCount+1, viewModel.sectionCount)
+    }
+    
+    func testRemoveStepSection() {
+        var viewModel = CanvasViewModel()
+        let currentCount = viewModel.sectionCount
+        viewModel.sectionCount += 1
+        let deleteSection = viewModel.sectionCount
+        viewModel.sectionCount += 1
+        XCTAssertEqual(currentCount+2, viewModel.sectionCount)
+        viewModel.sectionCount -= 1
+        let indexSet: IndexSet = viewModel.createIndexSet(section: currentCount)
+        XCTAssertTrue(indexSet.contains(deleteSection))
+        viewModel.sectionCount -= 1
+        XCTAssertEqual(currentCount, viewModel.sectionCount)
     }
     
     func testPerformanceExample() {

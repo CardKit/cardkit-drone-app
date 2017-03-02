@@ -11,3 +11,4 @@
  */
 
 "ADD_STEP_TITLE" = "Add Step";
+"STEP_TITLE"     = "STEP %@";
