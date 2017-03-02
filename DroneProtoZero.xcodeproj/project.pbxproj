@@ -61,7 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DroneCardDescriptors.swift; path = Features/Library/DroneCardDescriptors.swift; sourceTree = "<group>"; };
+		3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneCardDescriptors.swift; sourceTree = "<group>"; };
 		3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisualRecognitionV3.framework; path = Carthage/Build/iOS/VisualRecognitionV3.framework; sourceTree = "<group>"; };
 		3A89F34D1E6763EE005A9D48 /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestKit.framework; path = Carthage/Build/iOS/RestKit.framework; sourceTree = "<group>"; };
 		3A89F3501E6769D2005A9D48 /* AvailableHardwareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableHardwareCell.swift; sourceTree = "<group>"; };
@@ -175,6 +175,7 @@
 		3AB397751E667A5B00DA1800 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */,
 				3AB397761E667A5B00DA1800 /* Cards.storyboard */,
 				3AB397771E667A5B00DA1800 /* CardsTableViewController.swift */,
 				3AB397781E667A5B00DA1800 /* CardTableViewCell.swift */,
@@ -228,7 +229,6 @@
 		3AE7F6751E64924C00D67889 /* DroneProtoZero */ = {
 			isa = PBXGroup;
 			children = (
-				3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */,
 				3AB3976C1E667A5B00DA1800 /* Features */,
 				3AB3977D1E667A5B00DA1800 /* Supporting Files */,
 				3AB3977F1E667A5B00DA1800 /* Utils */,
