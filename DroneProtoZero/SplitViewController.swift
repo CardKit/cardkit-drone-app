@@ -88,6 +88,11 @@ class SplitViewController: UISplitViewController {
                 draggingCardView = nil
             }
         default:
+            if let cardView = draggingCardView {
+                cardView.removeFromSuperview()
+                draggingCardView = nil
+            }
+
             break
         }
         
