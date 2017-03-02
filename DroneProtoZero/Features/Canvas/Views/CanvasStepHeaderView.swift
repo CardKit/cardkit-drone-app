@@ -8,17 +8,35 @@
 
 import UIKit
 
+protocol CanvasStepHeaderDelegate: class {
+    func removeStepSection(for section: Int)
+}
+
 class CanvasStepHeaderView: UIView {
 
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var removeSeps: UIButton!
+    weak var delegate: CanvasStepHeaderDelegate?
+    var sectionID: Int = 0
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    func setupHeader(section: Int, delegate: CanvasStepHeaderDelegate) {
+        headerLabel.text = createSectionName(from: section)
+        sectionID = section
+        if section == CanvasSection.steps.rawValue {
+            removeSeps.isHidden = true
+        } else {
+            removeSeps.addTarget(self, action: #selector(CanvasStepHeaderView.removeStepSectionButtonPressed(sender:)), for: UIControlEvents.touchUpInside)
+            self.delegate = delegate
+        }
     }
-    */
+    
+    func removeStepSectionButtonPressed(sender: UIButton) {
+        delegate?.removeStepSection(for: sectionID)
+    }
+    
+    func createSectionName(from secID: Int) -> String {
+        let trueSection = (secID - CanvasSection.steps.rawValue) + 1
+        return "STEP \(trueSection)"
+    }
 
 }
