@@ -13,7 +13,7 @@ import CardKit
 
 class SplitViewController: UISplitViewController {
     
-    let draggingCardOffset: CGFloat = 10.0
+    let draggingCardOffset: CGFloat = 0.0
     
     var canvasViewController: CanvasViewController?
     
@@ -53,11 +53,23 @@ class SplitViewController: UISplitViewController {
                 if let cell = hitView.superview?.superview as? CardTableViewCell {
                     currentCardDescriptor = cell.cardDescriptor
                     let hitViewPosition = hitView.convert(hitView.frame.origin, to: self.view)
-                    draggingCardView = hitView.snapshotView(afterScreenUpdates: false)
-                    draggingCardView!.frame = CGRect(x: hitViewPosition.x + draggingCardOffset, y: hitViewPosition.y + draggingCardOffset, width: CardTableViewCell.cardWidth, height: CardTableViewCell.cardHeight)
+                    guard let cardView = hitView.snapshotView(afterScreenUpdates: false) else { return }
+                    cardView.layer.anchorPoint = CGPoint(x: 0.0, y: 0.5)
+                    cardView.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
+                    cardView.layer.shadowRadius = 5.0
+                    cardView.layer.shadowOpacity = 0.4
+                    cardView.center = CGPoint(x: hitViewPosition.x, y: hitViewPosition.y + CardTableViewCell.cardHeight/2)
                     touchOffset.x = touchPoint.x - hitViewPosition.x
                     touchOffset.y = touchPoint.y - hitViewPosition.y
-                    self.view.addSubview(draggingCardView!)                    
+                    cardView.frame = CGRect(x: cardView.frame.origin.x, y: cardView.frame.origin.y, width: 80.0, height: 100.0)
+                    self.view.addSubview(cardView)
+                    self.draggingCardView = cardView
+                    UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseInOut, animations: {
+                        cardView.frame = CGRect(x: cardView.frame.origin.x, y: cardView.frame.origin.y, width: CardTableViewCell.cardWidth, height: CardTableViewCell.cardHeight)
+                        cardView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                    }, completion: { (_) in
+                        cardView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                    })
                 }
             }
         case UIGestureRecognizerState.changed :

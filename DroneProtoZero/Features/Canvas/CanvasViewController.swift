@@ -72,7 +72,9 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func addCardToHand(descriptor: ActionCardDescriptor, position: CGPoint) {
         //indexPathForRowAtPoint:point
-        print("CARD DESCRIPTOR: \(descriptor)")
+        guard let indexPath = tableView.indexPathForRow(at: position) else { return }
+        
+        print("CARD DESCRIPTOR: \(descriptor) added to this section \(indexPath.section)")
     }
     
     func addNewStep(sender: UIButton) {
