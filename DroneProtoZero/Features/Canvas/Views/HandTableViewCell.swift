@@ -13,8 +13,11 @@ class HandTableViewCell: UITableViewCell, Reusable {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        layer.cornerRadius = 11.0
-        layer.masksToBounds = true
+    }
+    
+    override func draw(_ rect: CGRect) {
+        contentView.layer.cornerRadius = 11.0
+        contentView.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -47,7 +47,12 @@ struct CanvasViewModel {
         return section
     }
     
-    
-    
+    func createIndexSet(section: Int) -> IndexSet {
+        let startIndex = section + 1
+        let endIndex = sectionCount
+        let otherSections = startIndex...endIndex
+        let arrayOfSections = Array(otherSections)
+        return IndexSet(arrayOfSections)
+    }
     
 }

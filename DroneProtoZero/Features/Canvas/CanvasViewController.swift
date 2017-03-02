@@ -124,18 +124,12 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
 extension CanvasViewController: CanvasStepHeaderDelegate {
     
     func removeStepSection(for section: Int) {
-        print("remove the section \(section)")
         viewModel.sectionCount -= 1
         tableView.beginUpdates()
         let index = [section]
         tableView.deleteSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
         if section < viewModel.sectionCount {
-            let startIndex = section + 1
-            let endIndex = viewModel.sectionCount
-            let otherSections = startIndex...endIndex
-            let arrayOfSections = Array(otherSections)
-            tableView.reloadSections(IndexSet(arrayOfSections), with: .automatic)
-
+            tableView.reloadSections(viewModel.createIndexSet(section: section), with: .automatic)
         }
         tableView.endUpdates()
     }
