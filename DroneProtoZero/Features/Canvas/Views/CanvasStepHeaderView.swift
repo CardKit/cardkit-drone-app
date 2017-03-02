@@ -36,7 +36,8 @@ class CanvasStepHeaderView: UIView {
     
     func createSectionName(from secID: Int) -> String {
         let trueSection = (secID - CanvasSection.steps.rawValue) + 1
-        return "STEP \(trueSection)"
+        let newString = NSLocalizedString("STEP_TITLE", comment: "Name of Step")
+        return String.localizedStringWithFormat(newString, "\(trueSection)")
     }
 
 }
