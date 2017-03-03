@@ -11,33 +11,66 @@ import CardKit
 
 class CardDetailTableViewController: UITableViewController {
     
-    var cardDescriptor: ActionCardDescriptor?
+    
+    var cardDescriptor: ActionCardDescriptor? {
+        didSet {
+            guard let descriptor = cardDescriptor else {
+                return
+            }
+            if descriptor.endDescription != "" {
+                detailSections.append(.endDetailsCell)
+            }
+            if descriptor.yields.count > 0 {
+                detailSections.append(.outputsCell)
+            }
+            
+            print("inputs \(descriptor.inputSlots)")
+            for input in descriptor.inputSlots {
+                print("input \(input)")
+                if input.descriptor.name == "Coordinate 2D" {
+                    detailSections.append(.location2DInput)
+                }
+            }
+        }
+    }
+    
+    private var detailSections: [CellIdentifiers] = [.nameCell, .descriptionCell]
     
     private enum CellIdentifiers: Int {
-        case NameCell
-        case DescriptionCell
-        case EndDetailsCell
-        case OutputsCell
+        case nameCell
+        case descriptionCell
+        case endDetailsCell
+        case outputsCell
+        case location2DInput
+        case header
         
         var reuseIdentifier: String {
             switch self {
-            case .NameCell:
+            case .nameCell:
                 return "NameCell"
-            case .DescriptionCell, .EndDetailsCell, .OutputsCell:
+            case .descriptionCell, .endDetailsCell, .outputsCell:
                 return "DescriptionCell"
+            case .location2DInput:
+                return "Location2DInputCell"
+            case .header:
+                return "Header"
             }            
         }
         
         func headerName() -> String {
             switch self {
-            case .NameCell:
+            case .nameCell:
                 return "Card Name"
-            case .DescriptionCell:
+            case .descriptionCell:
                 return "Description"
-            case .EndDetailsCell:
+            case .endDetailsCell:
                 return "End Details"
-            case .OutputsCell:
+            case .outputsCell:
                 return "Outputs"
+            case .location2DInput:
+                return "Input: Destination"
+            case .header:
+                return ""
             }
         }
         
@@ -47,6 +80,7 @@ class CardDetailTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.contentInset = UIEdgeInsets(top: 40.0, left: 0.0, bottom: 0.0, right: 0.0)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -63,16 +97,8 @@ class CardDetailTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        var numSections = 2
-        guard let descriptor = self.cardDescriptor else {
-            return numSections
-        }
-        if descriptor.endDescription != "" {
-            numSections += 1
-        }
-        if descriptor.yields.count > 0 {
-            numSections += 1
-        }
+        let numSections = detailSections.count
+print("SECTIONS: \(numSections)")
         return numSections
     }
 
@@ -82,40 +108,67 @@ class CardDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let identifier: String = (CellIdentifiers(rawValue: indexPath.section)?.reuseIdentifier)!
+        let identifier: String = detailSections[indexPath.section].reuseIdentifier
         print("identifier \(identifier)")
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CardDetailTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        switch detailSections[indexPath.section] {
+        case .nameCell:
+            cell.mainLabel?.text = cardDescriptor?.name
+        case .descriptionCell:
+            cell.mainLabel?.text = cardDescriptor?.description
+        case .endDetailsCell:
+            cell.mainLabel?.text = cardDescriptor?.endDescription
+        case .outputsCell:
+            cell.mainLabel?.text = cardDescriptor?.yieldDescription
+        default:
+            return cell
+        }
+        
+        cell.setupCell(cardDescriptor: cardDescriptor!)
         
         return cell
         
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return CellIdentifiers(rawValue: section)?.headerName()
-    }
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case CellIdentifiers.NameCell.rawValue:
+        
+        switch detailSections[indexPath.section].rawValue {
+        case CellIdentifiers.nameCell.rawValue:
             return 30.0
-        case CellIdentifiers.DescriptionCell.rawValue, CellIdentifiers.EndDetailsCell.rawValue, CellIdentifiers.OutputsCell.rawValue:
+        case CellIdentifiers.descriptionCell.rawValue, CellIdentifiers.endDetailsCell.rawValue, CellIdentifiers.outputsCell.rawValue:
             return 26.0
+        case CellIdentifiers.location2DInput.rawValue:
+            return 800.0
         default:
             return 44.0
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return UITableViewAutomaticDimension
-        }
-        return 15.0
+        return 20.0
     }
     
-//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 2.0
-//    }
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10.0
+    }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let header = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.header.reuseIdentifier) as? CardDetailHeaderView
+        let labelText = detailSections[section].headerName()
+        header?.label?.text = labelText.uppercased()
+        
+        if section == CellIdentifiers.nameCell.rawValue {
+            header?.endsLabel?.isHidden = false
+            header?.ends = (cardDescriptor?.ends)!
+        }
+        
+        return header
+    }
     
     // MARK: - IBActions
     
@@ -139,49 +192,5 @@ class CardDetailTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

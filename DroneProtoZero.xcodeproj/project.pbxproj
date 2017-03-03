@@ -36,6 +36,9 @@
 		D51E32A01E687F2B002DC319 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51E329F1E687F2B002DC319 /* CardDetail.storyboard */; };
 		D51E32A21E687FB9002DC319 /* CardDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */; };
 		D51E32A61E68984C002DC319 /* CardDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A51E68984C002DC319 /* CardDetailTableViewCell.swift */; };
+		D51E32A81E68BF26002DC319 /* CardDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */; };
+		D51E32AF1E6A0132002DC319 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51E32AE1E6A0132002DC319 /* MapKit.framework */; };
+		D51E32B41E6A031D002DC319 /* Location2DInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32B31E6A031D002DC319 /* Location2DInput.swift */; };
 		D530A3121E65E280003974CB /* CardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30E1E65E280003974CB /* CardKit.framework */; };
 		D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30F1E65E280003974CB /* CardKitRuntime.framework */; };
 		D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3101E65E280003974CB /* DroneCardKit.framework */; };
@@ -96,6 +99,9 @@
 		D51E329F1E687F2B002DC319 /* CardDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
 		D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailTableViewController.swift; sourceTree = "<group>"; };
 		D51E32A51E68984C002DC319 /* CardDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailTableViewCell.swift; sourceTree = "<group>"; };
+		D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailHeaderView.swift; sourceTree = "<group>"; };
+		D51E32AE1E6A0132002DC319 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D51E32B31E6A031D002DC319 /* Location2DInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location2DInput.swift; sourceTree = "<group>"; };
 		D530A3001E65D96A003974CB /* CardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKit.framework; path = ../Carthage/Build/iOS/CardKit.framework; sourceTree = "<group>"; };
 		D530A3011E65D96A003974CB /* CardKitRuntime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKitRuntime.framework; path = ../Carthage/Build/iOS/CardKitRuntime.framework; sourceTree = "<group>"; };
 		D530A3021E65D96A003974CB /* DroneCardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DroneCardKit.framework; path = ../Carthage/Build/iOS/DroneCardKit.framework; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D51E32AF1E6A0132002DC319 /* MapKit.framework in Frameworks */,
 				3A89F34C1E6763E3005A9D48 /* VisualRecognitionV3.framework in Frameworks */,
 				D530A3121E65E280003974CB /* CardKit.framework in Frameworks */,
 				D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */,
@@ -254,14 +261,25 @@
 			children = (
 				D51E329F1E687F2B002DC319 /* CardDetail.storyboard */,
 				D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */,
+				D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */,
 				D51E32A51E68984C002DC319 /* CardDetailTableViewCell.swift */,
+				D51E32B21E6A031D002DC319 /* Cells */,
 			);
 			path = CardDetail;
+			sourceTree = "<group>";
+		};
+		D51E32B21E6A031D002DC319 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D51E32B31E6A031D002DC319 /* Location2DInput.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		D530A2FF1E65D969003974CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D51E32AE1E6A0132002DC319 /* MapKit.framework */,
 				3A89F34D1E6763EE005A9D48 /* RestKit.framework */,
 				3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */,
 				D530A30E1E65E280003974CB /* CardKit.framework */,
@@ -460,9 +478,11 @@
 				3AB397921E667A5B00DA1800 /* Reusable.swift in Sources */,
 				3AB397881E667A5B00DA1800 /* DroneStatusCell.swift in Sources */,
 				3AB397871E667A5B00DA1800 /* CanvasViewModel.swift in Sources */,
+				D51E32A81E68BF26002DC319 /* CardDetailHeaderView.swift in Sources */,
 				3AB397861E667A5B00DA1800 /* CanvasViewController.swift in Sources */,
 				3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */,
 				3AB397831E667A5B00DA1800 /* AvailableHardwareCell.swift in Sources */,
+				D51E32B41E6A031D002DC319 /* Location2DInput.swift in Sources */,
 				D51E32A21E687FB9002DC319 /* CardDetailTableViewController.swift in Sources */,
 				3AB397931E667A5B00DA1800 /* UIColorExtension.swift in Sources */,
 				3AB3978B1E667A5B00DA1800 /* CardsTableViewController.swift in Sources */,

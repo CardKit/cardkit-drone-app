@@ -11,6 +11,8 @@ import CardKit
 
 class CardDetailTableViewCell: UITableViewCell, Reusable {
     
+    @IBOutlet weak var mainLabel: UILabel?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,18 +32,11 @@ class CardDetailTableViewCell: UITableViewCell, Reusable {
 
 class NameCell: CardDetailTableViewCell {
     
-    @IBOutlet weak var endsLabel: UILabel?
-    
     override func setupCell(cardDescriptor: ActionCardDescriptor) {
         super.setupCell(cardDescriptor: cardDescriptor)
         
-        if cardDescriptor.ends {
-            endsLabel?.text = "ENDS: YES"
-            endsLabel?.textColor = .red
-        } else {
-            endsLabel?.text = "ENDS: NO"
-            endsLabel?.textColor = UIColor.darkText
-        }
+        mainLabel?.text = cardDescriptor.name
+        print("token slots \(cardDescriptor.tokenSlots)")
     }
     
 }

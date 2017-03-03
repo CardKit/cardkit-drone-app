@@ -26,11 +26,14 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         cardDetailNavController.modalPresentationStyle = .pageSheet
+        print("table vc \(cardDetailNavController.topViewController)")
+        
         if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
+            print("Canvas vc sets cardDescriptor")
                 cardDetailTableViewController.cardDescriptor = DroneCardKit.Action.Movement.Location.FlyTo
         }
         
-        self.present(cardDetailNavController, animated: true) { 
+        self.parent?.present(cardDetailNavController, animated: true) {
             print("present card detail")
         }
         
@@ -112,7 +115,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section < CanvasSection.steps.rawValue {
-            print("section \(section)")
+            //print("section \(section)")
             return 1.0
         }
         return 50.0
