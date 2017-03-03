@@ -72,7 +72,7 @@ struct CanvasViewModel {
     func getHand(by identifier: HandIdentifier) -> Hand? {
         let filteredHands = hands.filter { $0.identifier == identifier }
         guard filteredHands.count > 0 else { return nil }
-        return filteredHands[0]
+        return filteredHands.first
     }
     
 }

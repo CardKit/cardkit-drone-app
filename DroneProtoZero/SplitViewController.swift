@@ -69,7 +69,6 @@ class SplitViewController: UISplitViewController {
                 cardView.frame = CGRect(x: touchPoint.x - touchOffset.x + draggingCardOffset, y: touchPoint.y - touchOffset.y + draggingCardOffset, width: cardView.frame.size.width, height: cardView.frame.size.height)
                     let positionInCanvas: CGPoint = self.view.convert(touchPoint, to: canvasViewController?.hoverableView)
                     canvasViewController?.showHovering(position: positionInCanvas)
-
             }
         case UIGestureRecognizerState.ended :
             if let cardView = draggingCardView {
@@ -77,7 +76,6 @@ class SplitViewController: UISplitViewController {
                     let positionInCanvas: CGPoint = self.view.convert(touchPoint, to: canvasViewController?.hoverableView)
                     if let descriptor = currentCardDescriptor {
                         canvasViewController?.addItemToView(item: descriptor, position: positionInCanvas)
-                        print("position in split \(touchPoint.x) y: \(touchPoint.y)")
                         animate(onScreen: false, view: cardView, position: CGPoint(x: touchPoint.x, y: touchPoint.y), completion: {
                             cardView.removeFromSuperview()
                             self.draggingCardView = nil
