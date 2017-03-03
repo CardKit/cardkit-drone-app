@@ -61,12 +61,7 @@ class SplitViewController: UISplitViewController {
                     cardView.frame = CGRect(x: cardView.frame.origin.x, y: cardView.frame.origin.y, width: 80.0, height: 100.0)
                     self.view.addSubview(cardView)
                     self.draggingCardView = cardView
-                    UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseInOut, animations: {
-                        cardView.frame = CGRect(x: cardView.frame.origin.x, y: cardView.frame.origin.y, width: CardTableViewCell.cardWidth, height: CardTableViewCell.cardHeight)
-                        cardView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-                    }, completion: { (_) in
-                        cardView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                    })
+                    animate(onScreen: true, view: cardView, position: CGPoint(x: cardView.frame.origin.x, y: cardView.frame.origin.y), completion: nil)
                 }
             }
         case UIGestureRecognizerState.changed :
@@ -82,16 +77,25 @@ class SplitViewController: UISplitViewController {
                     let positionInCanvas: CGPoint = self.view.convert(touchPoint, to: canvasViewController?.hoverableView)
                     if let descriptor = currentCardDescriptor {
                         canvasViewController?.addItemToView(item: descriptor, position: positionInCanvas)
+                        print("position in split \(touchPoint.x) y: \(touchPoint.y)")
+                        animate(onScreen: false, view: cardView, position: CGPoint(x: touchPoint.x, y: touchPoint.y), completion: {
+                            cardView.removeFromSuperview()
+                            self.draggingCardView = nil
+                        })
                     }
+                } else {
+                    cardView.removeFromSuperview()
+                    canvasViewController?.cancelHovering()
+                    draggingCardView = nil
                 }
-                cardView.removeFromSuperview()
-                draggingCardView = nil
             }
         default:
             if let cardView = draggingCardView {
                 cardView.removeFromSuperview()
                 draggingCardView = nil
+                canvasViewController?.cancelHovering()
             }
+            
 
             break
         }
@@ -108,5 +112,19 @@ class SplitViewController: UISplitViewController {
         view.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
         view.layer.shadowRadius = 5.0
         view.layer.shadowOpacity = 0.4
+    }
+    
+    func animate(onScreen: Bool, view: UIView, position: CGPoint, completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseInOut, animations: {
+            view.frame = CGRect(x: position.x, y: position.y, width: CardTableViewCell.cardWidth, height: CardTableViewCell.cardHeight)
+            let scale:CGFloat = onScreen ? 1.05 : 0.5
+            view.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }, completion: { (_) in
+            let finScale: CGFloat = onScreen ? 1.0 : 0.0
+            view.transform = CGAffineTransform(scaleX: finScale, y: finScale)
+            if let completion = completion {
+                completion()
+            }
+        })
     }
 }
