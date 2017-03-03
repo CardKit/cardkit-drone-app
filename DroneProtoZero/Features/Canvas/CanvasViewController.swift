@@ -56,7 +56,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cell for row being called")
         guard let sectionType = viewModel.sectionType(for: indexPath.section) else { return UITableViewCell() }
         let cell: UITableViewCell
         switch  sectionType {
@@ -157,7 +156,8 @@ extension CanvasViewController: Hoverable {
     func addItemToView<T>(item: T, position: CGPoint) {
         cancelHovering()
         if let descriptor = item as? ActionCardDescriptor {
-            addCardToHand(descriptor: descriptor, position: position)
+             let positionWithOffset = addOffsetTo(position: position)
+            addCardToHand(descriptor: descriptor, position: positionWithOffset)
         }
     }
     
@@ -166,20 +166,24 @@ extension CanvasViewController: Hoverable {
     }
     
     func cancelHovering() {
-        print("Cancel the hover")
         if let hoveredCellID = hoveredCellID,
             let oldHoverCell = tableView.cellForRow(at: IndexPath(row: 0, section: hoveredCellID)) as? HandTableViewCell {
             oldHoverCell.showHovering(isHovering: false)
-            print("actually remove the hover \(hoveredCellID)")
         }
     }
     
     func showHovering(position: CGPoint) {
         cancelHovering()
-        guard let indexPath = tableView.indexPathForRow(at: position),
+        let positionWithOffset = addOffsetTo(position: position)
+        guard let indexPath = tableView.indexPathForRow(at: positionWithOffset),
                     let handCell = tableView.cellForRow(at: indexPath) as? HandTableViewCell else { return }
         handCell.showHovering(isHovering: true)
         hoveredCellID = indexPath.section
+    }
+    
+    func addOffsetTo(position: CGPoint) -> CGPoint {
+        let offsetY = tableView.contentOffset.y
+        return CGPoint(x: position.x, y: position.y + offsetY)
     }
     
 }

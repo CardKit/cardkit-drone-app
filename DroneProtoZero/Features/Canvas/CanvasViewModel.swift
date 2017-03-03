@@ -64,13 +64,9 @@ struct CanvasViewModel {
     }
     
     mutating func createHand() {
-      
-//        do {
-//            let hand = try Hand()
-//            hands.append(hand)
-//        } catch {
-//            fatalError("Could not make a hand so we should just stop right here")
-//        }
+
+        let hand = Hand()
+        hands.append(hand)
     }
     
     func getHand(by identifier: HandIdentifier) -> Hand? {

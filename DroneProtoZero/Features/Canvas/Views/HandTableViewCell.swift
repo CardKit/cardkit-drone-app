@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CardKit
 
 class HandTableViewCell: UITableViewCell, Reusable {
 
     var handID: Int = 0
+    @IBOutlet weak var collectionView: UICollectionView!
+    var isEmpty: Bool = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +28,11 @@ class HandTableViewCell: UITableViewCell, Reusable {
     
     func setupHand(sectionID: Int) {
         handID = sectionID
+        collectionView.isHidden = true
+    }
+    
+    func addCard(card: ActionCardDescriptor) {
+        
     }
     
     func showHovering(isHovering: Bool) {

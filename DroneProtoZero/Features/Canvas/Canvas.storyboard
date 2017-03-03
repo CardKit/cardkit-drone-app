@@ -76,10 +76,35 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qKd-CN-Wrj">
+                                                    <rect key="frame" x="8" y="8" width="680" height="211"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Eee-yi-2Tm">
+                                                        <size key="itemSize" width="50" height="50"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Tao-bH-a1G">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                            </view>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="qKd-CN-Wrj" secondAttribute="trailing" constant="8" id="30q-Y8-vkY"/>
+                                                <constraint firstAttribute="bottom" secondItem="qKd-CN-Wrj" secondAttribute="bottom" constant="8" id="6Kz-IQ-CK8"/>
+                                                <constraint firstItem="qKd-CN-Wrj" firstAttribute="top" secondItem="GRx-wS-JCh" secondAttribute="top" constant="8" id="8vy-31-6gv"/>
                                                 <constraint firstItem="Qai-Cl-gTG" firstAttribute="centerX" secondItem="GRx-wS-JCh" secondAttribute="centerX" id="KWW-5q-doI"/>
+                                                <constraint firstItem="qKd-CN-Wrj" firstAttribute="leading" secondItem="GRx-wS-JCh" secondAttribute="leading" constant="8" id="YVM-yZ-xtl"/>
                                                 <constraint firstItem="Qai-Cl-gTG" firstAttribute="centerY" secondItem="GRx-wS-JCh" secondAttribute="centerY" id="hUr-Ql-eUu"/>
+                                                <constraint firstAttribute="trailing" secondItem="qKd-CN-Wrj" secondAttribute="trailing" constant="8" id="nb2-hf-hUj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
