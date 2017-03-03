@@ -9,10 +9,20 @@
 import UIKit
 import CardKit
 
+protocol Hoverable {
+    
+    func addItemToView<T>(item: T, position: CGPoint)
+    func showHovering(position: CGPoint)
+    func isViewHovering(view: UIView) -> Bool
+    var hoverableView: UIView { get }
+    
+}
+
 class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     var viewModel: CanvasViewModel = CanvasViewModel()
+    var hoveredCellID: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,4 +145,37 @@ extension CanvasViewController: CanvasStepHeaderDelegate {
         }
         tableView.endUpdates()
     }
+}
+
+extension CanvasViewController: Hoverable {
+    
+    internal var hoverableView: UIView {
+        return self.view
+    }
+
+    
+    func addItemToView<T>(item: T, position: CGPoint) {
+        if let descriptor = item as? ActionCardDescriptor {
+            addCardToHand(descriptor: descriptor, position: position)
+        }
+    }
+    
+    func isViewHovering(view: UIView) -> Bool {
+        return view.frame.intersects((tableView.frame))
+    }
+    
+    func showHovering(position: CGPoint) {
+        print("hovering")
+        if let hoveredCellID = hoveredCellID,
+            let oldHoverCell = tableView.cellForRow(at: IndexPath(row: 0, section: hoveredCellID)) as? HandTableViewCell {
+                oldHoverCell.showHovering(isHovering: false)
+        }
+
+        guard let indexPath = tableView.indexPathForRow(at: position),
+                    let handCell = tableView.cellForRow(at: indexPath) as? HandTableViewCell else { return }
+        handCell.showHovering(isHovering: true)
+        hoveredCellID = indexPath.section
+        
+    }
+    
 }

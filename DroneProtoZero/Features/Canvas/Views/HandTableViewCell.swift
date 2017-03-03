@@ -10,6 +10,8 @@ import UIKit
 
 class HandTableViewCell: UITableViewCell, Reusable {
 
+    var handID: Int = 0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +21,19 @@ class HandTableViewCell: UITableViewCell, Reusable {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setupHand(sectionID: Int) {
+        handID = sectionID
+    }
+    
+    func showHovering(isHovering: Bool) {
+        if isHovering {
+            backgroundColor = .green
+        } else {
+            backgroundColor = .white
+        }
+        
     }
 
 }

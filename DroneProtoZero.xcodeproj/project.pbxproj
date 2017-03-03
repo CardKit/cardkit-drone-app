@@ -229,10 +229,10 @@
 		3AE7F6751E64924C00D67889 /* DroneProtoZero */ = {
 			isa = PBXGroup;
 			children = (
+				3AE7F6761E64924C00D67889 /* AppDelegate.swift */,
 				3AB3976C1E667A5B00DA1800 /* Features */,
 				3AB3977D1E667A5B00DA1800 /* Supporting Files */,
 				3AB3977F1E667A5B00DA1800 /* Utils */,
-				3AE7F6761E64924C00D67889 /* AppDelegate.swift */,
 				D530A3181E670F69003974CB /* SplitViewController.swift */,
 				3AE7F67D1E64924C00D67889 /* Assets.xcassets */,
 				3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */,
