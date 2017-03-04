@@ -13,8 +13,6 @@ import CardKit
 
 class SplitViewController: UISplitViewController {
     
-    let draggingCardOffset: CGFloat = 0.0
-    
     var canvasViewController: Hoverable?
     
     private var gestureRecognizer: UIGestureRecognizer?
@@ -66,7 +64,7 @@ class SplitViewController: UISplitViewController {
             }
         case UIGestureRecognizerState.changed :
             if let cardView = draggingCardView {
-                cardView.frame = CGRect(x: touchPoint.x - touchOffset.x + draggingCardOffset, y: touchPoint.y - touchOffset.y + draggingCardOffset, width: cardView.frame.size.width, height: cardView.frame.size.height)
+                cardView.frame = CGRect(x: touchPoint.x - touchOffset.x, y: touchPoint.y - touchOffset.y, width: cardView.frame.size.width, height: cardView.frame.size.height)
                     let positionInCanvas: CGPoint = self.view.convert(touchPoint, to: canvasViewController?.hoverableView)
                     canvasViewController?.showHovering(position: positionInCanvas)
             }
