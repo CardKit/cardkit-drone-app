@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import CardKit
+import Freddy
 
 enum CanvasSection: Int {
     case status
@@ -17,6 +19,12 @@ enum CanvasSection: Int {
 struct CanvasViewModel {
     
     var sectionCount = 3
+    var hands: [Hand]
+    
+    init() {
+        hands = [Hand]()
+        createHand()
+    }
     
     func cellHeight(for indexPath: IndexPath) -> Float {
         guard let section = sectionType(for: indexPath.section) else { return 0 }
@@ -53,6 +61,18 @@ struct CanvasViewModel {
         let otherSections = startIndex...endIndex
         let arrayOfSections = Array(otherSections)
         return IndexSet(arrayOfSections)
+    }
+    
+    mutating func createHand() {
+
+        let hand = Hand()
+        hands.append(hand)
+    }
+    
+    func getHand(by identifier: HandIdentifier) -> Hand? {
+        let filteredHands = hands.filter { $0.identifier == identifier }
+        guard filteredHands.count > 0 else { return nil }
+        return filteredHands.first
     }
     
 }

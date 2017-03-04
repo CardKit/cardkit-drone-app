@@ -17,6 +17,7 @@
 		3A89F3591E67C376005A9D48 /* CanvasStepHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3581E67C376005A9D48 /* CanvasStepHeaderView.swift */; };
 		3A89F35B1E687DBC005A9D48 /* AddStepFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A89F35A1E687DBC005A9D48 /* AddStepFooterView.xib */; };
 		3A89F35D1E6880AB005A9D48 /* AddStepFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F35C1E6880AB005A9D48 /* AddStepFooterView.swift */; };
+		3A8BFB061E6A04A700BFE336 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8BFB051E6A04A700BFE336 /* CardCollectionViewCell.swift */; };
 		3AB397841E667A5B00DA1800 /* Canvas.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */; };
 		3AB397861E667A5B00DA1800 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397711E667A5B00DA1800 /* CanvasViewController.swift */; };
 		3AB397871E667A5B00DA1800 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */; };
@@ -71,6 +72,7 @@
 		3A89F3581E67C376005A9D48 /* CanvasStepHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasStepHeaderView.swift; sourceTree = "<group>"; };
 		3A89F35A1E687DBC005A9D48 /* AddStepFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddStepFooterView.xib; sourceTree = "<group>"; };
 		3A89F35C1E6880AB005A9D48 /* AddStepFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStepFooterView.swift; sourceTree = "<group>"; };
+		3A8BFB051E6A04A700BFE336 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Canvas.storyboard; sourceTree = "<group>"; };
 		3AB397711E667A5B00DA1800 /* CanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewModel.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				3A89F3581E67C376005A9D48 /* CanvasStepHeaderView.swift */,
 				3A89F35A1E687DBC005A9D48 /* AddStepFooterView.xib */,
 				3A89F35C1E6880AB005A9D48 /* AddStepFooterView.swift */,
+				3A8BFB051E6A04A700BFE336 /* CardCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -229,10 +232,10 @@
 		3AE7F6751E64924C00D67889 /* DroneProtoZero */ = {
 			isa = PBXGroup;
 			children = (
+				3AE7F6761E64924C00D67889 /* AppDelegate.swift */,
 				3AB3976C1E667A5B00DA1800 /* Features */,
 				3AB3977D1E667A5B00DA1800 /* Supporting Files */,
 				3AB3977F1E667A5B00DA1800 /* Utils */,
-				3AE7F6761E64924C00D67889 /* AppDelegate.swift */,
 				D530A3181E670F69003974CB /* SplitViewController.swift */,
 				3AE7F67D1E64924C00D67889 /* Assets.xcassets */,
 				3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */,
@@ -474,6 +477,7 @@
 				3AB3978C1E667A5B00DA1800 /* CardTableViewCell.swift in Sources */,
 				3AB397941E667A5B00DA1800 /* UITableViewExtension.swift in Sources */,
 				D530A3191E670F69003974CB /* SplitViewController.swift in Sources */,
+				3A8BFB061E6A04A700BFE336 /* CardCollectionViewCell.swift in Sources */,
 				3A89F35D1E6880AB005A9D48 /* AddStepFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

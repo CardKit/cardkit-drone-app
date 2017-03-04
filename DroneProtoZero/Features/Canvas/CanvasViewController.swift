@@ -9,10 +9,21 @@
 import UIKit
 import CardKit
 
+protocol Hoverable {
+    
+    func addItemToView<T>(item: T, position: CGPoint)
+    func showHovering(position: CGPoint)
+    func cancelHovering()
+    func isViewHovering(view: UIView) -> Bool
+    var hoverableView: UIView { get }
+    
+}
+
 class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     var viewModel: CanvasViewModel = CanvasViewModel()
+    var hoveredCellID: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +56,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let sectionType = CanvasSection(rawValue: indexPath.section) else { return UITableViewCell() }
+        guard let sectionType = viewModel.sectionType(for: indexPath.section) else { return UITableViewCell() }
         let cell: UITableViewCell
         switch  sectionType {
         case .status:
@@ -72,7 +82,9 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func addCardToHand(descriptor: ActionCardDescriptor, position: CGPoint) {
         //indexPathForRowAtPoint:point
-        print("CARD DESCRIPTOR: \(descriptor)")
+        guard let indexPath = tableView.indexPathForRow(at: position) else { return }
+        
+        print("CARD DESCRIPTOR: \(descriptor) added to this section \(indexPath.section)")
     }
     
     func addNewStep(sender: UIButton) {
@@ -133,4 +145,45 @@ extension CanvasViewController: CanvasStepHeaderDelegate {
         }
         tableView.endUpdates()
     }
+}
+
+extension CanvasViewController: Hoverable {
+    
+    internal var hoverableView: UIView {
+        return self.view
+    }
+    
+    func addItemToView<T>(item: T, position: CGPoint) {
+        cancelHovering()
+        if let descriptor = item as? ActionCardDescriptor {
+             let positionWithOffset = addOffsetTo(position: position)
+            addCardToHand(descriptor: descriptor, position: positionWithOffset)
+        }
+    }
+    
+    func isViewHovering(view: UIView) -> Bool {
+        return view.frame.intersects((tableView.frame))
+    }
+    
+    func cancelHovering() {
+        if let hoveredCellID = hoveredCellID,
+            let oldHoverCell = tableView.cellForRow(at: IndexPath(row: 0, section: hoveredCellID)) as? HandTableViewCell {
+            oldHoverCell.showHovering(isHovering: false)
+        }
+    }
+    
+    func showHovering(position: CGPoint) {
+        cancelHovering()
+        let positionWithOffset = addOffsetTo(position: position)
+        guard let indexPath = tableView.indexPathForRow(at: positionWithOffset),
+                    let handCell = tableView.cellForRow(at: indexPath) as? HandTableViewCell else { return }
+        handCell.showHovering(isHovering: true)
+        hoveredCellID = indexPath.section
+    }
+    
+    func addOffsetTo(position: CGPoint) -> CGPoint {
+        let offsetY = tableView.contentOffset.y
+        return CGPoint(x: position.x, y: position.y + offsetY)
+    }
+    
 }

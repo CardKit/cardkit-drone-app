@@ -26,6 +26,7 @@ class CardTableViewCell: UITableViewCell, Reusable {
     }
     
     func setupCell(cardDescriptor: ActionCardDescriptor) {
+        self.cardDescriptor = cardDescriptor
         if let image = UIImage(named: cardDescriptor.name) {
             cardImage.image = image
             label?.isHidden = true
