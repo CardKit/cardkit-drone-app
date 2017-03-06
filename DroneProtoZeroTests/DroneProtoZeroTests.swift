@@ -37,21 +37,33 @@ class DroneProtoZeroTests: XCTestCase {
     func testAddStepSection() {
         var viewModel = CanvasViewModel()
         let currentCount = viewModel.sectionCount
-        viewModel.sectionCount += 1
+        let _ = viewModel.addHand()
         XCTAssertEqual(currentCount+1, viewModel.sectionCount)
     }
     
     func testRemoveStepSection() {
         var viewModel = CanvasViewModel()
-        let currentCount = viewModel.sectionCount
-        viewModel.sectionCount += 1
+        var currentCount = viewModel.sectionCount
+        //2 hands
+        let handID1 = viewModel.addHand()
         let deleteSection = viewModel.sectionCount
-        viewModel.sectionCount += 1
+        //3 hands
+        let handID2 = viewModel.addHand()
         XCTAssertEqual(currentCount+2, viewModel.sectionCount)
-        viewModel.sectionCount -= 1
+        //2 hands
+        viewModel.removeHand(identifier: handID1)
         let indexSet: IndexSet = viewModel.createIndexSet(section: currentCount)
         XCTAssertTrue(indexSet.contains(deleteSection))
-        viewModel.sectionCount -= 1
+        //1 hand
+        viewModel.removeHand(identifier: handID2)
+        XCTAssertEqual(currentCount, viewModel.sectionCount)
+        currentCount = viewModel.sectionCount
+        //2 hands
+        let _ = viewModel.addHand()
+        XCTAssertEqual(currentCount+1, viewModel.sectionCount)
+        //1 hands
+        let _ = viewModel.removeHand(sectionID: currentCount)
+        //check that all the hands are removed
         XCTAssertEqual(currentCount, viewModel.sectionCount)
     }
     

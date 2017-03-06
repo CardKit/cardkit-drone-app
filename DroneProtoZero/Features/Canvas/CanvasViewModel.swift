@@ -17,13 +17,17 @@ enum CanvasSection: Int {
 }
 
 struct CanvasViewModel {
-    
-    var sectionCount = 3
+
+    let defaultSectionCount: Int = 2
     var hands: [Hand]
     
     init() {
         hands = [Hand]()
-        createHand()
+        let _ = createHand()
+    }
+    
+    var sectionCount: Int {
+        return hands.count + defaultSectionCount
     }
     
     func cellHeight(for indexPath: IndexPath) -> Float {
@@ -63,10 +67,32 @@ struct CanvasViewModel {
         return IndexSet(arrayOfSections)
     }
     
-    mutating func createHand() {
+    mutating func createHand() -> Hand {
 
         let hand = Hand()
         hands.append(hand)
+        return hand
+    }
+    
+    mutating func addHand() -> HandIdentifier {
+        let hand = createHand()
+        return hand.identifier
+    }
+    
+    mutating func removeHand(sectionID: Int) -> HandIdentifier? {
+        let actualId = sectionID - defaultSectionCount
+        guard hands.indices.contains(actualId) else { return nil }
+        let hand = hands[actualId]
+        removeHand(identifier: hand.identifier)
+        return hand.identifier
+        
+        
+    }
+    
+    mutating func removeHand(identifier: CardIdentifier) {
+        if let hand = getHand(by: identifier), let index = hands.index(of: hand) {
+            hands.remove(at: index)
+        }
     }
     
     func getHand(by identifier: HandIdentifier) -> Hand? {

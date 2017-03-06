@@ -22,5 +22,4 @@ class CardCollectionViewCell: UICollectionViewCell, Reusable {
             cardImage.backgroundColor = .athensGray
         }
     }
-    
 }
