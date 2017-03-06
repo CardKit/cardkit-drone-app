@@ -67,8 +67,9 @@ struct CanvasViewModel {
         return IndexSet(arrayOfSections)
     }
     
+    // MARK: Hand Creating/Removing Methods
+    
     mutating func createHand() -> Hand {
-
         let hand = Hand()
         hands.append(hand)
         return hand
@@ -80,13 +81,9 @@ struct CanvasViewModel {
     }
     
     mutating func removeHand(sectionID: Int) -> HandIdentifier? {
-        let actualId = sectionID - defaultSectionCount
-        guard hands.indices.contains(actualId) else { return nil }
-        let hand = hands[actualId]
+        guard let hand = getHand(by: sectionID) else { return nil }
         removeHand(identifier: hand.identifier)
         return hand.identifier
-        
-        
     }
     
     mutating func removeHand(identifier: CardIdentifier) {
@@ -100,5 +97,25 @@ struct CanvasViewModel {
         guard filteredHands.count > 0 else { return nil }
         return filteredHands.first
     }
+    
+    func getHand(by index: Int) -> Hand? {
+        let actualID =  index - defaultSectionCount
+        guard hands.indices.contains(actualID) else { return nil }
+        return hands[actualID]
+    }
+    
+    // MARK: Card Adding/Removing Methods
+    
+    func addCard(card: ActionCardDescriptor, toHand index: Int) {
+        guard let hand = getHand(by: index) else { return }
+        let actionCard: ActionCard = card.makeCard()
+        hand.add(actionCard)
+    }
+    
+    func removeCard(cardID: CardIdentifier, fromHand index: Int) {
+        
+    }
+    
+    
     
 }

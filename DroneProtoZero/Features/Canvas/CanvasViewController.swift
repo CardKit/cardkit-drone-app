@@ -92,7 +92,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func addNewStep(sender: UIButton) {
         let currentCount = viewModel.sectionCount
-        let newCount = viewModel.addHand()
+        let _ = viewModel.addHand()
         tableView.beginUpdates()
         let index = [currentCount]
         tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
@@ -140,7 +140,7 @@ extension CanvasViewController: CanvasStepHeaderDelegate {
     
     func removeStepSection(for section: Int) {
         //how do i get the identifier from the section?
-        let handID = viewModel.removeHand(sectionID: section)
+        let _ = viewModel.removeHand(sectionID: section)
         tableView.beginUpdates()
         let index = [section]
         tableView.deleteSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
