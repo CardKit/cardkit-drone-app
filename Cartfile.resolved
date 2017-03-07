@@ -1,5 +1,4 @@
 github "bignerdranch/Freddy" "3.0.2"
-github "watson-developer-cloud/swift-sdk" "v0.14.1"
 git "git@github.ibm.com:ETX-CardKit/card-kit.git" "cb49bb8e52829b6779d7ec8c6408f51d9e9cb32d"
-git "git@github.ibm.com:ETX-CardKit/card-kit-runtime.git" "d6891e949c1538175b7d4a0260b7f3c9234840b5"
-git "git@github.ibm.com:ETX-CardKit/drone-card-kit.git" "d1fbde2732f7cecb2d7f4bf94f0cbb4a003dd06b"
+git "git@github.ibm.com:ETX-CardKit/card-kit-runtime.git" "a6cae51c6f88d343d737353785829dc69c133c0a"
+git "git@github.ibm.com:ETX-CardKit/drone-card-kit.git" "d44f0372bbc56fbdf2064e8b546855a2fa9a4c04"

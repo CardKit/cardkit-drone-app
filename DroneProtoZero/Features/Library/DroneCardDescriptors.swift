@@ -19,7 +19,7 @@ struct DroneCardDescriptors {
     var all: [String: [ActionCardDescriptor]]
     
     init() {        
-        all = DroneCardKit.allCardsGrouped()
+        all = DroneCardKit.descriptorsByPath
     }
     
     func keyAtIndex(index: Int) -> String? {
