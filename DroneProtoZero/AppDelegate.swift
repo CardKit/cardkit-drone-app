@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setUpSplitView() {
         let splitView: SplitViewController = SplitViewController()
-        splitView.viewControllers = viewControllersArray()!        
+        splitView.viewControllers = viewControllersArray()        
         splitView.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
         splitView.presentsWithGesture = false
         splitView.maximumPrimaryColumnWidth = 350
@@ -30,9 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = splitView
     }
     
-    func viewControllersArray() -> [UIViewController]? {
+    func viewControllersArray() -> [UIViewController] {
         guard let controlsNC = UIStoryboard(name: "Library", bundle: nil).instantiateInitialViewController() as? UINavigationController,
-            let canvasViewNC  = UIStoryboard(name: "Canvas", bundle: nil).instantiateInitialViewController() as? UINavigationController else { return nil }
+            let canvasViewNC  = UIStoryboard(name: "Canvas", bundle: nil).instantiateInitialViewController() as? UINavigationController else { return [] }
         return [controlsNC, canvasViewNC]
     }
 

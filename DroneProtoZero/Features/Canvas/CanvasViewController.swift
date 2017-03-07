@@ -10,10 +10,21 @@ import UIKit
 import CardKit
 import DroneCardKit
 
+protocol Hoverable {
+    
+    func addItemToView<T>(item: T, position: CGPoint)
+    func showHovering(position: CGPoint)
+    func cancelHovering()
+    func isViewHovering(view: UIView) -> Bool
+    var hoverableView: UIView { get }
+    
+}
+
 class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     var viewModel: CanvasViewModel = CanvasViewModel()
+    var hoveredCellID: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +41,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func setupTableView() {
         self.view.backgroundColor = .athensGray
         //setup any tableview stuff here
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = createTableFooter()
         tableView.separatorColor = UIColor.white
         self.view.backgroundColor = .athensGray
     }
@@ -53,8 +64,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let sectionType = CanvasSection(rawValue: indexPath.section) else { return UITableViewCell() }
+        guard let sectionType = viewModel.sectionType(for: indexPath.section) else { return UITableViewCell() }
         let cell: UITableViewCell
         switch  sectionType {
         case .status:
@@ -115,22 +125,23 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func addCardToHand(descriptor: ActionCardDescriptor, position: CGPoint) {
         //indexPathForRowAtPoint:point
-        print("CARD DESCRIPTOR: \(descriptor)")
+        guard let indexPath = tableView.indexPathForRow(at: position) else { return }
+        
+        print("CARD DESCRIPTOR: \(descriptor) added to this section \(indexPath.section)")
     }
     
     func addNewStep(sender: UIButton) {
-         let currentCount = viewModel.sectionCount
-         viewModel.sectionCount += 1
+        let currentCount = viewModel.sectionCount
+        viewModel.sectionCount += 1
         tableView.beginUpdates()
-        let index = [currentCount-1]
+        let index = [currentCount]
         tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
         tableView.endUpdates()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == viewModel.sectionCount-1 {
-            //TODO: need to add in header for steps section
-            return UIView(frame: CGRect.zero)
+        if viewModel.sectionType(for: section) == CanvasSection.steps {
+            return createStepHeader(section: section)
         }
         return UIView(frame: CGRect.zero)
     }
@@ -158,14 +169,21 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return footerView
         }
         return UIView(frame: CGRect.zero)
-        
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == viewModel.sectionCount-1 {
-            return 60.0
-        }
-        return 0.0
+    func createStepHeader(section: Int) -> UIView {
+        guard let views = Bundle.main.loadNibNamed("CanvasStepHeaderView", owner: self, options: nil),
+            let headerView = views[0] as? CanvasStepHeaderView else { return UIView(frame: CGRect.zero) }
+        headerView.setupHeader(section: section, delegate: self)
+        return headerView
+    }
+    
+    func createTableFooter() -> UIView {
+        guard let views = Bundle.main.loadNibNamed("AddStepFooterView", owner: self, options: nil),
+            let footerView = views[0] as? AddStepFooterView else { return UIView(frame: CGRect.zero) }
+        footerView.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        footerView.addStep.addTarget(self, action: #selector(CanvasViewController.addNewStep(sender:)), for: .touchUpInside)
+        return footerView
     }
 
     /*
@@ -177,4 +195,59 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Pass the selected object to the new view controller.
     }
     */
+}
+
+extension CanvasViewController: CanvasStepHeaderDelegate {
+    
+    func removeStepSection(for section: Int) {
+        viewModel.sectionCount -= 1
+        tableView.beginUpdates()
+        let index = [section]
+        tableView.deleteSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
+        if section < viewModel.sectionCount {
+            tableView.reloadSections(viewModel.createIndexSet(section: section), with: .automatic)
+        }
+        tableView.endUpdates()
+    }
+}
+
+extension CanvasViewController: Hoverable {
+    
+    internal var hoverableView: UIView {
+        return self.view
+    }
+    
+    func addItemToView<T>(item: T, position: CGPoint) {
+        cancelHovering()
+        if let descriptor = item as? ActionCardDescriptor {
+             let positionWithOffset = addOffsetTo(position: position)
+            addCardToHand(descriptor: descriptor, position: positionWithOffset)
+        }
+    }
+    
+    func isViewHovering(view: UIView) -> Bool {
+        return view.frame.intersects((tableView.frame))
+    }
+    
+    func cancelHovering() {
+        if let hoveredCellID = hoveredCellID,
+            let oldHoverCell = tableView.cellForRow(at: IndexPath(row: 0, section: hoveredCellID)) as? HandTableViewCell {
+            oldHoverCell.showHovering(isHovering: false)
+        }
+    }
+    
+    func showHovering(position: CGPoint) {
+        cancelHovering()
+        let positionWithOffset = addOffsetTo(position: position)
+        guard let indexPath = tableView.indexPathForRow(at: positionWithOffset),
+                    let handCell = tableView.cellForRow(at: indexPath) as? HandTableViewCell else { return }
+        handCell.showHovering(isHovering: true)
+        hoveredCellID = indexPath.section
+    }
+    
+    func addOffsetTo(position: CGPoint) -> CGPoint {
+        let offsetY = tableView.contentOffset.y
+        return CGPoint(x: position.x, y: position.y + offsetY)
+    }
+    
 }

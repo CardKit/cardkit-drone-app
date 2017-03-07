@@ -13,11 +13,13 @@ import CardKit
 import DroneCardKit
 
 struct DroneCardDescriptors {
+    
     static let sharedInstance = DroneCardDescriptors()
+    
     var all: [String: [ActionCardDescriptor]]
     
     init() {        
-        all = DroneCardKit.allCardsGrouped()
+        all = DroneCardKit.descriptorsByPath
     }
     
     func keyAtIndex(index: Int) -> String? {

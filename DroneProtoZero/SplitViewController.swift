@@ -13,9 +13,7 @@ import CardKit
 
 class SplitViewController: UISplitViewController {
     
-    let draggingCardOffset: CGFloat = 10.0
-    
-    var canvasViewController: CanvasViewController?
+    var canvasViewController: Hoverable?
     
     private var gestureRecognizer: UIGestureRecognizer?
     private var draggingCardView: UIView?
@@ -27,7 +25,7 @@ class SplitViewController: UISplitViewController {
         
         //identify canvas view controller for dropping
         if let navController = self.viewControllers[1] as? UINavigationController,
-           let canvasVC = navController.topViewController as? CanvasViewController {
+           let canvasVC = navController.topViewController as? Hoverable {
             self.canvasViewController = canvasVC
         }
         
@@ -45,7 +43,7 @@ class SplitViewController: UISplitViewController {
     
     func onLongPressGesture(gesture: UIGestureRecognizer) {
         
-        let touchPoint: CGPoint = (gestureRecognizer?.location(in: self.view))!
+        guard let touchPoint: CGPoint = (gestureRecognizer?.location(in: self.view)) else { return }
         
         switch gesture.state {
         case UIGestureRecognizerState.began :
@@ -53,31 +51,76 @@ class SplitViewController: UISplitViewController {
                 if let cell = hitView.superview?.superview as? CardTableViewCell {
                     currentCardDescriptor = cell.cardDescriptor
                     let hitViewPosition = hitView.convert(hitView.frame.origin, to: self.view)
-                    draggingCardView = hitView.snapshotView(afterScreenUpdates: false)
-                    draggingCardView!.frame = CGRect(x: hitViewPosition.x + draggingCardOffset, y: hitViewPosition.y + draggingCardOffset, width: CardTableViewCell.cardWidth, height: CardTableViewCell.cardHeight)
+                    guard let cardView = hitView.snapshotView(afterScreenUpdates: false) else { return }
+                    addDropShadow(to: cardView)
+                    cardView.center = CGPoint(x: hitViewPosition.x, y: hitViewPosition.y + CardTableViewCell.cardHeight/2)
                     touchOffset.x = touchPoint.x - hitViewPosition.x
                     touchOffset.y = touchPoint.y - hitViewPosition.y
-                    self.view.addSubview(draggingCardView!)                    
+                    cardView.frame = CGRect(x: cardView.frame.origin.x, y: cardView.frame.origin.y, width: 80.0, height: 100.0)
+                    self.view.addSubview(cardView)
+                    self.draggingCardView = cardView
+                    animate(onScreen: true, view: cardView, position: CGPoint(x: cardView.frame.origin.x, y: cardView.frame.origin.y), completion: nil)
                 }
             }
         case UIGestureRecognizerState.changed :
             if let cardView = draggingCardView {
-                cardView.frame = CGRect(x: touchPoint.x - touchOffset.x + draggingCardOffset, y: touchPoint.y - touchOffset.y + draggingCardOffset, width: cardView.frame.size.width, height: cardView.frame.size.height)
+                cardView.frame = CGRect(x: touchPoint.x - touchOffset.x, y: touchPoint.y - touchOffset.y, width: cardView.frame.size.width, height: cardView.frame.size.height)
+                    let positionInCanvas: CGPoint = self.view.convert(touchPoint, to: canvasViewController?.hoverableView)
+                    canvasViewController?.showHovering(position: positionInCanvas)
             }
         case UIGestureRecognizerState.ended :
             if let cardView = draggingCardView {
-                if cardView.frame.intersects((canvasViewController?.tableView.frame)!) {
-                    let positionInCanvas: CGPoint = self.view.convert(touchPoint, to: canvasViewController?.view)
+                if draggingViewIsTouching(view: cardView) {
+                    let positionInCanvas: CGPoint = self.view.convert(touchPoint, to: canvasViewController?.hoverableView)
                     if let descriptor = currentCardDescriptor {
-                        canvasViewController?.addCardToHand(descriptor: descriptor, position: positionInCanvas)
+                        canvasViewController?.addItemToView(item: descriptor, position: positionInCanvas)
+                        animate(onScreen: false, view: cardView, position: CGPoint(x: touchPoint.x, y: touchPoint.y), completion: {
+                            cardView.removeFromSuperview()
+                            self.draggingCardView = nil
+                        })
                     }
+                } else {
+                    cardView.removeFromSuperview()
+                    canvasViewController?.cancelHovering()
+                    draggingCardView = nil
                 }
-                cardView.removeFromSuperview()
-                draggingCardView = nil
             }
         default:
+            if let cardView = draggingCardView {
+                cardView.removeFromSuperview()
+                draggingCardView = nil
+                canvasViewController?.cancelHovering()
+            }
+            
+
             break
         }
         
+    }
+    
+    func draggingViewIsTouching(view: UIView) -> Bool {
+        guard let canvasVC = canvasViewController else { return false }
+        return canvasVC.isViewHovering(view: view)
+    }
+    
+    func addDropShadow(to view: UIView) {
+        view.layer.anchorPoint = CGPoint(x: 0.0, y: 0.5)
+        view.layer.shadowOffset = CGSize(width: -5.0, height: 0.0)
+        view.layer.shadowRadius = 5.0
+        view.layer.shadowOpacity = 0.4
+    }
+    
+    func animate(onScreen: Bool, view: UIView, position: CGPoint, completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseInOut, animations: {
+            view.frame = CGRect(x: position.x, y: position.y, width: CardTableViewCell.cardWidth, height: CardTableViewCell.cardHeight)
+            let scale:CGFloat = onScreen ? 1.05 : 0.5
+            view.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }, completion: { (_) in
+            let finScale: CGFloat = onScreen ? 1.0 : 0.0
+            view.transform = CGAffineTransform(scaleX: finScale, y: finScale)
+            if let completion = completion {
+                completion()
+            }
+        })
     }
 }
