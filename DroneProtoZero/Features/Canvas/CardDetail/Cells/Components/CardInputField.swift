@@ -18,7 +18,7 @@ class CardInputField: UITextField {
         
         let bottomBorder: CALayer = CALayer()
         bottomBorder.frame = CGRect(x: 0, y: self.frame.size.height-1, width: self.frame.size.width, height: 1.0)
-        bottomBorder.backgroundColor = UIColor(hexString: "#C8C7CC").cgColor
+        bottomBorder.backgroundColor = UIColor.placeholderGray.cgColor
         self.layer.addSublayer(bottomBorder)
     }
     

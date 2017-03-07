@@ -31,7 +31,7 @@ class CardDetailHeaderView: UITableViewCell, Reusable {
             optionalLabel?.isHidden = false
             if optional {
                 optionalLabel?.text = "OPTIONAL"
-                optionalLabel?.textColor = UIColor(hexString: "#7F7F7F")
+                optionalLabel?.textColor = UIColor.textHeaderGray
             } else {                
                 optionalLabel?.text = "REQUIRED"
                 optionalLabel?.textColor = UIColor.red
