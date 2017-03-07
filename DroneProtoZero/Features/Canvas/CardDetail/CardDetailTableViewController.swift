@@ -104,11 +104,6 @@ class CardDetailTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.contentInset = UIEdgeInsets(top: 40.0, left: 0.0, bottom: 0.0, right: 0.0)
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -170,6 +165,7 @@ class CardDetailTableViewController: UITableViewController {
         if detailSections[section] == .location2DInput ||
             detailSections[section] == .standardInputCell ||
             detailSections[section] == .binaryChoiceCell {
+            
             let index = section - (detailSections.count - (cardDescriptor?.inputSlots.count)!)
             if let inputSlot = cardDescriptor?.inputSlots[index] {
                 print("section \(section) ----   input slot to use for header \(inputSlot)")
