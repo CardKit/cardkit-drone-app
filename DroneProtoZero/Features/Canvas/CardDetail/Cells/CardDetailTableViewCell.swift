@@ -11,11 +11,20 @@ import CardKit
 
 class CardDetailTableViewCell: UITableViewCell, Reusable {
     
+    @IBOutlet weak var frameView: UIView?
     @IBOutlet weak var mainLabel: UILabel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        if self.frameView != nil {
+            self.frameView?.layer.cornerRadius = 6.0
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,5 +47,21 @@ class NameCell: CardDetailTableViewCell {
         mainLabel?.text = cardDescriptor.name
         print("token slots \(cardDescriptor.tokenSlots)")
     }
+    
+}
+
+class StandardInputCell: CardDetailTableViewCell {
+    
+    @IBOutlet weak var input: UITextField?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        input?.keyboardType = .decimalPad
+    }
+}
+
+class BinaryChoiceCell: CardDetailTableViewCell {
+    
+    @IBOutlet weak var segControl: UISegmentedControl?
     
 }

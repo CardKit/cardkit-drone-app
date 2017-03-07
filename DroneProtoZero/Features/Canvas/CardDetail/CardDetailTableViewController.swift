@@ -17,20 +17,33 @@ class CardDetailTableViewController: UITableViewController {
             guard let descriptor = cardDescriptor else {
                 return
             }
+            print("DESCRIPTOR endDescription \(descriptor.endDescription)")
+            print("DESCRIPTOR yieldDescription \(descriptor.yieldDescription)")
             if descriptor.endDescription != "" {
                 detailSections.append(.endDetailsCell)
             }
-            if descriptor.yields.count > 0 {
+            if descriptor.yieldDescription != "" {
                 detailSections.append(.outputsCell)
             }
             
-            print("inputs \(descriptor.inputSlots)")
             for input in descriptor.inputSlots {
-                print("input \(input)")
-                if input.descriptor.name == "Coordinate 2D" {
+                print("INPUT \(input) ... \(input.descriptor.name)")
+                switch input.descriptor.name {
+                case "Coordinate 2D":
                     detailSections.append(.location2DInput)
+                    break
+                case "Altitude", "Speed", "Distance", "Radius", "AngularSpeed":
+                    detailSections.append(.standardInputCell)
+                    break
+                case "MovementDirection":
+                    print("input on binary choice \(input.descriptor)")
+                    detailSections.append(.binaryChoiceCell)
+                default:
+                    break
                 }
             }
+            
+            print("DETAIL SECTIONS \(detailSections)")
         }
     }
     
@@ -42,6 +55,8 @@ class CardDetailTableViewController: UITableViewController {
         case endDetailsCell
         case outputsCell
         case location2DInput
+        case standardInputCell
+        case binaryChoiceCell
         case header
         
         var reuseIdentifier: String {
@@ -52,12 +67,16 @@ class CardDetailTableViewController: UITableViewController {
                 return "DescriptionCell"
             case .location2DInput:
                 return "Location2DInputCell"
+            case .standardInputCell:
+                return "StandardInputCell"
+            case .binaryChoiceCell:
+                return "BinaryChoiceCell"
             case .header:
                 return "Header"
             }            
         }
         
-        func headerName() -> String {
+        func headerName(type: String?) -> String {
             switch self {
             case .nameCell:
                 return "Card Name"
@@ -67,8 +86,11 @@ class CardDetailTableViewController: UITableViewController {
                 return "End Details"
             case .outputsCell:
                 return "Outputs"
-            case .location2DInput:
-                return "Input: Destination"
+            case .standardInputCell, .location2DInput, .binaryChoiceCell:
+                guard let inputType = type else {
+                    return "Input"
+                }
+                return "Input: \(inputType)"
             case .header:
                 return ""
             }
@@ -98,7 +120,7 @@ class CardDetailTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         let numSections = detailSections.count
-print("SECTIONS: \(numSections)")
+        print("numSections \(numSections)")
         return numSections
     }
 
@@ -109,7 +131,8 @@ print("SECTIONS: \(numSections)")
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let identifier: String = detailSections[indexPath.section].reuseIdentifier
-        print("identifier \(identifier)")
+        
+        print("section \(indexPath.section)   reuse id \(identifier)")
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CardDetailTableViewCell else {
             return UITableViewCell()
@@ -124,6 +147,12 @@ print("SECTIONS: \(numSections)")
             cell.mainLabel?.text = cardDescriptor?.endDescription
         case .outputsCell:
             cell.mainLabel?.text = cardDescriptor?.yieldDescription
+        case .standardInputCell, .binaryChoiceCell:
+            let index = indexPath.section - (detailSections.count - (cardDescriptor?.inputSlots.count)!)
+            if let inputSlot = cardDescriptor?.inputSlots[index] {
+                //TODO: need unit from somewhere in data
+                cell.mainLabel?.text = "\(inputSlot.name) NEED UNIT"
+            }
         default:
             return cell
         }
@@ -134,6 +163,32 @@ print("SECTIONS: \(numSections)")
         
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let header = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.header.reuseIdentifier) as? CardDetailHeaderView
+        var headerType: String?
+        if detailSections[section] == .location2DInput ||
+            detailSections[section] == .standardInputCell ||
+            detailSections[section] == .binaryChoiceCell {
+            let index = section - (detailSections.count - (cardDescriptor?.inputSlots.count)!)
+            if let inputSlot = cardDescriptor?.inputSlots[index] {
+                print("section \(section) ----   input slot to use for header \(inputSlot)")
+                headerType = inputSlot.name
+                header?.optional = inputSlot.isOptional
+                
+            }
+        }
+        let labelText = detailSections[section].headerName(type: headerType)
+        header?.label?.text = labelText.uppercased()
+        
+        if section == CellIdentifiers.nameCell.rawValue {
+            header?.endsLabel?.isHidden = false
+            header?.ends = (cardDescriptor?.ends)!
+        }
+        
+        return header
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch detailSections[indexPath.section].rawValue {
@@ -142,7 +197,9 @@ print("SECTIONS: \(numSections)")
         case CellIdentifiers.descriptionCell.rawValue, CellIdentifiers.endDetailsCell.rawValue, CellIdentifiers.outputsCell.rawValue:
             return 26.0
         case CellIdentifiers.location2DInput.rawValue:
-            return 800.0
+            return 774.0
+        case CellIdentifiers.standardInputCell.rawValue:
+            return 66.0
         default:
             return 44.0
         }
@@ -153,21 +210,10 @@ print("SECTIONS: \(numSections)")
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10.0
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let header = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.header.reuseIdentifier) as? CardDetailHeaderView
-        let labelText = detailSections[section].headerName()
-        header?.label?.text = labelText.uppercased()
-        
-        if section == CellIdentifiers.nameCell.rawValue {
-            header?.endsLabel?.isHidden = false
-            header?.ends = (cardDescriptor?.ends)!
+        if section == CellIdentifiers.endDetailsCell.rawValue || section == CellIdentifiers.outputsCell.rawValue {
+            return 40.0
         }
-        
-        return header
+        return 20.0
     }
     
     // MARK: - IBActions

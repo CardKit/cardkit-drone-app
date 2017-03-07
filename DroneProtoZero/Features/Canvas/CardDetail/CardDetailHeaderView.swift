@@ -12,6 +12,7 @@ class CardDetailHeaderView: UITableViewCell, Reusable {
     
     @IBOutlet weak var label: UILabel?
     @IBOutlet weak var endsLabel: UILabel?
+    @IBOutlet weak var optionalLabel: UILabel?
     
     var ends: Bool = true {
         didSet {
@@ -21,6 +22,19 @@ class CardDetailHeaderView: UITableViewCell, Reusable {
             } else {
                 endsLabel?.text = "ENDS: NO"
                 endsLabel?.textColor = UIColor.darkText
+            }
+        }
+    }
+    
+    var optional: Bool = true {
+        didSet {
+            optionalLabel?.isHidden = false
+            if optional {
+                optionalLabel?.text = "OPTIONAL"
+                optionalLabel?.textColor = UIColor(hexString: "#7F7F7F")
+            } else {                
+                optionalLabel?.text = "REQUIRED"
+                optionalLabel?.textColor = UIColor.red
             }
         }
     }

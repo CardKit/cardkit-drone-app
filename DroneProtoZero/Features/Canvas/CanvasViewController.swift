@@ -30,7 +30,9 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
             print("Canvas vc sets cardDescriptor")
-                cardDetailTableViewController.cardDescriptor = DroneCardKit.Action.Movement.Location.FlyTo
+            //cardDetailTableViewController.cardDescriptor = DroneCardKit.Action.Movement.Location.FlyTo
+            //cardDetailTableViewController.cardDescriptor = DroneCardKit.Action.Movement.Simple.FlyForward
+            cardDetailTableViewController.cardDescriptor = DroneCardKit.Action.Movement.Location.Circle
         }
         
         self.parent?.present(cardDetailNavController, animated: true) {

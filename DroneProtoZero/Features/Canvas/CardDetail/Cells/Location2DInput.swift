@@ -11,10 +11,16 @@ import MapKit
 
 class Location2DInput: CardDetailTableViewCell {
     
-    @IBOutlet weak var frameView: UIView?
     @IBOutlet weak var map: MKMapView?
     @IBOutlet weak var latitudeTextField: UITextField?
     @IBOutlet weak var longitudeTextField: UITextField?
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        
+        
+    }
     
     override func setupCell(cardDescriptor: ActionCardDescriptor) {
         super.setupCell(cardDescriptor: cardDescriptor)
