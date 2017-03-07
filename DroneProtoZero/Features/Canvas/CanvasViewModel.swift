@@ -106,13 +106,19 @@ struct CanvasViewModel {
     
     // MARK: Card Adding/Removing Methods
     
-    func addCard(card: ActionCardDescriptor, toHand index: Int) {
+    func addCard(card: ActionCardDescriptor, toHand index: Int) throws {
         guard let hand = getHand(by: index) else { return }
-        let actionCard: ActionCard = card.makeCard()
-        hand.add(actionCard)
+        let cardInstance = try card <- []
+        let _ = hand ++ cardInstance
     }
     
     func removeCard(cardID: CardIdentifier, fromHand index: Int) {
+        guard let hand = getHand(by: index) else { return }
+        let filtered = hand.cards.filter { $0.identifier == cardID }
+        
+        guard let card = filtered.first as? ActionCard else { return }
+        hand.remove(card)
+        
         
     }
     
