@@ -440,8 +440,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/CardKitRuntime.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DroneCardKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RestKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/VisualRecognitionV3.framework",
 			);
 			name = "Carthage Run Script";
 			outputPaths = (
