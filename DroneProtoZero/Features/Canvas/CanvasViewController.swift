@@ -21,24 +21,9 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         //TEMP
-        guard let cardDetailNavController = UIStoryboard(name: "CardDetail", bundle: nil).instantiateInitialViewController() as? UINavigationController else {
-            print("no card detail")
-            return
-        }
-        cardDetailNavController.modalPresentationStyle = .pageSheet
-        print("table vc \(cardDetailNavController.topViewController)")
-        
-        if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
-            print("Canvas vc sets cardDescriptor")
-            //cardDetailTableViewController.cardDescriptor = DroneCardKit.Action.Movement.Location.FlyTo
-            //cardDetailTableViewController.cardDescriptor = DroneCardKit.Action.Movement.Simple.FlyForward
-            cardDetailTableViewController.cardDescriptor = DroneCardKit.Action.Movement.Location.Circle
-        }
-        
-        self.parent?.present(cardDetailNavController, animated: true) {
-            print("present card detail")
-        }
-        
+//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
+//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
+//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
         
     }
     
@@ -89,6 +74,41 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section > 1 {
+            switch indexPath.section {
+            case 2:
+                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
+            case 3:
+                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
+            case 4:
+                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
+            default:
+                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
+            }
+        }
+    }
+    
+    // MARK: - Card details
+    
+    func displayCardDetail(cardDescriptor: ActionCardDescriptor) {
+        guard let cardDetailNavController = UIStoryboard(name: "CardDetail", bundle: nil).instantiateInitialViewController() as? UINavigationController else {
+            print("no card detail")
+            return
+        }
+        cardDetailNavController.modalPresentationStyle = .pageSheet
+        print("table vc \(cardDetailNavController.topViewController)")
+        
+        if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
+            print("Canvas vc sets cardDescriptor")
+            cardDetailTableViewController.cardDescriptor = cardDescriptor
+        }
+        
+        self.parent?.present(cardDetailNavController, animated: true) {
+            print("present card detail")
+        }
     }
 
     // MARK: - Add card
