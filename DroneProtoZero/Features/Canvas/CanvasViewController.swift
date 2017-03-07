@@ -87,6 +87,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected \(indexPath)")
         if indexPath.section > 1 {
             switch indexPath.section {
             case 2:
@@ -152,23 +153,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return 1.0
         }
         return 50.0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == viewModel.sectionCount-1 {
-            let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.frame.size.width, height: 40.0))
-            footerView.autoresizingMask = UIViewAutoresizing.flexibleWidth
-            let insertHandButton = UIButton(type: .roundedRect)
-            insertHandButton.frame = CGRect(x: (tableView.frame.size.width - 150.0)/2, y: 0.0, width: 150.0, height: 60.0)
-            insertHandButton.addTarget(self, action: #selector(CanvasViewController.addNewStep), for: .touchUpInside)
-            insertHandButton.autoresizingMask = UIViewAutoresizing.flexibleWidth
-            insertHandButton.setTitle(NSLocalizedString("ADD_STEP_TITLE", comment: "Add Step Title"), for: .normal)
-            insertHandButton.tag = 0
-            footerView.addSubview(insertHandButton)
-            
-            return footerView
-        }
-        return UIView(frame: CGRect.zero)
     }
     
     func createStepHeader(section: Int) -> UIView {
