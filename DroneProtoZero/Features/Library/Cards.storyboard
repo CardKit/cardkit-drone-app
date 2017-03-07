@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PV3-2T-s8A">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,31 +14,56 @@
             <objects>
                 <tableViewController id="PV3-2T-s8A" customClass="CardsTableViewController" customModule="DroneProtoZero" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="235" sectionHeaderHeight="28" sectionFooterHeight="28" id="xRC-8o-EJ9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="315" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CardTableViewCell" rowHeight="235" id="MXg-jH-GBV" customClass="CardTableViewCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="235"/>
+                                <rect key="frame" x="0.0" y="28" width="315" height="235"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MXg-jH-GBV" id="0zn-w7-FOG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="315" height="234"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAN-C6-fO1">
-                                            <rect key="frame" x="67" y="20" width="240" height="195"/>
+                                            <rect key="frame" x="67" y="17.5" width="182" height="200"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sN3-ES-Vs4">
+                                                    <rect key="frame" x="0.0" y="0.0" width="182" height="200"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" red="0.34044877464212508" green="1" blue="0.50778190426799896" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="195" id="Thm-tW-LlF"/>
-                                                <constraint firstAttribute="width" constant="240" id="deH-IW-fxk"/>
+                                                <constraint firstAttribute="trailing" secondItem="sN3-ES-Vs4" secondAttribute="trailing" id="0Ws-Kq-eBs"/>
+                                                <constraint firstItem="sN3-ES-Vs4" firstAttribute="top" secondItem="xAN-C6-fO1" secondAttribute="top" id="5BH-EH-Wdq"/>
+                                                <constraint firstItem="sN3-ES-Vs4" firstAttribute="leading" secondItem="xAN-C6-fO1" secondAttribute="leading" id="APA-3a-kzV"/>
+                                                <constraint firstAttribute="height" constant="200" id="Thm-tW-LlF"/>
+                                                <constraint firstAttribute="bottom" secondItem="sN3-ES-Vs4" secondAttribute="bottom" id="cJW-qB-xEd"/>
+                                                <constraint firstAttribute="width" constant="182" id="deH-IW-fxk"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E78-dp-R0i">
+                                            <rect key="frame" x="137" y="95" width="42" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="45" id="OQS-Tr-DwE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="E78-dp-R0i" firstAttribute="centerY" secondItem="0zn-w7-FOG" secondAttribute="centerY" id="Vsp-Co-s4W"/>
                                         <constraint firstItem="xAN-C6-fO1" firstAttribute="centerY" secondItem="0zn-w7-FOG" secondAttribute="centerY" id="Wkf-Yo-lLo"/>
+                                        <constraint firstItem="E78-dp-R0i" firstAttribute="centerX" secondItem="0zn-w7-FOG" secondAttribute="centerX" id="gXz-Ng-Mux"/>
                                         <constraint firstItem="xAN-C6-fO1" firstAttribute="centerX" secondItem="0zn-w7-FOG" secondAttribute="centerX" id="mxU-fH-Fko"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cardImage" destination="sN3-ES-Vs4" id="wcw-4m-g5a"/>
+                                    <outlet property="cardView" destination="xAN-C6-fO1" id="W1p-jh-U33"/>
+                                    <outlet property="label" destination="E78-dp-R0i" id="6Fe-bB-tmp"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -48,10 +73,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Wgw-yy-DPk"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="315" height="667"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PqI-QY-88V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1079.2" y="74.212893553223395"/>
+            <point key="canvasLocation" x="-1081.34765625" y="74.011713030746705"/>
         </scene>
     </scenes>
 </document>

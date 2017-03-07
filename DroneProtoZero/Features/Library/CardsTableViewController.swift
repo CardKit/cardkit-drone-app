@@ -13,19 +13,9 @@ import DroneCardKit
 
 class CardsTableViewController: UITableViewController {
     
-    private var allCards: [ActionCardDescriptor]?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        
-        
-//        allCards = DroneCardKit.
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,30 +26,29 @@ class CardsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return DroneCardDescriptors.sharedInstance.all.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        guard let count = DroneCardDescriptors.sharedInstance.descriptorsAtGroupIndex(index: section)?.count else {
+            return 0
+        }
+        return count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as CardTableViewCell
+        if let cardDescriptor = DroneCardDescriptors.sharedInstance.descriptorAtIndexPath(indexPath: indexPath) {
+            cell.setupCell(cardDescriptor: cardDescriptor)
+        }
         return cell
     }
  
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {        
+        return DroneCardDescriptors.sharedInstance.keyAtIndex(index: section)
     }
-    */
-
 }

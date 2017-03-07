@@ -7,20 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3AB397061E64A44900DA1800 /* Canvas.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397011E64A44900DA1800 /* Canvas.storyboard */; };
-		3AB397071E64A44900DA1800 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397021E64A44900DA1800 /* CanvasViewController.swift */; };
-		3AB397081E64A44900DA1800 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397041E64A44900DA1800 /* Library.storyboard */; };
-		3AB397091E64A44900DA1800 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397051E64A44900DA1800 /* LibraryViewController.swift */; };
-		3AB3970B1E64A46700DA1800 /* CardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3970A1E64A46700DA1800 /* CardsTableViewController.swift */; };
-		3AB3970D1E64A48A00DA1800 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3970C1E64A48A00DA1800 /* LogsViewController.swift */; };
-		3AB3970F1E64A58900DA1800 /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3970E1E64A58900DA1800 /* Cards.storyboard */; };
-		3AB397111E64A6A200DA1800 /* Logs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397101E64A6A200DA1800 /* Logs.storyboard */; };
-		3AB397131E64CBC100DA1800 /* CanvasToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397121E64CBC100DA1800 /* CanvasToolBar.swift */; };
-		3AB397161E64CCC000DA1800 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397151E64CCC000DA1800 /* UITableViewExtension.swift */; };
-		3AB397181E64CD1400DA1800 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397171E64CD1400DA1800 /* Reusable.swift */; };
-		3AB3971A1E64CD9A00DA1800 /* HandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397191E64CD9A00DA1800 /* HandTableViewCell.swift */; };
-		3AB3971C1E64D03700DA1800 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3971B1E64D03700DA1800 /* UIColorExtension.swift */; };
-		3AB3971E1E6512D200DA1800 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3971D1E6512D200DA1800 /* CardTableViewCell.swift */; };
+		3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */; };
+		3A89F3531E6769D2005A9D48 /* AvailableHardwareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3501E6769D2005A9D48 /* AvailableHardwareCell.swift */; };
+		3A89F3541E6769D2005A9D48 /* DroneStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3511E6769D2005A9D48 /* DroneStatusCell.swift */; };
+		3A89F3551E6769D2005A9D48 /* HandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3521E6769D2005A9D48 /* HandTableViewCell.swift */; };
+		3A89F3571E6769FC005A9D48 /* CanvasStepHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A89F3561E6769FC005A9D48 /* CanvasStepHeaderView.xib */; };
+		3A89F3591E67C376005A9D48 /* CanvasStepHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3581E67C376005A9D48 /* CanvasStepHeaderView.swift */; };
+		3A89F35B1E687DBC005A9D48 /* AddStepFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A89F35A1E687DBC005A9D48 /* AddStepFooterView.xib */; };
+		3A89F35D1E6880AB005A9D48 /* AddStepFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F35C1E6880AB005A9D48 /* AddStepFooterView.swift */; };
+		3A8BFB061E6A04A700BFE336 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8BFB051E6A04A700BFE336 /* CardCollectionViewCell.swift */; };
+		3AB397841E667A5B00DA1800 /* Canvas.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */; };
+		3AB397861E667A5B00DA1800 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397711E667A5B00DA1800 /* CanvasViewController.swift */; };
+		3AB397871E667A5B00DA1800 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */; };
+		3AB3978A1E667A5B00DA1800 /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397761E667A5B00DA1800 /* Cards.storyboard */; };
+		3AB3978B1E667A5B00DA1800 /* CardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397771E667A5B00DA1800 /* CardsTableViewController.swift */; };
+		3AB3978C1E667A5B00DA1800 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397781E667A5B00DA1800 /* CardTableViewCell.swift */; };
+		3AB3978D1E667A5B00DA1800 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397791E667A5B00DA1800 /* Library.storyboard */; };
+		3AB3978E1E667A5B00DA1800 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3977A1E667A5B00DA1800 /* LibraryViewController.swift */; };
+		3AB3978F1E667A5B00DA1800 /* Logs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3977B1E667A5B00DA1800 /* Logs.storyboard */; };
+		3AB397901E667A5B00DA1800 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3977C1E667A5B00DA1800 /* LogsViewController.swift */; };
+		3AB397911E667A5B00DA1800 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3977E1E667A5B00DA1800 /* Localizable.strings */; };
+		3AB397921E667A5B00DA1800 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397801E667A5B00DA1800 /* Reusable.swift */; };
+		3AB397931E667A5B00DA1800 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397811E667A5B00DA1800 /* UIColorExtension.swift */; };
+		3AB397941E667A5B00DA1800 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */; };
 		3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F6761E64924C00D67889 /* AppDelegate.swift */; };
 		3AE7F67E1E64924C00D67889 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67D1E64924C00D67889 /* Assets.xcassets */; };
 		3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */; };
@@ -30,6 +39,7 @@
 		D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30F1E65E280003974CB /* CardKitRuntime.framework */; };
 		D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3101E65E280003974CB /* DroneCardKit.framework */; };
 		D530A3151E65E280003974CB /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3111E65E280003974CB /* Freddy.framework */; };
+		D530A3191E670F69003974CB /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530A3181E670F69003974CB /* SplitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,20 +60,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3AB397011E64A44900DA1800 /* Canvas.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Canvas.storyboard; sourceTree = "<group>"; };
-		3AB397021E64A44900DA1800 /* CanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
-		3AB397041E64A44900DA1800 /* Library.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
-		3AB397051E64A44900DA1800 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
-		3AB3970A1E64A46700DA1800 /* CardsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsTableViewController.swift; sourceTree = "<group>"; };
-		3AB3970C1E64A48A00DA1800 /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
-		3AB3970E1E64A58900DA1800 /* Cards.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
-		3AB397101E64A6A200DA1800 /* Logs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logs.storyboard; sourceTree = "<group>"; };
-		3AB397121E64CBC100DA1800 /* CanvasToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasToolBar.swift; sourceTree = "<group>"; };
-		3AB397151E64CCC000DA1800 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
-		3AB397171E64CD1400DA1800 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
-		3AB397191E64CD9A00DA1800 /* HandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandTableViewCell.swift; sourceTree = "<group>"; };
-		3AB3971B1E64D03700DA1800 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		3AB3971D1E6512D200DA1800 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneCardDescriptors.swift; sourceTree = "<group>"; };
+		3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisualRecognitionV3.framework; path = Carthage/Build/iOS/VisualRecognitionV3.framework; sourceTree = "<group>"; };
+		3A89F34D1E6763EE005A9D48 /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestKit.framework; path = Carthage/Build/iOS/RestKit.framework; sourceTree = "<group>"; };
+		3A89F3501E6769D2005A9D48 /* AvailableHardwareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableHardwareCell.swift; sourceTree = "<group>"; };
+		3A89F3511E6769D2005A9D48 /* DroneStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneStatusCell.swift; sourceTree = "<group>"; };
+		3A89F3521E6769D2005A9D48 /* HandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandTableViewCell.swift; sourceTree = "<group>"; };
+		3A89F3561E6769FC005A9D48 /* CanvasStepHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CanvasStepHeaderView.xib; sourceTree = "<group>"; };
+		3A89F3581E67C376005A9D48 /* CanvasStepHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasStepHeaderView.swift; sourceTree = "<group>"; };
+		3A89F35A1E687DBC005A9D48 /* AddStepFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddStepFooterView.xib; sourceTree = "<group>"; };
+		3A89F35C1E6880AB005A9D48 /* AddStepFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStepFooterView.swift; sourceTree = "<group>"; };
+		3A8BFB051E6A04A700BFE336 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
+		3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Canvas.storyboard; sourceTree = "<group>"; };
+		3AB397711E667A5B00DA1800 /* CanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
+		3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewModel.swift; sourceTree = "<group>"; };
+		3AB397761E667A5B00DA1800 /* Cards.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
+		3AB397771E667A5B00DA1800 /* CardsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsTableViewController.swift; sourceTree = "<group>"; };
+		3AB397781E667A5B00DA1800 /* CardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		3AB397791E667A5B00DA1800 /* Library.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
+		3AB3977A1E667A5B00DA1800 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		3AB3977B1E667A5B00DA1800 /* Logs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logs.storyboard; sourceTree = "<group>"; };
+		3AB3977C1E667A5B00DA1800 /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
+		3AB3977E1E667A5B00DA1800 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		3AB397801E667A5B00DA1800 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		3AB397811E667A5B00DA1800 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		3AE7F6731E64924C00D67889 /* DroneProtoZero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneProtoZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE7F6761E64924C00D67889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AE7F67D1E64924C00D67889 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,6 +104,7 @@
 		D530A30F1E65E280003974CB /* CardKitRuntime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKitRuntime.framework; path = Carthage/Build/iOS/CardKitRuntime.framework; sourceTree = "<group>"; };
 		D530A3101E65E280003974CB /* DroneCardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DroneCardKit.framework; path = Carthage/Build/iOS/DroneCardKit.framework; sourceTree = "<group>"; };
 		D530A3111E65E280003974CB /* Freddy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Freddy.framework; path = Carthage/Build/iOS/Freddy.framework; sourceTree = "<group>"; };
+		D530A3181E670F69003974CB /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,37 +136,70 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3AB397001E64A44900DA1800 /* Canvas */ = {
+		3A89F34F1E6769D2005A9D48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3AB397011E64A44900DA1800 /* Canvas.storyboard */,
-				3AB397021E64A44900DA1800 /* CanvasViewController.swift */,
-				3AB397121E64CBC100DA1800 /* CanvasToolBar.swift */,
-				3AB397191E64CD9A00DA1800 /* HandTableViewCell.swift */,
+				3A89F3501E6769D2005A9D48 /* AvailableHardwareCell.swift */,
+				3A89F3511E6769D2005A9D48 /* DroneStatusCell.swift */,
+				3A89F3521E6769D2005A9D48 /* HandTableViewCell.swift */,
+				3A89F3561E6769FC005A9D48 /* CanvasStepHeaderView.xib */,
+				3A89F3581E67C376005A9D48 /* CanvasStepHeaderView.swift */,
+				3A89F35A1E687DBC005A9D48 /* AddStepFooterView.xib */,
+				3A89F35C1E6880AB005A9D48 /* AddStepFooterView.swift */,
+				3A8BFB051E6A04A700BFE336 /* CardCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3AB3976C1E667A5B00DA1800 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				3AB3976D1E667A5B00DA1800 /* Canvas */,
+				3AB397751E667A5B00DA1800 /* Library */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		3AB3976D1E667A5B00DA1800 /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
+				3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */,
+				3A89F34F1E6769D2005A9D48 /* Views */,
+				3AB397711E667A5B00DA1800 /* CanvasViewController.swift */,
+				3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */,
 			);
 			path = Canvas;
 			sourceTree = "<group>";
 		};
-		3AB397031E64A44900DA1800 /* Library */ = {
+		3AB397751E667A5B00DA1800 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				3AB397041E64A44900DA1800 /* Library.storyboard */,
-				3AB397051E64A44900DA1800 /* LibraryViewController.swift */,
-				3AB3970A1E64A46700DA1800 /* CardsTableViewController.swift */,
-				3AB3970C1E64A48A00DA1800 /* LogsViewController.swift */,
-				3AB3970E1E64A58900DA1800 /* Cards.storyboard */,
-				3AB397101E64A6A200DA1800 /* Logs.storyboard */,
-				3AB3971D1E6512D200DA1800 /* CardTableViewCell.swift */,
+				3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */,
+				3AB397761E667A5B00DA1800 /* Cards.storyboard */,
+				3AB397771E667A5B00DA1800 /* CardsTableViewController.swift */,
+				3AB397781E667A5B00DA1800 /* CardTableViewCell.swift */,
+				3AB397791E667A5B00DA1800 /* Library.storyboard */,
+				3AB3977A1E667A5B00DA1800 /* LibraryViewController.swift */,
+				3AB3977B1E667A5B00DA1800 /* Logs.storyboard */,
+				3AB3977C1E667A5B00DA1800 /* LogsViewController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
 		};
-		3AB397141E64CCC000DA1800 /* Utils */ = {
+		3AB3977D1E667A5B00DA1800 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3AB3971B1E64D03700DA1800 /* UIColorExtension.swift */,
-				3AB397171E64CD1400DA1800 /* Reusable.swift */,
-				3AB397151E64CCC000DA1800 /* UITableViewExtension.swift */,
+				3AB3977E1E667A5B00DA1800 /* Localizable.strings */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3AB3977F1E667A5B00DA1800 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3AB397801E667A5B00DA1800 /* Reusable.swift */,
+				3AB397811E667A5B00DA1800 /* UIColorExtension.swift */,
+				3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -174,8 +229,10 @@
 			isa = PBXGroup;
 			children = (
 				3AE7F6761E64924C00D67889 /* AppDelegate.swift */,
-				3AE7F6A91E64966800D67889 /* Features */,
-				3AB397141E64CCC000DA1800 /* Utils */,
+				3AB3976C1E667A5B00DA1800 /* Features */,
+				3AB3977D1E667A5B00DA1800 /* Supporting Files */,
+				3AB3977F1E667A5B00DA1800 /* Utils */,
+				D530A3181E670F69003974CB /* SplitViewController.swift */,
 				3AE7F67D1E64924C00D67889 /* Assets.xcassets */,
 				3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */,
 				3AE7F6821E64924C00D67889 /* Info.plist */,
@@ -201,18 +258,11 @@
 			path = DroneProtoZeroUITests;
 			sourceTree = "<group>";
 		};
-		3AE7F6A91E64966800D67889 /* Features */ = {
-			isa = PBXGroup;
-			children = (
-				3AB397031E64A44900DA1800 /* Library */,
-				3AB397001E64A44900DA1800 /* Canvas */,
-			);
-			path = Features;
-			sourceTree = "<group>";
-		};
 		D530A2FF1E65D969003974CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A89F34D1E6763EE005A9D48 /* RestKit.framework */,
+				3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */,
 				D530A30E1E65E280003974CB /* CardKit.framework */,
 				D530A30F1E65E280003974CB /* CardKitRuntime.framework */,
 				D530A3101E65E280003974CB /* DroneCardKit.framework */,
@@ -236,7 +286,7 @@
 				3AE7F6701E64924C00D67889 /* Frameworks */,
 				3AE7F6711E64924C00D67889 /* Resources */,
 				3AB3971F1E6516C500DA1800 /* Swift Lint */,
-				D530A30D1E65DC40003974CB /* ShellScript */,
+				D530A30D1E65DC40003974CB /* Carthage Run Script */,
 			);
 			buildRules = (
 			);
@@ -337,11 +387,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AB397061E64A44900DA1800 /* Canvas.storyboard in Resources */,
+				3A89F35B1E687DBC005A9D48 /* AddStepFooterView.xib in Resources */,
+				3AB3978A1E667A5B00DA1800 /* Cards.storyboard in Resources */,
 				3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */,
-				3AB397081E64A44900DA1800 /* Library.storyboard in Resources */,
-				3AB397111E64A6A200DA1800 /* Logs.storyboard in Resources */,
-				3AB3970F1E64A58900DA1800 /* Cards.storyboard in Resources */,
+				3AB3978D1E667A5B00DA1800 /* Library.storyboard in Resources */,
+				3AB397911E667A5B00DA1800 /* Localizable.strings in Resources */,
+				3AB3978F1E667A5B00DA1800 /* Logs.storyboard in Resources */,
+				3A89F3571E6769FC005A9D48 /* CanvasStepHeaderView.xib in Resources */,
+				3AB397841E667A5B00DA1800 /* Canvas.storyboard in Resources */,
 				3AE7F67E1E64924C00D67889 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,7 +430,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"/usr/local/bin:$PATH\"\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		D530A30D1E65DC40003974CB /* ShellScript */ = {
+		D530A30D1E65DC40003974CB /* Carthage Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -387,7 +440,10 @@
 				"$(SRCROOT)/Carthage/Build/iOS/CardKitRuntime.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DroneCardKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RestKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/VisualRecognitionV3.framework",
 			);
+			name = "Carthage Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,17 +457,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AB397071E64A44900DA1800 /* CanvasViewController.swift in Sources */,
-				3AB3971E1E6512D200DA1800 /* CardTableViewCell.swift in Sources */,
-				3AB397131E64CBC100DA1800 /* CanvasToolBar.swift in Sources */,
-				3AB397181E64CD1400DA1800 /* Reusable.swift in Sources */,
-				3AB397161E64CCC000DA1800 /* UITableViewExtension.swift in Sources */,
-				3AB3970B1E64A46700DA1800 /* CardsTableViewController.swift in Sources */,
-				3AB397091E64A44900DA1800 /* LibraryViewController.swift in Sources */,
-				3AB3971A1E64CD9A00DA1800 /* HandTableViewCell.swift in Sources */,
-				3AB3971C1E64D03700DA1800 /* UIColorExtension.swift in Sources */,
+				3A89F3531E6769D2005A9D48 /* AvailableHardwareCell.swift in Sources */,
+				3A89F3591E67C376005A9D48 /* CanvasStepHeaderView.swift in Sources */,
+				3AB397921E667A5B00DA1800 /* Reusable.swift in Sources */,
+				3AB397871E667A5B00DA1800 /* CanvasViewModel.swift in Sources */,
+				3AB397861E667A5B00DA1800 /* CanvasViewController.swift in Sources */,
+				3A89F3551E6769D2005A9D48 /* HandTableViewCell.swift in Sources */,
 				3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */,
-				3AB3970D1E64A48A00DA1800 /* LogsViewController.swift in Sources */,
+				3AB397931E667A5B00DA1800 /* UIColorExtension.swift in Sources */,
+				3AB3978B1E667A5B00DA1800 /* CardsTableViewController.swift in Sources */,
+				3AB397901E667A5B00DA1800 /* LogsViewController.swift in Sources */,
+				3AB3978E1E667A5B00DA1800 /* LibraryViewController.swift in Sources */,
+				3A89F3541E6769D2005A9D48 /* DroneStatusCell.swift in Sources */,
+				3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */,
+				3AB3978C1E667A5B00DA1800 /* CardTableViewCell.swift in Sources */,
+				3AB397941E667A5B00DA1800 /* UITableViewExtension.swift in Sources */,
+				D530A3191E670F69003974CB /* SplitViewController.swift in Sources */,
+				3A8BFB061E6A04A700BFE336 /* CardCollectionViewCell.swift in Sources */,
+				3A89F35D1E6880AB005A9D48 /* AddStepFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +619,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 76CMF53Q35;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -573,6 +637,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 76CMF53Q35;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

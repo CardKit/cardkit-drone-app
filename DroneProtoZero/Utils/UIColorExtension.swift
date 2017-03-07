@@ -61,4 +61,12 @@ extension UIColor {
     static var cornflowerBlue: UIColor {
         return UIColor(hexString: "#6195ED")
     }
+    
+    static var athensGray: UIColor {
+        return UIColor(hexString: "#EFEFF4")
+    }
+    
+    static var dustyGray: UIColor {
+        return UIColor(hexString: "#949494")
+    }
 }

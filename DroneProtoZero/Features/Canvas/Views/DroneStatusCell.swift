@@ -1,14 +1,14 @@
 //
-//  HandTableViewCell.swift
+//  DroneStatusCell.swift
 //  DroneProtoZero
 //
-//  Created by boland on 2/27/17.
+//  Created by boland on 2/28/17.
 //  Copyright © 2017 IBM Research. All rights reserved.
 //
 
 import UIKit
 
-class HandTableViewCell: UITableViewCell, Reusable {
+class DroneStatusCell: UITableViewCell, Reusable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
