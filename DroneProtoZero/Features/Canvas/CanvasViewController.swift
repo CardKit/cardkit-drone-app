@@ -8,6 +8,7 @@
 
 import UIKit
 import CardKit
+import DroneCardKit
 
 protocol Hoverable {
     
@@ -28,6 +29,13 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        
+        
+        //TEMP
+//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
+//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
+//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
+        
     }
     
     func setupTableView() {
@@ -77,6 +85,42 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected \(indexPath)")
+        if indexPath.section > 1 {
+            switch indexPath.section {
+            case 2:
+                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
+            case 3:
+                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
+            case 4:
+                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
+            default:
+                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
+            }
+        }
+    }
+    
+    // MARK: - Card details
+    
+    func displayCardDetail(cardDescriptor: ActionCardDescriptor) {
+        guard let cardDetailNavController = UIStoryboard(name: "CardDetail", bundle: nil).instantiateInitialViewController() as? UINavigationController else {
+            print("no card detail")
+            return
+        }
+        cardDetailNavController.modalPresentationStyle = .pageSheet
+        print("table vc \(cardDetailNavController.topViewController)")
+        
+        if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
+            print("Canvas vc sets cardDescriptor")
+            cardDetailTableViewController.cardDescriptor = cardDescriptor
+        }
+        
+        self.parent?.present(cardDetailNavController, animated: true) {
+            print("present card detail")
+        }
+    }
 
     // MARK: - Add card
     
@@ -104,7 +148,11 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(viewModel.headerHeight(section: section))
+        if section < CanvasSection.steps.rawValue {
+            //print("section \(section)")
+            return 1.0
+        }
+        return 50.0
     }
     
     func createStepHeader(section: Int) -> UIView {
