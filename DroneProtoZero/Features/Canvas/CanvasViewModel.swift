@@ -8,7 +8,6 @@
 
 import Foundation
 import CardKit
-import Freddy
 
 enum CanvasSection: Int {
     case status
@@ -19,15 +18,9 @@ enum CanvasSection: Int {
 struct CanvasViewModel {
 
     let defaultSectionCount: Int = 2
-    var hands: [Hand]
-    
-    init() {
-        hands = [Hand]()
-        let _ = createHand()
-    }
     
     var sectionCount: Int {
-        return hands.count + defaultSectionCount
+        return Sequencer.shared.hands.count + defaultSectionCount
     }
     
     func cellHeight(for indexPath: IndexPath) -> Float {
@@ -69,15 +62,12 @@ struct CanvasViewModel {
     
     // MARK: Hand Creating/Removing Methods
     
-    mutating func createHand() -> Hand {
-        let hand = Hand()
-        hands.append(hand)
-        return hand
+    func createHand() -> Hand {
+        return Sequencer.shared.createHand()
     }
     
-    mutating func addHand() -> HandIdentifier {
-        let hand = createHand()
-        return hand.identifier
+    func addHand() -> HandIdentifier {
+        return Sequencer.shared.addHand()
     }
     
     mutating func removeHand(sectionID: Int) -> HandIdentifier? {
@@ -118,8 +108,6 @@ struct CanvasViewModel {
         
         guard let card = filtered.first as? ActionCard else { return }
         hand.remove(card)
-        
-        
     }
     
     

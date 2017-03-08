@@ -33,6 +33,7 @@
 		3AB397931E667A5B00DA1800 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397811E667A5B00DA1800 /* UIColorExtension.swift */; };
 		3AB397941E667A5B00DA1800 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */; };
 		3ACEF1E71E6DF9240047CE08 /* HandExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACEF1E61E6DF9240047CE08 /* HandExtension.swift */; };
+		3ACEF1ED1E706C070047CE08 /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACEF1EC1E706C070047CE08 /* Sequencer.swift */; };
 		3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F6761E64924C00D67889 /* AppDelegate.swift */; };
 		3AE7F67E1E64924C00D67889 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67D1E64924C00D67889 /* Assets.xcassets */; };
 		3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */; };
@@ -89,6 +90,7 @@
 		3AB397811E667A5B00DA1800 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		3ACEF1E61E6DF9240047CE08 /* HandExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandExtension.swift; sourceTree = "<group>"; };
+		3ACEF1EC1E706C070047CE08 /* Sequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
 		3AE7F6731E64924C00D67889 /* DroneProtoZero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneProtoZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE7F6761E64924C00D67889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AE7F67D1E64924C00D67889 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -219,6 +221,14 @@
 			path = CardKit;
 			sourceTree = "<group>";
 		};
+		3ACEF1EB1E70691D0047CE08 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3ACEF1EC1E706C070047CE08 /* Sequencer.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		3AE7F66A1E64924C00D67889 = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +255,7 @@
 			children = (
 				3AE7F6761E64924C00D67889 /* AppDelegate.swift */,
 				3AB3976C1E667A5B00DA1800 /* Features */,
+				3ACEF1EB1E70691D0047CE08 /* Services */,
 				3AB3977D1E667A5B00DA1800 /* Supporting Files */,
 				3AB3977F1E667A5B00DA1800 /* Utils */,
 				D530A3181E670F69003974CB /* SplitViewController.swift */,
@@ -489,6 +500,7 @@
 				3AB3978C1E667A5B00DA1800 /* CardTableViewCell.swift in Sources */,
 				3AB397941E667A5B00DA1800 /* UITableViewExtension.swift in Sources */,
 				D530A3191E670F69003974CB /* SplitViewController.swift in Sources */,
+				3ACEF1ED1E706C070047CE08 /* Sequencer.swift in Sources */,
 				3A8BFB061E6A04A700BFE336 /* CardCollectionViewCell.swift in Sources */,
 				3A89F35D1E6880AB005A9D48 /* AddStepFooterView.swift in Sources */,
 			);
