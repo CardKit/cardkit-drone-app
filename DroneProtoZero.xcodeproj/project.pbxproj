@@ -130,7 +130,9 @@
 				D530A3121E65E280003974CB /* CardKit.framework in Frameworks */,
 				D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */,
 				D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */,
+				682134E41E70A17400B3BEC3 /* DroneTokensDJI.framework in Frameworks */,
 				D530A3151E65E280003974CB /* Freddy.framework in Frameworks */,
+				682134E61E70A29B00B3BEC3 /* DJISDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +308,8 @@
 		D530A2FF1E65D969003974CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				682134E51E70A29B00B3BEC3 /* DJISDK.framework */,
+				682134E31E70A17400B3BEC3 /* DroneTokensDJI.framework */,
 				D51E32AE1E6A0132002DC319 /* MapKit.framework */,
 				3A89F34D1E6763EE005A9D48 /* RestKit.framework */,
 				3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */,
@@ -487,6 +491,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/CardKitRuntime.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DroneCardKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
+				"$(SRCROOT)/Carthage/Checkouts/drone-tokens-dji/Frameworks/DJISDK.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DroneTokensDJI.framework",
 			);
 			name = "Carthage Run Script";
 			outputPaths = (
@@ -673,6 +679,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/drone-tokens-dji/Frameworks",
 				);
 				INFOPLIST_FILE = DroneProtoZero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -691,6 +698,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/drone-tokens-dji/Frameworks",
 				);
 				INFOPLIST_FILE = DroneProtoZero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
