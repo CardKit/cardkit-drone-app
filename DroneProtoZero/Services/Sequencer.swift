@@ -68,6 +68,12 @@ class Sequencer {
         let _ = hand ++ cardInstance
     }
     
+    /**
+     - Remove Card
+        - removes the card using the identifier from the given hand
+        * cardID: CardIdentifier (String)
+        * index: index of the Hand in the hands array
+    */
     func removeCard(cardID: CardIdentifier, fromHand index: Int) {
         guard let hand = getHand(by: index) else { return }
         let filtered = hand.cards.filter { $0.identifier == cardID }
