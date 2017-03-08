@@ -127,7 +127,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D51E32AF1E6A0132002DC319 /* MapKit.framework in Frameworks */,
-				3A89F34C1E6763E3005A9D48 /* VisualRecognitionV3.framework in Frameworks */,
 				D530A3121E65E280003974CB /* CardKit.framework in Frameworks */,
 				D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */,
 				D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */,
@@ -183,8 +182,6 @@
 				3A89F34F1E6769D2005A9D48 /* Views */,
 				3AB397711E667A5B00DA1800 /* CanvasViewController.swift */,
 				3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */,
-				3AB397731E667A5B00DA1800 /* DroneStatusCell.swift */,
-				3AB397741E667A5B00DA1800 /* HandTableViewCell.swift */,
 				D51E329E1E687E3A002DC319 /* CardDetail */,
 			);
 			path = Canvas;
@@ -490,8 +487,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/CardKitRuntime.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DroneCardKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RestKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/VisualRecognitionV3.framework",
 			);
 			name = "Carthage Run Script";
 			outputPaths = (
@@ -515,7 +510,6 @@
 				3AB397861E667A5B00DA1800 /* CanvasViewController.swift in Sources */,
 				3A89F3551E6769D2005A9D48 /* HandTableViewCell.swift in Sources */,
 				3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */,
-				3AB397831E667A5B00DA1800 /* AvailableHardwareCell.swift in Sources */,
 				D51E32B41E6A031D002DC319 /* Location2DInput.swift in Sources */,
 				D51E32B61E6DB87B002DC319 /* CardDetailTableViewCell.swift in Sources */,
 				D51E32A21E687FB9002DC319 /* CardDetailTableViewController.swift in Sources */,
@@ -527,7 +521,6 @@
 				3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */,
 				3AB3978C1E667A5B00DA1800 /* CardTableViewCell.swift in Sources */,
 				D51E32B91E6DB8A8002DC319 /* CardInputField.swift in Sources */,
-				3AB397891E667A5B00DA1800 /* HandTableViewCell.swift in Sources */,
 				3AB397941E667A5B00DA1800 /* UITableViewExtension.swift in Sources */,
 				D530A3191E670F69003974CB /* SplitViewController.swift in Sources */,
 				3A8BFB061E6A04A700BFE336 /* CardCollectionViewCell.swift in Sources */,
