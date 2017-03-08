@@ -50,6 +50,7 @@ class DroneProtoZeroTests: XCTestCase {
         //3 hands
         let handID2 = viewModel.addHand()
         XCTAssertEqual(currentCount+2, viewModel.sectionCount)
+        print("Section count \(viewModel.sectionCount)")
         //2 hands
         viewModel.removeHand(identifier: handID1)
         let indexSet: IndexSet = viewModel.createIndexSet(section: currentCount)

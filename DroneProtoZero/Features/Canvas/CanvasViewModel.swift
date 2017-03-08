@@ -71,7 +71,8 @@ struct CanvasViewModel {
     }
     
     mutating func removeHand(sectionID: Int) -> HandIdentifier? {
-        return Sequencer.shared.removeHand(by: sectionID)
+        let actualID =  sectionID - defaultSectionCount
+        return Sequencer.shared.removeHand(by: actualID)
     }
     
     mutating func removeHand(identifier: CardIdentifier) {
