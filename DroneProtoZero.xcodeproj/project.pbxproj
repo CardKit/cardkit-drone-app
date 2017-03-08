@@ -35,6 +35,11 @@
 		3AE7F6811E64924C00D67889 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */; };
 		3AE7F68C1E64924C00D67889 /* DroneProtoZeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F68B1E64924C00D67889 /* DroneProtoZeroTests.swift */; };
 		3AE7F6971E64924C00D67889 /* DroneProtoZeroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F6961E64924C00D67889 /* DroneProtoZeroUITests.swift */; };
+		682134E01E709D0A00B3BEC3 /* HardwareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682134DF1E709D0A00B3BEC3 /* HardwareManager.swift */; };
+		682134E21E709D1600B3BEC3 /* ProgramBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682134E11E709D1600B3BEC3 /* ProgramBuilder.swift */; };
+		682134E41E70A17400B3BEC3 /* DroneTokensDJI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682134E31E70A17400B3BEC3 /* DroneTokensDJI.framework */; };
+		682134E61E70A29B00B3BEC3 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682134E51E70A29B00B3BEC3 /* DJISDK.framework */; };
+		682134E81E70B0FD00B3BEC3 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682134E71E70B0FD00B3BEC3 /* AppConfig.swift */; };
 		D51E32A01E687F2B002DC319 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51E329F1E687F2B002DC319 /* CardDetail.storyboard */; };
 		D51E32A21E687FB9002DC319 /* CardDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */; };
 		D51E32A81E68BF26002DC319 /* CardDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */; };
@@ -103,6 +108,11 @@
 		3AE7F6921E64924C00D67889 /* DroneProtoZeroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DroneProtoZeroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE7F6961E64924C00D67889 /* DroneProtoZeroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneProtoZeroUITests.swift; sourceTree = "<group>"; };
 		3AE7F6981E64924C00D67889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		682134DF1E709D0A00B3BEC3 /* HardwareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HardwareManager.swift; sourceTree = "<group>"; };
+		682134E11E709D1600B3BEC3 /* ProgramBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramBuilder.swift; sourceTree = "<group>"; };
+		682134E31E70A17400B3BEC3 /* DroneTokensDJI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DroneTokensDJI.framework; path = Carthage/Build/iOS/DroneTokensDJI.framework; sourceTree = "<group>"; };
+		682134E51E70A29B00B3BEC3 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DJISDK.framework; path = "Carthage/Checkouts/drone-tokens-dji/Frameworks/DJISDK.framework"; sourceTree = "<group>"; };
+		682134E71E70B0FD00B3BEC3 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		D51E329F1E687F2B002DC319 /* CardDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
 		D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailTableViewController.swift; sourceTree = "<group>"; };
 		D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailHeaderView.swift; sourceTree = "<group>"; };
@@ -218,6 +228,9 @@
 				3AB397801E667A5B00DA1800 /* Reusable.swift */,
 				3AB397811E667A5B00DA1800 /* UIColorExtension.swift */,
 				3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */,
+				682134DF1E709D0A00B3BEC3 /* HardwareManager.swift */,
+				682134E11E709D1600B3BEC3 /* ProgramBuilder.swift */,
+				682134E71E70B0FD00B3BEC3 /* AppConfig.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -508,9 +521,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				682134E21E709D1600B3BEC3 /* ProgramBuilder.swift in Sources */,
 				3A89F3531E6769D2005A9D48 /* AvailableHardwareCell.swift in Sources */,
 				3A89F3591E67C376005A9D48 /* CanvasStepHeaderView.swift in Sources */,
 				3AB397921E667A5B00DA1800 /* Reusable.swift in Sources */,
+				682134E81E70B0FD00B3BEC3 /* AppConfig.swift in Sources */,
 				3AB397871E667A5B00DA1800 /* CanvasViewModel.swift in Sources */,
 				D51E32A81E68BF26002DC319 /* CardDetailHeaderView.swift in Sources */,
 				3AB397861E667A5B00DA1800 /* CanvasViewController.swift in Sources */,
@@ -525,6 +540,7 @@
 				3AB3978E1E667A5B00DA1800 /* LibraryViewController.swift in Sources */,
 				3A89F3541E6769D2005A9D48 /* DroneStatusCell.swift in Sources */,
 				3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */,
+				682134E01E709D0A00B3BEC3 /* HardwareManager.swift in Sources */,
 				3AB3978C1E667A5B00DA1800 /* CardTableViewCell.swift in Sources */,
 				D51E32B91E6DB8A8002DC319 /* CardInputField.swift in Sources */,
 				3AB397941E667A5B00DA1800 /* UITableViewExtension.swift in Sources */,

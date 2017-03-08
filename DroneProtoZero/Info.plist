@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		<string>com.dji.video</string>
+		<string>com.dji.protocol</string>
+		<string>com.dji.common</string>
+	</array>
+	<key>DJI API KEY</key>
+	<string>d1a959557fef1e3bb85cb70f</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

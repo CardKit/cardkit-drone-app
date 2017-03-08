@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,27 +27,63 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DroneStatusCell" rowHeight="55" id="Mb5-rm-2ff" customClass="DroneStatusCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55" width="696" height="55"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="696" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mb5-rm-2ff" id="zEc-yZ-TkG">
-                                            <rect key="frame" x="0.0" y="0.0" width="696" height="54"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Drone Status: Connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-Ha-7Jl">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drone Status: Connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-Ha-7Jl">
                                                     <rect key="frame" x="20" y="17.000000000000036" width="193" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.58039215686274503" green="0.58039215686274503" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNz-it-2UG">
+                                                    <rect key="frame" x="621" y="13" width="55" height="30"/>
+                                                    <state key="normal" title="Execute"/>
+                                                    <connections>
+                                                        <action selector="buttonTapped:" destination="Mb5-rm-2ff" eventType="touchUpInside" id="zrw-dK-kHP"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nr-aB-f5L">
+                                                    <rect key="frame" x="541" y="13" width="55" height="30"/>
+                                                    <state key="normal" title="Validate"/>
+                                                    <connections>
+                                                        <action selector="buttonTapped:" destination="Mb5-rm-2ff" eventType="touchUpInside" id="Mn6-Go-d5w"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecX-m3-hcu">
+                                                    <rect key="frame" x="392" y="13" width="122" height="30"/>
+                                                    <state key="normal" title="Connect to Drone"/>
+                                                    <connections>
+                                                        <action selector="buttonTapped:" destination="Mb5-rm-2ff" eventType="touchUpInside" id="xy2-VS-HR0"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bO8-Ha-7Jl" firstAttribute="centerY" secondItem="zEc-yZ-TkG" secondAttribute="centerY" id="Gxj-WK-fBb"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oNz-it-2UG" secondAttribute="trailing" constant="12" id="JLd-Fl-eeX"/>
+                                                <constraint firstItem="oNz-it-2UG" firstAttribute="centerY" secondItem="zEc-yZ-TkG" secondAttribute="centerY" id="RZj-eR-qgJ"/>
+                                                <constraint firstItem="oNz-it-2UG" firstAttribute="leading" secondItem="5nr-aB-f5L" secondAttribute="trailing" constant="25" id="Ucx-sy-E9g"/>
+                                                <constraint firstItem="ecX-m3-hcu" firstAttribute="centerY" secondItem="zEc-yZ-TkG" secondAttribute="centerY" id="c9X-gC-kMb"/>
+                                                <constraint firstItem="bO8-Ha-7Jl" firstAttribute="leading" secondItem="zEc-yZ-TkG" secondAttribute="leadingMargin" constant="12" id="nuG-SG-gOO"/>
+                                                <constraint firstItem="5nr-aB-f5L" firstAttribute="centerY" secondItem="zEc-yZ-TkG" secondAttribute="centerY" id="oS7-1r-B1l"/>
+                                                <constraint firstItem="5nr-aB-f5L" firstAttribute="leading" secondItem="ecX-m3-hcu" secondAttribute="trailing" constant="27" id="y99-40-sst"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="connectToDroneButton" destination="ecX-m3-hcu" id="l6t-ya-w0A"/>
+                                            <outlet property="executeButton" destination="oNz-it-2UG" id="xN8-ZM-ISr"/>
+                                            <outlet property="statusLabel" destination="bO8-Ha-7Jl" id="5Bh-Hy-ddE"/>
+                                            <outlet property="validateButton" destination="5nr-aB-f5L" id="eFg-X9-Mdh"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableHardwareCell" rowHeight="70" id="ALr-BF-GuV" customClass="AvailableHardwareCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="110" width="696" height="70"/>
+                                        <rect key="frame" x="0.0" y="110.5" width="696" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ALr-BF-GuV" id="Ood-Nb-HjM">
-                                            <rect key="frame" x="0.0" y="0.0" width="696" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Available Hardware" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akY-6Q-CXN">
@@ -60,10 +97,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HandTableViewCell" rowHeight="228" id="Mpw-8K-Qsw" customClass="HandTableViewCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="180" width="696" height="228"/>
+                                        <rect key="frame" x="0.0" y="180.5" width="696" height="228"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mpw-8K-Qsw" id="GRx-wS-JCh">
-                                            <rect key="frame" x="0.0" y="0.0" width="696" height="227"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="228"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drag Card to Add a Step" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qai-Cl-gTG">
