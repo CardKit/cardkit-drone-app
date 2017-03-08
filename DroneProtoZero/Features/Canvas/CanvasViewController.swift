@@ -130,8 +130,15 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func addCardToHand(descriptor: ActionCardDescriptor, position: CGPoint) {
         //indexPathForRowAtPoint:point
         guard let indexPath = tableView.indexPathForRow(at: position) else { return }
-        
+        guard let handCell = tableView.cellForRow(at: indexPath) as? HandTableViewCell else { return }
         print("CARD DESCRIPTOR: \(descriptor) added to this section \(indexPath.section)")
+        
+        do {
+            try viewModel.addCard(cardDescriptor: descriptor, toHand: indexPath.section)
+            handCell.addCard(card: descriptor)
+        } catch {
+            print("I think were should be showing an error here, as I couldnt add a card")
+        }
     }
     
     func addNewStep(sender: UIButton) {

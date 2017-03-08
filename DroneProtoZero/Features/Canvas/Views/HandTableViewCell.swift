@@ -28,11 +28,15 @@ class HandTableViewCell: UITableViewCell, Reusable {
     
     func setupHand(sectionID: Int) {
         handID = sectionID
-        collectionView.isHidden = true
+        collectionView.isHidden = isEmpty
     }
     
     func addCard(card: ActionCardDescriptor) {
+        isEmpty = false
+        collectionView.isHidden = isEmpty
         
+        // TODO: take the card and add it to the collectionview
+        //collectionView.insertItems(at: <#T##[IndexPath]#>)
     }
     
     func showHovering(isHovering: Bool) {

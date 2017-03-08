@@ -71,35 +71,23 @@ struct CanvasViewModel {
     }
     
     mutating func removeHand(sectionID: Int) -> HandIdentifier? {
-        guard let hand = getHand(by: sectionID) else { return nil }
-        removeHand(identifier: hand.identifier)
-        return hand.identifier
+        return Sequencer.shared.removeHand(by: sectionID)
     }
     
     mutating func removeHand(identifier: CardIdentifier) {
-        if let hand = getHand(by: identifier), let index = hands.index(of: hand) {
-            hands.remove(at: index)
-        }
-    }
-    
-    func getHand(by identifier: HandIdentifier) -> Hand? {
-        let filteredHands = hands.filter { $0.identifier == identifier }
-        guard filteredHands.count > 0 else { return nil }
-        return filteredHands.first
+       Sequencer.shared.removeHand(by: identifier)
     }
     
     func getHand(by index: Int) -> Hand? {
         let actualID =  index - defaultSectionCount
-        guard hands.indices.contains(actualID) else { return nil }
-        return hands[actualID]
+        return Sequencer.shared.getHand(by: actualID)
     }
     
     // MARK: Card Adding/Removing Methods
     
-    func addCard(card: ActionCardDescriptor, toHand index: Int) throws {
-        guard let hand = getHand(by: index) else { return }
-        let cardInstance = try card <- []
-        let _ = hand ++ cardInstance
+    func addCard(cardDescriptor: ActionCardDescriptor, toHand index: Int) throws {
+        let actualID = index - defaultSectionCount
+        try Sequencer.shared.addCard(card: cardDescriptor, toHand: actualID)
     }
     
     func removeCard(cardID: CardIdentifier, fromHand index: Int) {

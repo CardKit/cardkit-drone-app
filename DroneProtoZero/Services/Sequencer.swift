@@ -31,13 +31,13 @@ class Sequencer {
         return hand.identifier
     }
     
-    func removeHand(sectionID: Int) -> HandIdentifier? {
-        guard let hand = getHand(by: sectionID) else { return nil }
-        removeHand(identifier: hand.identifier)
+    func removeHand(by index: Int) -> HandIdentifier? {
+        guard let hand = getHand(by: index) else { return nil }
+        removeHand(by: hand.identifier)
         return hand.identifier
     }
     
-    func removeHand(identifier: CardIdentifier) {
+    func removeHand(by identifier: CardIdentifier) {
         if let hand = getHand(by: identifier), let index = hands.index(of: hand) {
             hands.remove(at: index)
         }
@@ -50,13 +50,18 @@ class Sequencer {
     }
     
     func getHand(by index: Int) -> Hand? {
-        let actualID =  index - defaultSectionCount
-        guard hands.indices.contains(actualID) else { return nil }
-        return hands[actualID]
+        guard hands.indices.contains(index) else { return nil }
+        return hands[index]
     }
     
     // MARK: Card Adding/Removing Methods
     
+    /**
+    - Add Card :
+     - adds the card to hand associated with the Step (section)
+     - cardDescriptor: CardDescriptor
+     - index: Int - index of the hand 
+    */
     func addCard(card: ActionCardDescriptor, toHand index: Int) throws {
         guard let hand = getHand(by: index) else { return }
         let cardInstance = try card <- []
