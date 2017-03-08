@@ -35,7 +35,7 @@ class DroneProtoZeroTests: XCTestCase {
     }
     
     func testAddStepSection() {
-        var viewModel = CanvasViewModel()
+        let viewModel = CanvasViewModel()
         let currentCount = viewModel.sectionCount
         let _ = viewModel.addHand()
         XCTAssertEqual(currentCount+1, viewModel.sectionCount)
@@ -68,11 +68,18 @@ class DroneProtoZeroTests: XCTestCase {
         XCTAssertEqual(currentCount, viewModel.sectionCount)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testAddCardToHand() {
+        let viewModel = CanvasViewModel()
+        let _ = viewModel.addHand()
+        let handID = 3
+        let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0)
+        let allCards = DroneCardDescriptors.sharedInstance.all
+        let loctioncards = allCards[key!]
+        let circleCard = loctioncards?[0]
+        try! viewModel.addCard(cardDescriptor: circleCard!, toHand: handID)
+        let hand = viewModel.getHand(by: handID)
+        XCTAssertEqual(circleCard?.cardType, hand?.cards.first?.cardType)
+        
     }
     
 }
