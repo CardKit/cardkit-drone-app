@@ -30,7 +30,6 @@
 		3AB397921E667A5B00DA1800 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397801E667A5B00DA1800 /* Reusable.swift */; };
 		3AB397931E667A5B00DA1800 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397811E667A5B00DA1800 /* UIColorExtension.swift */; };
 		3AB397941E667A5B00DA1800 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */; };
-		3ACEF1E71E6DF9240047CE08 /* HandExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACEF1E61E6DF9240047CE08 /* HandExtension.swift */; };
 		3ACEF1ED1E706C070047CE08 /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACEF1EC1E706C070047CE08 /* Sequencer.swift */; };
 		3ACEF1EE1E70A2280047CE08 /* DroneCardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3101E65E280003974CB /* DroneCardKit.framework */; };
 		3ACEF1EF1E70A22F0047CE08 /* CardKitRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30F1E65E280003974CB /* CardKitRuntime.framework */; };
@@ -98,7 +97,6 @@
 		3AB397801E667A5B00DA1800 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		3AB397811E667A5B00DA1800 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
-		3ACEF1E61E6DF9240047CE08 /* HandExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandExtension.swift; sourceTree = "<group>"; };
 		3ACEF1EC1E706C070047CE08 /* Sequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
 		3AE7F6731E64924C00D67889 /* DroneProtoZero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneProtoZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE7F6761E64924C00D67889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 				3AB397801E667A5B00DA1800 /* Reusable.swift */,
 				3AB397811E667A5B00DA1800 /* UIColorExtension.swift */,
 				3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */,
-				3ACEF1E61E6DF9240047CE08 /* HandExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -547,7 +544,6 @@
 				3AB3978B1E667A5B00DA1800 /* CardsTableViewController.swift in Sources */,
 				3AB397901E667A5B00DA1800 /* LogsViewController.swift in Sources */,
 				3AB3978E1E667A5B00DA1800 /* LibraryViewController.swift in Sources */,
-				3ACEF1E71E6DF9240047CE08 /* HandExtension.swift in Sources */,
 				3A89F3541E6769D2005A9D48 /* DroneStatusCell.swift in Sources */,
 				3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */,
 				3AB3978C1E667A5B00DA1800 /* CardTableViewCell.swift in Sources */,
