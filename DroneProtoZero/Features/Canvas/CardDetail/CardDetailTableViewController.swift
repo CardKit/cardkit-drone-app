@@ -28,6 +28,7 @@ class CardDetailTableViewController: UITableViewController {
             
             for input in descriptor.inputSlots {
                 print("INPUT \(input) ... \(input.descriptor.name)")
+                
                 switch input.descriptor.name {
                 case "Coordinate 2D":
                     detailSections.append(.location2DInput)
@@ -35,11 +36,11 @@ class CardDetailTableViewController: UITableViewController {
                 case "Altitude", "Speed", "Distance", "Radius", "AngularSpeed":
                     detailSections.append(.standardInputCell)
                     break
-                case "MovementDirection":
+                case "RotationDirection":
                     print("input on binary choice \(input.descriptor)")
                     detailSections.append(.binaryChoiceCell)
                 default:
-                    break
+                    continue
                 }
             }
             
@@ -137,16 +138,31 @@ class CardDetailTableViewController: UITableViewController {
         case .nameCell:
             cell.mainLabel?.text = cardDescriptor?.name
         case .descriptionCell:
-            cell.mainLabel?.text = cardDescriptor?.description
+            cell.mainLabel?.text = cardDescriptor?.assetCatalog.textualDescription
         case .endDetailsCell:
             cell.mainLabel?.text = cardDescriptor?.endDescription
         case .outputsCell:
             cell.mainLabel?.text = cardDescriptor?.yieldDescription
-        case .standardInputCell, .binaryChoiceCell:
+        case .standardInputCell:
+            let index = indexPath.section - (detailSections.count - (cardDescriptor?.inputSlots.count)!)
+            if let inputSlot = cardDescriptor?.inputSlots[index] {
+                //TODO: need unit from somewhere in data
+                cell.mainLabel?.text = "\(inputSlot.descriptor.inputDescription)"
+                
+            }
+        case .binaryChoiceCell:
+            print("binary choice 2")
             let index = indexPath.section - (detailSections.count - (cardDescriptor?.inputSlots.count)!)
             if let inputSlot = cardDescriptor?.inputSlots[index] {
                 //TODO: need unit from somewhere in data
                 cell.mainLabel?.text = "\(inputSlot.name) NEED UNIT"
+                if let binaryChoiceCell = cell as? BinaryChoiceCell,
+                    let segments = binaryChoiceCell.segControl?.numberOfSegments {
+                    for i in 0...segments-1 {
+                        binaryChoiceCell.segControl?.setTitle("Temp Choice \(i)", forSegmentAt: i)
+                    }
+                }
+                
             }
         default:
             return cell
