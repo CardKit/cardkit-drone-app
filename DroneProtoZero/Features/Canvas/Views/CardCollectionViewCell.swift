@@ -20,9 +20,16 @@ class CardCollectionViewCell: UICollectionViewCell, Reusable {
         // Initialization code
     }
     
+    override func prepareForReuse() {
+        cardImage.image = nil
+        label?.text = "Card Name"
+        label?.isHidden = true
+        cardImage.backgroundColor = .white
+        cardDescriptor = nil
+    }
+    
     func setupCell(card: CardDescriptor) {
         cardDescriptor = card
-        print("card image to load \(self.cardDescriptor)")
         if let cardDescriptor = self.cardDescriptor, let image = UIImage(named: cardDescriptor.name) {
             cardImage.image = image
             cardImage.backgroundColor = .white
