@@ -66,11 +66,23 @@ extension HandTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let card = cards?[indexPath.item] as? ActionCard else { return UICollectionViewCell() }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCollectionViewCell", for: indexPath)
+        guard let card = cards?[indexPath.item],
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCollectionViewCell", for: indexPath) as? CardCollectionViewCell else { return UICollectionViewCell() }
         
         cell.backgroundColor = .black
-        (cell as! CardCollectionViewCell).setupCell(card: card.descriptor)
+        switch card.cardType {
+        case .action:
+            if let actionCard = card as? ActionCard {
+                cell.setupCell(card: actionCard.descriptor)
+            }
+        case .hand:
+            if let handCard = card as? HandCard {
+                cell.setupCell(card: handCard.descriptor)
+            }
+        default:
+            print("do nothing for ")
+        }
+        
         return cell
     }
     

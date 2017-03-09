@@ -26,10 +26,10 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DroneStatusCell" rowHeight="55" id="Mb5-rm-2ff" customClass="DroneStatusCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="696" height="55"/>
+                                        <rect key="frame" x="0.0" y="55" width="696" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mb5-rm-2ff" id="zEc-yZ-TkG">
-                                            <rect key="frame" x="0.0" y="0.0" width="696" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Drone Status: Connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-Ha-7Jl">
@@ -43,10 +43,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableHardwareCell" rowHeight="70" id="ALr-BF-GuV" customClass="AvailableHardwareCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="110.5" width="696" height="70"/>
+                                        <rect key="frame" x="0.0" y="110" width="696" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ALr-BF-GuV" id="Ood-Nb-HjM">
-                                            <rect key="frame" x="0.0" y="0.0" width="696" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Available Hardware" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akY-6Q-CXN">
@@ -60,10 +60,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HandTableViewCell" rowHeight="228" id="Mpw-8K-Qsw" customClass="HandTableViewCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="180.5" width="696" height="228"/>
+                                        <rect key="frame" x="0.0" y="180" width="696" height="228"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mpw-8K-Qsw" id="GRx-wS-JCh">
-                                            <rect key="frame" x="0.0" y="0.0" width="696" height="228"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="227"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drag Card to Add a Step" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qai-Cl-gTG">
@@ -96,16 +96,25 @@
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V0f-Sq-Bnu">
                                                                         <rect key="frame" x="0.0" y="0.0" width="180" height="200"/>
                                                                     </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV6-za-cde">
+                                                                        <rect key="frame" x="47" y="90" width="87" height="21"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                             </view>
                                                             <constraints>
                                                                 <constraint firstItem="V0f-Sq-Bnu" firstAttribute="leading" secondItem="Tao-bH-a1G" secondAttribute="leading" id="8iN-NR-mCC"/>
+                                                                <constraint firstItem="QV6-za-cde" firstAttribute="centerX" secondItem="Tao-bH-a1G" secondAttribute="centerX" id="9XI-td-F5V"/>
                                                                 <constraint firstItem="V0f-Sq-Bnu" firstAttribute="top" secondItem="Tao-bH-a1G" secondAttribute="top" id="E67-tD-1ym"/>
                                                                 <constraint firstAttribute="bottom" secondItem="V0f-Sq-Bnu" secondAttribute="bottom" id="SDR-S7-1og"/>
+                                                                <constraint firstItem="QV6-za-cde" firstAttribute="centerY" secondItem="Tao-bH-a1G" secondAttribute="centerY" id="pMJ-gF-jHg"/>
                                                                 <constraint firstAttribute="trailing" secondItem="V0f-Sq-Bnu" secondAttribute="trailing" id="vVf-F5-mgT"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="cardImage" destination="V0f-Sq-Bnu" id="RMf-R0-P8c"/>
+                                                                <outlet property="label" destination="QV6-za-cde" id="Y3w-4o-zJL"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
