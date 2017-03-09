@@ -7,7 +7,19 @@
 //
 
 import UIKit
+import CardKit
 
 class CardCollectionViewCell: UICollectionViewCell, Reusable {
     
+    @IBOutlet weak var cardImage: UIImageView!
+    var cardDescriptor: ActionCardDescriptor?
+    
+    func setupCell(card: ActionCardDescriptor) {
+        cardDescriptor = card
+        if let cardDescriptor = self.cardDescriptor, let image = UIImage(named: cardDescriptor.name) {
+            cardImage.image = image
+        } else {
+            cardImage.backgroundColor = .athensGray
+        }
+    }
 }

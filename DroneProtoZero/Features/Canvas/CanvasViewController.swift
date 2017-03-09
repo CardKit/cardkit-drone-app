@@ -75,6 +75,9 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
             break
         default:
             cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HandTableViewCell
+            if let handCell = cell as? HandTableViewCell {
+                handCell.setupHand(sectionID: indexPath.section)
+            }
             break
         }
         cell.layer.cornerRadius = 11.0
@@ -127,13 +130,20 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func addCardToHand(descriptor: ActionCardDescriptor, position: CGPoint) {
         //indexPathForRowAtPoint:point
         guard let indexPath = tableView.indexPathForRow(at: position) else { return }
-        
+        guard let handCell = tableView.cellForRow(at: indexPath) as? HandTableViewCell else { return }
         print("CARD DESCRIPTOR: \(descriptor) added to this section \(indexPath.section)")
+        
+        do {
+            try viewModel.addCard(cardDescriptor: descriptor, toHand: indexPath.section)
+            handCell.addCard(card: descriptor)
+        } catch {
+            print("I think were should be showing an error here, as I couldnt add a card")
+        }
     }
     
     func addNewStep(sender: UIButton) {
         let currentCount = viewModel.sectionCount
-        viewModel.sectionCount += 1
+        let _ = viewModel.addHand()
         tableView.beginUpdates()
         let index = [currentCount]
         tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
@@ -184,7 +194,8 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
 extension CanvasViewController: CanvasStepHeaderDelegate {
     
     func removeStepSection(for section: Int) {
-        viewModel.sectionCount -= 1
+        //how do i get the identifier from the section?
+        let _ = viewModel.removeHand(sectionID: section)
         tableView.beginUpdates()
         let index = [section]
         tableView.deleteSections(IndexSet(index), with: UITableViewRowAnimation.bottom)

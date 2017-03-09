@@ -92,7 +92,18 @@
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="180" height="200"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V0f-Sq-Bnu">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="180" height="200"/>
+                                                                    </imageView>
+                                                                </subviews>
                                                             </view>
+                                                            <constraints>
+                                                                <constraint firstItem="V0f-Sq-Bnu" firstAttribute="leading" secondItem="Tao-bH-a1G" secondAttribute="leading" id="8iN-NR-mCC"/>
+                                                                <constraint firstItem="V0f-Sq-Bnu" firstAttribute="top" secondItem="Tao-bH-a1G" secondAttribute="top" id="E67-tD-1ym"/>
+                                                                <constraint firstAttribute="bottom" secondItem="V0f-Sq-Bnu" secondAttribute="bottom" id="SDR-S7-1og"/>
+                                                                <constraint firstAttribute="trailing" secondItem="V0f-Sq-Bnu" secondAttribute="trailing" id="vVf-F5-mgT"/>
+                                                            </constraints>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -107,6 +118,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="qKd-CN-Wrj" secondAttribute="trailing" constant="8" id="nb2-hf-hUj"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="collectionView" destination="qKd-CN-Wrj" id="DUp-It-lL4"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
