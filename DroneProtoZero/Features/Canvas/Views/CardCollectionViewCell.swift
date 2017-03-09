@@ -14,8 +14,14 @@ class CardCollectionViewCell: UICollectionViewCell, Reusable {
     @IBOutlet weak var cardImage: UIImageView!
     var cardDescriptor: ActionCardDescriptor?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
     func setupCell(card: ActionCardDescriptor) {
         cardDescriptor = card
+        print("card image to load \(self.cardDescriptor)")
         if let cardDescriptor = self.cardDescriptor, let image = UIImage(named: cardDescriptor.name) {
             cardImage.image = image
         } else {

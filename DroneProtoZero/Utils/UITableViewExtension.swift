@@ -24,3 +24,17 @@ extension UITableView {
         return cell
     }
 }
+
+//extension UICollectionView {
+//    
+//    public func dequeueReusableCell<T: Reusable>(indexPath: IndexPath) -> T {
+//        guard let cell = dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath) as? T else { fatalError("Cannot dequeue a reusable cell with the reuse identifier \(T.reuseIdentifier)") }
+//        
+//        return cell
+//    }
+//    
+//    public func dequeueReusableCell<T: Reusable>(for indexPath: IndexPath) -> T {
+//        guard let cell = dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath as IndexPath) as? T else { fatalError("Cannot dequeue a reusable cell with the reuse identifier \(T.reuseIdentifier)")}
+//        return cell
+//    }
+//}
