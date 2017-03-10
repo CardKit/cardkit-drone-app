@@ -68,7 +68,7 @@ class DroneProtoZeroTests: XCTestCase {
         XCTAssertEqual(currentCount, viewModel.sectionCount)
     }
     
-    func testAddCardToHand() {
+    func testAddCardToStep() {
         let viewModel = CanvasViewModel()
         let _ = viewModel.addHand()
         let handID = 3
