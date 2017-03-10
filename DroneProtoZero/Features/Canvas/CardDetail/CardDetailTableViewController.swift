@@ -9,7 +9,7 @@
 import UIKit
 import CardKit
 
-class CardDetailTableViewController: UITableViewController {
+class CardDetailTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
     
     var cardDescriptor: ActionCardDescriptor? {
@@ -147,31 +147,35 @@ class CardDetailTableViewController: UITableViewController {
         case .outputsCell:
             cell.mainLabel?.text = cardDescriptor?.yieldDescription
         case .standardInputCell:
-            let index = indexPath.section - (detailSections.count - (cardDescriptor?.inputSlots.count)!)
+            let index = inputIndex(for: indexPath.section)
             if let inputSlot = cardDescriptor?.inputSlots[index] {
                 //TODO: need unit from somewhere in data
                 cell.mainLabel?.text = "\(inputSlot.descriptor.inputDescription)"
                 
             }
         case .binaryChoiceCell:
-            print("binary choice 2")
-            let index = indexPath.section - (detailSections.count - (cardDescriptor?.inputSlots.count)!)
+            let index = inputIndex(for: indexPath.section)
             if let inputSlot = cardDescriptor?.inputSlots[index] {
-                //TODO: need unit from somewhere in data
-                cell.mainLabel?.text = "\(inputSlot.name) NEED UNIT"
+                cell.mainLabel?.text = "\(inputSlot.name)"
                 if let binaryChoiceCell = cell as? BinaryChoiceCell,
                     let segments = binaryChoiceCell.segControl?.numberOfSegments {
                     for i in 0...segments-1 {
                         binaryChoiceCell.segControl?.setTitle("Temp Choice \(i)", forSegmentAt: i)
                     }
                 }
-                
             }
         case .multipleChoiceCell:
             guard let multipleChoiceCell = cell as? MultipleChoiceCell else {
                 return cell
             }
             multipleChoiceCell.section = indexPath.section
+            //TODO: these need to come from somewhere
+            let choices = ["None", "Normal", "Fine", "Excellent"]
+            multipleChoiceCell.button?.titleLabel?.text = choices[0]
+            if let inputSlot = cardDescriptor?.inputSlots[inputIndex(for: indexPath.section)] {
+                multipleChoiceCell.mainLabel?.text = inputSlot.descriptor.inputDescription
+            }
+            
         default:
             return cell
         }
@@ -186,25 +190,23 @@ class CardDetailTableViewController: UITableViewController {
         
         let header = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.header.reuseIdentifier) as? CardDetailHeaderView
         var headerType: String?
-        if detailSections[section] == .location2DInput ||
-            detailSections[section] == .standardInputCell ||
-            detailSections[section] == .binaryChoiceCell {
-            
-            let index = section - (detailSections.count - (cardDescriptor?.inputSlots.count)!)
+        
+        switch detailSections[section] {
+        case .location2DInput, .standardInputCell, .binaryChoiceCell, .multipleChoiceCell:
+            let index = inputIndex(for: section)
             if let inputSlot = cardDescriptor?.inputSlots[index] {
-                print("section \(section) ----   input slot to use for header \(inputSlot)")
                 headerType = inputSlot.name
                 header?.optional = inputSlot.isOptional
-                
             }
-        }
-        let labelText = detailSections[section].headerName(type: headerType)
-        header?.label?.text = labelText.uppercased()
-        
-        if section == CellIdentifiers.nameCell.rawValue {
+        case .nameCell:
             header?.endsLabel?.isHidden = false
             header?.ends = (cardDescriptor?.ends)!
+        default:
+            break
         }
+        
+        let labelText = detailSections[section].headerName(type: headerType)
+        header?.label?.text = labelText.uppercased()
         
         return header
     }
@@ -236,6 +238,15 @@ class CardDetailTableViewController: UITableViewController {
         return 20.0
     }
     
+    // MARK: - UIPopoverPresentationControllerDelegate
+    
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        print("popover to dismiss \(popoverPresentationController)")
+  
+        //TODO: make button label on multiple choice cell change to the value selected
+        return true
+    }
+    
     // MARK: - Instance methods
     
     func inputIndex(for section: Int) -> Int {
@@ -255,35 +266,25 @@ class CardDetailTableViewController: UITableViewController {
     }
     
     @IBAction func displayMultipleChoiceOptions(sender: UIButton) {
-        guard let options = UIStoryboard(name: "CardDetail", bundle: nil).instantiateViewController(withIdentifier: "MultipleChoiceOptions") as? MultipleChoiceOptions,
-            let index: Int = sender.tag else {
+        guard let options = UIStoryboard(name: "CardDetail", bundle: nil).instantiateViewController(withIdentifier: "MultipleChoiceOptions") as? MultipleChoiceOptions else {
             return
         }
         
-        print("button tag \(index)")
-        
-        let inputSlot = cardDescriptor?.inputSlots[inputIndex(for: index)]
+        let inputSlot = cardDescriptor?.inputSlots[inputIndex(for: sender.tag)]
         print("inputSlot \(inputSlot)")
-        //print("cell section \(cell.section)")
+        //TODO: these need to come from somewhere
+        let choices = ["None", "Normal", "Fine", "Excellent"]
+        options.optionsTitle = inputSlot?.descriptor.name
+        options.options = choices
         options.modalPresentationStyle = .popover
-        let popover: UIPopoverPresentationController = options.popoverPresentationController!
+        options.preferredContentSize = options.popoverSize
+        let popover: UIPopoverPresentationController = options.popoverPresentationController!        
         popover.sourceView = sender
+        popover.delegate = self
         
         self.present(options, animated: true) { 
             print("presented options")
         }
         
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-
 }
