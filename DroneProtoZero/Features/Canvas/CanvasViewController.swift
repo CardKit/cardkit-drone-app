@@ -244,7 +244,7 @@ extension CanvasViewController: Hoverable {
     
     func addOffsetTo(position: CGPoint) -> CGPoint {
         let offsetY = tableView.contentOffset.y
-        return CGPoint(x: position.x + tableView.contentOffset.x, y: position.y + offsetY)
+        return CGPoint(x: position.x, y: position.y + offsetY)
     }
     
 }
