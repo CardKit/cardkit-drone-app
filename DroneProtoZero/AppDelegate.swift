@@ -10,9 +10,6 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var inputPipe: Pipe?
-    var outputPipe: Pipe?
     
     var window: UIWindow?
 
@@ -21,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setUpSplitView()
         window?.makeKeyAndVisible()
         
-        openConsolePipe()
-        
+        let _ = LogsManager.shared
         DJIHardwareManager.sharedInstance.set(connConfig: .debug("192.168.1.2"))
         
         return true
@@ -75,31 +71,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate {
-    func openConsolePipe() {
-        inputPipe = Pipe()
-        outputPipe = Pipe()
-        
-        guard let inputPipe = inputPipe, let outputPipe = outputPipe else {
-            return
-        }
-        
-        let pipeReadHandle = inputPipe.fileHandleForReading
-        
-        dup2(STDOUT_FILENO, outputPipe.fileHandleForWriting.fileDescriptor)
-        
-        dup2(inputPipe.fileHandleForWriting.fileDescriptor, STDOUT_FILENO)
-        dup2(inputPipe.fileHandleForWriting.fileDescriptor, STDERR_FILENO)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handlePipeNotification), name: FileHandle.readCompletionNotification, object: pipeReadHandle)
-        pipeReadHandle.readInBackgroundAndNotify()
-    }
-    
-    func handlePipeNotification(notification: Notification) {
-        inputPipe?.fileHandleForReading.readInBackgroundAndNotify()
-        
-        if let data = notification.userInfo?[NSFileHandleNotificationDataItem] as? Data {
-            outputPipe?.fileHandleForWriting.write(data)
-        }
-    }
-}

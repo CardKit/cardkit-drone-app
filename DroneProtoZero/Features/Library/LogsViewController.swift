@@ -16,6 +16,8 @@ class LogsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        logView?.text = LogsManager.shared.logs.joined(separator: "\n")
+        
         NotificationCenter.default.addObserver(self, selector: #selector(LogsViewController.handlePipeNotification), name: FileHandle.readCompletionNotification, object: nil)
     }
 
