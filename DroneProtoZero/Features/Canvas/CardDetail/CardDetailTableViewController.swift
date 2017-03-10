@@ -12,11 +12,10 @@ import CardKit
 class CardDetailTableViewController: UITableViewController {
     
     
-    var cardDescriptor: ActionCardDescriptor? {
+    var card: ActionCard? {
         didSet {
-            guard let descriptor = cardDescriptor else {
-                return
-            }
+            guard let descriptor = card?.descriptor else { return }
+            cardDescriptor = descriptor
             print("DESCRIPTOR endDescription \(descriptor.endDescription)")
             print("DESCRIPTOR yieldDescription \(descriptor.yieldDescription)")
             if descriptor.endDescription != "" {
@@ -46,6 +45,7 @@ class CardDetailTableViewController: UITableViewController {
             print("DETAIL SECTIONS \(detailSections)")
         }
     }
+    var cardDescriptor: ActionCardDescriptor?
     
     private var detailSections: [CellIdentifiers] = [.nameCell, .descriptionCell]
     

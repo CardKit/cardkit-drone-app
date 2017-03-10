@@ -9,6 +9,10 @@
 import UIKit
 import CardKit
 
+protocol CardViewDelegate: class {
+    func cardViewWasSelected(handID: Int, cardID: Int)
+}
+
 class HandTableViewCell: UITableViewCell, Reusable {
 
     var handID: Int = 0
@@ -25,6 +29,7 @@ class HandTableViewCell: UITableViewCell, Reusable {
     }
     var cards: [Card]?
     let viewModel: CanvasViewModel = CanvasViewModel()
+    weak var cardDelegate: CardViewDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,10 +47,10 @@ class HandTableViewCell: UITableViewCell, Reusable {
         // Configure the view for the selected state
     }
     
-    func setupHand(sectionID: Int) {
+    func setupHand(sectionID: Int, delegate: CardViewDelegate) {
         //TODO: Check for existance of Cards in the hand and populate the colectionview
         handID = sectionID
-        
+        cardDelegate = delegate
         collectionView.delegate = self
         collectionView.dataSource = self
         let currHand = viewModel.getHand(by: handID)
@@ -60,8 +65,6 @@ class HandTableViewCell: UITableViewCell, Reusable {
         cards = currCards?.cards
         collectionView.isHidden = isEmpty
         
-    
-    //    collectionView.reloadData()
         if let cards = cards {
             //NOTE: has to be greater than 1 because there should alwauys be an END CARD and that card needs to be the last card in the hand ALWAYS, NO IFs, ANDS, OR BUTS about it
             if cards.count > 1 {
@@ -107,5 +110,10 @@ extension HandTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("grab the card index and send it to canvas section: \(indexPath.section) card index: \(indexPath.item)")
+        cardDelegate?.cardViewWasSelected(handID: handID, cardID: indexPath.item)
     }
 }
