@@ -84,6 +84,11 @@ struct CanvasViewModel {
         return Sequencer.shared.getHand(by: actualID)
     }
     
+    func getCard(forHand handID: Int, cardID: Int) -> Card? {
+        let actualID =  handID - defaultSectionCount
+        return Sequencer.shared.getCard(forHand: actualID, cardID: cardID)
+    }
+    
     // MARK: Card Adding/Removing Methods
     
     func addCard(cardDescriptor: ActionCardDescriptor, toHand index: Int) throws {
