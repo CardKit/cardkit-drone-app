@@ -17,12 +17,61 @@ public enum SequencerError: Error {
     case failedToDetectHardwareOnDrone(String)
 }
 
+// this should be removed once this function gets into CardKit
+extension Deck {
+    /// Add the Token card to the Deck.
+    public func add(_ cards: [TokenCard]) {
+        self.tokenCards.append(contentsOf: cards)
+    }
+}
+
 class Sequencer {
+    // this should be removed once this property gets into DroneCardKit
+    public struct TokenSlotNames {
+        public static let drone = "Drone"
+        public static let camera = "Camera"
+        public static let gimbal = "Gimbal"
+        public static let telemetry = "Telemetry"
+    }
+    
+    // this should be removed once this property gets into DroneCardKit
+    public static var executableActionTypes: [ActionCardDescriptor : ExecutableAction.Type] = [
+        DroneCardKit.Action.Movement.Location.Circle: Circle.self,
+        DroneCardKit.Action.Movement.Location.CircleRepeatedly: CircleRepeatedly.self,
+        DroneCardKit.Action.Movement.Location.FlyTo: FlyTo.self,
+        DroneCardKit.Action.Movement.Location.ReturnHome: ReturnHome.self,
+        DroneCardKit.Action.Movement.Sequence.FlyPath: FlyPath.self,
+        DroneCardKit.Action.Movement.Sequence.Pace: Pace.self,
+        DroneCardKit.Action.Movement.Simple.FlyForward: FlyForward.self,
+        DroneCardKit.Action.Movement.Simple.Hover: Hover.self,
+        DroneCardKit.Action.Movement.Simple.Land: Land.self,
+        DroneCardKit.Action.Tech.Camera.RecordVideo: RecordVideo.self,
+        DroneCardKit.Action.Tech.Camera.TakePhoto: TakePhoto.self,
+        DroneCardKit.Action.Tech.Camera.TakePhotoBurst: TakePhotoBurst.self,
+        DroneCardKit.Action.Tech.Camera.TakePhotos: TakePhotos.self,
+        DroneCardKit.Action.Tech.Gimbal.PanBetweenLocations: PanBetweenLocations.self,
+        DroneCardKit.Action.Tech.Gimbal.PointAtFront: PointAtFront.self,
+        DroneCardKit.Action.Tech.Gimbal.PointAtGround: PointAtGround.self,
+        DroneCardKit.Action.Tech.Gimbal.PointAtLocation: PointAtLocation.self,
+        DroneCardKit.Action.Tech.Gimbal.PointInDirection: PointInDirection.self,
+        DroneCardKit.Action.Movement.Area.CoverArea: CoverArea.self,
+        DroneCardKit.Action.Movement.Orientation.SpinAround: SpinAround.self
+    ]
+    
     static let shared: Sequencer = Sequencer()
+    
+    let droneTokenCard = DroneCardKit.Token.Drone.makeCard()
+    let cameraTokenCard = DroneCardKit.Token.Camera.makeCard()
+    let gimbalTokenCard = DroneCardKit.Token.Gimbal.makeCard()
+    let telemetryTokenCard = DroneCardKit.Token.Telemetry.makeCard()
+    
+    let tokenCards: [TokenCard]
     
     var hands: [Hand]
     
     init() {
+        tokenCards = [droneTokenCard, cameraTokenCard, gimbalTokenCard, telemetryTokenCard]
+        
         hands = [Hand]()
         let _ = createHand()
     }
@@ -64,23 +113,44 @@ class Sequencer {
     // MARK: Card Adding/Removing Methods
     
     /**
-    - Add Card :
+     - Add Card :
      - adds the card to hand associated with the Step (section)
      - cardDescriptor: CardDescriptor
-     - index: Int - index of the hand 
-    */
+     - index: Int - index of the hand
+     */
     func addCard(card: ActionCardDescriptor, toHand index: Int) throws {
         guard let hand = getHand(by: index) else { return }
-        let cardInstance = try card <- []
+        var cardInstance = try card <- [] <- [("Drone", droneTokenCard), ("Camera", cameraTokenCard), ("Gimbal", gimbalTokenCard)]
+        
+        var tokenBindings: [(String, TokenCard)] = []
+        
+        for tokenSlot in card.tokenSlots {
+            switch tokenSlot.name {
+            case Sequencer.TokenSlotNames.drone:
+                tokenBindings.append((Sequencer.TokenSlotNames.drone, droneTokenCard))
+            case Sequencer.TokenSlotNames.gimbal:
+                tokenBindings.append((Sequencer.TokenSlotNames.gimbal, gimbalTokenCard))
+            case Sequencer.TokenSlotNames.camera:
+                tokenBindings.append((Sequencer.TokenSlotNames.camera, cameraTokenCard))
+            case Sequencer.TokenSlotNames.telemetry:
+                tokenBindings.append((Sequencer.TokenSlotNames.telemetry, droneTokenCard))
+                break
+            default:
+                break
+            }
+        }
+        
+        cardInstance = try cardInstance <- tokenBindings
+        
         let _ = hand ++ cardInstance
     }
     
     /**
      - Remove Card
-        - removes the card using the identifier from the given hand
-        * cardID: CardIdentifier (String)
-        * index: index of the Hand in the hands array
-    */
+     - removes the card using the identifier from the given hand
+     * cardID: CardIdentifier (String)
+     * index: index of the Hand in the hands array
+     */
     func removeCard(cardID: CardIdentifier, fromHand index: Int) {
         guard let hand = getHand(by: index) else { return }
         let filtered = hand.cards.filter { $0.identifier == cardID }
@@ -94,7 +164,7 @@ class Sequencer {
         let deck = ( hands )%
         
         // create tokens to add to deck
-        deck.add(DroneCardKit.tokenCards)
+        deck.add(tokenCards)
         
         return deck
     }
@@ -119,7 +189,7 @@ class Sequencer {
         
         // create executable engine and all all executable actions
         let engine = ExecutionEngine(with: deck)
-        engine.setExecutableActionTypes(DroneCardKit.executableActionTypes)
+        engine.setExecutableActionTypes(Sequencer.executableActionTypes)
         
         // create executable tokens and add to execution engine
         guard let djiHardwareManager: DJIHardwareManager = DJIHardwareManager.sharedInstance as? DJIHardwareManager else {
@@ -138,15 +208,14 @@ class Sequencer {
                 throw SequencerError.failedToDetectHardwareOnDrone("Could not retrieve DJIGimbal")
         }
         
-        let droneExecutableToken = DJIDroneToken(with: DroneCardKit.droneTokenCard, for: djiAircraft)
+        let droneExecutableToken = DJIDroneToken(with: droneTokenCard, for: djiAircraft)
+        let cameraExecutableToken = DJICameraToken(with: cameraTokenCard, for: djiCamera)
+        let gimbalExecutableToken = DJIGimbalToken(with: gimbalTokenCard, for: djiGimbal)
         
-        let cameraExecutableToken = DJICameraToken(with: DroneCardKit.cameraTokenCard, for: djiCamera)
-        
-        let gimbalExecutableToken = DJIGimbalToken(with: DroneCardKit.gimbalTokenCard, for: djiGimbal)
-        
-        engine.setTokenInstance(droneExecutableToken, for: DroneCardKit.droneTokenCard)
-        engine.setTokenInstance(cameraExecutableToken, for: DroneCardKit.cameraTokenCard)
-        engine.setTokenInstance(gimbalExecutableToken, for: DroneCardKit.gimbalTokenCard)
+        engine.setTokenInstance(droneExecutableToken, for: droneTokenCard)
+        engine.setTokenInstance(droneExecutableToken, for: telemetryTokenCard)
+        engine.setTokenInstance(cameraExecutableToken, for: cameraTokenCard)
+        engine.setTokenInstance(gimbalExecutableToken, for: gimbalTokenCard)
         
         // execute program
         DispatchQueue.global(qos: .default).async {

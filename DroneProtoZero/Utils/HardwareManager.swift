@@ -83,6 +83,8 @@ class DJIHardwareManager: NSObject, HardwareManager {
     var debugIP: String?
 
     func connect() throws {
+        guard statusInfo.status != .connectionSuccessful else { return }
+        
         guard let apiKey = AppConfig.djiAPIKey else { throw DJIConnectionError.apiKeyNotSet("API Key was not set in Info.plist. Please add the API Key in Info.plist with the name as \"DJI API Key\".") }
         
         if inDebugMode && debugIP == nil {

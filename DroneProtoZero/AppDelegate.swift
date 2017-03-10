@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         openConsolePipe()
         
+        DJIHardwareManager.sharedInstance.set(connConfig: .debug("192.168.1.2"))
+        
         return true
     }
     
