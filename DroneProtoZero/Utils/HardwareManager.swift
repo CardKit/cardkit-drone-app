@@ -17,7 +17,6 @@ public enum DJIConnectionConfiguration {
 }
 
 public enum ConnectionStatus {
-    case unknown
     case failedToConnectToSDK(String)
     case disconnected(String)
     case searchingForProducts(String)
@@ -56,7 +55,7 @@ class DJIHardwareManager: NSObject, HardwareManager {
     
     static let sharedInstance: DJIHardwareManager = DJIHardwareManager()
     
-    var status: ConnectionStatus = .unknown {
+    var status: ConnectionStatus = .disconnected("Did not start connection to drone") {
         didSet {
             NotificationCenter.default.post(name: NotificationName.statusUpdated, object: nil, userInfo: [NotificationInfoKey.connectionStatus.rawValue:self.status])
         }

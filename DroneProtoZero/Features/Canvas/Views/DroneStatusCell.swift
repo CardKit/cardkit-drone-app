@@ -109,8 +109,6 @@ class DroneStatusCell: UITableViewCell, Reusable {
         statusDetails = nil
         
         switch status {
-        case .unknown:
-            statusTitle = "Unknown"
         case .failedToConnectToSDK(let details):
             statusTitle = "Failed to Connect to SDK"
             statusDetails = details
