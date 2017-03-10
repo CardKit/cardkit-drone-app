@@ -12,12 +12,12 @@ import CardKit
 class CardDetailTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
     
-    var cardDescriptor: ActionCardDescriptor? {
+    var card: ActionCard? {
         didSet {
-            guard let descriptor = cardDescriptor else {
-                return
-            }
-            
+
+            guard let descriptor = card?.descriptor else { return }
+            cardDescriptor = descriptor
+
             if descriptor.endDescription != "" {
                 detailSections.append(.endDetailsCell)
             }
@@ -47,6 +47,7 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
             print("DETAIL SECTIONS \(detailSections)")
         }
     }
+    var cardDescriptor: ActionCardDescriptor?
     
     private var detailSections: [CellIdentifiers] = [.nameCell, .descriptionCell]
     

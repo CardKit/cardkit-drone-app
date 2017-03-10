@@ -54,6 +54,13 @@ class Sequencer {
         return hands[index]
     }
     
+    func getCard(forHand handIndex: Int, cardIndex: Int) -> Card? {
+        guard let hand = getHand(by: handIndex) else { return nil }
+        let cards = hand.cards
+        guard cards.indices.contains(cardIndex) else { return nil }
+        return cards[cardIndex]
+    }
+    
     // MARK: Card Adding/Removing Methods
     
     /**

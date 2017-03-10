@@ -12,13 +12,31 @@ import CardKit
 class CardCollectionViewCell: UICollectionViewCell, Reusable {
     
     @IBOutlet weak var cardImage: UIImageView!
-    var cardDescriptor: ActionCardDescriptor?
+    @IBOutlet weak var label: UILabel?
+    var cardDescriptor: CardDescriptor?
     
-    func setupCell(card: ActionCardDescriptor) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    override func prepareForReuse() {
+        cardImage.image = nil
+        label?.text = "Card Name"
+        label?.isHidden = true
+        cardImage.backgroundColor = .white
+        cardDescriptor = nil
+    }
+    
+    func setupCell(card: CardDescriptor) {
         cardDescriptor = card
         if let cardDescriptor = self.cardDescriptor, let image = UIImage(named: cardDescriptor.name) {
             cardImage.image = image
+            cardImage.backgroundColor = .white
+            label?.isHidden = true
         } else {
+            label?.isHidden = false
+            label?.text = cardDescriptor?.name
             cardImage.backgroundColor = .athensGray
         }
     }

@@ -15,7 +15,7 @@ protocol Hoverable {
     func addItemToView<T>(item: T, position: CGPoint)
     func showHovering(position: CGPoint)
     func cancelHovering()
-    func isViewHovering(view: UIView) -> Bool
+    func isViewHovering(view: UIView, touchPoint: CGPoint) -> Bool
     var hoverableView: UIView { get }
     
 }
@@ -29,15 +29,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        
-        
-        //TEMP
-//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
-//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
-//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
-//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.Land)
-        displayCardDetail(cardDescriptor: DroneCardKit.Action.Tech.Camera.TakePhoto)
-        
     }
     
     func setupTableView() {
@@ -78,7 +69,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         default:
             cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HandTableViewCell
             if let handCell = cell as? HandTableViewCell {
-                handCell.setupHand(sectionID: indexPath.section)
+                handCell.setupHand(sectionID: indexPath.section, delegate: self)
             }
             break
         }
@@ -91,26 +82,9 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return false
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected \(indexPath)")
-        //does not work as long as the section is empty
-        if indexPath.section > 1 {
-            switch indexPath.section {
-            case 2:
-                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
-            case 3:
-                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
-            case 4:
-                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
-            default:
-                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
-            }
-        }
-    }
-    
     // MARK: - Card details
     
-    func displayCardDetail(cardDescriptor: ActionCardDescriptor) {
+    func displayCardDetail(card: ActionCard) {
         guard let cardDetailNavController = UIStoryboard(name: "CardDetail", bundle: nil).instantiateInitialViewController() as? UINavigationController else {
             print("no card detail")
             return
@@ -120,7 +94,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
             print("Canvas vc sets cardDescriptor")
-            cardDetailTableViewController.cardDescriptor = cardDescriptor
+            cardDetailTableViewController.card = card
         }
         
         self.parent?.present(cardDetailNavController, animated: true) {
@@ -223,8 +197,16 @@ extension CanvasViewController: Hoverable {
         }
     }
     
-    func isViewHovering(view: UIView) -> Bool {
-        return view.frame.intersects((tableView.frame))
+    func isViewHovering(view: UIView, touchPoint: CGPoint) -> Bool {
+        //to convert a point from one view to the other both views needs to be inside a common one (hence view.superview, their both in splitview)
+        //then you can convert point from where the persons' finger is (touchpoint) to tableview
+        guard let convertedPoint = view.superview?.convert(touchPoint, to: tableView) else { return false }
+        //create a rect so you can use intersects, but you really only care about the point
+        let convertedFrame = CGRect(x: convertedPoint.x, y: convertedPoint.y, width: 0, height: 0)
+        //create a rect from tableview that uses the WHOLE tableview i.e. contentSize
+        let tableContentFrame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: tableView.contentSize.width, height: tableView.contentSize.height)
+        //run the magic
+        return tableContentFrame.intersects(convertedFrame)
     }
     
     func cancelHovering() {
@@ -248,4 +230,13 @@ extension CanvasViewController: Hoverable {
         return CGPoint(x: position.x, y: position.y + offsetY)
     }
     
+}
+
+extension CanvasViewController: CardViewDelegate {
+    
+    func cardViewWasSelected(handID: Int, cardID: Int) {
+        guard let card = viewModel.getCard(forHand: handID, cardID: cardID),
+            let actionCard = card as? ActionCard else { return }
+             displayCardDetail(card: actionCard)
+    }
 }
