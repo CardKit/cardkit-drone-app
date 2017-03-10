@@ -26,7 +26,7 @@ class DroneStatusCell: UITableViewCell, Reusable {
         statusLabel.isUserInteractionEnabled = true
         statusLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(handleLabelTap)))
         
-        updateStatusLabel(status: DJIHardwareManager.sharedInstance.status)
+        updateStatus(status: DJIHardwareManager.sharedInstance.status)
     }
     
     deinit {
@@ -72,10 +72,22 @@ class DroneStatusCell: UITableViewCell, Reusable {
         guard let userInfo = notification.userInfo as? [String: Any],
             let connectionStatus = userInfo[DJIHardwareManager.NotificationInfoKey.connectionStatus.rawValue] as? ConnectionStatus else { return }
         
-        updateStatusLabel(status: connectionStatus)
+        updateStatus(status: connectionStatus)
     }
     
-    func updateStatusLabel(status: ConnectionStatus) {
+    // MARK: - Helper Functions
+    func updateStatus(status: ConnectionStatus) {
+        switch status {
+        case .connectionSuccessful(_):
+            executeButton.isEnabled = true
+        default:
+            executeButton.isEnabled = false
+        }
+        
+        updateStatusLabel(status)
+    }
+    
+    func updateStatusLabel(_ status: ConnectionStatus) {
         statusTitle = "Unknown"
         statusDetails = nil
         
@@ -96,6 +108,15 @@ class DroneStatusCell: UITableViewCell, Reusable {
             statusDetails = details
         }
         
-        statusLabel.text = "Status: \(statusTitle)"
+        let newStatusLabelText = "Status: \(statusTitle)"
+        if let _ = statusDetails {
+            let attributedString = NSMutableAttributedString(string: newStatusLabelText, attributes: [:])
+            attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.cornflowerBlue, range: NSRange(location:8, length:newStatusLabelText.characters.count-8))
+            
+            statusLabel.attributedText = attributedString
+        } else {
+            statusLabel.text = newStatusLabelText
+        }
+        
     }
 }
