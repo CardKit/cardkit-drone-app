@@ -35,6 +35,8 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
 //        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
 //        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
+//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.Land)
+        displayCardDetail(cardDescriptor: DroneCardKit.Action.Tech.Camera.TakePhoto)
         
     }
     
@@ -91,6 +93,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected \(indexPath)")
+        //does not work as long as the section is empty
         if indexPath.section > 1 {
             switch indexPath.section {
             case 2:

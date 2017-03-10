@@ -17,8 +17,7 @@ class CardDetailTableViewController: UITableViewController {
             guard let descriptor = cardDescriptor else {
                 return
             }
-            print("DESCRIPTOR endDescription \(descriptor.endDescription)")
-            print("DESCRIPTOR yieldDescription \(descriptor.yieldDescription)")
+            
             if descriptor.endDescription != "" {
                 detailSections.append(.endDetailsCell)
             }
@@ -33,12 +32,13 @@ class CardDetailTableViewController: UITableViewController {
                 case "Coordinate 2D":
                     detailSections.append(.location2DInput)
                     break
-                case "Altitude", "Speed", "Distance", "Radius", "AngularSpeed":
+                case "Altitude", "Speed", "Distance", "Radius", "AngularSpeed", "Aspect Ratio":
                     detailSections.append(.standardInputCell)
                     break
-                case "RotationDirection":
-                    print("input on binary choice \(input.descriptor)")
+                case "Boolean", "RotationDirection":
                     detailSections.append(.binaryChoiceCell)
+                case "Quality":
+                    detailSections.append(.multipleChoiceCell)
                 default:
                     continue
                 }
@@ -58,6 +58,7 @@ class CardDetailTableViewController: UITableViewController {
         case location2DInput
         case standardInputCell
         case binaryChoiceCell
+        case multipleChoiceCell
         case header
         
         var reuseIdentifier: String {
@@ -72,6 +73,8 @@ class CardDetailTableViewController: UITableViewController {
                 return "StandardInputCell"
             case .binaryChoiceCell:
                 return "BinaryChoiceCell"
+            case .multipleChoiceCell:
+                return "MultipleChoiceCell"
             case .header:
                 return "Header"
             }            
@@ -87,7 +90,7 @@ class CardDetailTableViewController: UITableViewController {
                 return "End Details"
             case .outputsCell:
                 return "Outputs"
-            case .standardInputCell, .location2DInput, .binaryChoiceCell:
+            case .standardInputCell, .location2DInput, .binaryChoiceCell, .multipleChoiceCell:
                 guard let inputType = type else {
                     return "Input"
                 }
@@ -164,6 +167,11 @@ class CardDetailTableViewController: UITableViewController {
                 }
                 
             }
+        case .multipleChoiceCell:
+            guard let multipleChoiceCell = cell as? MultipleChoiceCell else {
+                return cell
+            }
+            multipleChoiceCell.section = indexPath.section
         default:
             return cell
         }
@@ -222,10 +230,16 @@ class CardDetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == CellIdentifiers.endDetailsCell.rawValue || section == CellIdentifiers.outputsCell.rawValue {
-            return 40.0
-        }
+//        if section == CellIdentifiers.endDetailsCell.rawValue || section == CellIdentifiers.outputsCell.rawValue {
+//            return 40.0
+//        }
         return 20.0
+    }
+    
+    // MARK: - Instance methods
+    
+    func inputIndex(for section: Int) -> Int {
+        return section - (detailSections.count - (cardDescriptor?.inputSlots.count)!)
     }
     
     // MARK: - IBActions
@@ -238,6 +252,27 @@ class CardDetailTableViewController: UITableViewController {
     
     @IBAction func removeCard() {
         print("REMOVE CARD!")
+    }
+    
+    @IBAction func displayMultipleChoiceOptions(sender: UIButton) {
+        guard let options = UIStoryboard(name: "CardDetail", bundle: nil).instantiateViewController(withIdentifier: "MultipleChoiceOptions") as? MultipleChoiceOptions,
+            let index: Int = sender.tag else {
+            return
+        }
+        
+        print("button tag \(index)")
+        
+        let inputSlot = cardDescriptor?.inputSlots[inputIndex(for: index)]
+        print("inputSlot \(inputSlot)")
+        //print("cell section \(cell.section)")
+        options.modalPresentationStyle = .popover
+        let popover: UIPopoverPresentationController = options.popoverPresentationController!
+        popover.sourceView = sender
+        
+        self.present(options, animated: true) { 
+            print("presented options")
+        }
+        
     }
 
     /*
