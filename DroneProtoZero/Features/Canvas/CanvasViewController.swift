@@ -221,9 +221,15 @@ extension CanvasViewController: Hoverable {
     }
     
     func isViewHovering(view: UIView, touchPoint: CGPoint) -> Bool {
+        //to convert a point from one view to the other both views needs to be inside a common one (hence view.superview, their both in splitview)
+        //then you can convert point from where the persons' finger is (touchpoint) to tableview
         guard let convertedPoint = view.superview?.convert(touchPoint, to: tableView) else { return false }
+        //create a rect so you can use intersects, but you really only care about the point
         let convertedFrame = CGRect(x: convertedPoint.x, y: convertedPoint.y, width: 0, height: 0)
-        return tableView.frame.intersects(convertedFrame)
+        //create a rect from tableview that uses the WHOLE tableview i.e. contentSize
+        let tableContentFrame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: tableView.contentSize.width, height: tableView.contentSize.height)
+        //run the magic
+        return tableContentFrame.intersects(convertedFrame)
     }
     
     func cancelHovering() {

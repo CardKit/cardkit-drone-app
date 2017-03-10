@@ -60,9 +60,17 @@ class HandTableViewCell: UITableViewCell, Reusable {
         cards = currCards?.cards
         collectionView.isHidden = isEmpty
         
-        //update the data source
-        //collectionView.insertItems(at: <#T##[IndexPath]#>)
-        collectionView.reloadData()
+    
+    //    collectionView.reloadData()
+        if let cards = cards {
+            //NOTE: has to be greater than 1 because there should alwauys be an END CARD and that card needs to be the last card in the hand ALWAYS, NO IFs, ANDS, OR BUTS about it
+            if cards.count > 1 {
+                //we insert the new card always as the last card
+                let newCardPath = IndexPath(item: cards.count-2, section: 0)
+                collectionView.insertItems(at: [newCardPath])
+                collectionView.scrollToItem(at: newCardPath, at: UICollectionViewScrollPosition.right, animated: true)
+            }
+        }
     }
     
     func showHovering(isHovering: Bool) {
