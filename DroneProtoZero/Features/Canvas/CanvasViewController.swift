@@ -15,7 +15,7 @@ protocol Hoverable {
     func addItemToView<T>(item: T, position: CGPoint)
     func showHovering(position: CGPoint)
     func cancelHovering()
-    func isViewHovering(view: UIView) -> Bool
+    func isViewHovering(view: UIView, touchPoint: CGPoint) -> Bool
     var hoverableView: UIView { get }
     
 }
@@ -220,8 +220,10 @@ extension CanvasViewController: Hoverable {
         }
     }
     
-    func isViewHovering(view: UIView) -> Bool {
-        return view.frame.intersects((tableView.frame))
+    func isViewHovering(view: UIView, touchPoint: CGPoint) -> Bool {
+        guard let convertedPoint = view.superview?.convert(touchPoint, to: tableView) else { return false }
+        let convertedFrame = CGRect(x: convertedPoint.x, y: convertedPoint.y, width: 0, height: 0)
+        return tableView.frame.intersects(convertedFrame)
     }
     
     func cancelHovering() {
@@ -242,7 +244,7 @@ extension CanvasViewController: Hoverable {
     
     func addOffsetTo(position: CGPoint) -> CGPoint {
         let offsetY = tableView.contentOffset.y
-        return CGPoint(x: position.x, y: position.y + offsetY)
+        return CGPoint(x: position.x + tableView.contentOffset.x, y: position.y + offsetY)
     }
     
 }
