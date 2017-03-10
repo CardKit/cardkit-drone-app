@@ -100,9 +100,4 @@ extension HandTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
         
         return cell
     }
-    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//      not sure i actually need this
-//    }
-    
 }
