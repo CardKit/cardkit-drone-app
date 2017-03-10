@@ -69,4 +69,12 @@ extension UIColor {
     static var dustyGray: UIColor {
         return UIColor(hexString: "#949494")
     }
+    
+    static var textHeaderGray: UIColor {
+        return UIColor(hexString: "#7F7F7F")
+    }
+    
+    static var placeholderGray: UIColor {
+        return UIColor(hexString: "#C8C7CC")
+    }
 }

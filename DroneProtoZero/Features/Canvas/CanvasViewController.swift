@@ -8,13 +8,14 @@
 
 import UIKit
 import CardKit
+import DroneCardKit
 
 protocol Hoverable {
     
     func addItemToView<T>(item: T, position: CGPoint)
     func showHovering(position: CGPoint)
     func cancelHovering()
-    func isViewHovering(view: UIView) -> Bool
+    func isViewHovering(view: UIView, touchPoint: CGPoint) -> Bool
     var hoverableView: UIView { get }
     
 }
@@ -67,6 +68,9 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
             break
         default:
             cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HandTableViewCell
+            if let handCell = cell as? HandTableViewCell {
+                handCell.setupHand(sectionID: indexPath.section, delegate: self)
+            }
             break
         }
         cell.layer.cornerRadius = 11.0
@@ -77,19 +81,62 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print("selected \(indexPath)")
+//        if indexPath.section > 1 {
+//            switch indexPath.section {
+//            case 2:
+//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
+//            case 3:
+//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
+//            case 4:
+//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
+//            default:
+//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
+//            }
+//        }
+//    }
+    
+    // MARK: - Card details
+    
+    func displayCardDetail(card: ActionCard) {
+        guard let cardDetailNavController = UIStoryboard(name: "CardDetail", bundle: nil).instantiateInitialViewController() as? UINavigationController else {
+            print("no card detail")
+            return
+        }
+        cardDetailNavController.modalPresentationStyle = .pageSheet
+        print("table vc \(cardDetailNavController.topViewController)")
+        
+        if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
+            print("Canvas vc sets cardDescriptor")
+            cardDetailTableViewController.card = card
+        }
+        
+        self.parent?.present(cardDetailNavController, animated: true) {
+            print("present card detail")
+        }
+    }
 
     // MARK: - Add card
     
     func addCardToHand(descriptor: ActionCardDescriptor, position: CGPoint) {
         //indexPathForRowAtPoint:point
         guard let indexPath = tableView.indexPathForRow(at: position) else { return }
-        
+        guard let handCell = tableView.cellForRow(at: indexPath) as? HandTableViewCell else { return }
         print("CARD DESCRIPTOR: \(descriptor) added to this section \(indexPath.section)")
+        
+        do {
+            try viewModel.addCard(cardDescriptor: descriptor, toHand: indexPath.section)
+            handCell.addCard(card: descriptor)
+        } catch {
+            print("I think were should be showing an error here, as I couldnt add a card")
+        }
     }
     
     func addNewStep(sender: UIButton) {
         let currentCount = viewModel.sectionCount
-        viewModel.sectionCount += 1
+        let _ = viewModel.addHand()
         tableView.beginUpdates()
         let index = [currentCount]
         tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
@@ -104,7 +151,11 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(viewModel.headerHeight(section: section))
+        if section < CanvasSection.steps.rawValue {
+            //print("section \(section)")
+            return 1.0
+        }
+        return 50.0
     }
     
     func createStepHeader(section: Int) -> UIView {
@@ -136,7 +187,8 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
 extension CanvasViewController: CanvasStepHeaderDelegate {
     
     func removeStepSection(for section: Int) {
-        viewModel.sectionCount -= 1
+        //how do i get the identifier from the section?
+        let _ = viewModel.removeHand(sectionID: section)
         tableView.beginUpdates()
         let index = [section]
         tableView.deleteSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
@@ -161,8 +213,16 @@ extension CanvasViewController: Hoverable {
         }
     }
     
-    func isViewHovering(view: UIView) -> Bool {
-        return view.frame.intersects((tableView.frame))
+    func isViewHovering(view: UIView, touchPoint: CGPoint) -> Bool {
+        //to convert a point from one view to the other both views needs to be inside a common one (hence view.superview, their both in splitview)
+        //then you can convert point from where the persons' finger is (touchpoint) to tableview
+        guard let convertedPoint = view.superview?.convert(touchPoint, to: tableView) else { return false }
+        //create a rect so you can use intersects, but you really only care about the point
+        let convertedFrame = CGRect(x: convertedPoint.x, y: convertedPoint.y, width: 0, height: 0)
+        //create a rect from tableview that uses the WHOLE tableview i.e. contentSize
+        let tableContentFrame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: tableView.contentSize.width, height: tableView.contentSize.height)
+        //run the magic
+        return tableContentFrame.intersects(convertedFrame)
     }
     
     func cancelHovering() {
@@ -186,4 +246,13 @@ extension CanvasViewController: Hoverable {
         return CGPoint(x: position.x, y: position.y + offsetY)
     }
     
+}
+
+extension CanvasViewController: CardViewDelegate {
+    
+    func cardViewWasSelected(handID: Int, cardID: Int) {
+        guard let card = viewModel.getCard(forHand: handID, cardID: cardID),
+            let actionCard = card as? ActionCard else { return }
+             displayCardDetail(card: actionCard)
+    }
 }

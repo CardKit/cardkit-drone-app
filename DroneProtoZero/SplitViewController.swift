@@ -64,13 +64,13 @@ class SplitViewController: UISplitViewController {
             }
         case UIGestureRecognizerState.changed :
             if let cardView = draggingCardView {
-                cardView.frame = CGRect(x: touchPoint.x - touchOffset.x, y: touchPoint.y - touchOffset.y, width: cardView.frame.size.width, height: cardView.frame.size.height)
+               cardView.frame = CGRect(x: touchPoint.x - touchOffset.x, y: touchPoint.y - touchOffset.y, width: cardView.frame.size.width, height: cardView.frame.size.height)
                     let positionInCanvas: CGPoint = self.view.convert(touchPoint, to: canvasViewController?.hoverableView)
                     canvasViewController?.showHovering(position: positionInCanvas)
             }
         case UIGestureRecognizerState.ended :
             if let cardView = draggingCardView {
-                if draggingViewIsTouching(view: cardView) {
+                if draggingViewIsTouching(view: cardView, point: touchPoint) {
                     let positionInCanvas: CGPoint = self.view.convert(touchPoint, to: canvasViewController?.hoverableView)
                     if let descriptor = currentCardDescriptor {
                         canvasViewController?.addItemToView(item: descriptor, position: positionInCanvas)
@@ -98,9 +98,9 @@ class SplitViewController: UISplitViewController {
         
     }
     
-    func draggingViewIsTouching(view: UIView) -> Bool {
+    func draggingViewIsTouching(view: UIView, point: CGPoint) -> Bool {
         guard let canvasVC = canvasViewController else { return false }
-        return canvasVC.isViewHovering(view: view)
+        return canvasVC.isViewHovering(view: view, touchPoint: point)
     }
     
     func addDropShadow(to view: UIView) {

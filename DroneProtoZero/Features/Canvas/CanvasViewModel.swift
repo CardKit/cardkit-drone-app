@@ -8,7 +8,6 @@
 
 import Foundation
 import CardKit
-import Freddy
 
 enum CanvasSection: Int {
     case status
@@ -17,13 +16,11 @@ enum CanvasSection: Int {
 }
 
 struct CanvasViewModel {
+
+    let defaultSectionCount: Int = 2
     
-    var sectionCount = 3
-    var hands: [Hand]
-    
-    init() {
-        hands = [Hand]()
-        createHand()
+    var sectionCount: Int {
+        return Sequencer.shared.hands.count + defaultSectionCount
     }
     
     func cellHeight(for indexPath: IndexPath) -> Float {
@@ -63,16 +60,50 @@ struct CanvasViewModel {
         return IndexSet(arrayOfSections)
     }
     
-    mutating func createHand() {
-
-        let hand = Hand()
-        hands.append(hand)
+    // MARK: Hand Creating/Removing Methods
+    
+    func createHand() -> Hand {
+        return Sequencer.shared.createHand()
     }
     
-    func getHand(by identifier: HandIdentifier) -> Hand? {
-        let filteredHands = hands.filter { $0.identifier == identifier }
-        guard filteredHands.count > 0 else { return nil }
-        return filteredHands.first
+    func addHand() -> HandIdentifier {
+        return Sequencer.shared.addHand()
     }
+    
+    mutating func removeHand(sectionID: Int) -> HandIdentifier? {
+        let actualID =  sectionID - defaultSectionCount
+        return Sequencer.shared.removeHand(by: actualID)
+    }
+    
+    mutating func removeHand(identifier: CardIdentifier) {
+       Sequencer.shared.removeHand(by: identifier)
+    }
+    
+    func getHand(by index: Int) -> Hand? {
+        let actualID =  index - defaultSectionCount
+        return Sequencer.shared.getHand(by: actualID)
+    }
+    
+    func getCard(forHand handID: Int, cardID: Int) -> Card? {
+        let actualID =  handID - defaultSectionCount
+        return Sequencer.shared.getCard(forHand: actualID, cardIndex: cardID)
+    }
+    
+    // MARK: Card Adding/Removing Methods
+    
+    func addCard(cardDescriptor: ActionCardDescriptor, toHand index: Int) throws {
+        let actualID = index - defaultSectionCount
+        try Sequencer.shared.addCard(card: cardDescriptor, toHand: actualID)
+    }
+    
+    func removeCard(cardID: CardIdentifier, fromHand index: Int) {
+        guard let hand = getHand(by: index) else { return }
+        let filtered = hand.cards.filter { $0.identifier == cardID }
+        
+        guard let card = filtered.first as? ActionCard else { return }
+        hand.remove(card)
+    }
+    
+    
     
 }
