@@ -16,47 +16,12 @@ public enum DJIConnectionConfiguration {
     case release
 }
 
-public enum ConnectionStatus: Equatable {
+public enum ConnectionStatus {
     case unknown
     case failedToConnectToSDK(String)
     case disconnected(String)
     case searchingForProducts(String)
     case connectionSuccessful(String)
-    
-    public static func ==(left: ConnectionStatus, right: ConnectionStatus) -> Bool {
-        
-        switch left {
-        case .unknown:
-            switch right {
-            case .unknown: return true
-            default: return false
-            }
-            
-        case .failedToConnectToSDK(_):
-            switch right {
-            case .failedToConnectToSDK(_): return true
-            default: return false
-            }
-        
-        case .disconnected(_):
-            switch right {
-            case .disconnected(_): return true
-            default: return false
-            }
-            
-        case .searchingForProducts(_):
-            switch right {
-            case .searchingForProducts(_): return true
-            default: return false
-            }
-            
-        case .connectionSuccessful(_):
-            switch right {
-            case .connectionSuccessful(_): return true
-            default: return false
-            }
-        }
-    }
 }
 
 public enum DJIConnectionError: Error {
@@ -115,7 +80,12 @@ class DJIHardwareManager: NSObject, HardwareManager {
     var debugIP: String?
     
     func connect() throws {
-        guard status != .connectionSuccessful("") else { return }
+        switch status {
+        case .connectionSuccessful(_):
+            return
+        default:
+            break;
+        }
         
         guard let apiKey = AppConfig.djiAPIKey else { throw DJIConnectionError.apiKeyNotSet("API Key was not set in Info.plist. Please add the API Key in Info.plist with the name as \"DJI API Key\".") }
         
@@ -184,7 +154,7 @@ extension DJIHardwareManager: DJISDKManagerDelegate {
             print("Firmware package version is: \(version ?? "Unknown")")
         }
         
-        status = .connectionSuccessful("Connected to Drone")
+        status = .connectionSuccessful(newProduct.model ?? "Model Information Not Found")
         
         //Updates the product's connection status
         print("Status: Product Connected")

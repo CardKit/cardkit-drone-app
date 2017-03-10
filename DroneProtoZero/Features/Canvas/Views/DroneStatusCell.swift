@@ -95,8 +95,10 @@ class DroneStatusCell: UITableViewCell, Reusable {
         switch status {
         case .connectionSuccessful(_):
             executeButton.isEnabled = true
+            connectToDroneButton.isEnabled = false
         default:
             executeButton.isEnabled = false
+            connectToDroneButton.isEnabled = true
         }
         
         updateStatusLabel(status)

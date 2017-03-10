@@ -192,10 +192,7 @@ class Sequencer {
         engine.setExecutableActionTypes(Sequencer.executableActionTypes)
         
         // create executable tokens and add to execution engine
-        guard let djiHardwareManager: DJIHardwareManager = DJIHardwareManager.sharedInstance as? DJIHardwareManager else {
-            throw SequencerError.failiedToRetrieveHardwareManager("Could not retrieve DJIHardwareManager")
-        }
-        
+        let djiHardwareManager: DJIHardwareManager = DJIHardwareManager.sharedInstance         
         guard let djiAircraft = djiHardwareManager.djiAircraft else {
                 throw SequencerError.failedToDetectHardwareOnDrone("Could not retrieve DJIAircraft")
         }
