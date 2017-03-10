@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         let _ = LogsManager.shared
-        DJIHardwareManager.sharedInstance.set(connConfig: .debug("192.168.1.2"))
+        DJIHardwareManager.sharedInstance.connectionConfig = .debug("192.168.1.2")
         
         return true
     }

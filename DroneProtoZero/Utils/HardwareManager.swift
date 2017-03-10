@@ -12,7 +12,7 @@ import DJISDK
 // MARK: - ENUMS
 
 public enum DJIConnectionConfiguration {
-    case debug(String)
+    case debug(String) // this string is the ip address to connect to
     case release
 }
 
@@ -62,6 +62,8 @@ class DJIHardwareManager: NSObject, HardwareManager {
         }
     }
     
+    var connectionConfig: DJIConnectionConfiguration = .release
+    
     var connectedDJIProduct: DJIBaseProduct?
     
     var djiAircraft: DJIAircraft? {
@@ -76,9 +78,9 @@ class DJIHardwareManager: NSObject, HardwareManager {
         return (connectedDJIProduct as? DJIAircraft)?.gimbal
     }
     
-    var inDebugMode = false
-    var debugIP: String?
-    
+    /// This will begin the connection process to the drone. If the status is connectionSuccessful, we do not try to connect again.
+    ///
+    /// - Throws: throws an error
     func connect() throws {
         switch status {
         case .connectionSuccessful(_):
@@ -89,26 +91,13 @@ class DJIHardwareManager: NSObject, HardwareManager {
         
         guard let apiKey = AppConfig.djiAPIKey else { throw DJIConnectionError.apiKeyNotSet("API Key was not set in Info.plist. Please add the API Key in Info.plist with the name as \"DJI API Key\".") }
         
-        if inDebugMode && debugIP == nil {
-            throw DJIConnectionError.debugIPNotSet("The debug IP address was not set. Please set the debug IP (or disable debug mode) by using the set(connConfig:) method.")
-        }
-        
         DJISDKManager.registerApp(apiKey, with: self)
-    }
-    
-    func set(connConfig config: DJIConnectionConfiguration) {
-        switch config {
-        case .debug(let ipAddress):
-            self.debugIP = ipAddress
-            inDebugMode = true
-        case .release:
-            self.debugIP = ""
-            inDebugMode = false
-        }
     }
 }
 
 extension DJIHardwareManager: DJISDKManagerDelegate {
+    
+    /// Gets called when the SDK has registered succesfully. Once registered, we will begin connection to the drone.
     func sdkManagerDidRegisterAppWithError(_ error: Error?) {
         if let error = error {
             print(error.localizedDescription)
@@ -116,9 +105,10 @@ extension DJIHardwareManager: DJISDKManagerDelegate {
         } else {
             print("DJISDK Registered Successfully")
             
-            if inDebugMode, let debugIP = debugIP {
-                DJISDKManager.enterDebugMode(withDebugId: debugIP)
-            } else {
+            switch connectionConfig {
+            case .debug(let ipAddress):
+                DJISDKManager.enterDebugMode(withDebugId: ipAddress)
+            case .release:
                 let connStatus = DJISDKManager.startConnectionToProduct()
                 
                 if connStatus {
@@ -130,6 +120,9 @@ extension DJIHardwareManager: DJISDKManagerDelegate {
         }
     }
     
+    
+    /// Gets called when a product gets detected or updated. Once this function is called and 
+    /// newProduct is not nil, we know we have a successful connection to the drone.
     func sdkManagerProductDidChange(from oldProduct: DJIBaseProduct?, to newProduct: DJIBaseProduct?) {
         print("DroneHardwareManager > sdkManagerProductDidChange(from: \(oldProduct), to: \(newProduct)")
         
