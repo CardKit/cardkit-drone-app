@@ -16,12 +16,47 @@ public enum DJIConnectionConfiguration {
     case release
 }
 
-public enum ConnectionStatus {
+public enum ConnectionStatus: Equatable {
     case unknown
     case failedToConnectToSDK(String)
     case disconnected(String)
     case searchingForProducts(String)
     case connectionSuccessful(String)
+    
+    public static func ==(left: ConnectionStatus, right: ConnectionStatus) -> Bool {
+        
+        switch left {
+        case .unknown:
+            switch right {
+            case .unknown: return true
+            default: return false
+            }
+            
+        case .failedToConnectToSDK(_):
+            switch right {
+            case .failedToConnectToSDK(_): return true
+            default: return false
+            }
+        
+        case .disconnected(_):
+            switch right {
+            case .disconnected(_): return true
+            default: return false
+            }
+            
+        case .searchingForProducts(_):
+            switch right {
+            case .searchingForProducts(_): return true
+            default: return false
+            }
+            
+        case .connectionSuccessful(_):
+            switch right {
+            case .connectionSuccessful(_): return true
+            default: return false
+            }
+        }
+    }
 }
 
 public enum DJIConnectionError: Error {
@@ -33,12 +68,9 @@ public enum HardwareManagerNotification: String {
     case statusUpdated = "HardwareStatusUpdated"
 }
 
-// MARK: - PROTOCOL 
+// MARK: - PROTOCOL
 
 protocol HardwareManager {
-    // static vars
-    static var sharedInstance: HardwareManager { get }
-    
     // instance vars
     var status: ConnectionStatus { get }
     
@@ -57,14 +89,14 @@ class DJIHardwareManager: NSObject, HardwareManager {
         static let connectionStatus = NSNotification.Name("ConnectionStatus")
     }
     
-    static let sharedInstance: HardwareManager = DJIHardwareManager()
+    static let sharedInstance: DJIHardwareManager = DJIHardwareManager()
     
     var status: ConnectionStatus = .unknown {
         didSet {
             NotificationCenter.default.post(name: NotificationName.statusUpdated, object: nil, userInfo: [NotificationInfoKey.connectionStatus.rawValue:self.status])
         }
     }
-
+    
     var connectedDJIProduct: DJIBaseProduct?
     
     var djiAircraft: DJIAircraft? {
@@ -81,9 +113,9 @@ class DJIHardwareManager: NSObject, HardwareManager {
     
     var inDebugMode = false
     var debugIP: String?
-
+    
     func connect() throws {
-        guard statusInfo.status != .connectionSuccessful else { return }
+        guard status != .connectionSuccessful("") else { return }
         
         guard let apiKey = AppConfig.djiAPIKey else { throw DJIConnectionError.apiKeyNotSet("API Key was not set in Info.plist. Please add the API Key in Info.plist with the name as \"DJI API Key\".") }
         
