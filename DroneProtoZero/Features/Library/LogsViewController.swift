@@ -38,10 +38,3 @@ class LogsViewController: UIViewController {
         }
     }
 }
-
-extension UITextView {
-    func scrollToBottom() {
-        let range = NSMakeRange(self.text.characters.count - 1, 0)
-        self.scrollRangeToVisible(range)
-    }
-}
