@@ -67,6 +67,18 @@ class DJIHardwareManager: NSObject, HardwareManager {
 
     var connectedDJIProduct: DJIBaseProduct?
     
+    var djiAircraft: DJIAircraft? {
+        return connectedDJIProduct as? DJIAircraft
+    }
+    
+    var djiCamera: DJICamera? {
+        return (connectedDJIProduct as? DJIAircraft)?.camera
+    }
+    
+    var djiGimbal: DJIGimbal? {
+        return (connectedDJIProduct as? DJIAircraft)?.gimbal
+    }
+    
     var inDebugMode = false
     var debugIP: String?
 

@@ -76,7 +76,6 @@ class LibraryViewController: UIViewController {
     }
     
     func updateView(newView: CellType) {
-        print("newVIEW \(newView)")
         if let currViewController = currentViewController {
             //something exists here so remocve it
             currViewController.willMove(toParentViewController: nil)

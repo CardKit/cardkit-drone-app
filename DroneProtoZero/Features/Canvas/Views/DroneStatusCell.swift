@@ -50,9 +50,20 @@ class DroneStatusCell: UITableViewCell, Reusable {
                 print(error)
             }
         case validateButton:
-            print("validate button tapped")
+            let _ = Sequencer.shared.validate()
         case executeButton:
-            print("execute button tapped")
+            do {
+                try Sequencer.shared.execute()
+            } catch {
+                switch error {
+                case SequencerError.failedToDetectHardwareOnDrone(let details):
+                    displayAlert(title: "Error", details: details)
+                case SequencerError.failiedToRetrieveHardwareManager(let details):
+                    displayAlert(title: "Error", details: details)
+                default:
+                    displayAlert(title: "Error", details: error.localizedDescription)
+                }
+            }
         default:
             break
         }
@@ -61,9 +72,7 @@ class DroneStatusCell: UITableViewCell, Reusable {
     // MARK: - Tap Gesture Recognizers
     func handleLabelTap() {
         if let details = statusDetails {
-            let alert = UIAlertController(title: statusTitle, message: details, preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-            self.parentViewController?.present(alert, animated: true, completion: nil)
+            displayAlert(title: statusTitle, details: details)
         }
     }
     
@@ -76,6 +85,12 @@ class DroneStatusCell: UITableViewCell, Reusable {
     }
     
     // MARK: - Helper Functions
+    func displayAlert(title: String, details: String) {
+        let alert = UIAlertController(title: title, message: details, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        self.parentViewController?.present(alert, animated: true, completion: nil)
+    }
+    
     func updateStatus(status: ConnectionStatus) {
         switch status {
         case .connectionSuccessful(_):

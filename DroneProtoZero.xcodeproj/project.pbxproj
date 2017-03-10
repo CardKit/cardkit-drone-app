@@ -114,7 +114,7 @@
 		3AE7F6921E64924C00D67889 /* DroneProtoZeroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DroneProtoZeroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE7F6961E64924C00D67889 /* DroneProtoZeroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneProtoZeroUITests.swift; sourceTree = "<group>"; };
 		3AE7F6981E64924C00D67889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		682134DF1E709D0A00B3BEC3 /* HardwareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HardwareManager.swift; sourceTree = "<group>"; };
+		682134DF1E709D0A00B3BEC3 /* HardwareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HardwareManager.swift; path = ../Utils/HardwareManager.swift; sourceTree = "<group>"; };
 		682134E31E70A17400B3BEC3 /* DroneTokensDJI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DroneTokensDJI.framework; path = Carthage/Build/iOS/DroneTokensDJI.framework; sourceTree = "<group>"; };
 		682134E51E70A29B00B3BEC3 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DJISDK.framework; path = "Carthage/Checkouts/drone-tokens-dji/Frameworks/DJISDK.framework"; sourceTree = "<group>"; };
 		682134E71E70B0FD00B3BEC3 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -239,7 +239,6 @@
 				3AB397801E667A5B00DA1800 /* Reusable.swift */,
 				3AB397811E667A5B00DA1800 /* UIColorExtension.swift */,
 				3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */,
-				682134DF1E709D0A00B3BEC3 /* HardwareManager.swift */,
 				682134E71E70B0FD00B3BEC3 /* AppConfig.swift */,
 				6851A9841E72313F00079D0B /* UIViewExtension.swift */,
 			);
@@ -257,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				3ACEF1EC1E706C070047CE08 /* Sequencer.swift */,
+				682134DF1E709D0A00B3BEC3 /* HardwareManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

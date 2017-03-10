@@ -8,9 +8,16 @@
 
 import Foundation
 import CardKit
+import CardKitRuntime
+import DroneCardKit
+import DroneTokensDJI
+
+public enum SequencerError: Error {
+    case failiedToRetrieveHardwareManager(String)
+    case failedToDetectHardwareOnDrone(String)
+}
 
 class Sequencer {
-    
     static let shared: Sequencer = Sequencer()
     
     var hands: [Hand]
@@ -81,5 +88,81 @@ class Sequencer {
         guard let card = filtered.first as? ActionCard else { return }
         hand.remove(card)
     }
-
+    
+    func generateDeck() -> Deck {
+        // create deck
+        let deck = ( hands )%
+        
+        // create tokens to add to deck
+        deck.add(DroneCardKit.tokenCards)
+        
+        return deck
+    }
+    
+    func validate() -> [ValidationError] {
+        let errors = ValidationEngine.validate(generateDeck())
+        
+        print("******* ******* *******")
+        print("Validation Engine Finished\n")
+        
+        for error in errors {
+            print("\(error)\n")
+        }
+        
+        print("******* ******* *******")
+        return errors
+    }
+    
+    func execute() throws {
+        // create deck
+        let deck = generateDeck()
+        
+        // create executable engine and all all executable actions
+        let engine = ExecutionEngine(with: deck)
+        engine.setExecutableActionTypes(DroneCardKit.executableActionTypes)
+        
+        // create executable tokens and add to execution engine
+        guard let djiHardwareManager: DJIHardwareManager = DJIHardwareManager.sharedInstance as? DJIHardwareManager else {
+            throw SequencerError.failiedToRetrieveHardwareManager("Could not retrieve DJIHardwareManager")
+        }
+        
+        guard let djiAircraft = djiHardwareManager.djiAircraft else {
+                throw SequencerError.failedToDetectHardwareOnDrone("Could not retrieve DJIAircraft")
+        }
+        
+        guard let djiCamera = djiHardwareManager.djiCamera else {
+                throw SequencerError.failedToDetectHardwareOnDrone("Could not retrieve DJICamera")
+        }
+        
+        guard let djiGimbal = djiHardwareManager.djiGimbal else {
+                throw SequencerError.failedToDetectHardwareOnDrone("Could not retrieve DJIGimbal")
+        }
+        
+        let droneExecutableToken = DJIDroneToken(with: DroneCardKit.droneTokenCard, for: djiAircraft)
+        
+        let cameraExecutableToken = DJICameraToken(with: DroneCardKit.cameraTokenCard, for: djiCamera)
+        
+        let gimbalExecutableToken = DJIGimbalToken(with: DroneCardKit.gimbalTokenCard, for: djiGimbal)
+        
+        engine.setTokenInstance(droneExecutableToken, for: DroneCardKit.droneTokenCard)
+        engine.setTokenInstance(cameraExecutableToken, for: DroneCardKit.cameraTokenCard)
+        engine.setTokenInstance(gimbalExecutableToken, for: DroneCardKit.gimbalTokenCard)
+        
+        // execute program
+        DispatchQueue.global(qos: .default).async {
+            engine.execute { (yields: [YieldData], error: ExecutionError?) in
+                print("******* ******* *******")
+                print("Execution Engine Finished")
+                
+                print("\n******* YIELDS *******")
+                print(yields)
+                
+                print("\n******* ERROR *******")
+                print(error ?? "no error")
+                
+                print("\n******* ******* *******\n")
+            }
+        }
+        
+    }
 }
