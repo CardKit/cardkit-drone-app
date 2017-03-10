@@ -6,11 +6,9 @@
 //  Copyright © 2017 IBM Research. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-
-
-class AppConfig: NSObject {
+class AppConfig {
     static var infoPlistDict: [String: Any]? {
         get {
             guard let path = Bundle.main.path(forResource: "Info", ofType: "plist") else { return nil }
