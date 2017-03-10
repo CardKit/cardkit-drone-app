@@ -72,6 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A2F624F1E733F5E008653C7 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = ../../../../../../Desktop/MyPlayground.playground; sourceTree = "<group>"; };
 		3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneCardDescriptors.swift; sourceTree = "<group>"; };
 		3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisualRecognitionV3.framework; path = Carthage/Build/iOS/VisualRecognitionV3.framework; sourceTree = "<group>"; };
 		3A89F34D1E6763EE005A9D48 /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestKit.framework; path = Carthage/Build/iOS/RestKit.framework; sourceTree = "<group>"; };
@@ -192,6 +193,7 @@
 				3A89F34F1E6769D2005A9D48 /* Views */,
 				3AB397711E667A5B00DA1800 /* CanvasViewController.swift */,
 				3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */,
+				3A2F624F1E733F5E008653C7 /* MyPlayground.playground */,
 				D51E329E1E687E3A002DC319 /* CardDetail */,
 			);
 			path = Canvas;
