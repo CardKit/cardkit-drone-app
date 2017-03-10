@@ -49,9 +49,21 @@ protocol HardwareManager {
 // MARK: - DJIHardwareManager
 
 class DJIHardwareManager: NSObject, HardwareManager {
+    public struct NotificationName {
+        static let statusUpdated = NSNotification.Name("HardwareStatusUpdated")
+    }
+    
+    public struct NotificationInfoKey {
+        static let connectionStatus = NSNotification.Name("ConnectionStatus")
+    }
+    
     static let sharedInstance: HardwareManager = DJIHardwareManager()
     
-    var status: ConnectionStatus = .unknown
+    var status: ConnectionStatus = .unknown {
+        didSet {
+            NotificationCenter.default.post(name: NotificationName.statusUpdated, object: nil, userInfo: [NotificationInfoKey.connectionStatus.rawValue:self.status])
+        }
+    }
 
     var connectedDJIProduct: DJIBaseProduct?
     

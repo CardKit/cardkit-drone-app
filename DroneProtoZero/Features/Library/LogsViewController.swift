@@ -10,12 +10,13 @@ import UIKit
 
 class LogsViewController: UIViewController {
 
-    @IBOutlet weak var logView: UITextView!
+    @IBOutlet weak var logView: UITextView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(LogsViewController.handlePipeNotification), name: FileHandle.readCompletionNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,14 +24,22 @@ class LogsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
-    */
+    
+    // MARK: Notification Handler
+    func handlePipeNotification(notification: Notification) {
+        if let data = notification.userInfo?[NSFileHandleNotificationDataItem] as? Data, let str = String(data: data, encoding: String.Encoding.ascii) {
+            logView?.text.append("\(str) \n")
+            logView?.scrollToBottom()
+        }
+    }
+}
 
+extension UITextView {
+    func scrollToBottom() {
+        let range = NSMakeRange(self.text.characters.count - 1, 0)
+        self.scrollRangeToVisible(range)
+    }
 }

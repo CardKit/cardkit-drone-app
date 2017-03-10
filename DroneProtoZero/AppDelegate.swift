@@ -11,12 +11,18 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var inputPipe: Pipe?
+    var outputPipe: Pipe?
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.isIdleTimerDisabled = true
         setUpSplitView()
         window?.makeKeyAndVisible()
+        
+        openConsolePipe()
+        
         return true
     }
     
@@ -65,4 +71,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIInterfaceOrientationMask(rawValue: UIInterfaceOrientationMask.portrait.rawValue)
     }
 
+}
+
+extension AppDelegate {
+    func openConsolePipe() {
+        inputPipe = Pipe()
+        outputPipe = Pipe()
+        
+        guard let inputPipe = inputPipe, let outputPipe = outputPipe else {
+            return
+        }
+        
+        let pipeReadHandle = inputPipe.fileHandleForReading
+        
+        dup2(STDOUT_FILENO, outputPipe.fileHandleForWriting.fileDescriptor)
+        
+        dup2(inputPipe.fileHandleForWriting.fileDescriptor, STDOUT_FILENO)
+        dup2(inputPipe.fileHandleForWriting.fileDescriptor, STDERR_FILENO)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handlePipeNotification), name: FileHandle.readCompletionNotification, object: pipeReadHandle)
+        pipeReadHandle.readInBackgroundAndNotify()
+    }
+    
+    func handlePipeNotification(notification: Notification) {
+        inputPipe?.fileHandleForReading.readInBackgroundAndNotify()
+        
+        if let data = notification.userInfo?[NSFileHandleNotificationDataItem] as? Data {
+            outputPipe?.fileHandleForWriting.write(data)
+        }
+    }
 }

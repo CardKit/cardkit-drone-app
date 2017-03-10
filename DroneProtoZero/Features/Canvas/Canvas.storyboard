@@ -33,28 +33,31 @@
                                             <rect key="frame" x="0.0" y="0.0" width="696" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drone Status: Connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-Ha-7Jl">
-                                                    <rect key="frame" x="20" y="17.000000000000036" width="193" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-Ha-7Jl">
+                                                    <rect key="frame" x="20" y="17" width="54" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.58039215686274503" green="0.58039215686274503" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNz-it-2UG">
-                                                    <rect key="frame" x="621" y="13" width="55" height="30"/>
+                                                    <rect key="frame" x="615" y="11.666666666666664" width="61" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Execute"/>
                                                     <connections>
                                                         <action selector="buttonTapped:" destination="Mb5-rm-2ff" eventType="touchUpInside" id="zrw-dK-kHP"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nr-aB-f5L">
-                                                    <rect key="frame" x="541" y="13" width="55" height="30"/>
+                                                    <rect key="frame" x="529" y="11.666666666666664" width="61" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Validate"/>
                                                     <connections>
                                                         <action selector="buttonTapped:" destination="Mb5-rm-2ff" eventType="touchUpInside" id="Mn6-Go-d5w"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecX-m3-hcu">
-                                                    <rect key="frame" x="392" y="13" width="122" height="30"/>
+                                                    <rect key="frame" x="366" y="11.666666666666664" width="136" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Connect to Drone"/>
                                                     <connections>
                                                         <action selector="buttonTapped:" destination="Mb5-rm-2ff" eventType="touchUpInside" id="xy2-VS-HR0"/>
