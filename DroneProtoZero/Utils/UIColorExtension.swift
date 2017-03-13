@@ -70,6 +70,14 @@ extension UIColor {
         return UIColor(hexString: "#949494")
     }
     
+    static var tableViewDefaultBlue: UIColor {
+        return UIColor(hexString: "#007AFF")
+    }
+    
+    static var tableViewSeparatorGray: UIColor {
+        return UIColor(hexString: "#D1D1D4")
+    }
+    
     static var textHeaderGray: UIColor {
         return UIColor(hexString: "#7F7F7F")
     }
