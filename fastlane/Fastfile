@@ -60,7 +60,7 @@ platform :ios do
   clear_derived_data
 
   scan(
-    device: "iPad Pro (9.7 inch) (10.2)", "iPad Air 2 (10.2)",
+    device: "iPad Pro (9.7 inch) (10.2)",
     scheme: "DroneProtoZeroFastlane",
     sdk: "iphonesimulator",
     clean: true,
