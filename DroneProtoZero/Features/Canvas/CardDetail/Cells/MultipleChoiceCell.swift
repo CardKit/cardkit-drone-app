@@ -12,6 +12,9 @@ import UIKit
 class MultipleChoiceCell: CardDetailTableViewCell {
     
     @IBOutlet weak var button: UIButton?
+    
+    var selection: Int? = 0
+    
     var section: Int? {
         didSet {
             guard let button = button,

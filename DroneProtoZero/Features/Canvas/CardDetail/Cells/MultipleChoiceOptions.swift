@@ -92,15 +92,17 @@ class MultipleChoiceOptions: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        for path in tableView.indexPathsForSelectedRows! {
+            if let cell = tableView.cellForRow(at: path) {
+                cell.isSelected = false
+            }
+            
+        }
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.isSelected = true
         }        
     }
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.isSelected = false
-        }
-    }
+
 }
 
 class MultipleChoiceOptionCell: UITableViewCell, Reusable {

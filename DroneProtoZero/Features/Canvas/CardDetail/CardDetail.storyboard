@@ -19,7 +19,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Header" rowHeight="30" id="X0g-Jb-Os8" customClass="CardDetailHeaderView" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="768" height="30"/>
+                                <rect key="frame" x="0.0" y="56" width="768" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X0g-Jb-Os8" id="2ag-lR-3F8">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="30"/>
@@ -73,7 +73,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NameCell" rowHeight="30" id="g3R-Tr-BDA" customClass="NameCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="85.5" width="768" height="30"/>
+                                <rect key="frame" x="0.0" y="86" width="768" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" tableViewCell="g3R-Tr-BDA" id="ocB-Re-5Y4">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="30"/>
@@ -114,7 +114,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DescriptionCell" rowHeight="26" id="1zR-BF-OTx" customClass="CardDetailTableViewCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="115.5" width="768" height="26"/>
+                                <rect key="frame" x="0.0" y="116" width="768" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1zR-BF-OTx" id="eMF-LF-eDf">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="26"/>
@@ -142,7 +142,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Location2DInputCell" rowHeight="774" id="ZmS-CE-Lcc" customClass="Location2DInput" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="141.5" width="768" height="774"/>
+                                <rect key="frame" x="0.0" y="142" width="768" height="774"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZmS-CE-Lcc" id="0av-fM-u9B">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="774"/>
@@ -244,7 +244,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="StandardInputCell" rowHeight="66" id="QbC-Pl-IQG" customClass="StandardInputCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="915.5" width="768" height="66"/>
+                                <rect key="frame" x="0.0" y="916" width="768" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QbC-Pl-IQG" id="IhQ-QQ-gyS">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="66"/>
@@ -297,7 +297,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BinaryChoiceCell" rowHeight="66" id="ohH-ka-CBX" customClass="BinaryChoiceCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="981.5" width="768" height="66"/>
+                                <rect key="frame" x="0.0" y="982" width="768" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ohH-ka-CBX" id="jmi-qk-ga4">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="66"/>
@@ -352,7 +352,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MultipleChoiceCell" rowHeight="66" id="X0z-gT-QAp" customClass="MultipleChoiceCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1047.5" width="768" height="66"/>
+                                <rect key="frame" x="0.0" y="1048" width="768" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X0z-gT-QAp" id="wDr-7R-r7x">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="66"/>
@@ -442,7 +442,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MultipleChoiceHeaderCell" textLabel="jgS-oh-ndP" rowHeight="44" style="IBUITableViewCellStyleDefault" id="922-jk-GAr" customClass="MultipleChoiceHeaderCell" customModule="DroneProtoZero" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MultipleChoiceHeaderCell" textLabel="jgS-oh-ndP" rowHeight="44" style="IBUITableViewCellStyleDefault" id="922-jk-GAr">
                                 <rect key="frame" x="0.0" y="28" width="500" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="922-jk-GAr" id="cQI-Oc-c3j">

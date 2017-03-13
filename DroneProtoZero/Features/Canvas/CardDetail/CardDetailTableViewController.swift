@@ -166,13 +166,19 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
                 }
             }
         case .multipleChoiceCell:
+
             guard let multipleChoiceCell = cell as? MultipleChoiceCell else {
                 return cell
             }
+            
             multipleChoiceCell.section = indexPath.section
             //TODO: these need to come from somewhere
             let choices = ["None", "Normal", "Fine", "Excellent"]
-            multipleChoiceCell.button?.titleLabel?.text = choices[0]
+            //TODO: set selection based on data in card
+            if let selectionIndex = multipleChoiceCell.selection {
+                print("set text on button to \(choices[selectionIndex])")
+                multipleChoiceCell.button?.setTitle(choices[selectionIndex], for: .normal)
+            }
             if let inputSlot = cardDescriptor?.inputSlots[inputIndex(for: indexPath.section)] {
                 multipleChoiceCell.mainLabel?.text = inputSlot.descriptor.inputDescription
             }
@@ -247,9 +253,19 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     // MARK: - UIPopoverPresentationControllerDelegate
     
     func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-        print("popover to dismiss \(popoverPresentationController)")
-  
-        //TODO: make button label on multiple choice cell change to the value selected
+        print("popover osurce view \(popoverPresentationController.sourceView?.superview?.superview?.superview)")
+        
+        guard let multipleChoiceOptions = popoverPresentationController.presentedViewController as? MultipleChoiceOptions,
+            let multipleChoiceCell = popoverPresentationController.sourceView?.superview?.superview?.superview as? MultipleChoiceCell else {
+            return true
+        }
+        print("multiple choice cell popover!!! \(multipleChoiceCell)")
+        let selectedPaths = multipleChoiceOptions.tableView.indexPathsForSelectedRows
+        for path in selectedPaths! {
+            multipleChoiceCell.selection = path.row
+            //TODO: this needs to be set in the card when selection is made
+        }
+        
         return true
     }
     
