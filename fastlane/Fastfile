@@ -19,7 +19,12 @@ platform :ios do
   before_all do
      ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
     
-    carthage
+
+    carthage(
+          command: "update",
+          platform: "iOS",
+          use_binaries: false
+    )
   end
 
   desc "Runs all the tests"
