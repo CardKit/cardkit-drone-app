@@ -14,10 +14,11 @@ class MultipleChoiceCell: CardDetailTableViewCell {
     @IBOutlet weak var button: UIButton?
     var section: Int? {
         didSet {
-            guard let button = button else {
+            guard let button = button,
+            let section = section else {
                 return
             }
-            button.tag = section!
+            button.tag = section
         }
     }
     

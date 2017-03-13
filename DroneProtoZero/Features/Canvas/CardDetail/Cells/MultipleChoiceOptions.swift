@@ -67,15 +67,17 @@ class MultipleChoiceOptions: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let header = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.header.reuseIdentifier)
+        guard let header = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.header.reuseIdentifier) else {
+            return nil
+        }
         
         let bottomBorder = CALayer()
-        bottomBorder.frame = CGRect(x: 0.0, y: (header?.frame.size.height)! - 1.0, width: (header?.frame.size.width)!, height: 1.0)
+        bottomBorder.frame = CGRect(x: 0.0, y: header.frame.size.height - 1.0, width: header.frame.size.width, height: 1.0)
         bottomBorder.backgroundColor = UIColor.tableViewSeparatorGray.cgColor
-        header?.layer.addSublayer(bottomBorder)
+        header.layer.addSublayer(bottomBorder)
         
         if let title = self.optionsTitle {
-            header?.textLabel?.text = title
+            header.textLabel?.text = title
         }
         
         return header

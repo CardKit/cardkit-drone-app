@@ -189,7 +189,9 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let header = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.header.reuseIdentifier) as? CardDetailHeaderView
+        guard let header = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.header.reuseIdentifier) as? CardDetailHeaderView else {
+            return nil
+        }
         var headerType: String?
         
         switch detailSections[section] {
@@ -197,17 +199,19 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
             let index = inputIndex(for: section)
             if let inputSlot = cardDescriptor?.inputSlots[index] {
                 headerType = inputSlot.name
-                header?.optional = inputSlot.isOptional
+                header.optional = inputSlot.isOptional
             }
         case .nameCell:
-            header?.endsLabel?.isHidden = false
-            header?.ends = (cardDescriptor?.ends)!
+            if let descriptor = cardDescriptor {
+                header.endsLabel?.isHidden = false
+                header.ends = descriptor.ends
+            }
         default:
             break
         }
         
         let labelText = detailSections[section].headerName(type: headerType)
-        header?.label?.text = labelText.uppercased()
+        header.label?.text = labelText.uppercased()
         
         return header
     }
@@ -233,6 +237,7 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        //TODO: need to figure out how to add 40px between end cell or output cell, depending on what there is.
 //        if section == CellIdentifiers.endDetailsCell.rawValue || section == CellIdentifiers.outputsCell.rawValue {
 //            return 40.0
 //        }
@@ -283,9 +288,7 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         popover.sourceView = sender
         popover.delegate = self
         
-        self.present(options, animated: true) { 
-            print("presented options")
-        }
+        self.present(options, animated: true, completion: nil)
         
     }
 }
