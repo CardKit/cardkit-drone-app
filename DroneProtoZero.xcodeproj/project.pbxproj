@@ -46,6 +46,15 @@
 		3A2F62781E77263E008653C7 /* CanvasStepHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A89F3561E6769FC005A9D48 /* CanvasStepHeaderView.xib */; };
 		3A2F62791E77263E008653C7 /* Canvas.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */; };
 		3A2F627A1E77263E008653C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67D1E64924C00D67889 /* Assets.xcassets */; };
+		3A2F62821E772E43008653C7 /* DroneTokensDJI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682134E31E70A17400B3BEC3 /* DroneTokensDJI.framework */; };
+		3A2F62831E772E48008653C7 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682134E51E70A29B00B3BEC3 /* DJISDK.framework */; };
+		3A2F62841E772F02008653C7 /* MultipleChoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576663C1E71F197000241FB /* MultipleChoiceCell.swift */; };
+		3A2F62851E772F02008653C7 /* MultipleChoiceOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576663E1E72E6ED000241FB /* MultipleChoiceOptions.swift */; };
+		3A2F62861E772F14008653C7 /* HardwareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682134DF1E709D0A00B3BEC3 /* HardwareManager.swift */; };
+		3A2F62871E772F14008653C7 /* LogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851F90B1E734B1D007422AF /* LogsManager.swift */; };
+		3A2F62881E772F14008653C7 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682134E71E70B0FD00B3BEC3 /* AppConfig.swift */; };
+		3A2F62891E772F14008653C7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851A9841E72313F00079D0B /* UIViewExtension.swift */; };
+		3A2F628A1E772F14008653C7 /* UITextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851F90D1E73574B007422AF /* UITextViewExtension.swift */; };
 		3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */; };
 		3A89F3531E6769D2005A9D48 /* AvailableHardwareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3501E6769D2005A9D48 /* AvailableHardwareCell.swift */; };
 		3A89F3541E6769D2005A9D48 /* DroneStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3511E6769D2005A9D48 /* DroneStatusCell.swift */; };
@@ -195,6 +204,8 @@
 				3A2F626C1E77263E008653C7 /* CardKit.framework in Frameworks */,
 				3A2F626D1E77263E008653C7 /* CardKitRuntime.framework in Frameworks */,
 				3A2F626E1E77263E008653C7 /* DroneCardKit.framework in Frameworks */,
+				3A2F62821E772E43008653C7 /* DroneTokensDJI.framework in Frameworks */,
+				3A2F62831E772E48008653C7 /* DJISDK.framework in Frameworks */,
 				3A2F626F1E77263E008653C7 /* Freddy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,6 +634,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/CardKitRuntime.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DroneCardKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
+				"$(SRCROOT)/Carthage/Checkouts/drone-tokens-dji/Frameworks/DJISDK.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DroneTokensDJI.framework",
 			);
 			name = "Carthage Run Script";
 			outputPaths = (
@@ -672,6 +685,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A2F62861E772F14008653C7 /* HardwareManager.swift in Sources */,
+				3A2F62871E772F14008653C7 /* LogsManager.swift in Sources */,
+				3A2F62881E772F14008653C7 /* AppConfig.swift in Sources */,
+				3A2F62891E772F14008653C7 /* UIViewExtension.swift in Sources */,
+				3A2F628A1E772F14008653C7 /* UITextViewExtension.swift in Sources */,
+				3A2F62841E772F02008653C7 /* MultipleChoiceCell.swift in Sources */,
+				3A2F62851E772F02008653C7 /* MultipleChoiceOptions.swift in Sources */,
 				3A2F62521E77263E008653C7 /* AvailableHardwareCell.swift in Sources */,
 				3A2F62531E77263E008653C7 /* CanvasStepHeaderView.swift in Sources */,
 				3A2F62541E77263E008653C7 /* Reusable.swift in Sources */,
@@ -789,6 +809,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/drone-tokens-dji/Frameworks",
 				);
 				INFOPLIST_FILE = "DroneProtoZero copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -807,6 +828,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/drone-tokens-dji/Frameworks",
 				);
 				INFOPLIST_FILE = "DroneProtoZero copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
