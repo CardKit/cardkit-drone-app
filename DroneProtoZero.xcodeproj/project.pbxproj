@@ -7,6 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A2F62521E77263E008653C7 /* AvailableHardwareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3501E6769D2005A9D48 /* AvailableHardwareCell.swift */; };
+		3A2F62531E77263E008653C7 /* CanvasStepHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3581E67C376005A9D48 /* CanvasStepHeaderView.swift */; };
+		3A2F62541E77263E008653C7 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397801E667A5B00DA1800 /* Reusable.swift */; };
+		3A2F62551E77263E008653C7 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397721E667A5B00DA1800 /* CanvasViewModel.swift */; };
+		3A2F62561E77263E008653C7 /* CardDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */; };
+		3A2F62571E77263E008653C7 /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397711E667A5B00DA1800 /* CanvasViewController.swift */; };
+		3A2F62581E77263E008653C7 /* HandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3521E6769D2005A9D48 /* HandTableViewCell.swift */; };
+		3A2F62591E77263E008653C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F6761E64924C00D67889 /* AppDelegate.swift */; };
+		3A2F625A1E77263E008653C7 /* Location2DInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32B31E6A031D002DC319 /* Location2DInput.swift */; };
+		3A2F625B1E77263E008653C7 /* CardDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32B51E6DB87B002DC319 /* CardDetailTableViewCell.swift */; };
+		3A2F625C1E77263E008653C7 /* CardDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */; };
+		3A2F625D1E77263E008653C7 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397811E667A5B00DA1800 /* UIColorExtension.swift */; };
+		3A2F625E1E77263E008653C7 /* CardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397771E667A5B00DA1800 /* CardsTableViewController.swift */; };
+		3A2F625F1E77263E008653C7 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3977C1E667A5B00DA1800 /* LogsViewController.swift */; };
+		3A2F62601E77263E008653C7 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB3977A1E667A5B00DA1800 /* LibraryViewController.swift */; };
+		3A2F62611E77263E008653C7 /* DroneStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3511E6769D2005A9D48 /* DroneStatusCell.swift */; };
+		3A2F62621E77263E008653C7 /* DroneCardDescriptors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */; };
+		3A2F62631E77263E008653C7 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397781E667A5B00DA1800 /* CardTableViewCell.swift */; };
+		3A2F62641E77263E008653C7 /* CardInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32B81E6DB8A8002DC319 /* CardInputField.swift */; };
+		3A2F62651E77263E008653C7 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */; };
+		3A2F62661E77263E008653C7 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530A3181E670F69003974CB /* SplitViewController.swift */; };
+		3A2F62671E77263E008653C7 /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACEF1EC1E706C070047CE08 /* Sequencer.swift */; };
+		3A2F62681E77263E008653C7 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8BFB051E6A04A700BFE336 /* CardCollectionViewCell.swift */; };
+		3A2F62691E77263E008653C7 /* AddStepFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F35C1E6880AB005A9D48 /* AddStepFooterView.swift */; };
+		3A2F626B1E77263E008653C7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51E32AE1E6A0132002DC319 /* MapKit.framework */; };
+		3A2F626C1E77263E008653C7 /* CardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30E1E65E280003974CB /* CardKit.framework */; };
+		3A2F626D1E77263E008653C7 /* CardKitRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30F1E65E280003974CB /* CardKitRuntime.framework */; };
+		3A2F626E1E77263E008653C7 /* DroneCardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3101E65E280003974CB /* DroneCardKit.framework */; };
+		3A2F626F1E77263E008653C7 /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3111E65E280003974CB /* Freddy.framework */; };
+		3A2F62711E77263E008653C7 /* AddStepFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A89F35A1E687DBC005A9D48 /* AddStepFooterView.xib */; };
+		3A2F62721E77263E008653C7 /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397761E667A5B00DA1800 /* Cards.storyboard */; };
+		3A2F62731E77263E008653C7 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51E329F1E687F2B002DC319 /* CardDetail.storyboard */; };
+		3A2F62741E77263E008653C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */; };
+		3A2F62751E77263E008653C7 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB397791E667A5B00DA1800 /* Library.storyboard */; };
+		3A2F62761E77263E008653C7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3977E1E667A5B00DA1800 /* Localizable.strings */; };
+		3A2F62771E77263E008653C7 /* Logs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3977B1E667A5B00DA1800 /* Logs.storyboard */; };
+		3A2F62781E77263E008653C7 /* CanvasStepHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A89F3561E6769FC005A9D48 /* CanvasStepHeaderView.xib */; };
+		3A2F62791E77263E008653C7 /* Canvas.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB3976F1E667A5B00DA1800 /* Canvas.storyboard */; };
+		3A2F627A1E77263E008653C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE7F67D1E64924C00D67889 /* Assets.xcassets */; };
 		3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */; };
 		3A89F3531E6769D2005A9D48 /* AvailableHardwareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3501E6769D2005A9D48 /* AvailableHardwareCell.swift */; };
 		3A89F3541E6769D2005A9D48 /* DroneStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3511E6769D2005A9D48 /* DroneStatusCell.swift */; };
@@ -72,6 +111,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A2F62801E77263E008653C7 /* DroneProtoZeroFastlane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneProtoZeroFastlane.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A2F62811E77263E008653C7 /* DroneProtoZero copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DroneProtoZero copy-Info.plist"; path = "/Users/boland/Projects/DroneCards/drone-proto-zero/DroneProtoZero copy-Info.plist"; sourceTree = "<absolute>"; };
 		3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneCardDescriptors.swift; sourceTree = "<group>"; };
 		3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisualRecognitionV3.framework; path = Carthage/Build/iOS/VisualRecognitionV3.framework; sourceTree = "<group>"; };
 		3A89F34D1E6763EE005A9D48 /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestKit.framework; path = Carthage/Build/iOS/RestKit.framework; sourceTree = "<group>"; };
@@ -128,6 +169,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3A2F626A1E77263E008653C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A2F626B1E77263E008653C7 /* MapKit.framework in Frameworks */,
+				3A2F626C1E77263E008653C7 /* CardKit.framework in Frameworks */,
+				3A2F626D1E77263E008653C7 /* CardKitRuntime.framework in Frameworks */,
+				3A2F626E1E77263E008653C7 /* DroneCardKit.framework in Frameworks */,
+				3A2F626F1E77263E008653C7 /* Freddy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3AE7F6701E64924C00D67889 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -254,6 +307,7 @@
 				3AE7F6951E64924C00D67889 /* DroneProtoZeroUITests */,
 				3AE7F6741E64924C00D67889 /* Products */,
 				D530A2FF1E65D969003974CB /* Frameworks */,
+				3A2F62811E77263E008653C7 /* DroneProtoZero copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -263,6 +317,7 @@
 				3AE7F6731E64924C00D67889 /* DroneProtoZero.app */,
 				3AE7F6871E64924C00D67889 /* DroneProtoZeroTests.xctest */,
 				3AE7F6921E64924C00D67889 /* DroneProtoZeroUITests.xctest */,
+				3A2F62801E77263E008653C7 /* DroneProtoZeroFastlane.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,6 +406,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3A2F62501E77263E008653C7 /* DroneProtoZeroFastlane */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A2F627D1E77263E008653C7 /* Build configuration list for PBXNativeTarget "DroneProtoZeroFastlane" */;
+			buildPhases = (
+				3A2F62511E77263E008653C7 /* Sources */,
+				3A2F626A1E77263E008653C7 /* Frameworks */,
+				3A2F62701E77263E008653C7 /* Resources */,
+				3A2F627C1E77263E008653C7 /* Carthage Run Script */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DroneProtoZeroFastlane;
+			productName = DroneProtoZero;
+			productReference = 3A2F62801E77263E008653C7 /* DroneProtoZeroFastlane.app */;
+			productType = "com.apple.product-type.application";
+		};
 		3AE7F6721E64924C00D67889 /* DroneProtoZero */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3AE7F69B1E64924C00D67889 /* Build configuration list for PBXNativeTarget "DroneProtoZero" */;
@@ -416,6 +489,9 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "IBM Research";
 				TargetAttributes = {
+					3A2F62501E77263E008653C7 = {
+						DevelopmentTeam = 76CMF53Q35;
+					};
 					3AE7F6721E64924C00D67889 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 76CMF53Q35;
@@ -451,11 +527,29 @@
 				3AE7F6721E64924C00D67889 /* DroneProtoZero */,
 				3AE7F6861E64924C00D67889 /* DroneProtoZeroTests */,
 				3AE7F6911E64924C00D67889 /* DroneProtoZeroUITests */,
+				3A2F62501E77263E008653C7 /* DroneProtoZeroFastlane */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3A2F62701E77263E008653C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A2F62711E77263E008653C7 /* AddStepFooterView.xib in Resources */,
+				3A2F62721E77263E008653C7 /* Cards.storyboard in Resources */,
+				3A2F62731E77263E008653C7 /* CardDetail.storyboard in Resources */,
+				3A2F62741E77263E008653C7 /* LaunchScreen.storyboard in Resources */,
+				3A2F62751E77263E008653C7 /* Library.storyboard in Resources */,
+				3A2F62761E77263E008653C7 /* Localizable.strings in Resources */,
+				3A2F62771E77263E008653C7 /* Logs.storyboard in Resources */,
+				3A2F62781E77263E008653C7 /* CanvasStepHeaderView.xib in Resources */,
+				3A2F62791E77263E008653C7 /* Canvas.storyboard in Resources */,
+				3A2F627A1E77263E008653C7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3AE7F6711E64924C00D67889 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -490,6 +584,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3A2F627C1E77263E008653C7 /* Carthage Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/CardKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CardKitRuntime.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DroneCardKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
+			);
+			name = "Carthage Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		3AB3971F1E6516C500DA1800 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -525,6 +637,37 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3A2F62511E77263E008653C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A2F62521E77263E008653C7 /* AvailableHardwareCell.swift in Sources */,
+				3A2F62531E77263E008653C7 /* CanvasStepHeaderView.swift in Sources */,
+				3A2F62541E77263E008653C7 /* Reusable.swift in Sources */,
+				3A2F62551E77263E008653C7 /* CanvasViewModel.swift in Sources */,
+				3A2F62561E77263E008653C7 /* CardDetailHeaderView.swift in Sources */,
+				3A2F62571E77263E008653C7 /* CanvasViewController.swift in Sources */,
+				3A2F62581E77263E008653C7 /* HandTableViewCell.swift in Sources */,
+				3A2F62591E77263E008653C7 /* AppDelegate.swift in Sources */,
+				3A2F625A1E77263E008653C7 /* Location2DInput.swift in Sources */,
+				3A2F625B1E77263E008653C7 /* CardDetailTableViewCell.swift in Sources */,
+				3A2F625C1E77263E008653C7 /* CardDetailTableViewController.swift in Sources */,
+				3A2F625D1E77263E008653C7 /* UIColorExtension.swift in Sources */,
+				3A2F625E1E77263E008653C7 /* CardsTableViewController.swift in Sources */,
+				3A2F625F1E77263E008653C7 /* LogsViewController.swift in Sources */,
+				3A2F62601E77263E008653C7 /* LibraryViewController.swift in Sources */,
+				3A2F62611E77263E008653C7 /* DroneStatusCell.swift in Sources */,
+				3A2F62621E77263E008653C7 /* DroneCardDescriptors.swift in Sources */,
+				3A2F62631E77263E008653C7 /* CardTableViewCell.swift in Sources */,
+				3A2F62641E77263E008653C7 /* CardInputField.swift in Sources */,
+				3A2F62651E77263E008653C7 /* UITableViewExtension.swift in Sources */,
+				3A2F62661E77263E008653C7 /* SplitViewController.swift in Sources */,
+				3A2F62671E77263E008653C7 /* Sequencer.swift in Sources */,
+				3A2F62681E77263E008653C7 /* CardCollectionViewCell.swift in Sources */,
+				3A2F62691E77263E008653C7 /* AddStepFooterView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3AE7F66F1E64924C00D67889 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -599,6 +742,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3A2F627E1E77263E008653C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 76CMF53Q35;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "DroneProtoZero copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3A2F627F1E77263E008653C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 76CMF53Q35;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "DroneProtoZero copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		3AE7F6991E64924C00D67889 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -707,6 +886,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -725,6 +905,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -797,6 +978,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3A2F627D1E77263E008653C7 /* Build configuration list for PBXNativeTarget "DroneProtoZeroFastlane" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A2F627E1E77263E008653C7 /* Debug */,
+				3A2F627F1E77263E008653C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3AE7F66E1E64924C00D67889 /* Build configuration list for PBXProject "DroneProtoZero" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
