@@ -9,10 +9,10 @@
 import UIKit
 
 class DroneStatusCell: UITableViewCell, Reusable {
-    @IBOutlet weak var connectToDroneButton: UIButton!
-    @IBOutlet weak var validateButton: UIButton!
-    @IBOutlet weak var executeButton: UIButton!
-    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var connectToDroneButton: UIButton?
+    @IBOutlet weak var validateButton: UIButton?
+    @IBOutlet weak var executeButton: UIButton?
+    @IBOutlet weak var statusLabel: UILabel?
     
     var statusTitle: String = "Unknown"
     var statusDetails: String?
@@ -23,8 +23,8 @@ class DroneStatusCell: UITableViewCell, Reusable {
         // Initialization code
         NotificationCenter.default.addObserver(self, selector: #selector(DroneStatusCell.connectionStatusChanged), name: DJIHardwareManager.NotificationName.statusUpdated, object: nil)
         
-        statusLabel.isUserInteractionEnabled = true
-        statusLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(handleLabelTap)))
+        statusLabel?.isUserInteractionEnabled = true
+        statusLabel?.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(handleLabelTap)))
         
         updateStatus(status: DJIHardwareManager.sharedInstance.status)
     }
@@ -43,7 +43,7 @@ class DroneStatusCell: UITableViewCell, Reusable {
         NotificationCenter.default.post(name: LibraryViewController.NotificationName.displayLogsView, object: nil, userInfo: nil)
         
         switch sender {
-        case connectToDroneButton:
+        case let val where val == connectToDroneButton:
             do {
                 try DJIHardwareManager.sharedInstance.connect()
             } catch {
@@ -57,9 +57,9 @@ class DroneStatusCell: UITableViewCell, Reusable {
                 }
                 print(error)
             }
-        case validateButton:
+        case let val where val == validateButton:
             let _ = Sequencer.shared.validate()
-        case executeButton:
+        case let val where val == executeButton:
             do {
                 try Sequencer.shared.execute()
             } catch {
@@ -102,11 +102,11 @@ class DroneStatusCell: UITableViewCell, Reusable {
     func updateStatus(status: ConnectionStatus) {
         switch status {
         case .connectionSuccessful(_):
-            executeButton.isEnabled = true
-            connectToDroneButton.isEnabled = false
+            executeButton?.isEnabled = true
+            connectToDroneButton?.isEnabled = false
         default:
-            executeButton.isEnabled = false
-            connectToDroneButton.isEnabled = true
+            executeButton?.isEnabled = false
+            connectToDroneButton?.isEnabled = true
         }
         
         updateStatusLabel(status)
@@ -136,9 +136,9 @@ class DroneStatusCell: UITableViewCell, Reusable {
             let attributedString = NSMutableAttributedString(string: newStatusLabelText, attributes: [:])
             attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.cornflowerBlue, range: NSRange(location:8, length:newStatusLabelText.characters.count-8))
             
-            statusLabel.attributedText = attributedString
+            statusLabel?.attributedText = attributedString
         } else {
-            statusLabel.text = newStatusLabelText
+            statusLabel?.text = newStatusLabelText
         }
         
     }
