@@ -15,11 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.isIdleTimerDisabled = true
-        setUpSplitView()
-        window?.makeKeyAndVisible()
         
         let _ = LogsManager.shared
         DJIHardwareManager.sharedInstance.connectionConfig = .debug("192.168.1.2")
+        
+        setUpSplitView()
+        window?.makeKeyAndVisible()
         
         return true
     }

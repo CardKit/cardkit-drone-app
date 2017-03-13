@@ -44,7 +44,8 @@ class LibraryViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: NotificationName.displayLogsView, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NotificationName.displayCardsView, object: nil)
     }
 
     override func didReceiveMemoryWarning() {

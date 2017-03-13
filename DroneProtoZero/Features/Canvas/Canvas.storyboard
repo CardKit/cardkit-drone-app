@@ -27,14 +27,14 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DroneStatusCell" rowHeight="55" id="Mb5-rm-2ff" customClass="DroneStatusCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333333333333336" width="696" height="55"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="696" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mb5-rm-2ff" id="zEc-yZ-TkG">
                                             <rect key="frame" x="0.0" y="0.0" width="696" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-Ha-7Jl">
-                                                    <rect key="frame" x="20" y="17" width="54" height="21"/>
+                                                    <rect key="frame" x="20" y="0.0" width="54" height="55"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.58039215686274503" green="0.58039215686274503" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -69,6 +69,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="oNz-it-2UG" secondAttribute="trailing" constant="12" id="JLd-Fl-eeX"/>
                                                 <constraint firstItem="oNz-it-2UG" firstAttribute="centerY" secondItem="zEc-yZ-TkG" secondAttribute="centerY" id="RZj-eR-qgJ"/>
                                                 <constraint firstItem="oNz-it-2UG" firstAttribute="leading" secondItem="5nr-aB-f5L" secondAttribute="trailing" constant="25" id="Ucx-sy-E9g"/>
+                                                <constraint firstItem="bO8-Ha-7Jl" firstAttribute="height" secondItem="zEc-yZ-TkG" secondAttribute="height" id="Xlp-0l-pv3"/>
                                                 <constraint firstItem="ecX-m3-hcu" firstAttribute="centerY" secondItem="zEc-yZ-TkG" secondAttribute="centerY" id="c9X-gC-kMb"/>
                                                 <constraint firstItem="bO8-Ha-7Jl" firstAttribute="leading" secondItem="zEc-yZ-TkG" secondAttribute="leadingMargin" constant="12" id="nuG-SG-gOO"/>
                                                 <constraint firstItem="5nr-aB-f5L" firstAttribute="centerY" secondItem="zEc-yZ-TkG" secondAttribute="centerY" id="oS7-1r-B1l"/>
@@ -83,7 +84,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableHardwareCell" rowHeight="70" id="ALr-BF-GuV" customClass="AvailableHardwareCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="110.33333333333334" width="696" height="70"/>
+                                        <rect key="frame" x="0.0" y="110.5" width="696" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ALr-BF-GuV" id="Ood-Nb-HjM">
                                             <rect key="frame" x="0.0" y="0.0" width="696" height="70"/>
@@ -100,7 +101,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HandTableViewCell" rowHeight="228" id="Mpw-8K-Qsw" customClass="HandTableViewCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="180.33333333333334" width="696" height="228"/>
+                                        <rect key="frame" x="0.0" y="180.5" width="696" height="228"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mpw-8K-Qsw" id="GRx-wS-JCh">
                                             <rect key="frame" x="0.0" y="0.0" width="696" height="228"/>
@@ -127,7 +128,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCollectionViewCell" id="Tao-bH-a1G" customClass="CardCollectionViewCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="6" width="180" height="200"/>
+                                                            <rect key="frame" x="0.0" y="5.666666666666667" width="180" height="200"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="180" height="200"/>
@@ -198,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2re-1V-xZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011" y="-224"/>
+            <point key="canvasLocation" x="1010.8695652173914" y="-224.63768115942031"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="u98-Qg-Xq5">
