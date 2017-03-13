@@ -17,47 +17,7 @@ public enum SequencerError: Error {
     case failedToDetectHardwareOnDrone(String)
 }
 
-// this should be removed once this function gets into CardKit
-extension Deck {
-    /// Add the Token card to the Deck.
-    public func add(_ cards: [TokenCard]) {
-        self.tokenCards.append(contentsOf: cards)
-    }
-}
-
 class Sequencer {
-    // this should be removed once this property gets into DroneCardKit
-    public struct TokenSlotNames {
-        public static let drone = "Drone"
-        public static let camera = "Camera"
-        public static let gimbal = "Gimbal"
-        public static let telemetry = "Telemetry"
-    }
-    
-    // this should be removed once this property gets into DroneCardKit
-    public static var executableActionTypes: [ActionCardDescriptor : ExecutableAction.Type] = [
-        DroneCardKit.Action.Movement.Location.Circle: Circle.self,
-        DroneCardKit.Action.Movement.Location.CircleRepeatedly: CircleRepeatedly.self,
-        DroneCardKit.Action.Movement.Location.FlyTo: FlyTo.self,
-        DroneCardKit.Action.Movement.Location.ReturnHome: ReturnHome.self,
-        DroneCardKit.Action.Movement.Sequence.FlyPath: FlyPath.self,
-        DroneCardKit.Action.Movement.Sequence.Pace: Pace.self,
-        DroneCardKit.Action.Movement.Simple.FlyForward: FlyForward.self,
-        DroneCardKit.Action.Movement.Simple.Hover: Hover.self,
-        DroneCardKit.Action.Movement.Simple.Land: Land.self,
-        DroneCardKit.Action.Tech.Camera.RecordVideo: RecordVideo.self,
-        DroneCardKit.Action.Tech.Camera.TakePhoto: TakePhoto.self,
-        DroneCardKit.Action.Tech.Camera.TakePhotoBurst: TakePhotoBurst.self,
-        DroneCardKit.Action.Tech.Camera.TakePhotos: TakePhotos.self,
-        DroneCardKit.Action.Tech.Gimbal.PanBetweenLocations: PanBetweenLocations.self,
-        DroneCardKit.Action.Tech.Gimbal.PointAtFront: PointAtFront.self,
-        DroneCardKit.Action.Tech.Gimbal.PointAtGround: PointAtGround.self,
-        DroneCardKit.Action.Tech.Gimbal.PointAtLocation: PointAtLocation.self,
-        DroneCardKit.Action.Tech.Gimbal.PointInDirection: PointInDirection.self,
-        DroneCardKit.Action.Movement.Area.CoverArea: CoverArea.self,
-        DroneCardKit.Action.Movement.Orientation.SpinAround: SpinAround.self
-    ]
-    
     static let shared: Sequencer = Sequencer()
     
     let droneTokenCard = DroneCardKit.Token.Drone.makeCard()
@@ -133,14 +93,14 @@ class Sequencer {
         
         for tokenSlot in card.tokenSlots {
             switch tokenSlot.name {
-            case Sequencer.TokenSlotNames.drone:
-                tokenBindings.append((Sequencer.TokenSlotNames.drone, droneTokenCard))
-            case Sequencer.TokenSlotNames.gimbal:
-                tokenBindings.append((Sequencer.TokenSlotNames.gimbal, gimbalTokenCard))
-            case Sequencer.TokenSlotNames.camera:
-                tokenBindings.append((Sequencer.TokenSlotNames.camera, cameraTokenCard))
-            case Sequencer.TokenSlotNames.telemetry:
-                tokenBindings.append((Sequencer.TokenSlotNames.telemetry, droneTokenCard))
+            case DroneCardKit.TokenSlotNames.drone:
+                tokenBindings.append((DroneCardKit.TokenSlotNames.drone, droneTokenCard))
+            case DroneCardKit.TokenSlotNames.gimbal:
+                tokenBindings.append((DroneCardKit.TokenSlotNames.gimbal, gimbalTokenCard))
+            case DroneCardKit.TokenSlotNames.camera:
+                tokenBindings.append((DroneCardKit.TokenSlotNames.camera, cameraTokenCard))
+            case DroneCardKit.TokenSlotNames.telemetry:
+                tokenBindings.append((DroneCardKit.TokenSlotNames.telemetry, droneTokenCard))
                 break
             default:
                 break
@@ -196,7 +156,7 @@ class Sequencer {
         
         // create executable engine and all all executable actions
         let engine = ExecutionEngine(with: deck)
-        engine.setExecutableActionTypes(Sequencer.executableActionTypes)
+        engine.setExecutableActionTypes(DroneCardKit.executableActionTypes)
         
         // create executable tokens and add to execution engine
         let djiHardwareManager: DJIHardwareManager = DJIHardwareManager.sharedInstance         
