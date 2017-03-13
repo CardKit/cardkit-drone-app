@@ -29,6 +29,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3AE7F6861E64924C00D67889"
+               BuildableName = "DroneProtoZeroTests.xctest"
+               BlueprintName = "DroneProtoZeroTests"
+               ReferencedContainer = "container:DroneProtoZero.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
