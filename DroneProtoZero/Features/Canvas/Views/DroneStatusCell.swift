@@ -47,6 +47,14 @@ class DroneStatusCell: UITableViewCell, Reusable {
             do {
                 try DJIHardwareManager.sharedInstance.connect()
             } catch {
+                switch error {
+                case DJIConnectionError.apiKeyNotSet(let details):
+                    displayAlert(title: "Error", details: details)
+                case DJIConnectionError.debugIPNotSet(let details):
+                    displayAlert(title: "Error", details: details)
+                default:
+                    displayAlert(title: "Error", details: error.localizedDescription)
+                }
                 print(error)
             }
         case validateButton:
