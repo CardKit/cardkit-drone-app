@@ -29,13 +29,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        
-        
-        //TEMP
-//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
-//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
-//        displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
-        
     }
     
     func setupTableView() {
@@ -76,7 +69,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         default:
             cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HandTableViewCell
             if let handCell = cell as? HandTableViewCell {
-                handCell.setupHand(sectionID: indexPath.section)
+                handCell.setupHand(sectionID: indexPath.section, delegate: self)
             }
             break
         }
@@ -89,25 +82,25 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return false
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected \(indexPath)")
-        if indexPath.section > 1 {
-            switch indexPath.section {
-            case 2:
-                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
-            case 3:
-                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
-            case 4:
-                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
-            default:
-                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
-            }
-        }
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print("selected \(indexPath)")
+//        if indexPath.section > 1 {
+//            switch indexPath.section {
+//            case 2:
+//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
+//            case 3:
+//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
+//            case 4:
+//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
+//            default:
+//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
+//            }
+//        }
+//    }
     
     // MARK: - Card details
     
-    func displayCardDetail(cardDescriptor: ActionCardDescriptor) {
+    func displayCardDetail(card: ActionCard) {
         guard let cardDetailNavController = UIStoryboard(name: "CardDetail", bundle: nil).instantiateInitialViewController() as? UINavigationController else {
             print("no card detail")
             return
@@ -117,7 +110,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
             print("Canvas vc sets cardDescriptor")
-            cardDetailTableViewController.cardDescriptor = cardDescriptor
+            cardDetailTableViewController.card = card
         }
         
         self.parent?.present(cardDetailNavController, animated: true) {
@@ -253,4 +246,13 @@ extension CanvasViewController: Hoverable {
         return CGPoint(x: position.x, y: position.y + offsetY)
     }
     
+}
+
+extension CanvasViewController: CardViewDelegate {
+    
+    func cardViewWasSelected(handID: Int, cardID: Int) {
+        guard let card = viewModel.getCard(forHand: handID, cardID: cardID),
+            let actionCard = card as? ActionCard else { return }
+             displayCardDetail(card: actionCard)
+    }
 }

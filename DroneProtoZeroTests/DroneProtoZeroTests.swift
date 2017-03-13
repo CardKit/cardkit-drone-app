@@ -79,7 +79,19 @@ class DroneProtoZeroTests: XCTestCase {
         try! viewModel.addCard(cardDescriptor: circleCard!, toHand: handID)
         let hand = viewModel.getHand(by: handID)
         XCTAssertEqual(circleCard?.cardType, hand?.cards.first?.cardType)
-        
+    }
+    
+    func testGetCardFromStep() {
+        let viewModel = CanvasViewModel()
+        let _ = viewModel.addHand()
+        let handID = 3
+        let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0)
+        let allCards = DroneCardDescriptors.sharedInstance.all
+        let loctioncards = allCards[key!]
+        let circleCard = loctioncards?[0]
+        try! viewModel.addCard(cardDescriptor: circleCard!, toHand: handID)
+        let hand = viewModel.getHand(by: handID)
+
     }
     
 }
