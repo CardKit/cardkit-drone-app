@@ -21,13 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="315" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F0m-IA-Imr">
-                                <rect key="frame" x="0.0" y="0.0" width="315" height="667"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F0m-IA-Imr">
+                                <rect key="frame" x="0.0" y="0.0" width="315" height="1366"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="667" id="tGo-Mx-Efz"/>
-                                </constraints>
-                                <mutableString key="text">Test tes testeste stestetstewydsafDSVmndsvh,dsvmn,dsvmn,adsvmn,dsbmn,cqs  dbhdhddhdhdhdhdhdhdhdhdhdghdghdgdgdgdgdgdghdfjdhckvbhcxmv,bdskv .c.fJK DKVFGDSGDSGCSDMFGCC,MDNC,MNBVSDV,MNBDS,MVNB,MDSNVB,MNSDBC,MNBSDCM,NBDSBV,SDM FNB,MDNSFV,MNBDSV,MNBDS,FMB,MDSNFB,MNBDSF,MNBDSF,MNBSD,FMNBDS,FMNBDSM,FNBDS,MNFBSD,MFBDS,MNFBDS,MNFBER,MG.,MNG,MDFNG,M.NFDG,NDFG.,MNG,.DFNG,.MFG,.MGFG.,MFDNG,.MFNGFD,MGNDF,.GMNDF,GMDF,MGNDF,MGNDFG,MFDG,MFDGM,.DFG,MDFGDF,.MGDF.,NDF.,MNDF,.MBDF,MBD,.MNDF,.B,MDBFD,MB,.DMFB,.DFMBNF.D,MBNDF.,MBNFD.,MBNDF,B.MNDFB,.MFDNB,.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -35,16 +31,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="F0m-IA-Imr" firstAttribute="leading" secondItem="haF-Xj-wE0" secondAttribute="leading" id="9Us-gR-3qd"/>
+                            <constraint firstItem="ELP-AL-ddj" firstAttribute="top" secondItem="F0m-IA-Imr" secondAttribute="bottom" id="M8u-W6-pZd"/>
                             <constraint firstItem="F0m-IA-Imr" firstAttribute="top" secondItem="haF-Xj-wE0" secondAttribute="top" id="oLg-fr-u1h"/>
                             <constraint firstAttribute="trailing" secondItem="F0m-IA-Imr" secondAttribute="trailing" id="vCb-7e-yL8"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="315" height="1366"/>
+                    <connections>
+                        <outlet property="logView" destination="F0m-IA-Imr" id="w6K-LS-HVa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U9d-nQ-a7t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="96.799999999999997" y="-230.73463268365819"/>
+            <point key="canvasLocation" x="96.38671875" y="-231.0395314787701"/>
         </scene>
     </scenes>
 </document>

@@ -10,13 +10,18 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.isIdleTimerDisabled = true
+        
+        let _ = LogsManager.shared
+        DJIHardwareManager.sharedInstance.connectionConfig = .debug("192.168.1.2")
+        
         setUpSplitView()
         window?.makeKeyAndVisible()
+        
         return true
     }
     
@@ -66,3 +71,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
