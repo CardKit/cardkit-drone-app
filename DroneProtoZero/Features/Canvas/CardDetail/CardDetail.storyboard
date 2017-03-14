@@ -572,13 +572,6 @@
                                                         <rect key="frame" x="0.0" y="213.5" width="664" height="90"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addStepButton" translatesAutoresizingMaskIntoConstraints="NO" id="Goq-Rc-6hF">
-                                                                <rect key="frame" x="302" y="0.0" width="59" height="59"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="59" id="Gcx-pi-YA7"/>
-                                                                    <constraint firstAttribute="width" constant="59" id="Q0s-qy-ye8"/>
-                                                                </constraints>
-                                                            </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Point" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZn-0P-pAx">
                                                                 <rect key="frame" x="292" y="64" width="79" height="21"/>
                                                                 <constraints>
@@ -589,13 +582,25 @@
                                                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KjZ-64-fAt">
+                                                                <rect key="frame" x="302" y="0.0" width="59" height="59"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="59" id="7tD-56-HK6"/>
+                                                                    <constraint firstAttribute="width" constant="59" id="9JJ-Jb-Q3J"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Button" image="addStepButton"/>
+                                                                <connections>
+                                                                    <action selector="addPoint" destination="qrK-gZ-FSI" eventType="touchUpInside" id="9Mo-O7-Xt3"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstItem="Goq-Rc-6hF" firstAttribute="centerX" secondItem="jXv-bj-Tgm" secondAttribute="centerX" id="R9i-at-yAR"/>
-                                                            <constraint firstItem="Goq-Rc-6hF" firstAttribute="top" secondItem="jXv-bj-Tgm" secondAttribute="top" id="V37-FB-h9Q"/>
+                                                            <constraint firstItem="KjZ-64-fAt" firstAttribute="top" secondItem="jXv-bj-Tgm" secondAttribute="top" id="WhF-xg-gwf"/>
                                                             <constraint firstAttribute="bottom" secondItem="uZn-0P-pAx" secondAttribute="bottom" constant="5" id="gtT-dR-Z7W"/>
                                                             <constraint firstItem="uZn-0P-pAx" firstAttribute="centerX" secondItem="jXv-bj-Tgm" secondAttribute="centerX" id="hCQ-l8-7fh"/>
+                                                            <constraint firstItem="uZn-0P-pAx" firstAttribute="top" secondItem="KjZ-64-fAt" secondAttribute="bottom" constant="5" id="mxB-yO-Req"/>
+                                                            <constraint firstItem="KjZ-64-fAt" firstAttribute="centerX" secondItem="jXv-bj-Tgm" secondAttribute="centerX" id="zEV-Ho-O0j"/>
                                                         </constraints>
                                                     </view>
                                                     <prototypes>

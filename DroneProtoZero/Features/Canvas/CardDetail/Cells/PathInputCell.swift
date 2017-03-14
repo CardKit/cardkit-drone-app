@@ -16,7 +16,7 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var footerView: UIView?
     
-    var points: [CGPoint] = []
+    var points: [CGPoint] = [CGPoint.zero, CGPoint.zero]
     
     private enum CellIdentifiers: String {
         case headerCell = "PathInputHeaderCell"
@@ -43,7 +43,7 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
     //MARK: - UITableView
     
     func numberOfSections(in tableView: UITableView) -> Int {        
-        return 2
+        return points.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,7 +52,7 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.pointCell.rawValue, for: indexPath)
-        
+    
         return cell
     }
     
@@ -62,7 +62,9 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
         }
         
         header.label?.text = "POINT \(section + 1)"
-        print("header label \(header.label?.text)")
+        header.section = section
+        header.removeBtn?.addTarget(self, action: #selector(removePoint), for: .touchUpInside)
+        
         return header
     }
     
@@ -75,11 +77,37 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
         return CGFloat.leastNormalMagnitude
     }
     
+    //MARK: - IBActions
     
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        return UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 90.0))
-//    }
+    @IBAction func tapAddPoint() {
+        self.addPoint()
+        
+    }
     
+    //MARK: - Instance methods
+    
+    func addPoint() {
+        guard let tableView = self.tableView else {
+            return
+        }
+        tableView.beginUpdates()
+        let indexSet = IndexSet(integer: tableView.numberOfSections)
+        points.append(CGPoint.zero)
+        tableView.insertSections(indexSet, with: .none)
+        tableView.endUpdates()
+    }
+    
+    func removePoint(sender: UIButton) {
+        guard let header = sender.superview?.superview as? PathInputHeader,
+            let section = header.section else {
+            return
+        }
+        tableView?.beginUpdates()
+        let indexSet = IndexSet(integer: section)
+        points.remove(at: section)
+        tableView?.deleteSections(indexSet, with: .top)
+        tableView?.endUpdates()
+    }
 }
 
 
@@ -96,6 +124,7 @@ class PathInputHeader: UITableViewCell, Reusable {
     @IBOutlet weak var label: UILabel?
     @IBOutlet weak var removeBtn: UIButton?
     
+    var section: Int?
 }
 
 class PathInputPointCell: UITableViewCell, Reusable {
@@ -104,7 +133,6 @@ class PathInputPointCell: UITableViewCell, Reusable {
     @IBOutlet weak var longitudeLabel: UILabel?
     @IBOutlet weak var latitudeInput: UITextField?
     @IBOutlet weak var longitudeInput: UITextField?
-    
 }
 
 
