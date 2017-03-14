@@ -84,10 +84,13 @@ platform :ios do
   end
 
   error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+      slack(
+         # message with short human friendly message
+         message: exception.to_s, 
+         success: false, 
+         # Output containing extended log output
+         payload: { "Output" => exception.error_info.to_s } 
+      )
   end
 end
 
