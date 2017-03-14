@@ -55,6 +55,8 @@
 		3A2F62881E772F14008653C7 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682134E71E70B0FD00B3BEC3 /* AppConfig.swift */; };
 		3A2F62891E772F14008653C7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851A9841E72313F00079D0B /* UIViewExtension.swift */; };
 		3A2F628A1E772F14008653C7 /* UITextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851F90D1E73574B007422AF /* UITextViewExtension.swift */; };
+		3A2F628B1E778752008653C7 /* DroneTokensDJI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682134E31E70A17400B3BEC3 /* DroneTokensDJI.framework */; };
+		3A2F628C1E778784008653C7 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682134E51E70A29B00B3BEC3 /* DJISDK.framework */; };
 		3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */; };
 		3A89F3531E6769D2005A9D48 /* AvailableHardwareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3501E6769D2005A9D48 /* AvailableHardwareCell.swift */; };
 		3A89F3541E6769D2005A9D48 /* DroneStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3511E6769D2005A9D48 /* DroneStatusCell.swift */; };
@@ -229,8 +231,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3ACEF1EE1E70A2280047CE08 /* DroneCardKit.framework in Frameworks */,
+				3A2F628C1E778784008653C7 /* DJISDK.framework in Frameworks */,
 				3ACEF1EF1E70A22F0047CE08 /* CardKitRuntime.framework in Frameworks */,
 				3ACEF1F11E70A2340047CE08 /* Freddy.framework in Frameworks */,
+				3A2F628B1E778752008653C7 /* DroneTokensDJI.framework in Frameworks */,
 				3ACEF1F01E70A2310047CE08 /* CardKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -980,6 +984,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/drone-tokens-dji/Frameworks",
 				);
 				INFOPLIST_FILE = DroneProtoZeroTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -999,6 +1004,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/drone-tokens-dji/Frameworks",
 				);
 				INFOPLIST_FILE = DroneProtoZeroTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
