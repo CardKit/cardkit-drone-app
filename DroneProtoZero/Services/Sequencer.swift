@@ -87,8 +87,7 @@ class Sequencer {
      */
     func addCard(card: ActionCardDescriptor, toHand index: Int) throws {
         guard let hand = getHand(by: index) else { return }
-        var cardInstance = try card <- [] <- [("Drone", droneTokenCard), ("Camera", cameraTokenCard), ("Gimbal", gimbalTokenCard)]
-        
+        var cardInstance = try card <- []
         var tokenBindings: [(String, TokenCard)] = []
         
         for tokenSlot in card.tokenSlots {
@@ -100,7 +99,7 @@ class Sequencer {
             case DroneCardKit.TokenSlotNames.camera:
                 tokenBindings.append((DroneCardKit.TokenSlotNames.camera, cameraTokenCard))
             case DroneCardKit.TokenSlotNames.telemetry:
-                tokenBindings.append((DroneCardKit.TokenSlotNames.telemetry, droneTokenCard))
+                tokenBindings.append((DroneCardKit.TokenSlotNames.telemetry, telemetryTokenCard))
                 break
             default:
                 break
