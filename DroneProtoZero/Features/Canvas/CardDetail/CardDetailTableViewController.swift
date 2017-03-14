@@ -31,10 +31,12 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
                 switch input.descriptor.name {
                 case "Coordinate 2D":
                     detailSections.append(.location2DInput)
-                    break
+                case "Coordinate 3D":
+                    detailSections.append(.location3DInput)
+                case "Path":
+                    detailSections.append(.pathInput)                    
                 case "Altitude", "Speed", "Distance", "Radius", "AngularSpeed", "Aspect Ratio":
                     detailSections.append(.standardInputCell)
-                    break
                 case "Boolean", "RotationDirection":
                     detailSections.append(.binaryChoiceCell)
                 case "Quality":
@@ -57,6 +59,8 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         case endDetailsCell
         case outputsCell
         case location2DInput
+        case location3DInput
+        case pathInput
         case standardInputCell
         case binaryChoiceCell
         case multipleChoiceCell
@@ -70,6 +74,10 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
                 return "DescriptionCell"
             case .location2DInput:
                 return "Location2DInputCell"
+            case .location3DInput:
+                return "Location3DInputCell"
+            case .pathInput:
+                return "PathInputCell"
             case .standardInputCell:
                 return "StandardInputCell"
             case .binaryChoiceCell:
@@ -91,7 +99,7 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
                 return "End Details"
             case .outputsCell:
                 return "Outputs"
-            case .standardInputCell, .location2DInput, .binaryChoiceCell, .multipleChoiceCell:
+            case .standardInputCell, .location2DInput, .location3DInput, .pathInput, .binaryChoiceCell, .multipleChoiceCell:
                 guard let inputType = type else {
                     return "Input"
                 }
@@ -108,7 +116,10 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.contentInset = UIEdgeInsets(top: 40.0, left: 0.0, bottom: 0.0, right: 0.0)
-
+        tableView.contentOffset = CGPoint.zero
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 50.0
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -119,8 +130,7 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        let numSections = detailSections.count
-        print("numSections \(numSections)")
+        let numSections = detailSections.count        
         return numSections
     }
 
@@ -131,8 +141,6 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let identifier: String = detailSections[indexPath.section].reuseIdentifier
-        
-        print("section \(indexPath.section)   reuse id \(identifier)")
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CardDetailTableViewCell else {
             return UITableViewCell()
@@ -221,23 +229,37 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         
         return header
     }
+//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        print("height for row at \(detailSections[indexPath.section])")
+////        if detailSections[indexPath.section] == CellIdentifiers.pathInput {
+////            print("pathInput")
+////            if let pathInputCell = tableView.cellForRow(at: indexPath) as? PathInputCell {
+////                print("PATH INPUT table view \(pathInputCell.tableView)")
+////                return (pathInputCell.tableView?.frame.size.height)!
+////            }
+////        }
+//        return UITableViewAutomaticDimension
+//    }
+
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        switch detailSections[indexPath.section].rawValue {
-        case CellIdentifiers.nameCell.rawValue:
-            return 30.0
-        case CellIdentifiers.descriptionCell.rawValue, CellIdentifiers.endDetailsCell.rawValue, CellIdentifiers.outputsCell.rawValue:
-            return 26.0
-        case CellIdentifiers.location2DInput.rawValue:
-            return 774.0
-        case CellIdentifiers.standardInputCell.rawValue:
-            return 66.0
-        default:
-            return 44.0
-        }
-    }
-    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        
+//        switch detailSections[indexPath.section].rawValue {
+//        case CellIdentifiers.nameCell.rawValue:
+//            return 30.0
+//        case CellIdentifiers.descriptionCell.rawValue, CellIdentifiers.endDetailsCell.rawValue, CellIdentifiers.outputsCell.rawValue:
+//            return 26.0
+//        case CellIdentifiers.location2DInput.rawValue:
+//            return 774.0
+//        case CellIdentifiers.location3DInput.rawValue:
+//            return 834.0
+//        case CellIdentifiers.standardInputCell.rawValue:
+//            return 66.0
+//        default:
+//            return 44.0
+//        }
+//    }
+//    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20.0
     }
@@ -253,13 +275,12 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     // MARK: - UIPopoverPresentationControllerDelegate
     
     func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-        print("popover osurce view \(popoverPresentationController.sourceView?.superview?.superview?.superview)")
         
         guard let multipleChoiceOptions = popoverPresentationController.presentedViewController as? MultipleChoiceOptions,
             let multipleChoiceCell = popoverPresentationController.sourceView?.superview?.superview?.superview as? MultipleChoiceCell else {
             return true
         }
-        print("multiple choice cell popover!!! \(multipleChoiceCell)")
+        
         let selectedPaths = multipleChoiceOptions.tableView.indexPathsForSelectedRows
         for path in selectedPaths! {
             multipleChoiceCell.selection = path.row
@@ -293,7 +314,6 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         }
         
         let inputSlot = cardDescriptor?.inputSlots[inputIndex(for: sender.tag)]
-        print("inputSlot \(inputSlot)")
         //TODO: these need to come from somewhere
         let choices = ["None", "Normal", "Fine", "Excellent"]
         options.optionsTitle = inputSlot?.descriptor.name

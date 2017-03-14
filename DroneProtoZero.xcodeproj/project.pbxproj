@@ -44,7 +44,7 @@
 		D51E32A21E687FB9002DC319 /* CardDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */; };
 		D51E32A81E68BF26002DC319 /* CardDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */; };
 		D51E32AF1E6A0132002DC319 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51E32AE1E6A0132002DC319 /* MapKit.framework */; };
-		D51E32B41E6A031D002DC319 /* Location2DInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32B31E6A031D002DC319 /* Location2DInput.swift */; };
+		D51E32B41E6A031D002DC319 /* LocationInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32B31E6A031D002DC319 /* LocationInputCell.swift */; };
 		D51E32B61E6DB87B002DC319 /* CardDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32B51E6DB87B002DC319 /* CardDetailTableViewCell.swift */; };
 		D51E32B91E6DB8A8002DC319 /* CardInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32B81E6DB8A8002DC319 /* CardInputField.swift */; };
 		D530A3121E65E280003974CB /* CardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30E1E65E280003974CB /* CardKit.framework */; };
@@ -54,6 +54,7 @@
 		D530A3191E670F69003974CB /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530A3181E670F69003974CB /* SplitViewController.swift */; };
 		D576663D1E71F197000241FB /* MultipleChoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576663C1E71F197000241FB /* MultipleChoiceCell.swift */; };
 		D576663F1E72E6ED000241FB /* MultipleChoiceOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576663E1E72E6ED000241FB /* MultipleChoiceOptions.swift */; };
+		D57666411E7716C3000241FB /* PathInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57666401E7716C3000241FB /* PathInputCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +116,7 @@
 		D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailTableViewController.swift; sourceTree = "<group>"; };
 		D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailHeaderView.swift; sourceTree = "<group>"; };
 		D51E32AE1E6A0132002DC319 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		D51E32B31E6A031D002DC319 /* Location2DInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location2DInput.swift; sourceTree = "<group>"; };
+		D51E32B31E6A031D002DC319 /* LocationInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInputCell.swift; sourceTree = "<group>"; };
 		D51E32B51E6DB87B002DC319 /* CardDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailTableViewCell.swift; sourceTree = "<group>"; };
 		D51E32B81E6DB8A8002DC319 /* CardInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardInputField.swift; sourceTree = "<group>"; };
 		D530A3001E65D96A003974CB /* CardKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardKit.framework; path = ../Carthage/Build/iOS/CardKit.framework; sourceTree = "<group>"; };
@@ -129,6 +130,7 @@
 		D530A3181E670F69003974CB /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		D576663C1E71F197000241FB /* MultipleChoiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceCell.swift; sourceTree = "<group>"; };
 		D576663E1E72E6ED000241FB /* MultipleChoiceOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceOptions.swift; sourceTree = "<group>"; };
+		D57666401E7716C3000241FB /* PathInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathInputCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,7 +323,8 @@
 			children = (
 				D51E32B71E6DB88D002DC319 /* Components */,
 				D51E32B51E6DB87B002DC319 /* CardDetailTableViewCell.swift */,
-				D51E32B31E6A031D002DC319 /* Location2DInput.swift */,
+				D51E32B31E6A031D002DC319 /* LocationInputCell.swift */,
+				D57666401E7716C3000241FB /* PathInputCell.swift */,
 				D576663C1E71F197000241FB /* MultipleChoiceCell.swift */,
 				D576663E1E72E6ED000241FB /* MultipleChoiceOptions.swift */,
 			);
@@ -535,6 +538,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D57666411E7716C3000241FB /* PathInputCell.swift in Sources */,
 				3A89F3531E6769D2005A9D48 /* AvailableHardwareCell.swift in Sources */,
 				3A89F3591E67C376005A9D48 /* CanvasStepHeaderView.swift in Sources */,
 				3AB397921E667A5B00DA1800 /* Reusable.swift in Sources */,
@@ -543,7 +547,7 @@
 				3AB397861E667A5B00DA1800 /* CanvasViewController.swift in Sources */,
 				3A89F3551E6769D2005A9D48 /* HandTableViewCell.swift in Sources */,
 				3AE7F6771E64924C00D67889 /* AppDelegate.swift in Sources */,
-				D51E32B41E6A031D002DC319 /* Location2DInput.swift in Sources */,
+				D51E32B41E6A031D002DC319 /* LocationInputCell.swift in Sources */,
 				D51E32B61E6DB87B002DC319 /* CardDetailTableViewCell.swift in Sources */,
 				D51E32A21E687FB9002DC319 /* CardDetailTableViewController.swift in Sources */,
 				3AB397931E667A5B00DA1800 /* UIColorExtension.swift in Sources */,

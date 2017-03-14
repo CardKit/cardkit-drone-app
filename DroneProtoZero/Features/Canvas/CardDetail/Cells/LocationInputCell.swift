@@ -17,13 +17,16 @@ class Location2DInput: CardDetailTableViewCell {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
-        
-        
     }
     
     override func setupCell(cardDescriptor: ActionCardDescriptor) {
         super.setupCell(cardDescriptor: cardDescriptor)
     }
+    
+}
+
+class Location3DInput: Location2DInput {
+    
+    @IBOutlet weak var altitudeTextField: UITextField?
     
 }
