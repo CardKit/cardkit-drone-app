@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import DroneProtoZero
+import CardKit
 
 class DroneProtoZeroTests: XCTestCase {
     
@@ -90,7 +91,9 @@ class DroneProtoZeroTests: XCTestCase {
         let loctioncards = allCards[key!]
         let circleCard = loctioncards?[0]
         try! viewModel.addCard(cardDescriptor: circleCard!, toHand: handID)
-        _ = viewModel.getHand(by: handID)
+        let hand = viewModel.getHand(by: handID)
+        let cardFound = hand?.cards(matching: circleCard!)
+        XCTAssertTrue(cardFound!.first!.cardType == .action)
 
     }
     
