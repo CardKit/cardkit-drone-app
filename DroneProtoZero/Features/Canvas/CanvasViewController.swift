@@ -29,8 +29,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        
-        displayCardDetail(card: DroneCardKit.Action.Tech.Camera.TakePhoto.makeCard())
     }
     
     func setupTableView() {
@@ -96,6 +94,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
             print("Canvas vc sets cardDescriptor")
+            cardDetailTableViewController.delegate = self
             cardDetailTableViewController.card = card
         }
         
@@ -239,6 +238,19 @@ extension CanvasViewController: CardViewDelegate {
     func cardViewWasSelected(handID: Int, cardID: Int) {
         guard let card = viewModel.getCard(forHand: handID, cardID: cardID),
             let actionCard = card as? ActionCard else { return }
+             viewModel.selectedHandID = handID
              displayCardDetail(card: actionCard)
+    }
+}
+
+extension CanvasViewController: CardDetailDelegate {
+    
+    func removeCardWasPressed(card: ActionCard) {
+        guard let handID = viewModel.selectedHandID,
+            let _ = viewModel.getHand(by: handID) else { return }
+        
+        viewModel.removeCard(cardID: card.identifier, fromHand: handID)
+        
+        
     }
 }

@@ -18,6 +18,7 @@ enum CanvasSection: Int {
 struct CanvasViewModel {
 
     let defaultSectionCount: Int = 2
+    var selectedHandID: Int?
     
     var sectionCount: Int {
         return Sequencer.shared.hands.count + defaultSectionCount
