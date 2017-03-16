@@ -30,8 +30,9 @@ class SplitViewController: UISplitViewController {
         }
         
         //drag and drop
-        self.gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPressGesture(gesture:)))
-        self.view.addGestureRecognizer(gestureRecognizer!)
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPressGesture(gesture:)))
+        self.view.addGestureRecognizer(gestureRecognizer)
+        self.gestureRecognizer = gestureRecognizer
     }
 
     override func didReceiveMemoryWarning() {
