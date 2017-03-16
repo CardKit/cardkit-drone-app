@@ -61,6 +61,11 @@ struct CanvasViewModel {
         return IndexSet(arrayOfSections)
     }
     
+    func indexPath(for handIndex: Int) -> IndexPath {
+        let actualIndex =  handIndex + defaultSectionCount
+        return IndexPath(row: 0, section: actualIndex)
+    }
+    
     // MARK: Hand Creating/Removing Methods
     
     func createHand() -> Hand {

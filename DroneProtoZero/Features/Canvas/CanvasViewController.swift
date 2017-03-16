@@ -157,16 +157,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         footerView.addStep.addTarget(self, action: #selector(CanvasViewController.addNewStep(sender:)), for: .touchUpInside)
         return footerView
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 
 extension CanvasViewController: CanvasStepHeaderDelegate {
@@ -250,6 +240,16 @@ extension CanvasViewController: CardDetailDelegate {
             let _ = viewModel.getHand(by: handID) else { return }
         
         viewModel.removeCard(cardID: card.identifier, fromHand: handID)
+        if let cardDetailNC = parent?.presentedViewController {
+            cardDetailNC.dismiss(animated: true, completion: { 
+                print("anything to do")
+                //update the vieew, how do to tha?????
+                if let handCell = self.tableView.cellForRow(at: self.viewModel.indexPath(for: handID)) as? HandTableViewCell {
+                    handCell.removeCard(card.identifier)
+                }
+                
+            })
+        }
         
         
     }

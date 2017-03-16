@@ -76,6 +76,11 @@ class HandTableViewCell: UITableViewCell, Reusable {
         }
     }
     
+    func removeCard(cardIndex: Int) {
+        //TODO: how do I figure out what the index is of the card that was removed?
+        //its coming from the view model so maybe there's a weya in there
+    }
+    
     func showHovering(isHovering: Bool) {
         if isHovering {
             backgroundColor = .green
