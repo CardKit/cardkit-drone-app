@@ -12,7 +12,7 @@ extension UIView {
     var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self
         
-        while let parent = parentResponder  {
+        while let parent = parentResponder {
             parentResponder = parent.next
             
             if parentResponder is UIViewController {

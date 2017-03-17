@@ -18,14 +18,12 @@ class HandTableViewCell: UITableViewCell, Reusable {
     var handID: Int = 0
     @IBOutlet weak var collectionView: UICollectionView!
     var isEmpty: Bool {
-        get {
-            if let cards = cards {
-                if cards.count > 0 {
-                    return false
-                }
+        if let cards = cards {
+            if cards.count > 0 {
+                return false
             }
-            return true
         }
+        return true
     }
     var cards: [Card]?
     let viewModel: CanvasViewModel = CanvasViewModel()
@@ -48,7 +46,6 @@ class HandTableViewCell: UITableViewCell, Reusable {
     }
     
     func setupHand(sectionID: Int, delegate: CardViewDelegate) {
-        //TODO: Check for existance of Cards in the hand and populate the colectionview
         handID = sectionID
         cardDelegate = delegate
         collectionView.delegate = self
