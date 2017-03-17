@@ -57,7 +57,7 @@ class DJIHardwareManager: NSObject, HardwareManager {
     
     var status: ConnectionStatus = .disconnected("Did not start connection to drone") {
         didSet {
-            NotificationCenter.default.post(name: NotificationName.statusUpdated, object: nil, userInfo: [NotificationInfoKey.connectionStatus.rawValue:self.status])
+            NotificationCenter.default.post(name: NotificationName.statusUpdated, object: nil, userInfo: [NotificationInfoKey.connectionStatus.rawValue: self.status])
         }
     }
     
@@ -85,7 +85,7 @@ class DJIHardwareManager: NSObject, HardwareManager {
         case .connectionSuccessful(_):
             return
         default:
-            break;
+            break
         }
         
         guard let apiKey = AppConfig.djiAPIKey else { throw DJIConnectionError.apiKeyNotSet("API Key was not set in Info.plist. Please add the API Key in Info.plist with the name as \"DJI API Key\".") }

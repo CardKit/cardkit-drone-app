@@ -15,7 +15,7 @@ class LogsManager: NSObject {
     var outputPipe: Pipe?
     
     var logs: [String] = []
-    var LOGS_LENGTH: Int = 300
+    var logsLength: Int = 300
     
     override init() {
         super.init()
@@ -31,7 +31,7 @@ class LogsManager: NSObject {
     ///
     /// - Parameter log: the string that should be added to the logs array
     private func addLog(_ log: String) {
-        if(logs.count > LOGS_LENGTH) {
+        if logs.count > logsLength {
             logs.remove(at: 0)
         }
         

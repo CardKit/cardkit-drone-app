@@ -69,50 +69,86 @@ class DroneProtoZeroTests: XCTestCase {
         XCTAssertEqual(currentCount, viewModel.sectionCount)
     }
     
-    func testAddCardToStep() {
+    func testAddCardToStep() throws {
         let viewModel = CanvasViewModel()
         let _ = viewModel.addHand()
         let handID = 3
-        let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0)
-        let allCards = DroneCardDescriptors.sharedInstance.all
-        let loctioncards = allCards[key!]
-        let circleCard = loctioncards?[0]
-        try! viewModel.addCard(cardDescriptor: circleCard!, toHand: handID)
+        
+        guard let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0) else {
+            XCTFail("Could not get key for index")
+            return
+        }
+        
+        let loctioncards = DroneCardDescriptors.sharedInstance.all[key]
+        
+        guard let circleCard = loctioncards?[0] else {
+            XCTFail("Could not get circle card")
+            return
+        }
+        
+        try viewModel.addCard(cardDescriptor: circleCard, toHand: handID)
         let hand = viewModel.getHand(by: handID)
-        XCTAssertEqual(circleCard?.cardType, hand?.cards.first?.cardType)
+        XCTAssertEqual(circleCard.cardType, hand?.cards.first?.cardType)
     }
     
     func testGetCardFromStep() {
         let viewModel = CanvasViewModel()
         let _ = viewModel.addHand()
         let handID = 3
-        let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0)
+        guard let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0) else {
+            XCTFail("no keys")
+            return
+        }
         let allCards = DroneCardDescriptors.sharedInstance.all
-        let loctioncards = allCards[key!]
-        let circleCard = loctioncards?[0]
-        try! viewModel.addCard(cardDescriptor: circleCard!, toHand: handID)
+        let loctioncards = allCards[key]
+        guard let circleCardDescriptor = loctioncards?[0] else {
+            XCTFail("NO CIRCLE CARD")
+            return
+        }
+        do {
+            try viewModel.addCard(cardDescriptor: circleCardDescriptor, toHand: handID)
+        } catch {
+            XCTFail("Could not add a card")
+        }
         let hand = viewModel.getHand(by: handID)
-        let cardFound = hand?.cards(matching: circleCard!)
-        XCTAssertTrue(cardFound!.first!.cardType == .action)
+        guard let cardFoundArray = hand?.cards(matching: circleCardDescriptor), let cardFound = cardFoundArray.first  else {
+            XCTFail("NO CARD FOUND")
+            return
+        }
+        XCTAssertTrue(cardFound.cardType == .action)
     }
     
     func testRemoveCardFromStep() {
         let viewModel = CanvasViewModel()
         let _ = viewModel.addHand()
         let handID = 3
-        let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0)
+        guard let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0) else {
+            XCTFail("no keys")
+            return
+        }
         let allCards = DroneCardDescriptors.sharedInstance.all
-        let loctioncards = allCards[key!]
-        let circleCardDescriptor = loctioncards?[0]
-        try! viewModel.addCard(cardDescriptor: circleCardDescriptor!, toHand: handID)
+        let loctioncards = allCards[key]
+        guard let circleCardDescriptor = loctioncards?[0] else {
+            XCTFail("NO CIRCLE CARD")
+            return
+        }
+        do {
+            try viewModel.addCard(cardDescriptor: circleCardDescriptor, toHand: handID)
+        } catch {
+            XCTFail("Could not add a card")
+        }
         let hand = viewModel.getHand(by: handID)
         let fullCount = hand?.cards.count
-        let circleCardFound = hand?.cards(matching: circleCardDescriptor!)
-        let _ = viewModel.removeCard(cardID: (circleCardFound?.first!.identifier)!, fromHand: handID)
-        let checkHand = viewModel.getHand(by: handID)
-        
-        XCTAssertEqual(fullCount, (checkHand?.cards.count)!+1)
+        guard let cardFoundArray = hand?.cards(matching: circleCardDescriptor), let cardFound = cardFoundArray.first  else {
+            XCTFail("NO CARD FOUND")
+            return
+        }
+        let _ = viewModel.removeCard(cardID: cardFound.identifier, fromHand: handID)
+        guard let checkHand = viewModel.getHand(by: handID) else {
+            XCTFail("Cound not get the hand after removing a card")
+            return
+        }
+        XCTAssertEqual(fullCount, checkHand.cards.count+1)
         
     }
-    
 }

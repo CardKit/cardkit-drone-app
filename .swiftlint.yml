@@ -10,18 +10,6 @@ disabled_rules:
 opt_in_rules:
  - force_unwrapping
 
-included: # paths to include during linting. `--path` is ignored if present.
- - DroneCards
- - DroneCardsTests
- - ../card-kit/CardKit
- - ../card-kit/CardKitTests
- - ../card-kit-runtime/CardKitRuntime
- - ../card-kit-runtime/CardKitRuntimeTests
- - ../drone-card-kit/DroneCardKit
- - ../drone-card-kit/DroneCardKitTests
- - ../drone-tokens-dji/DroneTokensDJI
- - ../drone-tokens-dji/DroneTokensDJITests
-
 # paths to ignore during linting. Takes precedence over `included`.
 excluded:
   - Carthage

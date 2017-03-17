@@ -18,14 +18,12 @@ class HandTableViewCell: UITableViewCell, Reusable {
     var handID: Int = 0
     @IBOutlet weak var collectionView: UICollectionView!
     var isEmpty: Bool {
-        get {
-            if let cards = currentHand?.cards {
-                if cards.count > 0 {
-                    return false
-                }
+        if let cards = currentHand?.cards {
+            if cards.count > 0 {
+                return false
             }
-            return true
         }
+        return true
     }
     var currentHand: Hand?
     var cards: [Card]?
@@ -49,7 +47,6 @@ class HandTableViewCell: UITableViewCell, Reusable {
     }
     
     func setupHand(sectionID: Int, delegate: CardViewDelegate) {
-        //TODO: Check for existance of Cards in the hand and populate the colectionview
         handID = sectionID
         cardDelegate = delegate
         collectionView.delegate = self
@@ -75,8 +72,6 @@ class HandTableViewCell: UITableViewCell, Reusable {
     }
     
     func removeCard(cardIndex: Int) {
-        //TODO: how do I figure out what the index is of the card that was removed?
-        //its coming from the view model so maybe there's a weya in there
         if let cards = currentHand?.cards {
             if cards.count > 0 {
                 let deleteCardPath = IndexPath(item: cardIndex, section: 0)
