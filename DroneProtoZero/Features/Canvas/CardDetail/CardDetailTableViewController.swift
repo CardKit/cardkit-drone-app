@@ -35,7 +35,7 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
                     detailSections.append(.location3DInput)
                 case "Path":
                     detailSections.append(.pathInput)                    
-                case "Altitude", "Speed", "Distance", "Radius", "AngularSpeed", "Aspect Ratio":
+                case "Altitude", "Speed", "Distance", "Radius", "AngularSpeed", "Aspect Ratio", "Duration":
                     detailSections.append(.standardInputCell)
                 case "Boolean", "RotationDirection":
                     detailSections.append(.binaryChoiceCell)
