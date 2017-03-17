@@ -19,7 +19,7 @@ class HandTableViewCell: UITableViewCell, Reusable {
     @IBOutlet weak var collectionView: UICollectionView!
     var isEmpty: Bool {
         get {
-            if let cards = cards {
+            if let cards = currentHand?.cards {
                 if cards.count > 0 {
                     return false
                 }
@@ -27,6 +27,7 @@ class HandTableViewCell: UITableViewCell, Reusable {
             return true
         }
     }
+    var currentHand: Hand?
     var cards: [Card]?
     let viewModel: CanvasViewModel = CanvasViewModel()
     weak var cardDelegate: CardViewDelegate?
@@ -53,19 +54,16 @@ class HandTableViewCell: UITableViewCell, Reusable {
         cardDelegate = delegate
         collectionView.delegate = self
         collectionView.dataSource = self
-        let currHand = viewModel.getHand(by: handID)
-        cards = currHand?.cards
-        print("Hand : \(handID) Cards: \(cards)")
+        currentHand = viewModel.getHand(by: handID)
         collectionView.isHidden = isEmpty
         collectionView.reloadData()
     }
     
     func addCard(card: ActionCardDescriptor) {
-        let currCards = viewModel.getHand(by: handID)
-        cards = currCards?.cards
+        currentHand = viewModel.getHand(by: handID)
         collectionView.isHidden = isEmpty
         
-        if let cards = cards {
+        if let cards = currentHand?.cards {
             //NOTE: has to be greater than 1 because there should alwauys be an END CARD and that card needs to be the last card in the hand ALWAYS, NO IFs, ANDS, OR BUTS about it
             if cards.count > 1 {
                 //we insert the new card always as the last card
@@ -79,6 +77,14 @@ class HandTableViewCell: UITableViewCell, Reusable {
     func removeCard(cardIndex: Int) {
         //TODO: how do I figure out what the index is of the card that was removed?
         //its coming from the view model so maybe there's a weya in there
+        if let cards = currentHand?.cards {
+            if cards.count > 0 {
+                let deleteCardPath = IndexPath(item: cardIndex, section: 0)
+                collectionView.deleteItems(at:[deleteCardPath])
+            }
+        }
+        
+        
     }
     
     func showHovering(isHovering: Bool) {
@@ -93,11 +99,11 @@ class HandTableViewCell: UITableViewCell, Reusable {
 extension HandTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cards?.count ?? 0
+        return currentHand?.cards.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let card = cards?[indexPath.item],
+        guard let card = currentHand?.cards[indexPath.item],
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCollectionViewCell", for: indexPath) as? CardCollectionViewCell else { return UICollectionViewCell() }
         
         cell.backgroundColor = .black

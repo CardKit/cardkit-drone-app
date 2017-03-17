@@ -62,8 +62,7 @@ struct CanvasViewModel {
     }
     
     func indexPath(for handIndex: Int) -> IndexPath {
-        let actualIndex =  handIndex + defaultSectionCount
-        return IndexPath(row: 0, section: actualIndex)
+        return IndexPath(row: 0, section: handIndex)
     }
     
     // MARK: Hand Creating/Removing Methods
@@ -102,12 +101,20 @@ struct CanvasViewModel {
         try Sequencer.shared.addCard(card: cardDescriptor, toHand: actualID)
     }
     
-    func removeCard(cardID: CardIdentifier, fromHand index: Int) {
-        guard let hand = getHand(by: index) else { return }
-        let filtered = hand.cards.filter { $0.identifier == cardID }
+    func removeCard(cardID: CardIdentifier, fromHand index: Int) -> Int? {
+        guard let hand = getHand(by: index) else { return nil }
         
-        guard let card = filtered.first as? ActionCard else { return }
+        let filtered = hand.cards.filter { $0.identifier == cardID }
+        guard let card = filtered.first as? ActionCard else { return nil }
+        
+        let cardIndex = hand.cards.index { (card) -> Bool in
+            if card.identifier == cardID {
+                return true
+            }
+            return false
+        }
         hand.remove(card)
+        return cardIndex
     }
     
     

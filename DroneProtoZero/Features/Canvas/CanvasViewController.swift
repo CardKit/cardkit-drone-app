@@ -220,7 +220,6 @@ extension CanvasViewController: Hoverable {
         let offsetY = tableView.contentOffset.y
         return CGPoint(x: position.x, y: position.y + offsetY)
     }
-    
 }
 
 extension CanvasViewController: CardViewDelegate {
@@ -239,13 +238,13 @@ extension CanvasViewController: CardDetailDelegate {
         guard let handID = viewModel.selectedHandID,
             let _ = viewModel.getHand(by: handID) else { return }
         
-        viewModel.removeCard(cardID: card.identifier, fromHand: handID)
-        if let cardDetailNC = parent?.presentedViewController {
+        if let cardDetailNC = parent?.presentedViewController,
+            let cardIndex = viewModel.removeCard(cardID: card.identifier, fromHand: handID) {
             cardDetailNC.dismiss(animated: true, completion: { 
                 print("anything to do")
                 //update the vieew, how do to tha?????
                 if let handCell = self.tableView.cellForRow(at: self.viewModel.indexPath(for: handID)) as? HandTableViewCell {
-                    handCell.removeCard(card.identifier)
+                    handCell.removeCard(cardIndex: cardIndex)
                 }
                 
             })
