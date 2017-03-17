@@ -94,7 +94,25 @@ class DroneProtoZeroTests: XCTestCase {
         let hand = viewModel.getHand(by: handID)
         let cardFound = hand?.cards(matching: circleCard!)
         XCTAssertTrue(cardFound!.first!.cardType == .action)
-
+    }
+    
+    func testRemoveCardFromStep() {
+        let viewModel = CanvasViewModel()
+        let _ = viewModel.addHand()
+        let handID = 3
+        let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0)
+        let allCards = DroneCardDescriptors.sharedInstance.all
+        let loctioncards = allCards[key!]
+        let circleCardDescriptor = loctioncards?[0]
+        try! viewModel.addCard(cardDescriptor: circleCardDescriptor!, toHand: handID)
+        let hand = viewModel.getHand(by: handID)
+        let fullCount = hand?.cards.count
+        let circleCardFound = hand?.cards(matching: circleCardDescriptor!)
+        let _ = viewModel.removeCard(cardID: (circleCardFound?.first!.identifier)!, fromHand: handID)
+        let checkHand = viewModel.getHand(by: handID)
+        
+        XCTAssertEqual(fullCount, (checkHand?.cards.count)!+1)
+        
     }
     
 }
