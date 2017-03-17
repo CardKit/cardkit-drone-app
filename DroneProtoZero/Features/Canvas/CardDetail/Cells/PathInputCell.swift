@@ -10,16 +10,19 @@ import Foundation
 import UIKit
 import CardKit
 
-protocol PathInputCellDelegate {
+
+protocol PathInputCellDelegate: class {
     func cellSizeUpdated(cell: PathInputCell)
 }
 
 class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableViewDelegate {
+    
+    
     @IBOutlet weak var footer: UIView?
     
     @IBOutlet weak var tableView: UITableView?       
     
-    var delegate: PathInputCellDelegate?
+    weak var delegate: PathInputCellDelegate?
     var points: [CGPoint] = [CGPoint.zero, CGPoint.zero]
     
     private enum CellIdentifiers: String {
@@ -48,7 +51,7 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
         super.setupCell(cardDescriptor: cardDescriptor)
     }
     
-    //MARK: - UITableView
+    // MARK: UITableView
     
     func numberOfSections(in tableView: UITableView) -> Int {        
         return points.count
@@ -89,13 +92,13 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
         return CGFloat.leastNormalMagnitude
     }
     
-    //MARK: - IBActions
+    // MARK: IBActions
     
     @IBAction func tapAddPoint() {
         self.addPoint()
     }
     
-    //MARK: - Instance methods
+    // MARK: Instance methods
     
     func addPoint() {
         guard let tableView = self.tableView else {
@@ -166,4 +169,3 @@ class PathInputPointCell: UITableViewCell, Reusable {
 class PathInputTableFooter: UIView {
     @IBOutlet weak var button: UIButton?
 }
-

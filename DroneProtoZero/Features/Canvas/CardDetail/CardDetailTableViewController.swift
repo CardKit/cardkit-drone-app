@@ -137,39 +137,38 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         
         let identifier: String = detailSections[indexPath.section].reuseIdentifier
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CardDetailTableViewCell else {
-            return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CardDetailTableViewCell,
+            let cardDescriptor = cardDescriptor,
+            let inputSlotIndex = inputIndex(for: indexPath.section) else {
+                return UITableViewCell()
         }
+        
         
         switch detailSections[indexPath.section] {
         case .nameCell:
-            cell.mainLabel?.text = cardDescriptor?.name
+            cell.mainLabel?.text = cardDescriptor.name
         case .descriptionCell:
-            cell.mainLabel?.text = cardDescriptor?.assetCatalog.textualDescription
+            cell.mainLabel?.text = cardDescriptor.assetCatalog.textualDescription
         case .endDetailsCell:
-            cell.mainLabel?.text = cardDescriptor?.endDescription
+            cell.mainLabel?.text = cardDescriptor.endDescription
         case .outputsCell:
-            cell.mainLabel?.text = cardDescriptor?.yieldDescription
+            cell.mainLabel?.text = cardDescriptor.yieldDescription
         case .standardInputCell:
-            let index = inputIndex(for: indexPath.section)
-            if let inputSlot = cardDescriptor?.inputSlots[index] {
-                //TODO: need unit from somewhere in data
-                cell.mainLabel?.text = "\(inputSlot.descriptor.inputDescription)"
-                
-            }
+            let inputSlot = cardDescriptor.inputSlots[inputSlotIndex]
+            //TODO: need unit from somewhere in data
+            cell.mainLabel?.text = "\(inputSlot.descriptor.inputDescription)"
         case .binaryChoiceCell:
-            let index = inputIndex(for: indexPath.section)
-            if let inputSlot = cardDescriptor?.inputSlots[index] {
+            let inputSlot = cardDescriptor.inputSlots[inputSlotIndex]
                 cell.mainLabel?.text = "\(inputSlot.name)"
-                if let binaryChoiceCell = cell as? BinaryChoiceCell,
-                    let segments = binaryChoiceCell.segControl?.numberOfSegments {
-                    for i in 0...segments-1 {
-                        binaryChoiceCell.segControl?.setTitle("Temp Choice \(i)", forSegmentAt: i)
-                    }
+            
+            if let binaryChoiceCell = cell as? BinaryChoiceCell,
+                let segments = binaryChoiceCell.segControl?.numberOfSegments {
+                for i in 0...segments-1 {
+                    binaryChoiceCell.segControl?.setTitle("Temp Choice \(i)", forSegmentAt: i)
                 }
             }
         case .multipleChoiceCell:
-
+            let inputSlot = cardDescriptor.inputSlots[inputSlotIndex]
             guard let multipleChoiceCell = cell as? MultipleChoiceCell else {
                 return cell
             }
@@ -181,20 +180,18 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
             if let selectionIndex = multipleChoiceCell.selection {
                 multipleChoiceCell.button?.setTitle(choices[selectionIndex], for: .normal)
             }
-            if let inputSlot = cardDescriptor?.inputSlots[inputIndex(for: indexPath.section)] {
-                multipleChoiceCell.mainLabel?.text = inputSlot.descriptor.inputDescription
-            }
+            
+            multipleChoiceCell.mainLabel?.text = inputSlot.descriptor.inputDescription
         case .pathInput:
             guard let pathInputCell = cell as? PathInputCell else {
                 return cell
             }
             pathInputCell.delegate = self
-            
         default:
             return cell
         }
         
-        cell.setupCell(cardDescriptor: cardDescriptor!)
+        cell.setupCell(cardDescriptor: cardDescriptor)
         
         return cell
         
@@ -210,8 +207,7 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         
         switch detailSections[section] {
         case .location2DInput, .standardInputCell, .binaryChoiceCell, .multipleChoiceCell:
-            let index = inputIndex(for: section)
-            if let inputSlot = cardDescriptor?.inputSlots[index] {
+            if let index = inputIndex(for: section), let inputSlot = cardDescriptor?.inputSlots[index] {
                 headerType = inputSlot.name
                 header.optional = inputSlot.isOptional
             }
@@ -258,11 +254,12 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
             let multipleChoiceCell = popoverPresentationController.sourceView?.superview?.superview?.superview as? MultipleChoiceCell else {
             return true
         }
-        
-        let selectedPaths = multipleChoiceOptions.tableView.indexPathsForSelectedRows
-        for path in selectedPaths! {
-            multipleChoiceCell.selection = path.row
-            //TODO: this needs to be set in the card when selection is made
+
+        if let indexPathsForSelectedRows = multipleChoiceOptions.tableView.indexPathsForSelectedRows {
+            for path in indexPathsForSelectedRows {
+                multipleChoiceCell.selection = path.row
+                //TODO: this needs to be set in the card when selection is made
+            }
         }
         
         return true
@@ -279,8 +276,9 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     
     // MARK: - Instance methods
     
-    func inputIndex(for section: Int) -> Int {
-        return section - (detailSections.count - (cardDescriptor?.inputSlots.count)!)
+    func inputIndex(for section: Int) -> Int? {
+        guard let cardDescriptor = cardDescriptor else { return nil }
+        return section - (detailSections.count - cardDescriptor.inputSlots.count)
     }
     
     // MARK: - IBActions
@@ -294,22 +292,23 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     }
     
     @IBAction func displayMultipleChoiceOptions(sender: UIButton) {
-        guard let options = UIStoryboard(name: "CardDetail", bundle: nil).instantiateViewController(withIdentifier: "MultipleChoiceOptions") as? MultipleChoiceOptions else {
-            return
-        }
+        guard let options = UIStoryboard(name: "CardDetail", bundle: nil).instantiateViewController(withIdentifier: "MultipleChoiceOptions") as? MultipleChoiceOptions,
+            let inputIndex = inputIndex(for: sender.tag)
+        else { return }
         
-        let inputSlot = cardDescriptor?.inputSlots[inputIndex(for: sender.tag)]
+        let inputSlot = cardDescriptor?.inputSlots[inputIndex]
+
         //TODO: these need to come from somewhere
         let choices = ["None", "Normal", "Fine", "Excellent"]
         options.optionsTitle = inputSlot?.descriptor.name
         options.options = choices
         options.modalPresentationStyle = .popover
         options.preferredContentSize = options.popoverSize
-        let popover: UIPopoverPresentationController = options.popoverPresentationController!        
-        popover.sourceView = sender
-        popover.delegate = self
         
-        self.present(options, animated: true, completion: nil)
-        
+        if let popover: UIPopoverPresentationController = options.popoverPresentationController {
+            popover.sourceView = sender
+            popover.delegate = self
+            self.present(options, animated: true, completion: nil)
+        }
     }
 }

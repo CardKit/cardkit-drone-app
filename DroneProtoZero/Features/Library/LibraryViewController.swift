@@ -9,6 +9,10 @@
 import UIKit
 
 class LibraryViewController: UIViewController {
+    public struct NotificationName {
+        static let displayLogsView = NSNotification.Name("DisplayLogsView")
+        static let displayCardsView = NSNotification.Name("DisplayCardsView")
+    }
     
     enum CellType: Int {
         case cards
@@ -33,6 +37,16 @@ class LibraryViewController: UIViewController {
         setupView()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(LibraryViewController.displayLogsView), name: NotificationName.displayLogsView, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LibraryViewController.displayCardsView), name: NotificationName.displayCardsView, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NotificationName.displayLogsView, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NotificationName.displayCardsView, object: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -45,7 +59,7 @@ class LibraryViewController: UIViewController {
         createContainedView(storyboardID: CellType.cards.storyboardID)
     }
     
-    func createContainedView(storyboardID: String) {        
+    func createContainedView(storyboardID: String) {
         if let currViewController = self.storyboard?.instantiateViewController(withIdentifier: storyboardID) {
             currViewController.view.translatesAutoresizingMaskIntoConstraints = false
             self.addChildViewController(currViewController)
@@ -62,9 +76,8 @@ class LibraryViewController: UIViewController {
     }
     
     func updateView(newView: CellType) {
-        print("newVIEW \(newView)")
         if let currViewController = currentViewController {
-            //something exists here so remocve it
+            //something exists here so remove it
             currViewController.willMove(toParentViewController: nil)
             currViewController.view.removeFromSuperview()
             currViewController.removeFromParentViewController()
@@ -114,5 +127,15 @@ class LibraryViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    // MARK: - Notifcation Handlers
+    func displayLogsView() {
+        segmentControl.selectedSegmentIndex = CellType.logs.rawValue
+        updateView(newView: .logs)
+    }
+    
+    func displayCardsView() {
+        segmentControl.selectedSegmentIndex = CellType.cards.rawValue
+        updateView(newView: .cards)
+    }
 }
