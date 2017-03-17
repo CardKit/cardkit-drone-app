@@ -46,8 +46,6 @@ class HandTableViewCell: UITableViewCell, Reusable {
     }
     
     func setupHand(sectionID: Int, delegate: CardViewDelegate) {
-        //TODO: Check for existence of Cards in the hand and populate the colectionview
-        
         handID = sectionID
         cardDelegate = delegate
         collectionView.delegate = self
