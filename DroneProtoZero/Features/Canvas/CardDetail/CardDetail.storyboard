@@ -20,7 +20,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Header" rowHeight="30" id="X0g-Jb-Os8" customClass="CardDetailHeaderView" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="768" height="30"/>
+                                <rect key="frame" x="0.0" y="56" width="768" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X0g-Jb-Os8" id="2ag-lR-3F8">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="30"/>
@@ -74,7 +74,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NameCell" rowHeight="30" id="g3R-Tr-BDA" customClass="NameCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="85.5" width="768" height="30"/>
+                                <rect key="frame" x="0.0" y="86" width="768" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" tableViewCell="g3R-Tr-BDA" id="ocB-Re-5Y4">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="30"/>
@@ -117,7 +117,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DescriptionCell" rowHeight="26" id="1zR-BF-OTx" customClass="CardDetailTableViewCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="115.5" width="768" height="26"/>
+                                <rect key="frame" x="0.0" y="116" width="768" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1zR-BF-OTx" id="eMF-LF-eDf">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="26"/>
@@ -146,7 +146,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Location2DInputCell" rowHeight="774" id="ZmS-CE-Lcc" customClass="Location2DInput" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="141.5" width="768" height="774"/>
+                                <rect key="frame" x="0.0" y="142" width="768" height="774"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZmS-CE-Lcc" id="0av-fM-u9B">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="774"/>
@@ -248,7 +248,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="StandardInputCell" rowHeight="66" id="QbC-Pl-IQG" customClass="StandardInputCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="915.5" width="768" height="66"/>
+                                <rect key="frame" x="0.0" y="916" width="768" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QbC-Pl-IQG" id="IhQ-QQ-gyS">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="66"/>
@@ -302,7 +302,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BinaryChoiceCell" rowHeight="66" id="ohH-ka-CBX" customClass="BinaryChoiceCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="981.5" width="768" height="66"/>
+                                <rect key="frame" x="0.0" y="982" width="768" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ohH-ka-CBX" id="jmi-qk-ga4">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="66"/>
@@ -358,7 +358,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MultipleChoiceCell" rowHeight="66" id="X0z-gT-QAp" customClass="MultipleChoiceCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1047.5" width="768" height="66"/>
+                                <rect key="frame" x="0.0" y="1048" width="768" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X0z-gT-QAp" id="wDr-7R-r7x">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="66"/>
@@ -414,7 +414,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Location3DInputCell" rowHeight="834" id="h8n-W5-lvK" customClass="Location3DInput" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1113.5" width="768" height="834"/>
+                                <rect key="frame" x="0.0" y="1114" width="768" height="834"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h8n-W5-lvK" id="VRM-we-9k9">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="834"/>
@@ -539,15 +539,15 @@
                                     <outlet property="map" destination="TCm-jl-f9Z" id="p3i-QV-dJU"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PathInputCell" rowHeight="1125" id="qrK-gZ-FSI" customClass="PathInputCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1947.5" width="768" height="1125"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PathInputCell" rowHeight="850" id="qrK-gZ-FSI" customClass="PathInputCell" customModule="DroneProtoZero" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="1948" width="768" height="850"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qrK-gZ-FSI" id="hoo-Uq-2Nq">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="1125"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="850"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9Z-g2-9Hy">
-                                            <rect key="frame" x="26" y="0.0" width="716" height="1125"/>
+                                            <rect key="frame" x="26" y="0.0" width="716" height="850"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to set a location or manually enter coordinates below" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asW-mc-kfH">
                                                     <rect key="frame" x="0.0" y="20" width="716" height="22"/>
@@ -565,87 +565,13 @@
                                                     </constraints>
                                                 </mapView>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="DeQ-YX-5zd" customClass="PathInputTableView" customModule="DroneProtoZero" customModuleProvider="target">
-                                                    <rect key="frame" x="26" y="662" width="664" height="441"/>
+                                                    <rect key="frame" x="26" y="662" width="664" height="166"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <color key="separatorColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <view key="tableFooterView" contentMode="scaleToFill" id="jXv-bj-Tgm">
-                                                        <rect key="frame" x="0.0" y="213.5" width="664" height="90"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Point" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZn-0P-pAx">
-                                                                <rect key="frame" x="292" y="64" width="79" height="21"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="79" id="Ogt-06-BAZ"/>
-                                                                    <constraint firstAttribute="height" constant="21" id="aUN-EW-icQ"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KjZ-64-fAt">
-                                                                <rect key="frame" x="302" y="0.0" width="59" height="59"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="59" id="7tD-56-HK6"/>
-                                                                    <constraint firstAttribute="width" constant="59" id="9JJ-Jb-Q3J"/>
-                                                                </constraints>
-                                                                <state key="normal" title="Button" image="addStepButton"/>
-                                                                <connections>
-                                                                    <action selector="addPoint" destination="qrK-gZ-FSI" eventType="touchUpInside" id="9Mo-O7-Xt3"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstItem="KjZ-64-fAt" firstAttribute="top" secondItem="jXv-bj-Tgm" secondAttribute="top" id="WhF-xg-gwf"/>
-                                                            <constraint firstAttribute="bottom" secondItem="uZn-0P-pAx" secondAttribute="bottom" constant="5" id="gtT-dR-Z7W"/>
-                                                            <constraint firstItem="uZn-0P-pAx" firstAttribute="centerX" secondItem="jXv-bj-Tgm" secondAttribute="centerX" id="hCQ-l8-7fh"/>
-                                                            <constraint firstItem="uZn-0P-pAx" firstAttribute="top" secondItem="KjZ-64-fAt" secondAttribute="bottom" constant="5" id="mxB-yO-Req"/>
-                                                            <constraint firstItem="KjZ-64-fAt" firstAttribute="centerX" secondItem="jXv-bj-Tgm" secondAttribute="centerX" id="zEV-Ho-O0j"/>
-                                                        </constraints>
-                                                    </view>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PathInputHeaderCell" rowHeight="40" id="Mqb-9I-4OX" customClass="PathInputHeader" customModule="DroneProtoZero" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="56" width="664" height="40"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mqb-9I-4OX" id="Gjt-FN-h0R">
-                                                                <rect key="frame" x="0.0" y="0.0" width="664" height="40"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbh-iN-LK5">
-                                                                        <rect key="frame" x="597" y="20" width="67" height="19"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="67" id="NfR-a4-WFG"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <state key="normal" title="REMOVE"/>
-                                                                    </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POINT 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fb9-58-YZl">
-                                                                        <rect key="frame" x="0.0" y="15" width="253" height="24"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="253" id="B8c-eB-nCn"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <color key="textColor" red="0.49803921568627452" green="0.49803921568627452" blue="0.49803921568627452" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="bottom" secondItem="fb9-58-YZl" secondAttribute="bottom" constant="1" id="C5D-LW-y2D"/>
-                                                                    <constraint firstItem="fb9-58-YZl" firstAttribute="top" secondItem="Gjt-FN-h0R" secondAttribute="top" constant="15" id="HTI-ga-mwb"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="wbh-iN-LK5" secondAttribute="trailing" id="Iwq-jX-9de"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="wbh-iN-LK5" secondAttribute="bottom" constant="1" id="RAI-0j-eoI"/>
-                                                                    <constraint firstItem="wbh-iN-LK5" firstAttribute="top" secondItem="Gjt-FN-h0R" secondAttribute="top" constant="20" id="aT7-di-qTa"/>
-                                                                    <constraint firstItem="fb9-58-YZl" firstAttribute="leading" secondItem="Gjt-FN-h0R" secondAttribute="leading" id="vhI-bH-Yl0"/>
-                                                                </constraints>
-                                                            </tableViewCellContentView>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <connections>
-                                                                <outlet property="label" destination="fb9-58-YZl" id="VB5-ZG-Pdh"/>
-                                                                <outlet property="removeBtn" destination="wbh-iN-LK5" id="nNR-cG-zlf"/>
-                                                            </connections>
-                                                        </tableViewCell>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PathInputPointCell" rowHeight="100" id="SC7-Hz-rS9" customClass="PathInputPointCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="96" width="664" height="100"/>
+                                                            <rect key="frame" x="0.0" y="56" width="664" height="100"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SC7-Hz-rS9" id="qaf-9h-eer">
                                                                 <rect key="frame" x="0.0" y="0.0" width="664" height="100"/>
@@ -705,7 +631,7 @@
                                                                     <constraint firstItem="hwj-rg-oc1" firstAttribute="trailing" secondItem="qaf-9h-eer" secondAttribute="trailingMargin" id="kPx-bI-Xq3"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
-                                                            <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>
                                                             <connections>
                                                                 <outlet property="latitudeInput" destination="hwj-rg-oc1" id="R0j-47-RHT"/>
                                                                 <outlet property="latitudeLabel" destination="raV-AA-77f" id="4hi-qH-YMs"/>
@@ -745,7 +671,6 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="footerView" destination="jXv-bj-Tgm" id="8tw-eH-rK4"/>
                                     <outlet property="frameView" destination="U9Z-g2-9Hy" id="bl3-p8-5k3"/>
                                     <outlet property="mainLabel" destination="asW-mc-kfH" id="ItJ-Gi-e6C"/>
                                     <outlet property="tableView" destination="DeQ-YX-5zd" id="gHR-Lh-QeX"/>
@@ -791,11 +716,11 @@
                                 <rect key="frame" x="0.0" y="28" width="500" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="922-jk-GAr" id="cQI-Oc-c3j">
-                                    <rect key="frame" x="0.0" y="0.0" width="500" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Hello" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jgS-oh-ndP">
-                                            <rect key="frame" x="15" y="0.0" width="470" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="470" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -809,11 +734,11 @@
                                 <rect key="frame" x="0.0" y="72" width="500" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p3e-Kx-Cuw" id="0pj-he-WkN">
-                                    <rect key="frame" x="0.0" y="0.0" width="500" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="How Are" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YjT-cR-X3K">
-                                            <rect key="frame" x="15" y="0.0" width="470" height="49.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="470" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -853,7 +778,4 @@
             <point key="canvasLocation" x="-370" y="143"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="addStepButton" width="59" height="60"/>
-    </resources>
 </document>

@@ -9,7 +9,7 @@
 import UIKit
 import CardKit
 
-class CardDetailTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class CardDetailTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate, PathInputCellDelegate {
     
     
     var card: ActionCard? {
@@ -64,7 +64,6 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         case standardInputCell
         case binaryChoiceCell
         case multipleChoiceCell
-        case header
         
         var reuseIdentifier: String {
             switch self {
@@ -84,8 +83,6 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
                 return "BinaryChoiceCell"
             case .multipleChoiceCell:
                 return "MultipleChoiceCell"
-            case .header:
-                return "Header"
             }            
         }
         
@@ -104,8 +101,6 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
                     return "Input"
                 }
                 return "Input: \(inputType)"
-            case .header:
-                return ""
             }
         }
         
@@ -184,12 +179,16 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
             let choices = ["None", "Normal", "Fine", "Excellent"]
             //TODO: set selection based on data in card
             if let selectionIndex = multipleChoiceCell.selection {
-                print("set text on button to \(choices[selectionIndex])")
                 multipleChoiceCell.button?.setTitle(choices[selectionIndex], for: .normal)
             }
             if let inputSlot = cardDescriptor?.inputSlots[inputIndex(for: indexPath.section)] {
                 multipleChoiceCell.mainLabel?.text = inputSlot.descriptor.inputDescription
             }
+        case .pathInput:
+            guard let pathInputCell = cell as? PathInputCell else {
+                return cell
+            }
+            pathInputCell.delegate = self
             
         default:
             return cell
@@ -203,9 +202,10 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        guard let header = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.header.reuseIdentifier) as? CardDetailHeaderView else {
+        guard let header =  Bundle.main.loadNibNamed("CardDetailHeader", owner: nil, options: nil)?.first as? CardDetailHeaderView else {
             return nil
         }
+
         var headerType: String?
         
         switch detailSections[section] {
@@ -229,39 +229,17 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         
         return header
     }
-//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        print("height for row at \(detailSections[indexPath.section])")
-////        if detailSections[indexPath.section] == CellIdentifiers.pathInput {
-////            print("pathInput")
-////            if let pathInputCell = tableView.cellForRow(at: indexPath) as? PathInputCell {
-////                print("PATH INPUT table view \(pathInputCell.tableView)")
-////                return (pathInputCell.tableView?.frame.size.height)!
-////            }
-////        }
-//        return UITableViewAutomaticDimension
-//    }
-
     
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        
-//        switch detailSections[indexPath.section].rawValue {
-//        case CellIdentifiers.nameCell.rawValue:
-//            return 30.0
-//        case CellIdentifiers.descriptionCell.rawValue, CellIdentifiers.endDetailsCell.rawValue, CellIdentifiers.outputsCell.rawValue:
-//            return 26.0
-//        case CellIdentifiers.location2DInput.rawValue:
-//            return 774.0
-//        case CellIdentifiers.location3DInput.rawValue:
-//            return 834.0
-//        case CellIdentifiers.standardInputCell.rawValue:
-//            return 66.0
-//        default:
-//            return 44.0
-//        }
-//    }
-//    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+ 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20.0
+        return 30.0
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -290,6 +268,15 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         return true
     }
     
+    // MARK: - PathInputCellDelegate
+    
+    func cellSizeUpdated(cell: PathInputCell) {
+        //need the cell height to be recalculated but don't wish for the cell to be reloaded as that causes the 
+        //contained map to also be reloaded
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
     // MARK: - Instance methods
     
     func inputIndex(for section: Int) -> Int {
@@ -299,9 +286,7 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     // MARK: - IBActions
     
     @IBAction func close() {
-        self.dismiss(animated: true) {
-            print("CardDetailNavController dismissed")
-        }
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func removeCard() {

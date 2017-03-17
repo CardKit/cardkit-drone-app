@@ -10,12 +10,16 @@ import Foundation
 import UIKit
 import CardKit
 
-class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableViewDelegate {
+protocol PathInputCellDelegate {
+    func cellSizeUpdated(cell: PathInputCell)
+}
 
+class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var footer: UIView?
     
-    @IBOutlet weak var tableView: UITableView?
-    @IBOutlet weak var footerView: UIView?
+    @IBOutlet weak var tableView: UITableView?       
     
+    var delegate: PathInputCellDelegate?
     var points: [CGPoint] = [CGPoint.zero, CGPoint.zero]
     
     private enum CellIdentifiers: String {
@@ -25,17 +29,21 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
-        tableView?.tableFooterView = footerView
-//        tableView?.tableFooterView = tableView?.dequeueReusableCell(withIdentifier: CellIdentifiers.footer.rawValue)
-//        tableView?.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: (tableView?.frame.size.width)!, height: 90.0))//tableView?.dequeueReusableCell(withIdentifier: CellIdentifiers.footer.rawValue)
-//        tableView?.tableFooterView?.backgroundColor = UIColor.red
-        print("tableFooterView \(tableView?.tableFooterView)")
-        tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.estimatedRowHeight = 90.0
-    }
+        if let footerView = Bundle.main.loadNibNamed("PathInputFooter", owner: nil, options: nil)?.first as? PathInputTableFooter {
+            footerView.button?.addTarget(self, action: #selector(tapAddPoint), for: .touchUpInside)
+            //need this flexibleWidth setting or the height of the footerView is incorrect.  no idea why this works, since it is the
+            //height we are concerned with and not the width
+            footerView.autoresizingMask = [.flexibleWidth]
+            tableView?.tableFooterView = footerView
+        }
 
+        tableView?.separatorStyle = .none //not working, bug: https://forums.developer.apple.com/thread/12387
+        tableView?.rowHeight = UITableViewAutomaticDimension
+        tableView?.estimatedRowHeight = 100.0
+
+    }
+    
     override func setupCell(cardDescriptor: ActionCardDescriptor) {
         super.setupCell(cardDescriptor: cardDescriptor)
     }
@@ -51,17 +59,21 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.pointCell.rawValue, for: indexPath)
     
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.headerCell.rawValue) as? PathInputHeader else {
+        
+        //cannot create header from dequeueReusableCell because this tableView has insertions and deletions;
+        //tableView expects an indexPath on the header view if it is created via prototype cell;
+        guard let header =  Bundle.main.loadNibNamed("PathInputSectionHeader", owner: nil, options: nil)?.first as? PathInputHeader else {
             return nil
         }
         
-        header.label?.text = "POINT \(section + 1)"
+        header.label?.text = "POINT \(section + 1)"        
         header.section = section
         header.removeBtn?.addTarget(self, action: #selector(removePoint), for: .touchUpInside)
         
@@ -69,7 +81,7 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30.0
+        return 40.0
     }
 
     
@@ -81,7 +93,6 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
     
     @IBAction func tapAddPoint() {
         self.addPoint()
-        
     }
     
     //MARK: - Instance methods
@@ -90,23 +101,42 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
         guard let tableView = self.tableView else {
             return
         }
+        points.append(CGPoint.zero)
+        
         tableView.beginUpdates()
         let indexSet = IndexSet(integer: tableView.numberOfSections)
-        points.append(CGPoint.zero)
         tableView.insertSections(indexSet, with: .none)
         tableView.endUpdates()
+        
+        updateContainerCell()
     }
     
     func removePoint(sender: UIButton) {
-        guard let header = sender.superview?.superview as? PathInputHeader,
+        guard let tableView = self.tableView,
+            let header = sender.superview as? PathInputHeader,
             let section = header.section else {
             return
         }
-        tableView?.beginUpdates()
-        let indexSet = IndexSet(integer: section)
         points.remove(at: section)
-        tableView?.deleteSections(indexSet, with: .top)
-        tableView?.endUpdates()
+        
+        tableView.beginUpdates()
+        let indexSet = IndexSet(integer: section)
+        tableView.deleteSections(indexSet, with: .top)
+        tableView.endUpdates()
+        
+        updateContainerCell()
+    }
+    
+    func updateContainerCell() {
+        //shouldn't have to reloadData() after beginUpdates() and endUpdates() but the outer cell
+        //doesn't resize properly without this call.
+        tableView?.reloadData()
+        tableView?.separatorStyle = .none //not working, bug: https://forums.developer.apple.com/thread/12387
+        
+        tableView?.invalidateIntrinsicContentSize()
+        if let delegate = self.delegate {
+            delegate.cellSizeUpdated(cell: self)
+        }
     }
 }
 
@@ -119,8 +149,7 @@ class PathInputTableView: UITableView {
     }
 }
 
-class PathInputHeader: UITableViewCell, Reusable {
-    
+class PathInputHeader: UIView {
     @IBOutlet weak var label: UILabel?
     @IBOutlet weak var removeBtn: UIButton?
     
@@ -128,11 +157,13 @@ class PathInputHeader: UITableViewCell, Reusable {
 }
 
 class PathInputPointCell: UITableViewCell, Reusable {
-    
     @IBOutlet weak var latitudeLabel: UILabel?
     @IBOutlet weak var longitudeLabel: UILabel?
     @IBOutlet weak var latitudeInput: UITextField?
     @IBOutlet weak var longitudeInput: UITextField?
 }
 
+class PathInputTableFooter: UIView {
+    @IBOutlet weak var button: UIButton?
+}
 
