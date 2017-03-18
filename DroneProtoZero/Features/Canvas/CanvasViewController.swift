@@ -30,7 +30,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         setupTableView()
         
-        displayCardDetail(card: DroneCardKit.Action.Tech.Camera.TakePhoto.makeCard())
+      //  displayCardDetail(card: DroneCardKit.Action.Tech.Camera.TakePhoto.makeCard())
     }
     
     func setupTableView() {
