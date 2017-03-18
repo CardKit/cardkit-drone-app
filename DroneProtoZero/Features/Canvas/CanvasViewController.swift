@@ -29,6 +29,8 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        
+      //  displayCardDetail(card: DroneCardKit.Action.Tech.Camera.TakePhoto.makeCard())
     }
     
     func setupTableView() {
@@ -81,22 +83,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("selected \(indexPath)")
-//        if indexPath.section > 1 {
-//            switch indexPath.section {
-//            case 2:
-//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
-//            case 3:
-//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Simple.FlyForward)
-//            case 4:
-//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.Circle)
-//            default:
-//                displayCardDetail(cardDescriptor: DroneCardKit.Action.Movement.Location.FlyTo)
-//            }
-//        }
-//    }
     
     // MARK: - Card details
     
