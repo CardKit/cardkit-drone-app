@@ -11,7 +11,6 @@ import CardKit
 
 class CardDetailTableViewController: UITableViewController, PathInputCellDelegate {
     
-    
     var card: ActionCard! {
         didSet {
             
@@ -34,11 +33,11 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
                     detailSections.append(.location3DInput)
                 case "Path":
                     detailSections.append(.pathInput)                    
-                case "Altitude", "Speed", "Distance", "Radius", "AngularSpeed", "Aspect Ratio", "Duration":
+                case "Altitude", "Speed", "Distance", "Radius", "AngularSpeed", "Duration":
                     detailSections.append(.standardInputCell)
                 case "Boolean", "RotationDirection":
                     detailSections.append(.binaryChoiceCell)
-                case "Quality":
+                case "Quality", "Aspect Ratio":
                     detailSections.append(.multipleChoiceCell)
                 default:
                     continue
@@ -140,10 +139,7 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
         let identifier: String = type.reuseIdentifier
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         
-        if var detailCell = cell as? CardDetailCell {
-            detailCell.type = type
-            detailCell.setupCell(card: card, indexPath: indexPath)
-        }
+        
         
         if var inputCell = cell as? CardDetailInputCell {
             inputCell.type = type
@@ -157,6 +153,9 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
             if let pathInputCell = inputCell as? PathInputCell {
                 pathInputCell.delegate = self
             }
+        } else if var detailCell = cell as? CardDetailCell {
+            detailCell.type = type
+            detailCell.setupCell(card: card, indexPath: indexPath)
         }
         
         return cell

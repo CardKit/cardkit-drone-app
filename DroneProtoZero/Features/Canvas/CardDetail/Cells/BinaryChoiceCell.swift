@@ -29,21 +29,18 @@ class BinaryChoiceCell: CardDetailTableViewCell, CardDetailInputCell {
         }
         mainLabel?.text = "\(inputSlot.name)"
         
-        
-        
         //get which selection is pre-set
         let selectedOption: String = getSelectedInputOption()
-
+        
         //populate segments and select the selected one
-        if let inputOptions = inputSlot.descriptor.availableOptions() {
-            if let segments = segControl?.numberOfSegments {
-                for i in 0...segments-1 {
-                    if i < inputOptions.count {
-                        segControl?.setTitle(inputOptions[i], forSegmentAt: i)
-                        if inputOptions[i] == selectedOption {
-                            segControl?.selectedSegmentIndex = i
-                        }
-                    }
+        if let inputOptions = inputSlot.descriptor.availableOptions(), let segments = segControl?.numberOfSegments {
+            for i in 0...segments-1 {
+                if i >= inputOptions.count { break }
+                
+                segControl?.setTitle(inputOptions[i], forSegmentAt: i)
+                
+                if inputOptions[i].lowercased() == selectedOption.lowercased() {
+                    segControl?.selectedSegmentIndex = i
                 }
             }
         }
@@ -62,17 +59,34 @@ class BinaryChoiceCell: CardDetailTableViewCell, CardDetailInputCell {
     }
     
     func selectionChanged(segControl: UISegmentedControl) {
+        guard let inputSlot = self.inputSlot,
+            let inputOptions = inputSlot.descriptor.availableOptions() else {
+                return
+        }
         
-        if let inputSlot = self.inputSlot,
-            let inputType = DroneCardKit.allInputTypes[inputSlot.descriptor.inputType],
-            let inputOptions = inputSlot.descriptor.availableOptions() {
-            
-            do {
-                let inputCard = try inputSlot.descriptor <- inputType.init(json: inputOptions[segControl.selectedSegmentIndex].toJSON())
-                try actionCard?.bind(with: inputCard, in: inputSlot)
-            } catch {
-                print("error \(error)")
+        let inputValue = inputOptions[segControl.selectedSegmentIndex]
+        
+        let inputTypeString = inputSlot.descriptor.inputType
+        var value: Any?
+        
+        do {
+            switch inputTypeString {
+            case String(describing: DCKRotationDirection.self):
+                value = DCKRotationDirection(rawValue: inputValue)
+            case String(describing: Bool.self):
+                value =  inputValue.lowercased() == "true" ? true : false
+            default:
+                break
             }
+            
+            if let valueUR = value {
+                let inputCard = try inputSlot.descriptor <- valueUR
+                try actionCard?.bind(with: inputCard, in: inputSlot)
+            }
+        } catch {
+            print("error \(error)")
         }
     }
 }
+
+//extension Bool: JSONEncodable, JSONDecodable { }
