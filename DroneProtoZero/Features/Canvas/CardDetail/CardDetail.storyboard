@@ -136,7 +136,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="in decimal degrees" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zJv-i8-Gsb" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="value" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zJv-i8-Gsb" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
                                                     <rect key="frame" x="290" y="730" width="400" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="400" id="CuZ-rL-h0O"/>
@@ -146,7 +146,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="in decimal degrees" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G5A-UT-glf" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="value" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G5A-UT-glf" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
                                                     <rect key="frame" x="290" y="685" width="400" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="400" id="2CN-WO-w62"/>
@@ -203,14 +203,14 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yL-yB-r3Z">
                                             <rect key="frame" x="26" y="0.0" width="716" height="66"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="in decimal degrees" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mgi-OX-L0G" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="value" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mgi-OX-L0G" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
                                                     <rect key="frame" x="290" y="20" width="400" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="400" id="Me1-qy-eKL"/>
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vS2-zA-PVx">
                                                     <rect key="frame" x="14" y="22" width="280" height="22"/>
@@ -244,6 +244,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="frameView" destination="4yL-yB-r3Z" id="EhQ-F0-R9c"/>
+                                    <outlet property="input" destination="Mgi-OX-L0G" id="XoL-Mc-LHj"/>
                                     <outlet property="mainLabel" destination="vS2-zA-PVx" id="LBK-Yo-alS"/>
                                 </connections>
                             </tableViewCell>
@@ -404,7 +405,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="in decimal degrees" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sra-tK-XaC" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="value" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sra-tK-XaC" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
                                                     <rect key="frame" x="290" y="685" width="400" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="QZV-SS-Wi7"/>
@@ -434,7 +435,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="in decimal degrees" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ktX-Jz-6eh" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="value" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ktX-Jz-6eh" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
                                                     <rect key="frame" x="290" y="730" width="400" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="KQD-MI-U5R"/>
@@ -523,7 +524,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="664" height="100"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="in decimal degrees" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hwj-rg-oc1" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="value" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hwj-rg-oc1" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
                                                                         <rect key="frame" x="256" y="0.0" width="400" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="400" id="AL2-HA-ivT"/>
@@ -533,7 +534,7 @@
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="in decimal degrees" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82D-il-K2L" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="value" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82D-il-K2L" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
                                                                         <rect key="frame" x="256" y="50" width="400" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="400" id="RIs-oh-aST"/>

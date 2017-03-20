@@ -65,18 +65,9 @@ class MultipleChoiceCell: CardDetailTableViewCell, CardDetailInputCell, Multiple
     
     func getSelectedInputOption() -> String {
         if let card = self.actionCard,
-            let inputSlot = self.inputSlot,
-            let inputSlotBinding = card.inputBindings[inputSlot] {
-            switch inputSlotBinding {
-            case .boundToInputCard(let inputCard):
-                switch inputCard.boundData {
-                case .bound(let json):
-                    return json.description
-                default:
-                    return ""
-                }
-            default:
-                return ""
+            let inputSlot = self.inputSlot {
+            if let val: String = card.value(of: inputSlot) {
+                return val
             }
         }
         return ""
