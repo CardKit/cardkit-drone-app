@@ -241,7 +241,7 @@ extension CanvasViewController: CardDetailDelegate {
         if let cardDetailNC = parent?.presentedViewController,
             let cardIndex = viewModel.removeCard(cardID: card.identifier, fromHand: handID) {
             cardDetailNC.dismiss(animated: true, completion: { 
-                //update the vieew, how do to tha?????
+                //get the hand associated with the cell and update its view
                 if let handCell = self.tableView.cellForRow(at: self.viewModel.indexPath(for: handID)) as? HandTableViewCell {
                     handCell.removeCard(cardIndex: cardIndex)
                 }

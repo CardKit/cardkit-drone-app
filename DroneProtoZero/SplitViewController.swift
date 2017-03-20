@@ -92,8 +92,6 @@ class SplitViewController: UISplitViewController {
                 draggingCardView = nil
                 canvasViewController?.cancelHovering()
             }
-            
-
             break
         }
         
