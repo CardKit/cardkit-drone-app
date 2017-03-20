@@ -154,25 +154,10 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
             inputCell.inputSlot = descriptor.inputSlots[inputSlotIndex]
             inputCell.setupCell(card: card, indexPath: indexPath)
             
+            if let pathInputCell = inputCell as? PathInputCell {
+                pathInputCell.delegate = self
+            }
         }
-        
-
-        
-//        switch detailSections[indexPath.section] {
-//                
-//            
-//        case .standardInputCell:
-//            let inputSlot = cardDescriptor.inputSlots[inputSlotIndex]
-//            //TODO: need unit from somewhere in data
-
-//        case .pathInput:
-//            guard let pathInputCell = cell as? PathInputCell else {
-//                return cell
-//            }
-//            pathInputCell.delegate = self
-//        default:
-//            return cell
-//        }
         
         return cell
         
