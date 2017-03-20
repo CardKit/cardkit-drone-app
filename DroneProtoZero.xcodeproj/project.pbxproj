@@ -112,6 +112,7 @@
 		D576663D1E71F197000241FB /* MultipleChoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576663C1E71F197000241FB /* MultipleChoiceCell.swift */; };
 		D576663F1E72E6ED000241FB /* MultipleChoicePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576663E1E72E6ED000241FB /* MultipleChoicePopover.swift */; };
 		D57666411E7716C3000241FB /* PathInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57666401E7716C3000241FB /* PathInputCell.swift */; };
+		D57FA55D1E804249007A66FE /* InputCardDescriptorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57FA55C1E804249007A66FE /* InputCardDescriptorExtension.swift */; };
 		D5E6BB701E7C55F900CBF2A4 /* NameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E6BB6F1E7C55F900CBF2A4 /* NameCell.swift */; };
 		D5E6BB721E7C56EF00CBF2A4 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E6BB711E7C56EF00CBF2A4 /* DescriptionCell.swift */; };
 		D5E6BB761E7C619B00CBF2A4 /* StandardInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E6BB751E7C619B00CBF2A4 /* StandardInputCell.swift */; };
@@ -204,6 +205,7 @@
 		D576663C1E71F197000241FB /* MultipleChoiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceCell.swift; sourceTree = "<group>"; };
 		D576663E1E72E6ED000241FB /* MultipleChoicePopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoicePopover.swift; sourceTree = "<group>"; };
 		D57666401E7716C3000241FB /* PathInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathInputCell.swift; sourceTree = "<group>"; };
+		D57FA55C1E804249007A66FE /* InputCardDescriptorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputCardDescriptorExtension.swift; sourceTree = "<group>"; };
 		D5E6BB6F1E7C55F900CBF2A4 /* NameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameCell.swift; sourceTree = "<group>"; };
 		D5E6BB711E7C56EF00CBF2A4 /* DescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		D5E6BB751E7C619B00CBF2A4 /* StandardInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardInputCell.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				682134E71E70B0FD00B3BEC3 /* AppConfig.swift */,
 				6851A9841E72313F00079D0B /* UIViewExtension.swift */,
 				6851F90D1E73574B007422AF /* UITextViewExtension.swift */,
+				D57FA55C1E804249007A66FE /* InputCardDescriptorExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -776,6 +779,7 @@
 				3AB3978B1E667A5B00DA1800 /* CardsTableViewController.swift in Sources */,
 				3AB397901E667A5B00DA1800 /* LogsViewController.swift in Sources */,
 				D5E6BB781E7C683500CBF2A4 /* BinaryChoiceCell.swift in Sources */,
+				D57FA55D1E804249007A66FE /* InputCardDescriptorExtension.swift in Sources */,
 				3AB3978E1E667A5B00DA1800 /* LibraryViewController.swift in Sources */,
 				3A89F3541E6769D2005A9D48 /* DroneStatusCell.swift in Sources */,
 				3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */,

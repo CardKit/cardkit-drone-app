@@ -17,6 +17,7 @@ class MultipleChoiceCell: CardDetailTableViewCell, CardDetailInputCell, Multiple
     
     var type: CardDetailTableViewController.CardDetailTypes?
     var inputSlot: InputSlot?
+    var actionCard: ActionCard?
     var choices: [String] = ["None"]
     var selection: Int = 0 {
         didSet {
@@ -46,14 +47,62 @@ class MultipleChoiceCell: CardDetailTableViewCell, CardDetailInputCell, Multiple
         
         if let inputOptions = DroneCardKit.allInputTypes[inputSlot.descriptor.inputType] as? StringEnumerable.Type {
             self.choices.append(contentsOf: inputOptions.stringValues)
-            //select first choice by default
-            button?.setTitle(self.choices.first, for: .normal)
+            
+            let selectedOption = getSelectedInputOption()
+            
+            if selectedOption == "" {
+                //no selection, so select none
+                button?.setTitle(self.choices.first, for: .normal)
+            } else {
+                if let selectedIndex = self.choices.index(of: selectedOption) {
+                    self.selection = selectedIndex
+                }                
+            }
         }
     }
+    
+    // MARK: Instance methods
+    
+    func getSelectedInputOption() -> String {
+        if let card = self.actionCard,
+            let inputSlot = self.inputSlot,
+            let inputSlotBinding = card.inputBindings[inputSlot] {
+            switch inputSlotBinding {
+            case .boundToInputCard(let inputCard):
+                switch inputCard.boundData {
+                case .bound(let json):
+                    return json.description
+                default:
+                    return ""
+                }
+            default:
+                return ""
+            }
+        }
+        return ""
+    }
+
     
     // MARK: MultipleChoicePopoverDelegate
     
     func didMakeSelection(selection: Int) {
         self.selection = selection
+        
+        if let inputSlot = self.inputSlot,
+            let inputType = DroneCardKit.allInputTypes[inputSlot.descriptor.inputType],
+            let inputOptions = inputSlot.descriptor.availableOptions() {
+            
+            do {
+                if selection == 0 {
+                    actionCard?.unbind(inputSlot)
+                } else {
+                    let index = selection - 1
+                    let inputCard = try inputSlot.descriptor <- inputType.init(json: inputOptions[index].toJSON())
+                    try actionCard?.bind(with: inputCard, in: inputSlot)
+                }
+            } catch {
+                print("error \(error)")
+            }
+        }
     }
 }

@@ -20,6 +20,7 @@ class MultipleChoicePopover: UITableViewController {
     weak var delegate: MultipleChoicePopoverDelegate?
     var optionsTitle: String?
     var options: [String]?
+    var selectedIndex: Int = 0
 
     private enum CellIdentifiers: Int {
         case header
@@ -40,7 +41,7 @@ class MultipleChoicePopover: UITableViewController {
         
         tableView.allowsMultipleSelection = true
         tableView.tableFooterView = UIView(frame: .zero)        
-        tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .top)
+        tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .top)
     }
 
     override func didReceiveMemoryWarning() {

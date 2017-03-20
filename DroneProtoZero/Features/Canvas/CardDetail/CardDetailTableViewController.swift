@@ -245,6 +245,7 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
         options.delegate = multipleChoiceCell
         options.optionsTitle = multipleChoiceCell.inputSlot?.descriptor.name
         options.options = multipleChoiceCell.choices
+        options.selectedIndex = multipleChoiceCell.selection
         options.modalPresentationStyle = .popover
         options.preferredContentSize = options.popoverSize
 
