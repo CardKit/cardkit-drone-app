@@ -92,14 +92,14 @@ class Sequencer {
         
         for tokenSlot in card.tokenSlots {
             switch tokenSlot.name {
-            case DroneCardKit.TokenSlotNames.drone:
-                tokenBindings.append((DroneCardKit.TokenSlotNames.drone, droneTokenCard))
-            case DroneCardKit.TokenSlotNames.gimbal:
-                tokenBindings.append((DroneCardKit.TokenSlotNames.gimbal, gimbalTokenCard))
-            case DroneCardKit.TokenSlotNames.camera:
-                tokenBindings.append((DroneCardKit.TokenSlotNames.camera, cameraTokenCard))
-            case DroneCardKit.TokenSlotNames.telemetry:
-                tokenBindings.append((DroneCardKit.TokenSlotNames.telemetry, telemetryTokenCard))
+            case DroneCardKit.TokenSlotNames.drone.rawValue:
+                tokenBindings.append((DroneCardKit.TokenSlotNames.drone.rawValue, droneTokenCard))
+            case DroneCardKit.TokenSlotNames.gimbal.rawValue:
+                tokenBindings.append((DroneCardKit.TokenSlotNames.gimbal.rawValue, gimbalTokenCard))
+            case DroneCardKit.TokenSlotNames.camera.rawValue:
+                tokenBindings.append((DroneCardKit.TokenSlotNames.camera.rawValue, cameraTokenCard))
+            case DroneCardKit.TokenSlotNames.telemetry.rawValue:
+                tokenBindings.append((DroneCardKit.TokenSlotNames.telemetry.rawValue, telemetryTokenCard))
                 break
             default:
                 break

@@ -31,6 +31,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         setupTableView()
         
         displayCardDetail(card: DroneCardKit.Action.Movement.Location.Circle.makeCard())
+
     }
     
     func setupTableView() {
