@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol MultipleChoicePopoverDelegate: class {
+    func didMakeSelection(selection: Int)
+}
+
 class MultipleChoicePopover: UITableViewController {
+    
     
     let popoverSize: CGSize = CGSize(width: 320.0, height: 240.0)
     
+    weak var delegate: MultipleChoicePopoverDelegate?
     var optionsTitle: String?
     var options: [String]?
 
@@ -103,6 +109,9 @@ class MultipleChoicePopover: UITableViewController {
         
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.isSelected = true
+            if let delegate = self.delegate {
+                delegate.didMakeSelection(selection: indexPath.row)
+            }
         }        
     }
 

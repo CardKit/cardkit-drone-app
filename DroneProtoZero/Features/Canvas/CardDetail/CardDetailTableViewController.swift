@@ -9,7 +9,7 @@
 import UIKit
 import CardKit
 
-class CardDetailTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate, PathInputCellDelegate {
+class CardDetailTableViewController: UITableViewController, PathInputCellDelegate {
     
     
     var card: ActionCard! {
@@ -138,9 +138,8 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         
         let type: CardDetailTypes = detailSections[indexPath.section]
         let identifier: String = type.reuseIdentifier
-        print("identifier \(identifier)")
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        print("TYPE : \(type)")
+        
         if var detailCell = cell as? CardDetailCell {
             detailCell.type = type
             detailCell.setupCell(card: card, indexPath: indexPath)
@@ -166,21 +165,6 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
 //            let inputSlot = cardDescriptor.inputSlots[inputSlotIndex]
 //            //TODO: need unit from somewhere in data
 
-//        case .multipleChoiceCell:
-//            let inputSlot = cardDescriptor.inputSlots[inputSlotIndex]
-//            guard let multipleChoiceCell = cell as? MultipleChoiceCell else {
-//                return cell
-//            }
-//            
-//            multipleChoiceCell.section = indexPath.section
-//            //TODO: these need to come from somewhere
-//            let choices = ["None", "Normal", "Fine", "Excellent"]
-//            //TODO: set selection based on data in card
-//            if let selectionIndex = multipleChoiceCell.selection {
-//                multipleChoiceCell.button?.setTitle(choices[selectionIndex], for: .normal)
-//            }
-//            
-//            multipleChoiceCell.mainLabel?.text = inputSlot.descriptor.inputDescription
 //        case .pathInput:
 //            guard let pathInputCell = cell as? PathInputCell else {
 //                return cell
@@ -241,26 +225,7 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
 //        }
         return 20.0
     }
-    
-    // MARK: - UIPopoverPresentationControllerDelegate
-    
-    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-        
-        guard let multipleChoiceOptions = popoverPresentationController.presentedViewController as? MultipleChoicePopover,
-            let multipleChoiceCell = popoverPresentationController.sourceView?.superview?.superview?.superview as? MultipleChoiceCell else {
-            return true
-        }
 
-        if let indexPathsForSelectedRows = multipleChoiceOptions.tableView.indexPathsForSelectedRows {
-            for path in indexPathsForSelectedRows {
-                multipleChoiceCell.selection = path.row
-                //TODO: this needs to be set in the card when selection is made
-            }
-        }
-        
-        return true
-    }
-    
     // MARK: - PathInputCellDelegate
     
     func cellSizeUpdated(cell: PathInputCell) {
@@ -287,22 +252,19 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     }
     
     @IBAction func displayMultipleChoiceOptions(sender: UIButton) {
-        guard let options = UIStoryboard(name: "CardDetail", bundle: nil).instantiateViewController(withIdentifier: "MultipleChoicePopover") as? MultipleChoicePopover,
-            let inputIndex = inputIndex(for: sender.tag)
+        
+        guard let multipleChoiceCell = sender.superview?.superview?.superview as? MultipleChoiceCell,
+            let options = UIStoryboard(name: "CardDetail", bundle: nil).instantiateViewController(withIdentifier: "MultipleChoicePopover") as? MultipleChoicePopover
         else { return }
         
-        let inputSlot = cardDescriptor.inputSlots[inputIndex]
-
-        //TODO: these need to come from somewhere
-        let choices = ["None", "Normal", "Fine", "Excellent"]
-        options.optionsTitle = inputSlot.descriptor.name
-        options.options = choices
+        options.delegate = multipleChoiceCell
+        options.optionsTitle = multipleChoiceCell.inputSlot?.descriptor.name
+        options.options = multipleChoiceCell.choices
         options.modalPresentationStyle = .popover
         options.preferredContentSize = options.popoverSize
-        
+
         if let popover: UIPopoverPresentationController = options.popoverPresentationController {
             popover.sourceView = sender
-            popover.delegate = self
             self.present(options, animated: true, completion: nil)
         }
     }

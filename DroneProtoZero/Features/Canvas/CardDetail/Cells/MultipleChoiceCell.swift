@@ -9,14 +9,22 @@
 import Foundation
 import UIKit
 import CardKit
+import DroneCardKit
 
-class MultipleChoiceCell: CardDetailTableViewCell, CardDetailInputCell {
+class MultipleChoiceCell: CardDetailTableViewCell, CardDetailInputCell, MultipleChoicePopoverDelegate {
     
     @IBOutlet weak var button: UIButton?
     
     var type: CardDetailTableViewController.CardDetailTypes?
     var inputSlot: InputSlot?
-    var selection: Int? = 0
+    var choices: [String] = ["None"]
+    var selection: Int = 0 {
+        didSet {
+            if selection < choices.count {
+                button?.setTitle(choices[selection], for: .normal)
+            }
+        }
+    }
     
     var section: Int? {
         didSet {
@@ -29,17 +37,23 @@ class MultipleChoiceCell: CardDetailTableViewCell, CardDetailInputCell {
     }
     
     func setupCell(card: ActionCard, indexPath: IndexPath) {
-//        let inputSlot = cardDescriptor.inputSlots[inputIndex]
-//        
-//        mainLabel?.text = inputSlot.descriptor.inputDescription
-//        
-//        self.section = indexPath.section
-//        //TODO: these need to come from somewhere
-//        let choices = ["None", "Normal", "Fine", "Excellent"]
-//        //TODO: set selection based on data in card
-//        if let selectionIndex = selection {
-//            button?.setTitle(choices[selectionIndex], for: .normal)
-//        }
+        
+        guard let inputSlot = self.inputSlot else {
+            return
+        }
+        
+        mainLabel?.text = inputSlot.descriptor.inputDescription
+        
+        if let inputOptions = DroneCardKit.allInputTypes[inputSlot.descriptor.inputType] as? StringEnumerable.Type {
+            self.choices.append(contentsOf: inputOptions.stringValues)
+            //select first choice by default
+            button?.setTitle(self.choices.first, for: .normal)
+        }
     }
     
+    // MARK: MultipleChoicePopoverDelegate
+    
+    func didMakeSelection(selection: Int) {
+        self.selection = selection
+    }
 }

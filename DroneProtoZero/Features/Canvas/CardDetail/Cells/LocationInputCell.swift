@@ -19,8 +19,7 @@ class Location2DInput: CardDetailTableViewCell, CardDetailInputCell {
     var inputSlot: InputSlot?
     
     func setupCell(card: ActionCard, indexPath: IndexPath) {
-        print("location2DInput setupCell")
-        print(self.frameView?.subviews)
+        
     }
 }
 
