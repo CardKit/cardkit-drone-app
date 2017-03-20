@@ -96,6 +96,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cardDetailNavController.modalPresentationStyle = .pageSheet
         
         if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
+            cardDetailTableViewController.delegate = self
             cardDetailTableViewController.card = card
         }
         self.parent?.present(cardDetailNavController, animated: true, completion: nil)        
@@ -155,16 +156,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         footerView.addStep.addTarget(self, action: #selector(CanvasViewController.addNewStep(sender:)), for: .touchUpInside)
         return footerView
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 
 extension CanvasViewController: CanvasStepHeaderDelegate {
@@ -228,7 +219,6 @@ extension CanvasViewController: Hoverable {
         let offsetY = tableView.contentOffset.y
         return CGPoint(x: position.x, y: position.y + offsetY)
     }
-    
 }
 
 extension CanvasViewController: CardViewDelegate {
@@ -236,6 +226,28 @@ extension CanvasViewController: CardViewDelegate {
     func cardViewWasSelected(handID: Int, cardID: Int) {
         guard let card = viewModel.getCard(forHand: handID, cardID: cardID),
             let actionCard = card as? ActionCard else { return }
+             viewModel.selectedHandID = handID
              displayCardDetail(card: actionCard)
+    }
+}
+
+extension CanvasViewController: CardDetailDelegate {
+    
+    func removeCardWasPressed(card: ActionCard) {
+        guard let handID = viewModel.selectedHandID,
+            let _ = viewModel.getHand(by: handID) else { return }
+        
+        if let cardDetailNC = parent?.presentedViewController,
+            let cardIndex = viewModel.removeCard(cardID: card.identifier, fromHand: handID) {
+            cardDetailNC.dismiss(animated: true, completion: { 
+                //get the hand associated with the cell and update its view
+                if let handCell = self.tableView.cellForRow(at: self.viewModel.indexPath(for: handID)) as? HandTableViewCell {
+                    handCell.removeCard(cardIndex: cardIndex)
+                }
+                
+            })
+        }
+        
+        
     }
 }

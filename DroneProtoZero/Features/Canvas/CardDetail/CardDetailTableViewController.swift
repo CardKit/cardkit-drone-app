@@ -9,6 +9,10 @@
 import UIKit
 import CardKit
 
+protocol CardDetailDelegate: class {
+    func removeCardWasPressed(card: ActionCard)
+}
+
 class CardDetailTableViewController: UITableViewController, PathInputCellDelegate {
     
     var card: ActionCard! {
@@ -50,6 +54,8 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
     var cardDescriptor: ActionCardDescriptor {
         return card.descriptor
     }
+
+	weak var delegate: CardDetailDelegate?
     
     private var detailSections: [CardDetailTypes] = [.nameCell, .descriptionCell]
     
@@ -232,7 +238,8 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
     }
     
     @IBAction func removeCard() {
-        print("REMOVE CARD!")
+        guard let card = card else { return }
+        delegate?.removeCardWasPressed(card: card)
     }
     
     @IBAction func displayMultipleChoiceOptions(sender: UIButton) {
