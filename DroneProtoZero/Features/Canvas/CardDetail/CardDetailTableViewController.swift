@@ -9,8 +9,11 @@
 import UIKit
 import CardKit
 
+protocol CardDetailDelegate: class {
+    func removeCardWasPressed(card: ActionCard)
+}
+
 class CardDetailTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
-    
     
     var card: ActionCard? {
         didSet {
@@ -48,6 +51,7 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         }
     }
     var cardDescriptor: ActionCardDescriptor?
+    weak var delegate: CardDetailDelegate?
     
     private var detailSections: [CellIdentifiers] = [.nameCell, .descriptionCell]
     
@@ -284,7 +288,8 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     }
     
     @IBAction func removeCard() {
-        print("REMOVE CARD!")
+        guard let card = card else { return }
+        delegate?.removeCardWasPressed(card: card)
     }
     
     @IBAction func displayMultipleChoiceOptions(sender: UIButton) {
