@@ -15,14 +15,15 @@ protocol PathInputCellDelegate: class {
     func cellSizeUpdated(cell: PathInputCell)
 }
 
-class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableViewDelegate {
+class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDataSource, UITableViewDelegate {
     
     
-    @IBOutlet weak var footer: UIView?
+    @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var footer: UIView? //TODO: do I need this?
     
-    @IBOutlet weak var tableView: UITableView?       
-    
+    var type: CardDetailTableViewController.CardDetailTypes?
     weak var delegate: PathInputCellDelegate?
+    var inputSlot: InputSlot?
     var points: [CGPoint] = [CGPoint.zero, CGPoint.zero]
     
     private enum CellIdentifiers: String {
@@ -47,8 +48,8 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
 
     }
     
-    override func setupCell(cardDescriptor: ActionCardDescriptor) {
-        super.setupCell(cardDescriptor: cardDescriptor)
+    func setupCell(card: ActionCard, indexPath: IndexPath) {
+        
     }
     
     // MARK: UITableView
@@ -95,7 +96,7 @@ class PathInputCell: CardDetailTableViewCell, UITableViewDataSource, UITableView
     // MARK: IBActions
     
     @IBAction func tapAddPoint() {
-        self.addPoint()
+        addPoint()
     }
     
     // MARK: Instance methods

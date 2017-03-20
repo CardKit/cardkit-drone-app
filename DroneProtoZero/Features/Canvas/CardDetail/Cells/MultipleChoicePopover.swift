@@ -1,5 +1,5 @@
 //
-//  MultipleChoiceMenu.swift
+//  MultipleChoicePopover.swift
 //  DroneProtoZero
 //
 //  Created by Kristina M Brimijoin on 3/10/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MultipleChoiceOptions: UITableViewController {
+class MultipleChoicePopover: UITableViewController {
     
     let popoverSize: CGSize = CGSize(width: 320.0, height: 240.0)
     
