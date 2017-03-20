@@ -18,8 +18,7 @@ protocol PathInputCellDelegate: class {
 class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDataSource, UITableViewDelegate {
     
     
-    @IBOutlet weak var tableView: UITableView?
-    @IBOutlet weak var footer: UIView? //TODO: do I need this?
+    @IBOutlet weak var tableView: UITableView?    
     
     var type: CardDetailTableViewController.CardDetailTypes?
     weak var delegate: PathInputCellDelegate?
