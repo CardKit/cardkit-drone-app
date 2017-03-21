@@ -630,6 +630,7 @@
                                 <connections>
                                     <outlet property="frameView" destination="U9Z-g2-9Hy" id="bl3-p8-5k3"/>
                                     <outlet property="mainLabel" destination="asW-mc-kfH" id="ItJ-Gi-e6C"/>
+                                    <outlet property="map" destination="QVz-A5-efq" id="Z5e-Tj-I7x"/>
                                     <outlet property="tableView" destination="DeQ-YX-5zd" id="gHR-Lh-QeX"/>
                                 </connections>
                             </tableViewCell>
