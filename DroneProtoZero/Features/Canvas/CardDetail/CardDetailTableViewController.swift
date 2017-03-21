@@ -15,10 +15,9 @@ protocol CardDetailDelegate: class {
 
 class CardDetailTableViewController: UITableViewController, PathInputCellDelegate {
     
-    var card: ActionCard! {
+    var card: ActionCard? {
         didSet {
-            
-            let descriptor = cardDescriptor
+            guard let descriptor = self.card?.descriptor else { return }
             
             if descriptor.endDescription != "" {
                 detailSections.append(.endDetailsCell)
@@ -50,9 +49,6 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
             
             print("DETAIL SECTIONS \(detailSections)")
         }
-    }
-    var cardDescriptor: ActionCardDescriptor {
-        return card.descriptor
     }
 
 	weak var delegate: CardDetailDelegate?
@@ -152,16 +148,18 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
             guard let inputSlotIndex = inputIndex(for: indexPath.section) else {
                 return cell
             }
-            let descriptor = card.descriptor
-            inputCell.inputSlot = descriptor.inputSlots[inputSlotIndex]
-            inputCell.setupCell(card: card, indexPath: indexPath)
+            
+            if let actionCard = card {
+                inputCell.inputSlot = actionCard.descriptor.inputSlots[inputSlotIndex]
+                inputCell.setupCell(card: actionCard, indexPath: indexPath)
+            }
             
             if let pathInputCell = inputCell as? PathInputCell {
                 pathInputCell.delegate = self
             }
-        } else if var detailCell = cell as? CardDetailCell {
+        } else if var detailCell = cell as? CardDetailCell, let actionCard = card {
             detailCell.type = type
-            detailCell.setupCell(card: card, indexPath: indexPath)
+            detailCell.setupCell(card: actionCard, indexPath: indexPath)
         }
         
         return cell
@@ -178,14 +176,16 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
         
         switch detailSections[section] {
         case .location2DInput, .standardInputCell, .binaryChoiceCell, .multipleChoiceCell:
-            if let index = inputIndex(for: section) {
-                let inputSlot = cardDescriptor.inputSlots[index]
+            if let index = inputIndex(for: section), let actionCard = card {
+                let inputSlot = actionCard.descriptor.inputSlots[index]
                 headerType = inputSlot.name
                 header.optional = inputSlot.isOptional
             }
         case .nameCell:
             header.endsLabel?.isHidden = false
-            header.ends = card.descriptor.ends
+            if let actionCard = card {
+                header.ends = actionCard.descriptor.ends
+            }
         default:
             break
         }
@@ -228,7 +228,10 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
     // MARK: - Instance methods
     
     func inputIndex(for section: Int) -> Int? {
-        return section - (detailSections.count - cardDescriptor.inputSlots.count)
+        guard let actionCard = card else { return nil }
+        
+        return section - (detailSections.count - actionCard.descriptor.inputSlots.count)
+            
     }
     
     // MARK: - IBActions

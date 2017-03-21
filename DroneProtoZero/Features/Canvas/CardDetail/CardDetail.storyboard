@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NameCell" rowHeight="30" id="g3R-Tr-BDA" customClass="NameCell" customModule="DroneProtoZero" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NameCell" rowHeight="30" id="g3R-Tr-BDA" customClass="NameCell" customModule="DroneProtoZero" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="56" width="768" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" tableViewCell="g3R-Tr-BDA" id="ocB-Re-5Y4">
+                                <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="left" tableViewCell="g3R-Tr-BDA" id="ocB-Re-5Y4">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="30"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -37,7 +37,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REQUIRED HARDWARE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shK-U1-bCA">
-                                            <rect key="frame" x="590" y="10" width="158" height="20"/>
+                                            <rect key="frame" x="590" y="1" width="158" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="158" id="3on-TF-eep"/>
                                                 <constraint firstAttribute="height" constant="20" id="TLD-Jt-Rib"/>
@@ -46,31 +46,41 @@
                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="om1-9e-plI">
+                                            <rect key="frame" x="568" y="21" width="180" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="Bdn-zd-j6k"/>
+                                                <constraint firstAttribute="width" constant="180" id="pBy-kh-zy6"/>
+                                            </constraints>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="om1-9e-plI" firstAttribute="top" secondItem="shK-U1-bCA" secondAttribute="bottom" id="DID-86-8c9"/>
                                         <constraint firstAttribute="bottom" secondItem="qCq-wu-IRO" secondAttribute="bottom" id="PUe-pD-4Vb"/>
                                         <constraint firstItem="qCq-wu-IRO" firstAttribute="top" secondItem="ocB-Re-5Y4" secondAttribute="top" id="aXH-RR-qSu"/>
                                         <constraint firstAttribute="trailing" secondItem="shK-U1-bCA" secondAttribute="trailing" constant="20" id="hCw-hb-f5p"/>
-                                        <constraint firstAttribute="bottom" secondItem="shK-U1-bCA" secondAttribute="bottom" id="iaT-Ps-TQa"/>
+                                        <constraint firstAttribute="bottom" secondItem="shK-U1-bCA" secondAttribute="bottom" constant="9" id="iaT-Ps-TQa"/>
                                         <constraint firstItem="qCq-wu-IRO" firstAttribute="leading" secondItem="ocB-Re-5Y4" secondAttribute="leading" constant="26" id="le7-WO-Lds"/>
-                                        <constraint firstItem="shK-U1-bCA" firstAttribute="top" secondItem="ocB-Re-5Y4" secondAttribute="top" constant="10" id="ucE-kJ-bI5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="om1-9e-plI" secondAttribute="trailing" constant="12" id="pSK-f7-bLR"/>
+                                        <constraint firstItem="shK-U1-bCA" firstAttribute="top" secondItem="ocB-Re-5Y4" secondAttribute="top" constant="1" id="ucE-kJ-bI5"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
+                                    <outlet property="hardwareStackview" destination="om1-9e-plI" id="2yw-nz-6U1"/>
                                     <outlet property="mainLabel" destination="qCq-wu-IRO" id="zPY-cJ-7uM"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DescriptionCell" rowHeight="26" id="1zR-BF-OTx" customClass="DescriptionCell" customModule="DroneProtoZero" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="768" height="26"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1zR-BF-OTx" id="eMF-LF-eDf">
+                                <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1zR-BF-OTx" id="eMF-LF-eDf">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fly the drone forward at a specified distance." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqy-8K-x7p">
-                                            <rect key="frame" x="26" y="2" width="716" height="22"/>
+                                            <rect key="frame" x="26" y="2" width="534" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="3zI-TL-TAu"/>
                                             </constraints>
@@ -80,7 +90,7 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Hqy-8K-x7p" secondAttribute="trailing" constant="26" id="Lv8-xL-hLy"/>
+                                        <constraint firstAttribute="trailing" secondItem="Hqy-8K-x7p" secondAttribute="trailing" constant="208" id="Lv8-xL-hLy"/>
                                         <constraint firstItem="Hqy-8K-x7p" firstAttribute="leading" secondItem="eMF-LF-eDf" secondAttribute="leading" constant="26" id="gvU-Kd-SOh"/>
                                         <constraint firstAttribute="bottom" secondItem="Hqy-8K-x7p" secondAttribute="bottom" constant="2" id="klb-Wg-Yb3"/>
                                         <constraint firstItem="Hqy-8K-x7p" firstAttribute="top" secondItem="eMF-LF-eDf" secondAttribute="top" constant="2" id="ooA-Ql-xVw"/>
