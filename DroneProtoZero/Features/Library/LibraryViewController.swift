@@ -60,7 +60,6 @@ class LibraryViewController: UIViewController {
     }
     
     func createContainedView(storyboardID: String) {
-//        print("CONSTRAINTS \(view.constraints)\n\n\n")
         if let currViewController = self.storyboard?.instantiateViewController(withIdentifier: storyboardID) {
             currViewController.view.translatesAutoresizingMaskIntoConstraints = false
             self.addChildViewController(currViewController)
