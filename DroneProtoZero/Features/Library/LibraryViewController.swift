@@ -28,7 +28,6 @@ class LibraryViewController: UIViewController {
         }
     }
     
-    //    @IBOutlet weak var segmentControl: UISegmentedControl!
     var segmentControl: UISegmentedControl?
     @IBOutlet weak var currContainedView: UIView!
     var currentViewController: UIViewController?
@@ -36,8 +35,6 @@ class LibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSegmentedControl()
-        
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,7 +86,6 @@ class LibraryViewController: UIViewController {
         self.addChildViewController(currViewController)
         currContainedView.addSubview(currViewController.view)
         
-        print(self.view.topAnchor)
         NSLayoutConstraint.activate([
             currViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             currViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
