@@ -42,6 +42,7 @@ class StandardInputCell: CardDetailTableViewCell, CardDetailInputCell {
         input?.text = getSelectedInputOption()
     }
     
+    //swiftlint:disable:next cyclomatic_complexity
     func getSelectedInputOption() -> String {
         guard let card = self.actionCard,
             let inputSlot = self.inputSlot else {
