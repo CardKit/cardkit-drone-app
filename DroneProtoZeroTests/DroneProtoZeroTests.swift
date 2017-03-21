@@ -86,7 +86,7 @@ class DroneProtoZeroTests: XCTestCase {
             return
         }
         
-        try viewModel.addCard(cardDescriptor: circleCard, toHand: handID)
+        let _ = try viewModel.addCard(cardDescriptor: circleCard, toHand: handID)
         let hand = viewModel.getHand(by: handID)
         XCTAssertEqual(circleCard.cardType, hand?.cards.first?.cardType)
     }
@@ -106,7 +106,7 @@ class DroneProtoZeroTests: XCTestCase {
             return
         }
         do {
-            try viewModel.addCard(cardDescriptor: circleCardDescriptor, toHand: handID)
+            let _ = try viewModel.addCard(cardDescriptor: circleCardDescriptor, toHand: handID)
         } catch {
             XCTFail("Could not add a card")
         }
@@ -133,7 +133,7 @@ class DroneProtoZeroTests: XCTestCase {
             return
         }
         do {
-            try viewModel.addCard(cardDescriptor: circleCardDescriptor, toHand: handID)
+            let _ = try viewModel.addCard(cardDescriptor: circleCardDescriptor, toHand: handID)
         } catch {
             XCTFail("Could not add a card")
         }

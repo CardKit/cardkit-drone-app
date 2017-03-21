@@ -85,8 +85,8 @@ class Sequencer {
      - cardDescriptor: CardDescriptor
      - index: Int - index of the hand
      */
-    func addCard(card: ActionCardDescriptor, toHand index: Int) throws {
-        guard let hand = getHand(by: index) else { return }
+    func addCard(card: ActionCardDescriptor, toHand index: Int) throws -> ActionCard? {
+        guard let hand = getHand(by: index) else { return nil }
         var cardInstance = try card <- []
         var tokenBindings: [(String, TokenCard)] = []
         
@@ -109,6 +109,8 @@ class Sequencer {
         cardInstance = try cardInstance <- tokenBindings
         
         let _ = hand ++ cardInstance
+        
+        return cardInstance
     }
     
     /**

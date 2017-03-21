@@ -107,8 +107,10 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print("CARD DESCRIPTOR: \(descriptor) added to this section \(indexPath.section)")
         
         do {
-            try viewModel.addCard(cardDescriptor: descriptor, toHand: indexPath.section)
-            handCell.addCard(card: descriptor)
+            if let cardInstance = try viewModel.addCard(cardDescriptor: descriptor, toHand: indexPath.section) {
+                handCell.addCard(card: descriptor)
+                displayCardDetail(card: cardInstance)
+            }
         } catch {
             print("I think were should be showing an error here, as I couldnt add a card")
         }

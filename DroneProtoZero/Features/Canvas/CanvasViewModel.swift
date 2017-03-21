@@ -8,6 +8,7 @@
 
 import Foundation
 import CardKit
+import CardKitRuntime
 
 enum CanvasSection: Int {
     case status
@@ -96,9 +97,9 @@ struct CanvasViewModel {
     
     // MARK: Card Adding/Removing Methods
     
-    func addCard(cardDescriptor: ActionCardDescriptor, toHand index: Int) throws {
+    func addCard(cardDescriptor: ActionCardDescriptor, toHand index: Int) throws -> ActionCard? {
         let actualID = index - defaultSectionCount
-        try Sequencer.shared.addCard(card: cardDescriptor, toHand: actualID)
+        return try Sequencer.shared.addCard(card: cardDescriptor, toHand: actualID)
     }
     
     func removeCard(cardID: CardIdentifier, fromHand index: Int) -> Int? {
