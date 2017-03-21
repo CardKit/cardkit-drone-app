@@ -16,7 +16,7 @@ protocol CardViewDelegate: class {
 class HandTableViewCell: UITableViewCell, Reusable {
 
     var handID: Int = 0
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView?
     var isEmpty: Bool {
         if let cards = currentHand?.cards {
             if cards.count > 0 {
@@ -37,30 +37,25 @@ class HandTableViewCell: UITableViewCell, Reusable {
     
     override func prepareForReuse() {
         cards = nil
-        collectionView.isHidden = isEmpty
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        collectionView?.isHidden = isEmpty
     }
     
     func setupHand(sectionID: Int, delegate: CardViewDelegate) {
         handID = sectionID
         cardDelegate = delegate
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+        collectionView?.collectionViewLayout = HandCollectionFlowLayout()
         currentHand = viewModel.getHand(by: handID)
-        collectionView.isHidden = isEmpty
-        collectionView.reloadData()
+        collectionView?.isHidden = isEmpty
+        collectionView?.reloadData()
     }
     
     func addCard(card: ActionCardDescriptor) {
         currentHand = viewModel.getHand(by: handID)
-        collectionView.isHidden = isEmpty
+        collectionView?.isHidden = isEmpty
         
-        if let cards = currentHand?.cards {
+        if let cards = currentHand?.cards, let collectionView = self.collectionView {
             //NOTE: has to be greater than 1 because there should alwauys be an END CARD and that card needs to be the last card in the hand ALWAYS, NO IFs, ANDS, OR BUTS about it
             if cards.count > 1 {
                 //we insert the new card always as the last card
@@ -72,7 +67,7 @@ class HandTableViewCell: UITableViewCell, Reusable {
     }
     
     func removeCard(cardIndex: Int) {
-        if let cards = currentHand?.cards {
+        if let cards = currentHand?.cards, let collectionView = self.collectionView {
             if cards.count > 0 {
                 let deleteCardPath = IndexPath(item: cardIndex, section: 0)
                 collectionView.deleteItems(at:[deleteCardPath])
@@ -117,9 +112,9 @@ extension HandTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
         
         return cell
     }
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("grab the card index and send it to canvas section: \(indexPath.section) card index: \(indexPath.item)")
         cardDelegate?.cardViewWasSelected(handID: handID, cardID: indexPath.item)
     }
 }

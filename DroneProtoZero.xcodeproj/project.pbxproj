@@ -57,6 +57,7 @@
 		3A2F628A1E772F14008653C7 /* UITextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851F90D1E73574B007422AF /* UITextViewExtension.swift */; };
 		3A2F628B1E778752008653C7 /* DroneTokensDJI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682134E31E70A17400B3BEC3 /* DroneTokensDJI.framework */; };
 		3A2F628C1E778784008653C7 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682134E51E70A29B00B3BEC3 /* DJISDK.framework */; };
+		3A7678891E817AF200B03984 /* HandCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7678881E817AF200B03984 /* HandCollectionFlowLayout.swift */; };
 		3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */; };
 		3A89F3531E6769D2005A9D48 /* AvailableHardwareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3501E6769D2005A9D48 /* AvailableHardwareCell.swift */; };
 		3A89F3541E6769D2005A9D48 /* DroneStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F3511E6769D2005A9D48 /* DroneStatusCell.swift */; };
@@ -142,6 +143,7 @@
 /* Begin PBXFileReference section */
 		3A2F62801E77263E008653C7 /* DroneProtoZeroFastlane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneProtoZeroFastlane.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A2F62811E77263E008653C7 /* DroneProtoZero copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DroneProtoZero copy-Info.plist"; path = "/Users/boland/Projects/DroneCards/drone-proto-zero/DroneProtoZero copy-Info.plist"; sourceTree = "<absolute>"; };
+		3A7678881E817AF200B03984 /* HandCollectionFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneCardDescriptors.swift; sourceTree = "<group>"; };
 		3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisualRecognitionV3.framework; path = Carthage/Build/iOS/VisualRecognitionV3.framework; sourceTree = "<group>"; };
 		3A89F34D1E6763EE005A9D48 /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestKit.framework; path = Carthage/Build/iOS/RestKit.framework; sourceTree = "<group>"; };
@@ -267,9 +269,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A7678871E817AC600B03984 /* FlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				3A7678881E817AF200B03984 /* HandCollectionFlowLayout.swift */,
+			);
+			path = FlowLayout;
+			sourceTree = "<group>";
+		};
 		3A89F34F1E6769D2005A9D48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3A7678871E817AC600B03984 /* FlowLayout */,
 				3A89F3501E6769D2005A9D48 /* AvailableHardwareCell.swift */,
 				3A89F3511E6769D2005A9D48 /* DroneStatusCell.swift */,
 				3A89F3521E6769D2005A9D48 /* HandTableViewCell.swift */,
@@ -784,6 +795,7 @@
 				3A89F3541E6769D2005A9D48 /* DroneStatusCell.swift in Sources */,
 				3A89F34A1E675711005A9D48 /* DroneCardDescriptors.swift in Sources */,
 				682134E01E709D0A00B3BEC3 /* HardwareManager.swift in Sources */,
+				3A7678891E817AF200B03984 /* HandCollectionFlowLayout.swift in Sources */,
 				3AB3978C1E667A5B00DA1800 /* CardTableViewCell.swift in Sources */,
 				D51E32B91E6DB8A8002DC319 /* CardInputField.swift in Sources */,
 				D576663F1E72E6ED000241FB /* MultipleChoicePopover.swift in Sources */,
