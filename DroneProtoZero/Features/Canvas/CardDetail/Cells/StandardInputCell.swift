@@ -52,7 +52,6 @@ class StandardInputCell: CardDetailTableViewCell, CardDetailInputCell {
         
         var stringVal = ""
         
-        
         switch inputTypeString {
         case String(describing: DCKRelativeAltitude.self):
             guard let inputTypeObj: DCKRelativeAltitude = card.value(of: inputSlot) else { break }
