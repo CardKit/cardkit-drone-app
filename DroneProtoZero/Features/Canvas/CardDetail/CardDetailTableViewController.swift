@@ -13,14 +13,12 @@ protocol CardDetailDelegate: class {
     func removeCardWasPressed(card: ActionCard)
 }
 
-class CardDetailTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class CardDetailTableViewController: UITableViewController, PathInputCellDelegate {
     
     var card: ActionCard? {
         didSet {
-
-            guard let descriptor = card?.descriptor else { return }
-            cardDescriptor = descriptor
-
+            guard let descriptor = self.card?.descriptor else { return }
+            
             if descriptor.endDescription != "" {
                 detailSections.append(.endDetailsCell)
             }
@@ -34,13 +32,15 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
                 switch input.descriptor.name {
                 case "Coordinate 2D":
                     detailSections.append(.location2DInput)
-                    break
-                case "Altitude", "Speed", "Distance", "Radius", "AngularSpeed", "Aspect Ratio":
+                case "Coordinate 3D":
+                    detailSections.append(.location3DInput)
+                case "Path":
+                    detailSections.append(.pathInput)                    
+                case "Altitude", "Speed", "Distance", "Radius", "AngularSpeed", "Duration":
                     detailSections.append(.standardInputCell)
-                    break
                 case "Boolean", "RotationDirection":
                     detailSections.append(.binaryChoiceCell)
-                case "Quality":
+                case "Quality", "Aspect Ratio":
                     detailSections.append(.multipleChoiceCell)
                 default:
                     continue
@@ -50,21 +50,22 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
             print("DETAIL SECTIONS \(detailSections)")
         }
     }
-    var cardDescriptor: ActionCardDescriptor?
-    weak var delegate: CardDetailDelegate?
+
+	weak var delegate: CardDetailDelegate?
     
-    private var detailSections: [CellIdentifiers] = [.nameCell, .descriptionCell]
+    private var detailSections: [CardDetailTypes] = [.nameCell, .descriptionCell]
     
-    private enum CellIdentifiers: Int {
+    public enum CardDetailTypes: Int {
         case nameCell
         case descriptionCell
         case endDetailsCell
         case outputsCell
         case location2DInput
+        case location3DInput
+        case pathInput
         case standardInputCell
         case binaryChoiceCell
         case multipleChoiceCell
-        case header
         
         var reuseIdentifier: String {
             switch self {
@@ -74,14 +75,16 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
                 return "DescriptionCell"
             case .location2DInput:
                 return "Location2DInputCell"
+            case .location3DInput:
+                return "Location3DInputCell"
+            case .pathInput:
+                return "PathInputCell"
             case .standardInputCell:
                 return "StandardInputCell"
             case .binaryChoiceCell:
                 return "BinaryChoiceCell"
             case .multipleChoiceCell:
                 return "MultipleChoiceCell"
-            case .header:
-                return "Header"
             }            
         }
         
@@ -95,13 +98,11 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
                 return "End Details"
             case .outputsCell:
                 return "Outputs"
-            case .standardInputCell, .location2DInput, .binaryChoiceCell, .multipleChoiceCell:
+            case .standardInputCell, .location2DInput, .location3DInput, .pathInput, .binaryChoiceCell, .multipleChoiceCell:
                 guard let inputType = type else {
                     return "Input"
                 }
                 return "Input: \(inputType)"
-            case .header:
-                return ""
             }
         }
         
@@ -112,7 +113,10 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.contentInset = UIEdgeInsets(top: 40.0, left: 0.0, bottom: 0.0, right: 0.0)
-
+        tableView.contentOffset = CGPoint.zero
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 600.0
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,8 +127,7 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        let numSections = detailSections.count
-        print("numSections \(numSections)")
+        let numSections = detailSections.count        
         return numSections
     }
 
@@ -134,62 +137,30 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let identifier: String = detailSections[indexPath.section].reuseIdentifier
-        
-        print("section \(indexPath.section)   reuse id \(identifier)")
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? CardDetailTableViewCell,
-            let cardDescriptor = cardDescriptor,
-            let inputSlotIndex = inputIndex(for: indexPath.section) else {
-                return UITableViewCell()
-        }
+        let type: CardDetailTypes = detailSections[indexPath.section]
+        let identifier: String = type.reuseIdentifier
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         
         
-        switch detailSections[indexPath.section] {
-        case .nameCell:
-            cell.mainLabel?.text = cardDescriptor.name
-        case .descriptionCell:
-            cell.mainLabel?.text = cardDescriptor.assetCatalog.textualDescription
-        case .endDetailsCell:
-            cell.mainLabel?.text = cardDescriptor.endDescription
-        case .outputsCell:
-            cell.mainLabel?.text = cardDescriptor.yieldDescription
-        case .standardInputCell:
-            let inputSlot = cardDescriptor.inputSlots[inputSlotIndex]
-            //TODO: need unit from somewhere in data
-            cell.mainLabel?.text = "\(inputSlot.descriptor.inputDescription)"
-        case .binaryChoiceCell:
-            let inputSlot = cardDescriptor.inputSlots[inputSlotIndex]
-                cell.mainLabel?.text = "\(inputSlot.name)"
-            
-            if let binaryChoiceCell = cell as? BinaryChoiceCell,
-                let segments = binaryChoiceCell.segControl?.numberOfSegments {
-                for i in 0...segments-1 {
-                    binaryChoiceCell.segControl?.setTitle("Temp Choice \(i)", forSegmentAt: i)
-                }
-            }
-        case .multipleChoiceCell:
-            let inputSlot = cardDescriptor.inputSlots[inputSlotIndex]
-            guard let multipleChoiceCell = cell as? MultipleChoiceCell else {
+        
+        if var inputCell = cell as? CardDetailInputCell {
+            inputCell.type = type
+            guard let inputSlotIndex = inputIndex(for: indexPath.section) else {
                 return cell
             }
             
-            multipleChoiceCell.section = indexPath.section
-            //TODO: these need to come from somewhere
-            let choices = ["None", "Normal", "Fine", "Excellent"]
-            //TODO: set selection based on data in card
-            if let selectionIndex = multipleChoiceCell.selection {
-                print("set text on button to \(choices[selectionIndex])")
-                multipleChoiceCell.button?.setTitle(choices[selectionIndex], for: .normal)
+            if let actionCard = card {
+                inputCell.inputSlot = actionCard.descriptor.inputSlots[inputSlotIndex]
+                inputCell.setupCell(card: actionCard, indexPath: indexPath)
             }
             
-            multipleChoiceCell.mainLabel?.text = inputSlot.descriptor.inputDescription
-            
-        default:
-            return cell
+            if let pathInputCell = inputCell as? PathInputCell {
+                pathInputCell.delegate = self
+            }
+        } else if var detailCell = cell as? CardDetailCell, let actionCard = card {
+            detailCell.type = type
+            detailCell.setupCell(card: actionCard, indexPath: indexPath)
         }
-        
-        cell.setupCell(cardDescriptor: cardDescriptor)
         
         return cell
         
@@ -197,21 +168,23 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        guard let header = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.header.reuseIdentifier) as? CardDetailHeaderView else {
+        guard let header =  Bundle.main.loadNibNamed("CardDetailHeader", owner: nil, options: nil)?.first as? CardDetailHeaderView else {
             return nil
         }
+
         var headerType: String?
         
         switch detailSections[section] {
         case .location2DInput, .standardInputCell, .binaryChoiceCell, .multipleChoiceCell:
-            if let index = inputIndex(for: section), let inputSlot = cardDescriptor?.inputSlots[index] {
+            if let index = inputIndex(for: section), let actionCard = card {
+                let inputSlot = actionCard.descriptor.inputSlots[index]
                 headerType = inputSlot.name
                 header.optional = inputSlot.isOptional
             }
         case .nameCell:
-            if let descriptor = cardDescriptor {
-                header.endsLabel?.isHidden = false
-                header.ends = descriptor.ends
+            header.endsLabel?.isHidden = false
+            if let actionCard = card {
+                header.ends = actionCard.descriptor.ends
             }
         default:
             break
@@ -224,23 +197,15 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        switch detailSections[indexPath.section].rawValue {
-        case CellIdentifiers.nameCell.rawValue:
-            return 30.0
-        case CellIdentifiers.descriptionCell.rawValue, CellIdentifiers.endDetailsCell.rawValue, CellIdentifiers.outputsCell.rawValue:
-            return 26.0
-        case CellIdentifiers.location2DInput.rawValue:
-            return 774.0
-        case CellIdentifiers.standardInputCell.rawValue:
-            return 66.0
-        default:
-            return 44.0
-        }
+        return UITableViewAutomaticDimension
     }
     
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+ 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20.0
+        return 30.0
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -250,41 +215,29 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
 //        }
         return 20.0
     }
+
+    // MARK: - PathInputCellDelegate
     
-    // MARK: - UIPopoverPresentationControllerDelegate
-    
-    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-        print("popover osurce view \(popoverPresentationController.sourceView?.superview?.superview?.superview)")
-        
-        guard let multipleChoiceOptions = popoverPresentationController.presentedViewController as? MultipleChoiceOptions,
-            let multipleChoiceCell = popoverPresentationController.sourceView?.superview?.superview?.superview as? MultipleChoiceCell else {
-            return true
-        }
-        print("multiple choice cell popover!!! \(multipleChoiceCell)")
-        
-        if let indexPathsForSelectedRows = multipleChoiceOptions.tableView.indexPathsForSelectedRows {
-            for path in indexPathsForSelectedRows {
-                multipleChoiceCell.selection = path.row
-                //TODO: this needs to be set in the card when selection is made
-            }
-        }
-        
-        return true
+    func cellSizeUpdated(cell: PathInputCell) {
+        //need the cell height to be recalculated but don't wish for the cell to be reloaded as that causes the 
+        //contained map to also be reloaded
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
     
     // MARK: - Instance methods
     
     func inputIndex(for section: Int) -> Int? {
-        guard let cardDescriptor = cardDescriptor else { return nil }
-        return section - (detailSections.count - cardDescriptor.inputSlots.count)
+        guard let actionCard = card else { return nil }
+        
+        return section - (detailSections.count - actionCard.descriptor.inputSlots.count)
+            
     }
     
     // MARK: - IBActions
     
     @IBAction func close() {
-        self.dismiss(animated: true) {
-            print("CardDetailNavController dismissed")
-        }
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func removeCard() {
@@ -293,22 +246,20 @@ class CardDetailTableViewController: UITableViewController, UIPopoverPresentatio
     }
     
     @IBAction func displayMultipleChoiceOptions(sender: UIButton) {
-        guard let options = UIStoryboard(name: "CardDetail", bundle: nil).instantiateViewController(withIdentifier: "MultipleChoiceOptions") as? MultipleChoiceOptions,
-            let inputIndex = inputIndex(for: sender.tag)
+        
+        guard let multipleChoiceCell = sender.superview?.superview?.superview as? MultipleChoiceCell,
+            let options = UIStoryboard(name: "CardDetail", bundle: nil).instantiateViewController(withIdentifier: "MultipleChoicePopover") as? MultipleChoicePopover
         else { return }
         
-        let inputSlot = cardDescriptor?.inputSlots[inputIndex]
-        print("inputSlot \(inputSlot)")
-        //TODO: these need to come from somewhere
-        let choices = ["None", "Normal", "Fine", "Excellent"]
-        options.optionsTitle = inputSlot?.descriptor.name
-        options.options = choices
+        options.delegate = multipleChoiceCell
+        options.optionsTitle = multipleChoiceCell.inputSlot?.descriptor.name
+        options.options = multipleChoiceCell.choices
+        options.selectedIndex = multipleChoiceCell.selection
         options.modalPresentationStyle = .popover
         options.preferredContentSize = options.popoverSize
-        
+
         if let popover: UIPopoverPresentationController = options.popoverPresentationController {
             popover.sourceView = sender
-            popover.delegate = self
             self.present(options, animated: true, completion: nil)
         }
     }

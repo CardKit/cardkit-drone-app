@@ -29,6 +29,10 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        
+        //TEMP:
+        displayCardDetail(card: DroneCardKit.Action.Tech.Gimbal.PanBetweenLocations.makeCard())
+
     }
     
     func setupTableView() {
@@ -90,17 +94,12 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         cardDetailNavController.modalPresentationStyle = .pageSheet
-        print("table vc \(cardDetailNavController.topViewController)")
         
         if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
-            print("Canvas vc sets cardDescriptor")
             cardDetailTableViewController.delegate = self
             cardDetailTableViewController.card = card
         }
-        
-        self.parent?.present(cardDetailNavController, animated: true) {
-            print("present card detail")
-        }
+        self.parent?.present(cardDetailNavController, animated: true, completion: nil)        
     }
 
     // MARK: - Add card

@@ -9,21 +9,22 @@ import UIKit
 import CardKit
 import MapKit
 
-class Location2DInput: CardDetailTableViewCell {
+class Location2DInput: CardDetailTableViewCell, CardDetailInputCell {
     
     @IBOutlet weak var map: MKMapView?
     @IBOutlet weak var latitudeTextField: UITextField?
     @IBOutlet weak var longitudeTextField: UITextField?
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-        
-        
-    }
+    var type: CardDetailTableViewController.CardDetailTypes?
+    var inputSlot: InputSlot?
     
-    override func setupCell(cardDescriptor: ActionCardDescriptor) {
-        super.setupCell(cardDescriptor: cardDescriptor)
+    func setupCell(card: ActionCard, indexPath: IndexPath) {
+        
     }
+}
+
+class Location3DInput: Location2DInput {
+    
+    @IBOutlet weak var altitudeTextField: UITextField?
     
 }
