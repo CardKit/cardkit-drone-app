@@ -85,4 +85,8 @@ extension UIColor {
     static var placeholderGray: UIColor {
         return UIColor(hexString: "#C8C7CC")
     }
+    
+    static var annotationDetailViewGray: UIColor {
+        return UIColor(hexString: "#F9F9F9")
+    }
 }

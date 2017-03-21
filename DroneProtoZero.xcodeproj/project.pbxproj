@@ -113,6 +113,8 @@
 		D576663F1E72E6ED000241FB /* MultipleChoicePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576663E1E72E6ED000241FB /* MultipleChoicePopover.swift */; };
 		D57666411E7716C3000241FB /* PathInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57666401E7716C3000241FB /* PathInputCell.swift */; };
 		D57FA55D1E804249007A66FE /* InputCardDescriptorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57FA55C1E804249007A66FE /* InputCardDescriptorExtension.swift */; };
+		D57FA55F1E817D3D007A66FE /* PathInputAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D57FA55E1E817D3D007A66FE /* PathInputAnnotationView.xib */; };
+		D57FA5611E818315007A66FE /* MKMapKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57FA5601E818315007A66FE /* MKMapKitExtension.swift */; };
 		D5E6BB701E7C55F900CBF2A4 /* NameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E6BB6F1E7C55F900CBF2A4 /* NameCell.swift */; };
 		D5E6BB721E7C56EF00CBF2A4 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E6BB711E7C56EF00CBF2A4 /* DescriptionCell.swift */; };
 		D5E6BB761E7C619B00CBF2A4 /* StandardInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E6BB751E7C619B00CBF2A4 /* StandardInputCell.swift */; };
@@ -206,6 +208,8 @@
 		D576663E1E72E6ED000241FB /* MultipleChoicePopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoicePopover.swift; sourceTree = "<group>"; };
 		D57666401E7716C3000241FB /* PathInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathInputCell.swift; sourceTree = "<group>"; };
 		D57FA55C1E804249007A66FE /* InputCardDescriptorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputCardDescriptorExtension.swift; sourceTree = "<group>"; };
+		D57FA55E1E817D3D007A66FE /* PathInputAnnotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PathInputAnnotationView.xib; sourceTree = "<group>"; };
+		D57FA5601E818315007A66FE /* MKMapKitExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapKitExtension.swift; sourceTree = "<group>"; };
 		D5E6BB6F1E7C55F900CBF2A4 /* NameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameCell.swift; sourceTree = "<group>"; };
 		D5E6BB711E7C56EF00CBF2A4 /* DescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		D5E6BB751E7C619B00CBF2A4 /* StandardInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardInputCell.swift; sourceTree = "<group>"; };
@@ -337,6 +341,7 @@
 				6851A9841E72313F00079D0B /* UIViewExtension.swift */,
 				6851F90D1E73574B007422AF /* UITextViewExtension.swift */,
 				D57FA55C1E804249007A66FE /* InputCardDescriptorExtension.swift */,
+				D57FA5601E818315007A66FE /* MKMapKitExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 				D51E32B81E6DB8A8002DC319 /* CardInputField.swift */,
 				D5FA71CF1E79895B00E416F5 /* PathInputSectionHeader.xib */,
 				D5FA71D11E79B6CB00E416F5 /* PathInputFooter.xib */,
+				D57FA55E1E817D3D007A66FE /* PathInputAnnotationView.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -636,6 +642,7 @@
 				3AB3978F1E667A5B00DA1800 /* Logs.storyboard in Resources */,
 				D5FA71D61E7AE5C200E416F5 /* CardDetailHeader.xib in Resources */,
 				3A89F3571E6769FC005A9D48 /* CanvasStepHeaderView.xib in Resources */,
+				D57FA55F1E817D3D007A66FE /* PathInputAnnotationView.xib in Resources */,
 				3AB397841E667A5B00DA1800 /* Canvas.storyboard in Resources */,
 				3AE7F67E1E64924C00D67889 /* Assets.xcassets in Resources */,
 			);
@@ -778,6 +785,7 @@
 				3AB397931E667A5B00DA1800 /* UIColorExtension.swift in Sources */,
 				3AB3978B1E667A5B00DA1800 /* CardsTableViewController.swift in Sources */,
 				3AB397901E667A5B00DA1800 /* LogsViewController.swift in Sources */,
+				D57FA5611E818315007A66FE /* MKMapKitExtension.swift in Sources */,
 				D5E6BB781E7C683500CBF2A4 /* BinaryChoiceCell.swift in Sources */,
 				D57FA55D1E804249007A66FE /* InputCardDescriptorExtension.swift in Sources */,
 				3AB3978E1E667A5B00DA1800 /* LibraryViewController.swift in Sources */,
