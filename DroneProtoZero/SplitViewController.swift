@@ -119,7 +119,9 @@ class SplitViewController: UISplitViewController {
     
     func animate(onScreen: Bool, view: UIView, position: CGPoint, completion: (() -> Void)?) {
         UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseInOut, animations: {
-            view.frame = CGRect(x: position.x, y: position.y, width: CardTableViewCell.cardWidth, height: CardTableViewCell.cardHeight)
+            if onScreen {
+                view.frame = CGRect(x: position.x, y: position.y, width: CardTableViewCell.cardWidth, height: CardTableViewCell.cardHeight)
+            }
             let scale:CGFloat = onScreen ? 1.05 : 0.5
             view.transform = CGAffineTransform(scaleX: scale, y: scale)
         }, completion: { (_) in

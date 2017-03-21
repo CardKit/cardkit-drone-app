@@ -29,7 +29,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-
     }
     
     func setupTableView() {
