@@ -28,51 +28,76 @@ class LibraryViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var segmentControl: UISegmentedControl!
+    //    @IBOutlet weak var segmentControl: UISegmentedControl!
+    var segmentControl: UISegmentedControl?
     @IBOutlet weak var currContainedView: UIView!
     var currentViewController: UIViewController?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        // Do any additional setup after loading the view.
+        setupSegmentedControl()
+        
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(LibraryViewController.displayLogsView), name: NotificationName.displayLogsView, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LibraryViewController.displayCardsView), name: NotificationName.displayCardsView, object: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        displayCardsView()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: NotificationName.displayLogsView, object: nil)
         NotificationCenter.default.removeObserver(self, name: NotificationName.displayCardsView, object: nil)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func setupView() {
+    func setupSegmentedControl() {
+        // Do any additional setup after loading the view.
+        let items = ["Cards", "Logs"]
+        let widthPerItem = 280/items.count
+        
+        segmentControl = UISegmentedControl(items: items)
+        
+        for index in 0..<items.count {
+            segmentControl?.setWidth(CGFloat(widthPerItem), forSegmentAt: index)
+        }
+        
+        if let segmentControl = segmentControl {
+            self.navigationItem.titleView = segmentControl
+        }
+        
         //setup the segmented control to show first and cardsVC by default
-        segmentControl.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
-        createContainedView(storyboardID: CellType.cards.storyboardID)
+        segmentControl?.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
     }
     
     func createContainedView(storyboardID: String) {
-        if let currViewController = self.storyboard?.instantiateViewController(withIdentifier: storyboardID) {
-            currViewController.view.translatesAutoresizingMaskIntoConstraints = false
-            self.addChildViewController(currViewController)
-            currViewController.view.layoutIfNeeded()
-            currContainedView.addSubview(currViewController.view)
-            NSLayoutConstraint.activate([
-                currViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-                currViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-                currViewController.view.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 20),
-                currViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-                ])
-            currentViewController = currViewController
-        }
+        guard let currViewController = self.storyboard?.instantiateViewController(withIdentifier: storyboardID) else { return }
+        
+        currViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        self.addChildViewController(currViewController)
+        currContainedView.addSubview(currViewController.view)
+        
+        print(self.view.topAnchor)
+        NSLayoutConstraint.activate([
+            currViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            currViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            currViewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 64),
+            currViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            ])
+        
+        currentViewController = currViewController
     }
     
     func updateView(newView: CellType) {
@@ -81,8 +106,8 @@ class LibraryViewController: UIViewController {
             currViewController.willMove(toParentViewController: nil)
             currViewController.view.removeFromSuperview()
             currViewController.removeFromParentViewController()
-
         }
+        
         createContainedView(storyboardID: newView.storyboardID)
     }
     
@@ -117,25 +142,25 @@ class LibraryViewController: UIViewController {
         // Notify Child View Controller
         viewController.removeFromParentViewController()
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     // MARK: - Notifcation Handlers
     func displayLogsView() {
-        segmentControl.selectedSegmentIndex = CellType.logs.rawValue
+        segmentControl?.selectedSegmentIndex = CellType.logs.rawValue
         updateView(newView: .logs)
     }
     
     func displayCardsView() {
-        segmentControl.selectedSegmentIndex = CellType.cards.rawValue
+        segmentControl?.selectedSegmentIndex = CellType.cards.rawValue
         updateView(newView: .cards)
     }
 }

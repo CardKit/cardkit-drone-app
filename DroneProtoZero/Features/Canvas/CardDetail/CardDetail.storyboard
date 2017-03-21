@@ -528,14 +528,14 @@
                                                     <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PathInputPointCell" rowHeight="100" id="SC7-Hz-rS9" customClass="PathInputPointCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="55" width="664" height="100"/>
+                                                            <rect key="frame" x="0.0" y="56" width="664" height="100"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SC7-Hz-rS9" id="qaf-9h-eer">
                                                                 <rect key="frame" x="0.0" y="0.0" width="664" height="100"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="value" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hwj-rg-oc1" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
-                                                                        <rect key="frame" x="256" y="0.0" width="400" height="30"/>
+                                                                        <rect key="frame" x="256" y="0.0" width="400" height="31"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="400" id="AL2-HA-ivT"/>
                                                                             <constraint firstAttribute="height" constant="30" id="T19-da-1b8"/>
@@ -545,7 +545,7 @@
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="value" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82D-il-K2L" customClass="CardInputField" customModule="DroneProtoZero" customModuleProvider="target">
-                                                                        <rect key="frame" x="256" y="50" width="400" height="30"/>
+                                                                        <rect key="frame" x="256" y="51" width="400" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="400" id="RIs-oh-aST"/>
                                                                             <constraint firstAttribute="height" constant="30" id="sJH-Pq-CUm"/>
@@ -555,7 +555,7 @@
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude (in decimal degrees)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raV-AA-77f">
-                                                                        <rect key="frame" x="0.0" y="3" width="281" height="22"/>
+                                                                        <rect key="frame" x="0.0" y="4" width="281" height="22"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="281" id="Agm-DV-yYZ"/>
                                                                             <constraint firstAttribute="height" constant="22" id="yb1-UT-dD0"/>
@@ -565,7 +565,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude (in decimal degrees)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Az-wP-hkd">
-                                                                        <rect key="frame" x="0.0" y="54" width="281" height="22"/>
+                                                                        <rect key="frame" x="0.0" y="55" width="281" height="22"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="281" id="Kb4-8a-GO2"/>
                                                                             <constraint firstAttribute="height" constant="22" id="iPN-TL-xGM"/>

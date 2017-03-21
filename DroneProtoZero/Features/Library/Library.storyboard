@@ -21,28 +21,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="315" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XIj-9D-dVZ">
-                                <rect key="frame" x="36" y="84" width="242" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="242" id="GrP-cl-oJo"/>
-                                    <constraint firstAttribute="height" constant="28" id="b1P-oa-ZY6"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Library"/>
-                                    <segment title="Logs"/>
-                                </segments>
-                            </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkk-FD-YjR" userLabel="Current Contained View">
-                                <rect key="frame" x="0.0" y="132" width="315" height="892"/>
+                                <rect key="frame" x="0.0" y="64" width="315" height="960"/>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XIj-9D-dVZ" firstAttribute="top" secondItem="HKZ-mK-wyQ" secondAttribute="bottom" constant="20" id="AiB-bR-3qV"/>
                             <constraint firstItem="vkk-FD-YjR" firstAttribute="leading" secondItem="LwL-Iu-wqO" secondAttribute="leading" id="KJl-pC-jCf"/>
                             <constraint firstItem="P20-uf-BMe" firstAttribute="top" secondItem="vkk-FD-YjR" secondAttribute="bottom" id="PEh-Sa-TUz"/>
-                            <constraint firstItem="vkk-FD-YjR" firstAttribute="top" secondItem="XIj-9D-dVZ" secondAttribute="bottom" constant="20" id="a1A-tL-HbK"/>
-                            <constraint firstItem="XIj-9D-dVZ" firstAttribute="centerX" secondItem="LwL-Iu-wqO" secondAttribute="centerX" id="n1M-Dg-W9a"/>
+                            <constraint firstItem="vkk-FD-YjR" firstAttribute="top" secondItem="HKZ-mK-wyQ" secondAttribute="bottom" id="RbR-bh-GWm"/>
                             <constraint firstAttribute="trailing" secondItem="vkk-FD-YjR" secondAttribute="trailing" id="xdM-YY-ICN"/>
                         </constraints>
                     </view>
@@ -53,12 +40,11 @@
                     <size key="freeformSize" width="315" height="1024"/>
                     <connections>
                         <outlet property="currContainedView" destination="vkk-FD-YjR" id="uM8-oq-4Hy"/>
-                        <outlet property="segmentControl" destination="XIj-9D-dVZ" id="sws-EO-8vT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6B-cK-ueB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="143" y="-289"/>
+            <point key="canvasLocation" x="142.97218155197658" y="-289.453125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bDE-nl-1DU">
