@@ -51,6 +51,7 @@ class CardDetailTableViewController: UITableViewController, PathInputCellDelegat
             print("DETAIL SECTIONS \(detailSections)")
         }
     }
+    
     var cardDescriptor: ActionCardDescriptor {
         return card.descriptor
     }

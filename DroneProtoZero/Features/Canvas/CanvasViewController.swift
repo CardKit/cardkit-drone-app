@@ -31,7 +31,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         setupTableView()
         
         //TEMP:
-        displayCardDetail(card: DroneCardKit.Action.Movement.Location.Circle.makeCard())
+        displayCardDetail(card: DroneCardKit.Action.Tech.Gimbal.PanBetweenLocations.makeCard())
 
     }
     
