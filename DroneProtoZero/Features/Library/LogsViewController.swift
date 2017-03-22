@@ -34,13 +34,18 @@ class LogsViewController: UIViewController {
     func handleLogNotification(notification: Notification) {
         guard let str = notification.userInfo?[Logger.NotificationKey.log.rawValue] as? String else { return }
         
-        logView?.text.append("\(str) \n")
-        logView?.scrollToBottom()
+        DispatchQueue.main.async {
+            self.logView?.text.append("\(str) \n")
+            self.logView?.scrollToBottom()
+        }
     }
     
     func handlePipeNotification(notification: Notification) {
         guard let data = notification.userInfo?[NSFileHandleNotificationDataItem] as? Data, let str = String(data: data, encoding: String.Encoding.ascii) else { return }
-        logView?.text.append("\(str) \n")
-        logView?.scrollToBottom()
+        
+        DispatchQueue.main.async {
+            self.logView?.text.append("\(str) \n")
+            self.logView?.scrollToBottom()
+        }
     }
 }
