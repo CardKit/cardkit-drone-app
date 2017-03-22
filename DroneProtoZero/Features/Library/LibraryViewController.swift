@@ -41,6 +41,7 @@ class LibraryViewController: UIViewController {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(LibraryViewController.displayLogsView), name: NotificationName.displayLogsView, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LibraryViewController.displayCardsView), name: NotificationName.displayCardsView, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LibraryViewController.statusBarDidChange), name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,6 +78,13 @@ class LibraryViewController: UIViewController {
         
         //setup the segmented control to show first and cardsVC by default
         segmentControl?.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
+    }
+    
+    func statusBarDidChange(note: Notification) {
+        guard let currViewController = currentViewController else { return }
+        NSLayoutConstraint.activate([
+            currViewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
+            ])
     }
     
     func createContainedView(storyboardID: String) {
