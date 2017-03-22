@@ -140,18 +140,23 @@ class Sequencer {
     func validate() -> [ValidationError] {
         let errors = ValidationEngine.validate(generateDeck())
         
-        print("******* ******* *******")
-        print("Validation Engine Finished\n")
+        Logger.log("\nValidated program: ")
         
-        for error in errors {
-            print("\(error)\n")
+        if errors.count == 0 {
+            Logger.log("\tNo Errors")
+        } else {
+            for error in errors {
+                Logger.log("\t\(error)")
+            }
         }
         
-        print("******* ******* *******")
         return errors
     }
     
     func execute() throws {
+        let prefix = "\t"
+        Logger.log("\n Setting up program")
+        
         // create deck
         let deck = generateDeck()
         
@@ -160,17 +165,23 @@ class Sequencer {
         engine.setExecutableActionTypes(DroneCardKit.executableActionTypes)
         
         // create executable tokens and add to execution engine
-        let djiHardwareManager: DJIHardwareManager = DJIHardwareManager.sharedInstance         
+        let djiHardwareManager: DJIHardwareManager = DJIHardwareManager.sharedInstance
         guard let djiAircraft = djiHardwareManager.djiAircraft else {
-                throw SequencerError.failedToDetectHardwareOnDrone("Could not retrieve DJIAircraft")
+            let errorMessage = "\(prefix) Error: Could not find DJIAircraft"
+            Logger.log(errorMessage)
+            throw SequencerError.failedToDetectHardwareOnDrone(errorMessage)
         }
         
         guard let djiCamera = djiHardwareManager.djiCamera else {
-                throw SequencerError.failedToDetectHardwareOnDrone("Could not retrieve DJICamera")
+            let errorMessage = "\(prefix) Error: Could not find DJICamera"
+            Logger.log(errorMessage)
+            throw SequencerError.failedToDetectHardwareOnDrone(errorMessage)
         }
         
         guard let djiGimbal = djiHardwareManager.djiGimbal else {
-                throw SequencerError.failedToDetectHardwareOnDrone("Could not retrieve DJIGimbal")
+            let errorMessage = "\(prefix) Error: Could not find DJIGimbal"
+            Logger.log(errorMessage)
+            throw SequencerError.failedToDetectHardwareOnDrone(errorMessage)
         }
         
         let droneExecutableToken = DJIDroneToken(with: droneTokenCard, for: djiAircraft)
@@ -184,17 +195,12 @@ class Sequencer {
         
         // execute program
         DispatchQueue.global(qos: .default).async {
+            Logger.log("\(prefix) Executing...")
+            
             engine.execute { (yields: [YieldData], error: ExecutionError?) in
-                print("******* ******* *******")
-                print("Execution Engine Finished")
-                
-                print("\n******* YIELDS *******")
-                print(yields)
-                
-                print("\n******* ERROR *******")
-                print(error ?? "no error")
-                
-                print("\n******* ******* *******\n")
+                Logger.log("\(prefix) Finished Execution")
+                Logger.log("\(prefix) YIELDS: \(yields)")
+                Logger.log("\(prefix) ERROR: \(error)")
             }
         }
         

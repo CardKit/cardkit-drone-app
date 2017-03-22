@@ -81,15 +81,23 @@ class DJIHardwareManager: NSObject, HardwareManager {
     ///
     /// - Throws: throws an error
     func connect() throws {
+        Logger.log("\nConnecting to drone.")
+        
         switch status {
         case .connectionSuccessful(_):
+            Logger.log("Already connected to drone.")
             return
         default:
             break
         }
         
-        guard let apiKey = AppConfig.djiAPIKey else { throw DJIConnectionError.apiKeyNotSet("API Key was not set in Info.plist. Please add the API Key in Info.plist with the name as \"DJI API Key\".") }
+        guard let apiKey = AppConfig.djiAPIKey else {
+            let errorMessage = "API Key was not set in Info.plist. Please add the API Key in Info.plist with the name as \"DJI API Key\"."
+            Logger.log(errorMessage)
+            throw DJIConnectionError.apiKeyNotSet(errorMessage)
+        }
         
+        Logger.log("Registering App with DJI SDK")
         DJISDKManager.registerApp(apiKey, with: self)
     }
 }
@@ -99,19 +107,22 @@ extension DJIHardwareManager: DJISDKManagerDelegate {
     /// Gets called when the SDK has registered succesfully. Once registered, we will begin connection to the drone.
     func sdkManagerDidRegisterAppWithError(_ error: Error?) {
         if let error = error {
-            print(error.localizedDescription)
+            Logger.log("Error with registering with DJI SDK. \(error.localizedDescription)")
             self.status = .failedToConnectToSDK(error.localizedDescription)
         } else {
-            print("DJISDK Registered Successfully")
+            Logger.log("DJISDK Registered Successfully")
             
             switch connectionConfig {
             case .debug(let ipAddress):
+                Logger.log("Searching for drones in debug mode with this IP: \(ipAddress). Make sure the bridge app is up and running.")
                 DJISDKManager.enterDebugMode(withDebugId: ipAddress)
             case .release:
                 let connStatus = DJISDKManager.startConnectionToProduct()
                 
                 if connStatus {
-                    print("Looking for DJI Products...")
+                    Logger.log("Searching for drones in release mode. Make sure the device is connected to the drone")
+                } else {
+                    Logger.log("Failed to start connection to drone in release mode.")
                 }
             }
             
@@ -123,32 +134,31 @@ extension DJIHardwareManager: DJISDKManagerDelegate {
     /// Gets called when a product gets detected or updated. Once this function is called and 
     /// newProduct is not nil, we know we have a successful connection to the drone.
     func sdkManagerProductDidChange(from oldProduct: DJIBaseProduct?, to newProduct: DJIBaseProduct?) {
-        print("DroneHardwareManager > sdkManagerProductDidChange(from: \(oldProduct), to: \(newProduct)")
+        Logger.log("DroneHardwareManager > sdkManagerProductDidChange(from: \(oldProduct), to: \(newProduct)")
         
         guard let newProduct = newProduct else {
-            print("DroneHardwareManager > status: No Product Connected (Product Disconnected)")
+            Logger.log("Drone was disconnected.")
             connectedDJIProduct = nil
             status = .disconnected("Product was disconnected")
             return
         }
+        
+        Logger.log("Connected to drone: ")
         
         // set connected dji product
         connectedDJIProduct = newProduct
         
         //Updates the product's model
         if let model = newProduct.model {
-            print("Model: \((model))")
-            print("Product changed from: \(model) to \(model)")
+            Logger.log("\tModel: \((model))")
+            Logger.log("\tProduct changed from: \(model) to \(model)")
         }
         
         //Updates the product's firmware version - COMING SOON
         newProduct.getFirmwarePackageVersion { (version: String?, _ : Error?) -> Void in
-            print("Firmware package version is: \(version ?? "Unknown")")
+            Logger.log("\tFirmware package version is: \(version ?? "Unknown")")
         }
         
         status = .connectionSuccessful(newProduct.model ?? "Model Information Not Found")
-        
-        //Updates the product's connection status
-        print("Status: Product Connected")
     }
 }
