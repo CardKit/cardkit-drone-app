@@ -90,48 +90,45 @@
                                             <rect key="frame" x="0.0" y="0.0" width="696" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Available Hardware" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akY-6Q-CXN">
-                                                    <rect key="frame" x="22" y="25.000000000000028" width="146" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Hardware" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akY-6Q-CXN">
+                                                    <rect key="frame" x="22" y="25" width="145.66666666666666" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.58039215686274503" green="0.58039215686274503" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="aEz-nj-yFb">
-                                                    <rect key="frame" x="526" y="10" width="162" height="50"/>
+                                                    <rect key="frame" x="526" y="14.666666666666664" width="162" height="41"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="token-drone" translatesAutoresizingMaskIntoConstraints="NO" id="wjS-U4-rzZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" image="token-drone" translatesAutoresizingMaskIntoConstraints="NO" id="wjS-U4-rzZ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="41"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="6de-5w-4bw"/>
+                                                                <constraint firstAttribute="height" priority="250" constant="50" id="6de-5w-4bw"/>
                                                                 <constraint firstAttribute="width" constant="50" id="DJo-3V-tlp"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="token-camera" translatesAutoresizingMaskIntoConstraints="NO" id="Kxh-hw-0vG">
-                                                            <rect key="frame" x="56" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="56" y="0.0" width="50" height="41"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="IEO-hT-q3Q"/>
+                                                                <constraint firstAttribute="height" priority="250" constant="50" id="IEO-hT-q3Q"/>
                                                                 <constraint firstAttribute="width" constant="50" id="OMJ-YH-q6h"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="token-gimbal" translatesAutoresizingMaskIntoConstraints="NO" id="SzE-ne-UQk">
-                                                            <rect key="frame" x="112" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="112" y="0.0" width="50" height="41"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="BMf-4r-hly"/>
+                                                                <constraint firstAttribute="height" priority="250" constant="50" id="BMf-4r-hly"/>
                                                                 <constraint firstAttribute="width" constant="50" id="sFk-dG-8r7"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="162" id="7hy-qb-IXu"/>
-                                                        <constraint firstAttribute="height" constant="50" id="XEI-5y-orQ"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="aEz-nj-yFb" firstAttribute="top" secondItem="Ood-Nb-HjM" secondAttribute="topMargin" constant="2" id="6pj-Ci-U4F"/>
+                                                <constraint firstItem="aEz-nj-yFb" firstAttribute="centerY" secondItem="Ood-Nb-HjM" secondAttribute="centerY" id="BeZ-Of-B8g"/>
+                                                <constraint firstItem="aEz-nj-yFb" firstAttribute="centerY" secondItem="akY-6Q-CXN" secondAttribute="centerY" id="J4y-Ig-XSc"/>
                                                 <constraint firstItem="aEz-nj-yFb" firstAttribute="trailing" secondItem="Ood-Nb-HjM" secondAttribute="trailingMargin" id="NWA-F4-uD9"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="aEz-nj-yFb" secondAttribute="bottom" constant="1" id="Y0B-q1-7Nf"/>
+                                                <constraint firstItem="akY-6Q-CXN" firstAttribute="top" secondItem="Ood-Nb-HjM" secondAttribute="topMargin" constant="17" id="srM-hJ-cEU"/>
+                                                <constraint firstItem="akY-6Q-CXN" firstAttribute="leading" secondItem="Ood-Nb-HjM" secondAttribute="leadingMargin" constant="14" id="y10-lZ-ehs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
