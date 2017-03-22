@@ -29,6 +29,8 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        
+        displayCardDetail(card: DroneCardKit.Action.Movement.Sequence.FlyPath.makeCard())
     }
     
     func setupTableView() {

@@ -10,9 +10,8 @@ import UIKit
 
 class CardInputField: UITextField {
 
+    var isNumericalOnly: Bool = true
     
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
@@ -22,5 +21,14 @@ class CardInputField: UITextField {
         self.layer.addSublayer(bottomBorder)
     }
     
-
+    func validateNumericalOnly(inputText: String) -> Bool {
+        //http://stackoverflow.com/questions/30973044/how-to-restrict-uitextfield-to-take-only-numbers-in-swift
+        
+        let numberSet = CharacterSet(charactersIn: "0123456789-.").inverted
+        let stringBySet = inputText.components(separatedBy: numberSet)
+        let stringFiltered = stringBySet.joined(separator: "")
+        return inputText == stringFiltered
+        
+    }
+    
 }
