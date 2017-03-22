@@ -30,6 +30,7 @@ class Logger: NSObject {
     }
     
     public static func log(_ log: String) {
+        print(log)
         Logger.shared.addToCache(log)
         NotificationCenter.default.post(name: Logger.NotificationName.log, object: nil, userInfo: [Logger.NotificationKey.log.rawValue: log])
     }
