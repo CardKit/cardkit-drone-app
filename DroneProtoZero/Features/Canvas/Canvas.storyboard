@@ -27,10 +27,10 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DroneStatusCell" rowHeight="55" id="Mb5-rm-2ff" customClass="DroneStatusCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="696" height="55"/>
+                                        <rect key="frame" x="0.0" y="55" width="696" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mb5-rm-2ff" id="zEc-yZ-TkG">
-                                            <rect key="frame" x="0.0" y="0.0" width="696" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-Ha-7Jl">
@@ -84,10 +84,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableHardwareCell" rowHeight="70" id="ALr-BF-GuV" customClass="AvailableHardwareCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="110.5" width="696" height="70"/>
+                                        <rect key="frame" x="0.0" y="110" width="696" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ALr-BF-GuV" id="Ood-Nb-HjM">
-                                            <rect key="frame" x="0.0" y="0.0" width="696" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Available Hardware" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akY-6Q-CXN">
@@ -97,14 +97,49 @@
                                                     <color key="textColor" red="0.58039215686274503" green="0.58039215686274503" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="aEz-nj-yFb">
+                                                    <rect key="frame" x="526" y="10" width="162" height="50"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="token-drone" translatesAutoresizingMaskIntoConstraints="NO" id="wjS-U4-rzZ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="6de-5w-4bw"/>
+                                                                <constraint firstAttribute="width" constant="50" id="DJo-3V-tlp"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="token-camera" translatesAutoresizingMaskIntoConstraints="NO" id="Kxh-hw-0vG">
+                                                            <rect key="frame" x="56" y="0.0" width="50" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="IEO-hT-q3Q"/>
+                                                                <constraint firstAttribute="width" constant="50" id="OMJ-YH-q6h"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="token-gimbal" translatesAutoresizingMaskIntoConstraints="NO" id="SzE-ne-UQk">
+                                                            <rect key="frame" x="112" y="0.0" width="50" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="BMf-4r-hly"/>
+                                                                <constraint firstAttribute="width" constant="50" id="sFk-dG-8r7"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="162" id="7hy-qb-IXu"/>
+                                                        <constraint firstAttribute="height" constant="50" id="XEI-5y-orQ"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="aEz-nj-yFb" firstAttribute="top" secondItem="Ood-Nb-HjM" secondAttribute="topMargin" constant="2" id="6pj-Ci-U4F"/>
+                                                <constraint firstItem="aEz-nj-yFb" firstAttribute="trailing" secondItem="Ood-Nb-HjM" secondAttribute="trailingMargin" id="NWA-F4-uD9"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="aEz-nj-yFb" secondAttribute="bottom" constant="1" id="Y0B-q1-7Nf"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HandTableViewCell" rowHeight="228" id="Mpw-8K-Qsw" customClass="HandTableViewCell" customModule="DroneProtoZero" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="180.5" width="696" height="228"/>
+                                        <rect key="frame" x="0.0" y="180" width="696" height="228"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mpw-8K-Qsw" id="GRx-wS-JCh">
-                                            <rect key="frame" x="0.0" y="0.0" width="696" height="228"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="696" height="227"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drag Card to Add a Step" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qai-Cl-gTG">
@@ -220,4 +255,9 @@
             <point key="canvasLocation" x="221.73913043478262" y="-221.59999999999999"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="token-camera" width="42" height="41"/>
+        <image name="token-drone" width="42" height="41"/>
+        <image name="token-gimbal" width="42" height="41"/>
+    </resources>
 </document>
