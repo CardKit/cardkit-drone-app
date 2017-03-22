@@ -133,9 +133,9 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == CanvasSection.steps.rawValue {
+        if viewModel.sectionType(for: section) == .steps {
             return 50.0
-        } else if section == CanvasSection.status.rawValue {
+        } else if viewModel.sectionType(for: section) == .status {
             return 20.0
         }
         
