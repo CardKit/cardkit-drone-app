@@ -16,9 +16,9 @@ class LogsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        logView?.text = LogsManager.shared.logs.joined(separator: "\n")
+        logView?.text = Logger.shared.logs.joined(separator: "\n")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(LogsViewController.handlePipeNotification), name: FileHandle.readCompletionNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LogsViewController.handleLogNotification), name: Logger.NotificationName.log, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,10 +31,16 @@ class LogsViewController: UIViewController {
     }
     
     // MARK: Notification Handler
+    func handleLogNotification(notification: Notification) {
+        guard let str = notification.userInfo?[Logger.NotificationKey.log.rawValue] as? String else { return }
+        
+        logView?.text.append("\(str) \n")
+        logView?.scrollToBottom()
+    }
+    
     func handlePipeNotification(notification: Notification) {
-        if let data = notification.userInfo?[NSFileHandleNotificationDataItem] as? Data, let str = String(data: data, encoding: String.Encoding.ascii) {
-            logView?.text.append("\(str) \n")
-            logView?.scrollToBottom()
-        }
+        guard let data = notification.userInfo?[NSFileHandleNotificationDataItem] as? Data, let str = String(data: data, encoding: String.Encoding.ascii) else { return }
+        logView?.text.append("\(str) \n")
+        logView?.scrollToBottom()
     }
 }

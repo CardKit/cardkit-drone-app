@@ -1,5 +1,5 @@
 //
-//  LogsManager.swift
+//  Logger.swift
 //  DroneProtoZero
 //
 //  Created by ismails on 3/10/17.
@@ -8,8 +8,16 @@
 
 import UIKit
 
-class LogsManager: NSObject {
-    static let shared = LogsManager()
+class Logger: NSObject {
+    public struct NotificationName {
+        static let log = NSNotification.Name("LogNotification")
+    }
+    
+    public enum NotificationKey: String {
+        case log
+    }
+    
+    static let shared = Logger()
     
     var inputPipe: Pipe?
     var outputPipe: Pipe?
@@ -19,10 +27,13 @@ class LogsManager: NSObject {
     
     override init() {
         super.init()
-        
-        openConsolePipe()
     }
     
+    public static func log(_ log: String) {
+        print(log)
+        Logger.shared.addToCache(log)
+        NotificationCenter.default.post(name: Logger.NotificationName.log, object: nil, userInfo: [Logger.NotificationKey.log.rawValue: log])
+    }
     
     /// Adds log string to logs array. The logs array is capped at LOGS_LENGTH, so if logs array count 
     /// is greater than LOGS_LENGTH, we remove from the beginning of the array. Remove is O(n), at worst case
@@ -30,14 +41,13 @@ class LogsManager: NSObject {
     /// but not sure if this is necessary right now
     ///
     /// - Parameter log: the string that should be added to the logs array
-    private func addLog(_ log: String) {
+    private func addToCache(_ log: String) {
         if logs.count > logsLength {
             logs.remove(at: 0)
         }
         
         logs.append(log)
     }
-    
     
     /// Starts the process of listening in on any writes to STDOUT and STDERR
     private func openConsolePipe() {
@@ -77,7 +87,7 @@ class LogsManager: NSObject {
             outputPipe?.fileHandleForWriting.write(data)
             
             if let str = String(data: data, encoding: String.Encoding.ascii) {
-                addLog(str)
+                addToCache(str)
             }
         }
     }
