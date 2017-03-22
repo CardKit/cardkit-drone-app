@@ -109,6 +109,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         do {
             if let cardInstance = try viewModel.addCard(cardDescriptor: descriptor, toHand: indexPath.section) {
                 handCell.addCard(card: descriptor)
+                viewModel.selectedHandID = indexPath.section
                 displayCardDetail(card: cardInstance)
             }
         } catch {
