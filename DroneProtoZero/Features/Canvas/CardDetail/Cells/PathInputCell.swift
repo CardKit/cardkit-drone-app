@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CardKit
 import MapKit
+import DroneCardKit
 
 
 protocol PathInputCellDelegate: class {
@@ -23,12 +24,16 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
     @IBOutlet weak var map: MKMapView?
     
     var type: CardDetailTableViewController.CardDetailTypes?
-    weak var delegate: PathInputCellDelegate?
+    var actionCard: ActionCard?
     var inputSlot: InputSlot?
+    weak var delegate: PathInputCellDelegate?
     
     let visibleDistance: CLLocationDistance = 1000 //meters
     let waypointAnnotationViewIdentifier = "Waypoint"
     var points: [CLLocationCoordinate2D] = []
+    var polyline: MKPolyline?
+    
+    var numSections: Int = 2 //always show two cell inputs by default (the minimum number of waypoints required for a path)
     
     private enum CellIdentifiers: String {
         case headerCell = "PathInputHeaderCell"
@@ -43,7 +48,9 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
     }
     
     func setupCell(card: ActionCard, indexPath: IndexPath) {
+        self.actionCard = card
         
+        setSelectedInputOptions()
     }
     
     func setupTableView() {
@@ -71,10 +78,45 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
     
     }
     
-    // MARK: UITableView
+    func saveToCard() {
+        guard let inputSlot = self.inputSlot,
+            let actionCard = self.actionCard else {
+            return
+        }
+        let dckCoordinates = points.map({ (coordinate) -> DCKCoordinate2D in
+            return DCKCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        })
+        let path = DCKCoordinate2DPath(path: dckCoordinates)
+        do {
+            let inputCard = try inputSlot.descriptor <- path
+            try actionCard.bind(with: inputCard, in: inputSlot)
+        } catch {
+            print("error \(error)")
+        }
+    }
     
-    func numberOfSections(in tableView: UITableView) -> Int {        
-        return points.count
+    func setSelectedInputOptions() {
+        guard let card = self.actionCard,
+            let inputSlot = self.inputSlot,
+            let val: DCKCoordinate2DPath = card.value(of: inputSlot) else {
+                return
+        }
+        
+        self.points = val.path.map({ (coordinate) -> CLLocationCoordinate2D in
+            return CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        })
+        if points.count > 0 {
+            numSections = points.count
+        }
+        refreshAnnotations()
+        updateContainerCell()
+    }
+
+    
+    // MARK: - UITableView
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return numSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,6 +126,19 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.pointCell.rawValue, for: indexPath)
+        
+        if let pathInputPointCell = cell as? PathInputPointCell {
+            pathInputPointCell.latitudeInput?.delegate = self
+            pathInputPointCell.longitudeInput?.delegate = self
+            if indexPath.section >= points.count {
+                pathInputPointCell.latitudeInput?.text = ""
+                pathInputPointCell.longitudeInput?.text = ""
+            } else {
+                let point = points[indexPath.section]
+                pathInputPointCell.latitudeInput?.text = "\(point.latitude)"
+                pathInputPointCell.longitudeInput?.text = "\(point.longitude)"
+            }
+        }
     
         return cell
     }
@@ -98,7 +153,7 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
         
         header.label?.text = "POINT \(section + 1)"        
         header.section = section
-        header.removeBtn?.addTarget(self, action: #selector(removePointCell), for: .touchUpInside)
+        header.removeBtn?.addTarget(self, action: #selector(tapRemovePointCell(sender:)), for: .touchUpInside)
         
         return header
     }
@@ -115,7 +170,7 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
     // MARK: - MKMapViewDelegate
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        print("user location \(userLocation)")
+        
         map?.setCenter(userLocation.coordinate, animated: false)
         let region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, visibleDistance, visibleDistance)
         let rect = MKMapRect.rectForCoordinateRegion(region: region)
@@ -123,10 +178,6 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        print("annotation \(annotation)")
-//        if annotation.isEqual(flyToLocation) {
-//            return flyToAnnotationView
-//        }
         
         if !annotation.isKind(of: MKUserLocation.self) {
             var waypointView = mapView.dequeueReusableAnnotationView(withIdentifier: waypointAnnotationViewIdentifier) as? PathInputAnnotationView
@@ -135,12 +186,10 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
                 waypointView = Bundle.main.loadNibNamed("PathInputAnnotationView", owner: nil, options: nil)?.first as? PathInputAnnotationView
             }
             
-            if let index = points.index(where: { (item) -> Bool in
-                return item.latitude == annotation.coordinate.latitude && item.longitude == annotation.coordinate.longitude
-            }) {
-                print("index \(index)")
+            if let index = indexForCoordinate(coordinate: annotation.coordinate), index != -1 {
                 waypointView?.label?.text = "\(index + 1)"
             }
+            
             waypointView?.detailCalloutAccessoryView = calloutViewForAnnotation(annotation: annotation)
             waypointView?.canShowCallout = true
             
@@ -150,44 +199,107 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
         return nil
     }
     
-//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        print("selected view!")
-//    }
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+
+        if overlay is MKPolyline {
+            guard let line = self.polyline else {
+                return MKOverlayRenderer()
+            }
+
+            let renderer = MKPolylineRenderer(polyline: line)
+            renderer.strokeColor = .black
+            renderer.lineWidth = 3
+ 
+            return renderer
+        }
+        return MKOverlayRenderer()
+    }
     
-    // MARK: IBActions
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        //ensure both textfields have content that can be converted to a CLLocationDegrees (Double)
+        //before adding to a map
+        guard let cell = textField.superview?.superview as? PathInputPointCell,
+            let latitudeInput = cell.latitudeInput?.text, latitudeInput != "",
+            let longitudeInput = cell.longitudeInput?.text, longitudeInput != "",
+            let lat = Double(latitudeInput),
+            let long = Double(longitudeInput) else {
+                return
+        }
+        
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        addMapPoint(at: coordinate)
+        saveToCard()        
+    }
+    
+    
+    // MARK: - IBActions
     
     @IBAction func tapAddPoint() {
         addPointCell()
     }
     
-    // MARK: Instance methods
+    // MARK: - Point Cells
     
-    func addPointCell() {
+    func addPointCell(coordinate: CLLocationCoordinate2D? = nil) {
         guard let tableView = self.tableView else {
             return
         }
+        
+        if let point = coordinate,
+            let index = indexForCoordinate(coordinate: point) {            
 
-        tableView.beginUpdates()
-        let indexSet = IndexSet(integer: tableView.numberOfSections)
-        tableView.insertSections(indexSet, with: .none)
-        tableView.endUpdates()
+            if index >= tableView.numberOfSections {
+                //no cell yet exists for the point, so create one
+                insertEmptyPointCell()
+            }
+
+        } else {
+            insertEmptyPointCell()
+        }
         
         updateContainerCell()
     }
     
-    func removePointCell(sender: UIButton) {
-        guard let tableView = self.tableView,
-            let header = sender.superview as? PathInputHeader,
+    func insertEmptyPointCell() {
+
+        guard let tableView = self.tableView else {
+            return
+        }
+        
+        tableView.beginUpdates()
+        let indexSet = IndexSet(integer: tableView.numberOfSections)
+        tableView.insertSections(indexSet, with: .none)
+        numSections += 1
+        tableView.endUpdates()
+        
+    }
+    
+    func tapRemovePointCell(sender: UIButton) {
+        guard let header = sender.superview as? PathInputHeader,
             let section = header.section else {
             return
         }
-        points.remove(at: section)
+        if section < points.count {
+            points.remove(at: section)
+        }
         
+        deletePointCell(in: section)
+    }
+    
+    func deletePointCell(in section: Int) {
+        guard let tableView = self.tableView else {
+            return
+        }
         tableView.beginUpdates()
         let indexSet = IndexSet(integer: section)
         tableView.deleteSections(indexSet, with: .top)
+        numSections -= 1
         tableView.endUpdates()
         
+        refreshAnnotations()
         updateContainerCell()
     }
     
@@ -203,45 +315,77 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
         }
     }
     
+    // MARK: - Points on Map
+    
     func onLongPress(gesture: UILongPressGestureRecognizer) {
         
         if gesture.state == .ended {
             let touchLocation = gesture.location(ofTouch: 0, in: map)
             if let mapCoordinates = map?.convert(touchLocation, toCoordinateFrom: map) {
-                points.append(mapCoordinates)
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = mapCoordinates
-                annotation.title = "Point \(points.count)" //must set title or detail view will not show
-                
-                map?.addAnnotation(annotation)
-                print("points array \(points)")
+                addMapPoint(at: mapCoordinates)
             }
         }
     }
     
-    func tapRemovePoint(sender: UIButton) {
-        print("sender superview \(sender.superview?.superview)")
-        print("sender superview \(sender.superview?.superview?.superview)")
+    func tapRemovePoint(sender: RemoveWaypointButton) {
+        if let annotation = sender.annotation {
+            removeMapPoint(at: annotation.coordinate)
+        }
     }
     
+    
     func addMapPoint(at coordinate: CLLocationCoordinate2D) {
+        points.append(coordinate)
+        addPointCell(coordinate: coordinate)
+        refreshAnnotations()
+        saveToCard()
         
     }
     
     func removeMapPoint(at coordinate: CLLocationCoordinate2D) {
+        if let index = indexForCoordinate(coordinate: coordinate), index != -1 {
+            points.remove(at: index)
+            deletePointCell(in: index)
+            refreshAnnotations()
+        }
+    }
+    
+    func refreshAnnotations() {
+        guard let annotations = map?.annotations else {
+            return
+        }
+        map?.removeAnnotations(annotations)
+        for point in points {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = point
+            annotation.title = "Point \(points.count)" //must set title or detail view will not show
+            map?.addAnnotation(annotation)
+        }
         
+        if let line = self.polyline {
+            map?.remove(line)
+        }
+        
+        let newLine = MKPolyline(coordinates: &points, count: points.count)
+        newLine.title = "Path line"
+        map?.add(newLine, level: MKOverlayLevel.aboveLabels)
+        self.polyline = newLine
+
+    }
+    
+    func indexForCoordinate(coordinate: CLLocationCoordinate2D) -> Int? {
+        return points.index(where: { (item) -> Bool in
+            return item.latitude == coordinate.latitude && item.longitude == coordinate.longitude
+        })
     }
     
     func calloutViewForAnnotation(annotation: MKAnnotation) -> UIView? {
-//        let view = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 174.0, height: 136.0))
-//        let widthConstraint = NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 200.0)
-//        let heightConstraint = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50.0)
-//        view.addConstraints([widthConstraint, heightConstraint])
         
-        let removeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 174, height: 46))
+        let removeButton = RemoveWaypointButton(frame: CGRect(x: 0, y: 0, width: 174, height: 46))
         let widthConstraint = NSLayoutConstraint(item: removeButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 174.0)
         let heightConstraint = NSLayoutConstraint(item: removeButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 46.0)
         removeButton.addConstraints([widthConstraint, heightConstraint])
+        removeButton.annotation = annotation
         removeButton.setTitle("Remove", for: .normal)
         removeButton.setTitleColor(.black, for: .normal)
         removeButton.titleLabel?.textAlignment = .center
@@ -284,4 +428,8 @@ class PathInputTableFooter: UIView {
 
 class PathInputAnnotationView: MKAnnotationView {
     @IBOutlet weak var label: UILabel?
+}
+
+class RemoveWaypointButton: UIButton {
+    var annotation: MKAnnotation?
 }
