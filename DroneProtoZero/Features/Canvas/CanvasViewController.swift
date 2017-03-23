@@ -29,8 +29,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        
-      //  displayCardDetail(card: DroneCardKit.Action.Tech.Camera.TakePhoto.makeCard())
     }
     
     func setupTableView() {
@@ -92,16 +90,12 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         cardDetailNavController.modalPresentationStyle = .pageSheet
-        print("table vc \(cardDetailNavController.topViewController)")
         
         if let cardDetailTableViewController = cardDetailNavController.topViewController as? CardDetailTableViewController {
-            print("Canvas vc sets cardDescriptor")
+            cardDetailTableViewController.delegate = self
             cardDetailTableViewController.card = card
         }
-        
-        self.parent?.present(cardDetailNavController, animated: true) {
-            print("present card detail")
-        }
+        self.parent?.present(cardDetailNavController, animated: true, completion: nil)        
     }
 
     // MARK: - Add card
@@ -113,8 +107,11 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print("CARD DESCRIPTOR: \(descriptor) added to this section \(indexPath.section)")
         
         do {
-            try viewModel.addCard(cardDescriptor: descriptor, toHand: indexPath.section)
-            handCell.addCard(card: descriptor)
+            if let cardInstance = try viewModel.addCard(cardDescriptor: descriptor, toHand: indexPath.section) {
+                handCell.addCard(card: descriptor)
+                viewModel.selectedHandID = indexPath.section
+                displayCardDetail(card: cardInstance)
+            }
         } catch {
             print("I think were should be showing an error here, as I couldnt add a card")
         }
@@ -137,11 +134,13 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section < CanvasSection.steps.rawValue {
-            //print("section \(section)")
-            return 1.0
+        if viewModel.sectionType(for: section) == .steps {
+            return 50.0
+        } else if viewModel.sectionType(for: section) == .status {
+            return 20.0
         }
-        return 50.0
+        
+        return 1.0
     }
     
     func createStepHeader(section: Int) -> UIView {
@@ -158,16 +157,6 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         footerView.addStep.addTarget(self, action: #selector(CanvasViewController.addNewStep(sender:)), for: .touchUpInside)
         return footerView
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 
 extension CanvasViewController: CanvasStepHeaderDelegate {
@@ -231,7 +220,6 @@ extension CanvasViewController: Hoverable {
         let offsetY = tableView.contentOffset.y
         return CGPoint(x: position.x, y: position.y + offsetY)
     }
-    
 }
 
 extension CanvasViewController: CardViewDelegate {
@@ -239,6 +227,28 @@ extension CanvasViewController: CardViewDelegate {
     func cardViewWasSelected(handID: Int, cardID: Int) {
         guard let card = viewModel.getCard(forHand: handID, cardID: cardID),
             let actionCard = card as? ActionCard else { return }
+             viewModel.selectedHandID = handID
              displayCardDetail(card: actionCard)
+    }
+}
+
+extension CanvasViewController: CardDetailDelegate {
+    
+    func removeCardWasPressed(card: ActionCard) {
+        guard let handID = viewModel.selectedHandID,
+            let _ = viewModel.getHand(by: handID) else { return }
+        
+        if let cardDetailNC = parent?.presentedViewController,
+            let cardIndex = viewModel.removeCard(cardID: card.identifier, fromHand: handID) {
+            cardDetailNC.dismiss(animated: true, completion: { 
+                //get the hand associated with the cell and update its view
+                if let handCell = self.tableView.cellForRow(at: self.viewModel.indexPath(for: handID)) as? HandTableViewCell {
+                    handCell.removeCard(cardIndex: cardIndex)
+                }
+                
+            })
+        }
+        
+        
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MultipleChoiceMenu.swift
+//  MultipleChoicePopover.swift
 //  DroneProtoZero
 //
 //  Created by Kristina M Brimijoin on 3/10/17.
@@ -8,12 +8,19 @@
 
 import UIKit
 
-class MultipleChoiceOptions: UITableViewController {
+protocol MultipleChoicePopoverDelegate: class {
+    func didMakeSelection(selection: Int)
+}
+
+class MultipleChoicePopover: UITableViewController {
+    
     
     let popoverSize: CGSize = CGSize(width: 320.0, height: 240.0)
     
+    weak var delegate: MultipleChoicePopoverDelegate?
     var optionsTitle: String?
     var options: [String]?
+    var selectedIndex: Int = 0
 
     private enum CellIdentifiers: Int {
         case header
@@ -34,7 +41,7 @@ class MultipleChoiceOptions: UITableViewController {
         
         tableView.allowsMultipleSelection = true
         tableView.tableFooterView = UIView(frame: .zero)        
-        tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .top)
+        tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .top)
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,6 +110,9 @@ class MultipleChoiceOptions: UITableViewController {
         
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.isSelected = true
+            if let delegate = self.delegate {
+                delegate.didMakeSelection(selection: indexPath.row)
+            }
         }        
     }
 

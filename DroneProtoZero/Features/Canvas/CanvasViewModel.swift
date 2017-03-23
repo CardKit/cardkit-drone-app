@@ -8,6 +8,7 @@
 
 import Foundation
 import CardKit
+import CardKitRuntime
 
 enum CanvasSection: Int {
     case status
@@ -18,6 +19,7 @@ enum CanvasSection: Int {
 struct CanvasViewModel {
 
     let defaultSectionCount: Int = 2
+    var selectedHandID: Int?
     
     var sectionCount: Int {
         return Sequencer.shared.hands.count + defaultSectionCount
@@ -60,6 +62,10 @@ struct CanvasViewModel {
         return IndexSet(arrayOfSections)
     }
     
+    func indexPath(for handIndex: Int) -> IndexPath {
+        return IndexPath(row: 0, section: handIndex)
+    }
+    
     // MARK: Hand Creating/Removing Methods
     
     func createHand() -> Hand {
@@ -91,17 +97,25 @@ struct CanvasViewModel {
     
     // MARK: Card Adding/Removing Methods
     
-    func addCard(cardDescriptor: ActionCardDescriptor, toHand index: Int) throws {
+    func addCard(cardDescriptor: ActionCardDescriptor, toHand index: Int) throws -> ActionCard? {
         let actualID = index - defaultSectionCount
-        try Sequencer.shared.addCard(card: cardDescriptor, toHand: actualID)
+        return try Sequencer.shared.addCard(card: cardDescriptor, toHand: actualID)
     }
     
-    func removeCard(cardID: CardIdentifier, fromHand index: Int) {
-        guard let hand = getHand(by: index) else { return }
-        let filtered = hand.cards.filter { $0.identifier == cardID }
+    func removeCard(cardID: CardIdentifier, fromHand index: Int) -> Int? {
+        guard let hand = getHand(by: index) else { return nil }
         
-        guard let card = filtered.first as? ActionCard else { return }
+        let filtered = hand.cards.filter { $0.identifier == cardID }
+        guard let card = filtered.first as? ActionCard else { return nil }
+        
+        let cardIndex = hand.cards.index { (card) -> Bool in
+            if card.identifier == cardID {
+                return true
+            }
+            return false
+        }
         hand.remove(card)
+        return cardIndex
     }
     
     

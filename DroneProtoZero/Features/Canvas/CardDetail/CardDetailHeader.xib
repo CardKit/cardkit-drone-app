@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CardDetailHeaderView" customModule="DroneProtoZero" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HEADER LABEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iF-dG-bmx">
+                    <rect key="frame" x="26" y="6" width="400" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="400" id="24Q-sU-tvh"/>
+                        <constraint firstAttribute="height" constant="20" id="vHS-rT-ECD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENDS: YES" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqA-ap-gBC">
+                    <rect key="frame" x="620" y="6" width="128" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="128" id="CBU-RN-doi"/>
+                        <constraint firstAttribute="height" constant="20" id="TmQ-4m-yeV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OPTIONAL" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYf-3w-Lik">
+                    <rect key="frame" x="621" y="5" width="113" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="0vQ-bX-NHF"/>
+                        <constraint firstAttribute="width" constant="113" id="ud2-nb-JLC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7iF-dG-bmx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="26" id="2WK-0L-v3u"/>
+                <constraint firstAttribute="trailing" secondItem="HYf-3w-Lik" secondAttribute="trailing" constant="34" id="8gA-RA-gYW"/>
+                <constraint firstItem="7iF-dG-bmx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="AmM-k7-4u5"/>
+                <constraint firstItem="IqA-ap-gBC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="IP8-hD-zah"/>
+                <constraint firstItem="HYf-3w-Lik" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="gPp-mH-xOn"/>
+                <constraint firstAttribute="trailing" secondItem="IqA-ap-gBC" secondAttribute="trailing" constant="20" id="lrY-VL-DNA"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="endsLabel" destination="IqA-ap-gBC" id="F91-sm-CH1"/>
+                <outlet property="label" destination="7iF-dG-bmx" id="ZZz-1a-mJx"/>
+                <outlet property="optionalLabel" destination="HYf-3w-Lik" id="3LY-yq-W9F"/>
+            </connections>
+            <point key="canvasLocation" x="19" y="51"/>
+        </view>
+    </objects>
+</document>

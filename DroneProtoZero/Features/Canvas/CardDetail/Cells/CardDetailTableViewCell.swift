@@ -9,15 +9,19 @@
 import UIKit
 import CardKit
 
-class CardDetailTableViewCell: UITableViewCell, Reusable {
+protocol CardDetailCell {
+    var type: CardDetailTableViewController.CardDetailTypes? { get set }
+    func setupCell(card: ActionCard, indexPath: IndexPath)
+}
+
+protocol CardDetailInputCell: CardDetailCell {
+    var inputSlot: InputSlot? { get set }
+}
+
+class CardDetailTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var frameView: UIView?
     @IBOutlet weak var mainLabel: UILabel?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -26,42 +30,14 @@ class CardDetailTableViewCell: UITableViewCell, Reusable {
             self.frameView?.layer.cornerRadius = 6.0
         }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
-    func setupCell(cardDescriptor: ActionCardDescriptor) {
+    // MARK: UITextViewDelegate
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        if let numericalInput = textField as? CardInputField, numericalInput.isNumericalOnly {
+            return numericalInput.validateNumericalOnly(inputText: string)
+        }
+        return true
     }
-
-}
-
-class NameCell: CardDetailTableViewCell {
-    
-    override func setupCell(cardDescriptor: ActionCardDescriptor) {
-        super.setupCell(cardDescriptor: cardDescriptor)
-        
-        mainLabel?.text = cardDescriptor.name
-        print("token slots \(cardDescriptor.tokenSlots)")
-    }
-    
-}
-
-class StandardInputCell: CardDetailTableViewCell {
-    
-    @IBOutlet weak var input: UITextField?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        input?.keyboardType = .decimalPad
-    }
-}
-
-class BinaryChoiceCell: CardDetailTableViewCell {
-    
-    @IBOutlet weak var segControl: UISegmentedControl?
-    
 }

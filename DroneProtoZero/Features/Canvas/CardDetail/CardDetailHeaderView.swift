@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardDetailHeaderView: UITableViewCell, Reusable {
+class CardDetailHeaderView: UIView {
     
     @IBOutlet weak var label: UILabel?
     @IBOutlet weak var endsLabel: UILabel?
