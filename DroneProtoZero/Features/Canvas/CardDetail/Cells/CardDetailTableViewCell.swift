@@ -18,7 +18,7 @@ protocol CardDetailInputCell: CardDetailCell {
     var inputSlot: InputSlot? { get set }
 }
 
-class CardDetailTableViewCell: UITableViewCell {
+class CardDetailTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var frameView: UIView?
     @IBOutlet weak var mainLabel: UILabel?
@@ -29,5 +29,15 @@ class CardDetailTableViewCell: UITableViewCell {
         if self.frameView != nil {
             self.frameView?.layer.cornerRadius = 6.0
         }
+    }
+    
+    // MARK: UITextViewDelegate
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if let numericalInput = textField as? CardInputField, numericalInput.isNumericalOnly {
+            return numericalInput.validateNumericalOnly(inputText: string)
+        }
+        return true
     }
 }

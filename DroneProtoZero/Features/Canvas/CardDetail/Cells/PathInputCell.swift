@@ -10,21 +10,23 @@ import Foundation
 import UIKit
 import CardKit
 import MapKit
+import DroneCardKit
 
 
 protocol PathInputCellDelegate: class {
     func cellSizeUpdated(cell: PathInputCell)
 }
 
-class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UITextFieldDelegate {
+class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate {
     
     
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var map: MKMapView?
     
     var type: CardDetailTableViewController.CardDetailTypes?
-    weak var delegate: PathInputCellDelegate?
+    var actionCard: ActionCard?
     var inputSlot: InputSlot?
+    weak var delegate: PathInputCellDelegate?
     
     let visibleDistance: CLLocationDistance = 1000 //meters
     let waypointAnnotationViewIdentifier = "Waypoint"
@@ -46,7 +48,9 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
     }
     
     func setupCell(card: ActionCard, indexPath: IndexPath) {
+        self.actionCard = card
         
+        setSelectedInputOptions()
     }
     
     func setupTableView() {
@@ -74,6 +78,40 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
     
     }
     
+    func saveToCard() {
+        guard let inputSlot = self.inputSlot,
+            let actionCard = self.actionCard else {
+            return
+        }
+        let dckCoordinates = points.map({ (coordinate) -> DCKCoordinate2D in
+            return DCKCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        })
+        let path = DCKCoordinate2DPath(path: dckCoordinates)
+        do {
+            let inputCard = try inputSlot.descriptor <- path
+            try actionCard.bind(with: inputCard, in: inputSlot)
+        } catch {
+            print("error \(error)")
+        }
+    }
+    
+    func setSelectedInputOptions() {
+        if let card = self.actionCard,
+            let inputSlot = self.inputSlot {
+            if let val: DCKCoordinate2DPath = card.value(of: inputSlot) {
+                self.points = val.path.map({ (coordinate) -> CLLocationCoordinate2D in
+                    return CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                })
+                if points.count > 0 {
+                    numSections = points.count
+                }
+                refreshAnnotations()
+                updateContainerCell()
+            }
+        }
+    }
+
+    
     // MARK: - UITableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,11 +127,9 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.pointCell.rawValue, for: indexPath)
         
         if let pathInputPointCell = cell as? PathInputPointCell {
-print("cellForRow at \(indexPath)    pointsCount \(points.count)")
             pathInputPointCell.latitudeInput?.delegate = self
             pathInputPointCell.longitudeInput?.delegate = self
             if indexPath.section >= points.count {
-print("set cell to empty text")
                 pathInputPointCell.latitudeInput?.text = ""
                 pathInputPointCell.longitudeInput?.text = ""
             } else {
@@ -163,18 +199,16 @@ print("set cell to empty text")
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        print("renderer for \(overlay)")
+
         if overlay is MKPolyline {
             guard let line = self.polyline else {
                 return MKOverlayRenderer()
             }
-            print("polyline points \(self.polyline?.points())")
-            print("polyline pointsCount \(self.polyline?.pointCount)")
+
             let renderer = MKPolylineRenderer(polyline: line)
-            renderer.fillColor = .black
             renderer.strokeColor = .black
             renderer.lineWidth = 3
-            print("return the rendered line")
+ 
             return renderer
         }
         return MKOverlayRenderer()
@@ -197,16 +231,10 @@ print("set cell to empty text")
             
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
             addMapPoint(at: coordinate)
+            saveToCard()
         }
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if let numericalInput = textField as? CardInputField, numericalInput.isNumericalOnly {
-            return numericalInput.validateNumericalOnly(inputText: string)
-        }
-        return true
-    }
     
     // MARK: - IBActions
     
@@ -223,7 +251,7 @@ print("set cell to empty text")
         
         if let point = coordinate,
             let index = indexForCoordinate(coordinate: point) {            
-            print("index \(index)")
+
             if index >= tableView.numberOfSections {
                 //no cell yet exists for the point, so create one
                 insertEmptyPointCell()
@@ -237,7 +265,7 @@ print("set cell to empty text")
     }
     
     func insertEmptyPointCell() {
-        print("insert empty point cell")
+
         guard let tableView = self.tableView else {
             return
         }
@@ -311,6 +339,7 @@ print("set cell to empty text")
         points.append(coordinate)
         addPointCell(coordinate: coordinate)
         refreshAnnotations()
+        saveToCard()
         
     }
     
@@ -342,8 +371,7 @@ print("set cell to empty text")
         newLine.title = "Path line"
         map?.add(newLine, level: MKOverlayLevel.aboveLabels)
         self.polyline = newLine
-        print("polyline points \(polyline?.points())")
-        print("polyline point count \(polyline?.pointCount)")
+
     }
     
     func indexForCoordinate(coordinate: CLLocationCoordinate2D) -> Int? {
@@ -393,15 +421,6 @@ class PathInputPointCell: UITableViewCell, Reusable {
     @IBOutlet weak var longitudeLabel: UILabel?
     @IBOutlet weak var latitudeInput: UITextField?
     @IBOutlet weak var longitudeInput: UITextField?
-    
-//    override func prepareForReuse() {
-//        guard let latInput = latitudeInput,
-//            let longInput = longitudeInput else {
-//                return
-//        }
-//        latInput.text = ""
-//        longInput.text = ""
-//    }
 }
 
 class PathInputTableFooter: UIView {
