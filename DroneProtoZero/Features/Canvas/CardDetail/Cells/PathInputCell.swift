@@ -96,19 +96,20 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
     }
     
     func setSelectedInputOptions() {
-        if let card = self.actionCard,
-            let inputSlot = self.inputSlot {
-            if let val: DCKCoordinate2DPath = card.value(of: inputSlot) {
-                self.points = val.path.map({ (coordinate) -> CLLocationCoordinate2D in
-                    return CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                })
-                if points.count > 0 {
-                    numSections = points.count
-                }
-                refreshAnnotations()
-                updateContainerCell()
-            }
+        guard let card = self.actionCard,
+            let inputSlot = self.inputSlot,
+            let val: DCKCoordinate2DPath = card.value(of: inputSlot) else {
+                return
         }
+        
+        self.points = val.path.map({ (coordinate) -> CLLocationCoordinate2D in
+            return CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        })
+        if points.count > 0 {
+            numSections = points.count
+        }
+        refreshAnnotations()
+        updateContainerCell()
     }
 
     
@@ -220,19 +221,17 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
         
         //ensure both textfields have content that can be converted to a CLLocationDegrees (Double)
         //before adding to a map
-        if let cell = textField.superview?.superview as? PathInputPointCell {
-            
-            guard let latitudeInput = cell.latitudeInput?.text, latitudeInput != "",
-                let longitudeInput = cell.longitudeInput?.text, longitudeInput != "",
-                let lat = Double(latitudeInput),
-                let long = Double(longitudeInput) else {
-                    return
-            }
-            
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            addMapPoint(at: coordinate)
-            saveToCard()
+        guard let cell = textField.superview?.superview as? PathInputPointCell,
+            let latitudeInput = cell.latitudeInput?.text, latitudeInput != "",
+            let longitudeInput = cell.longitudeInput?.text, longitudeInput != "",
+            let lat = Double(latitudeInput),
+            let long = Double(longitudeInput) else {
+                return
         }
+        
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        addMapPoint(at: coordinate)
+        saveToCard()        
     }
     
     

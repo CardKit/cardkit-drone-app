@@ -57,14 +57,15 @@ class Location2DInput: CardDetailTableViewCell, CardDetailInputCell, MKMapViewDe
     }
     
     func setSelectedInputOptions() {
-        if let card = self.actionCard,
-            let inputSlot = self.inputSlot {
-            if let val: DCKCoordinate2D = card.value(of: inputSlot) {
-                flyToLocation?.coordinate = CLLocationCoordinate2D(latitude: val.latitude, longitude: val.longitude)
-                latitudeTextField?.text = "\(val.latitude)"
-                longitudeTextField?.text = "\(val.longitude)"
-            }
+        guard let card = self.actionCard,
+            let inputSlot = self.inputSlot,
+            let val: DCKCoordinate2D = card.value(of: inputSlot) else {
+            return
         }
+        
+        flyToLocation?.coordinate = CLLocationCoordinate2D(latitude: val.latitude, longitude: val.longitude)
+        latitudeTextField?.text = "\(val.latitude)"
+        longitudeTextField?.text = "\(val.longitude)"        
     }
     
     // MARK: - Instance Methods
@@ -86,8 +87,7 @@ class Location2DInput: CardDetailTableViewCell, CardDetailInputCell, MKMapViewDe
     
     // MARK: - MKMapViewDelegate
     
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        print("user location \(userLocation)")
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {        
         map?.setCenter(userLocation.coordinate, animated: false)
         let region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, visibleDistance, visibleDistance)
         let rect = MKMapRect.rectForCoordinateRegion(region: region)
@@ -105,8 +105,8 @@ class Location2DInput: CardDetailTableViewCell, CardDetailInputCell, MKMapViewDe
     // MARK: - UITextFieldDelegate
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let latitudeText = latitudeTextField?.text, latitudeText != "",
-            let longitudeText = longitudeTextField?.text, longitudeText != "",
+        guard let latitudeText = latitudeTextField?.text, !latitudeText.isEmpty,
+            let longitudeText = longitudeTextField?.text, !longitudeText.isEmpty,
             let latitude = Double(latitudeText),
             let longitude = Double(longitudeText),
             let flyToLoc = flyToLocation else {
@@ -123,8 +123,8 @@ class Location2DInput: CardDetailTableViewCell, CardDetailInputCell, MKMapViewDe
     // MARK: - Instance methods
     
     func createInput() -> Any? {
-        guard let latitudeText = latitudeTextField?.text, latitudeText != "",
-            let longitudeText = longitudeTextField?.text, longitudeText != "",
+        guard let latitudeText = latitudeTextField?.text, !latitudeText.isEmpty,
+            let longitudeText = longitudeTextField?.text, !longitudeText.isEmpty,
             let latitude = Double(latitudeText),
             let longitude = Double(longitudeText) else {
                 return nil
@@ -174,8 +174,8 @@ class Location3DInput: Location2DInput {
     // MARK: - UITextFieldDelegate
     
     override func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let latitudeText = latitudeTextField?.text, latitudeText != "",
-            let longitudeText = longitudeTextField?.text, longitudeText != "",
+        guard let latitudeText = latitudeTextField?.text, !latitudeText.isEmpty,
+            let longitudeText = longitudeTextField?.text, !longitudeText.isEmpty,
             let latitude = Double(latitudeText),
             let longitude = Double(longitudeText),
             let flyToLoc = flyToLocation else {
@@ -192,9 +192,9 @@ class Location3DInput: Location2DInput {
     // MARK: - Instance methods
     
     override func createInput() -> Any? {
-        guard let latitudeText = latitudeTextField?.text, latitudeText != "",
-            let longitudeText = longitudeTextField?.text, longitudeText != "",
-            let altitudeText = altitudeTextField?.text, altitudeText != "",
+        guard let latitudeText = latitudeTextField?.text, !latitudeText.isEmpty,
+            let longitudeText = longitudeTextField?.text, !longitudeText.isEmpty,
+            let altitudeText = altitudeTextField?.text, !altitudeText.isEmpty,
             let latitude = Double(latitudeText),
             let longitude = Double(longitudeText),
             let altitude = Double(altitudeText) else {
