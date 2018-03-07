@@ -344,7 +344,6 @@
 		3AB3977F1E667A5B00DA1800 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				3ACEF1E81E6DFFDE0047CE08 /* CardKit */,
 				3AB397801E667A5B00DA1800 /* Reusable.swift */,
 				3AB397811E667A5B00DA1800 /* UIColorExtension.swift */,
 				3AB397821E667A5B00DA1800 /* UITableViewExtension.swift */,
@@ -355,13 +354,6 @@
 				D57FA5601E818315007A66FE /* MKMapKitExtension.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		3ACEF1E81E6DFFDE0047CE08 /* CardKit */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CardKit;
 			sourceTree = "<group>";
 		};
 		3ACEF1EB1E70691D0047CE08 /* Services */ = {
