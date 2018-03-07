@@ -144,7 +144,6 @@
 
 /* Begin PBXFileReference section */
 		3A2F62801E77263E008653C7 /* DroneProtoZeroFastlane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DroneProtoZeroFastlane.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A2F62811E77263E008653C7 /* DroneProtoZero copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DroneProtoZero copy-Info.plist"; path = "/Users/boland/Projects/DroneCards/drone-proto-zero/DroneProtoZero copy-Info.plist"; sourceTree = "<absolute>"; };
 		3A7678881E817AF200B03984 /* HandCollectionFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		3A89F3491E675711005A9D48 /* DroneCardDescriptors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneCardDescriptors.swift; sourceTree = "<group>"; };
 		3A89F34B1E6763E3005A9D48 /* VisualRecognitionV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisualRecognitionV3.framework; path = Carthage/Build/iOS/VisualRecognitionV3.framework; sourceTree = "<group>"; };
@@ -190,6 +189,7 @@
 		6851A9841E72313F00079D0B /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		6851F90B1E734B1D007422AF /* LogsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsManager.swift; sourceTree = "<group>"; };
 		6851F90D1E73574B007422AF /* UITextViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewExtension.swift; sourceTree = "<group>"; };
+		CCF5401B205070C900022405 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D51E329F1E687F2B002DC319 /* CardDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
 		D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailTableViewController.swift; sourceTree = "<group>"; };
 		D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailHeaderView.swift; sourceTree = "<group>"; };
@@ -377,12 +377,12 @@
 		3AE7F66A1E64924C00D67889 = {
 			isa = PBXGroup;
 			children = (
+				CCF5401B205070C900022405 /* README.md */,
 				3AE7F6751E64924C00D67889 /* DroneProtoZero */,
 				3AE7F68A1E64924C00D67889 /* DroneProtoZeroTests */,
 				3AE7F6951E64924C00D67889 /* DroneProtoZeroUITests */,
 				3AE7F6741E64924C00D67889 /* Products */,
 				D530A2FF1E65D969003974CB /* Frameworks */,
-				3A2F62811E77263E008653C7 /* DroneProtoZero copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
