@@ -1,1 +1,5 @@
-git "git@github.ibm.com:ETX-CardKit/drone-tokens-dji.git" "master"
+git "git@github.ibm.com:CardKit/cardkit.git" "master"
+git "git@github.ibm.com:CardKit/cardkit-runtime.git" "master"
+git "git@github.ibm.com:CardKit/cardkit-drone.git" "master"
+git "git@github.ibm.com:CardKit/cardkit-drone-dji.git" "master"
+git "git@github.ibm.com:CardKit/cardkit-watson.git" "master"
