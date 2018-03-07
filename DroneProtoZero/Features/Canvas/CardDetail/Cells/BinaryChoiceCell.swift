@@ -15,8 +15,8 @@
  */
 
 import Foundation
-import Freddy
 import UIKit
+
 import CardKit
 import DroneCardKit
 
@@ -79,8 +79,6 @@ class BinaryChoiceCell: CardDetailTableViewCell, CardDetailInputCell {
         
         do {
             switch inputTypeString {
-            case String(describing: DCKRotationDirection.self):
-                value = DCKRotationDirection(rawValue: inputValue)
             case String(describing: Bool.self):
                 value =  inputValue.lowercased() == "true" ? true : false
             default:
@@ -88,7 +86,7 @@ class BinaryChoiceCell: CardDetailTableViewCell, CardDetailInputCell {
             }
             
             if let valueUR = value {
-                let inputCard = try inputSlot.descriptor <- valueUR
+                let inputCard = try inputSlot.descriptor.makeCard() <- valueUR
                 try actionCard?.bind(with: inputCard, in: inputSlot)
             }
         } catch {

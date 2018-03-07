@@ -86,14 +86,14 @@ class DroneStatusCell: UITableViewCell, Reusable {
     }
     
     // MARK: - Tap Gesture Recognizers
-    func handleLabelTap() {
+    @objc func handleLabelTap() {
         if let details = statusDetails {
             displayAlert(title: statusTitle, details: details)
         }
     }
     
     // MARK: - Notification Handlers
-    func connectionStatusChanged(notification: Notification) {
+    @objc func connectionStatusChanged(notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: Any],
             let connectionStatus = userInfo[DJIHardwareManager.NotificationInfoKey.connectionStatus.rawValue] as? ConnectionStatus else { return }
         
@@ -142,7 +142,7 @@ class DroneStatusCell: UITableViewCell, Reusable {
         let newStatusLabelText = "Status: \(statusTitle)"
         if let _ = statusDetails {
             let attributedString = NSMutableAttributedString(string: newStatusLabelText, attributes: [:])
-            attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.cornflowerBlue, range: NSRange(location:8, length:newStatusLabelText.characters.count-8))
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.cornflowerBlue, range: NSRange(location:8, length:newStatusLabelText.count-8))
             
             statusLabel?.attributedText = attributedString
         } else {

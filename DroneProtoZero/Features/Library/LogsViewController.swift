@@ -39,7 +39,7 @@ class LogsViewController: UIViewController {
     }
     
     // MARK: Notification Handler
-    func handleLogNotification(notification: Notification) {
+    @objc func handleLogNotification(notification: Notification) {
         guard let str = notification.userInfo?[Logger.NotificationKey.log.rawValue] as? String else { return }
         
         DispatchQueue.main.async {

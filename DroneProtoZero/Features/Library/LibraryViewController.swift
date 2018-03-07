@@ -88,7 +88,7 @@ class LibraryViewController: UIViewController {
         segmentControl?.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
     }
     
-    func statusBarDidChange(note: Notification) {
+    @objc func statusBarDidChange(note: Notification) {
         guard let currViewController = currentViewController else { return }
         NSLayoutConstraint.activate([
             currViewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
@@ -123,7 +123,7 @@ class LibraryViewController: UIViewController {
         createContainedView(storyboardID: newView.storyboardID)
     }
     
-    func selectionDidChange(_ sender: UISegmentedControl) {
+    @objc func selectionDidChange(_ sender: UISegmentedControl) {
         if let libs = CellType(rawValue: sender.selectedSegmentIndex) {
             updateView(newView: libs)
         }
@@ -166,12 +166,12 @@ class LibraryViewController: UIViewController {
      */
     
     // MARK: - Notifcation Handlers
-    func displayLogsView() {
+    @objc func displayLogsView() {
         segmentControl?.selectedSegmentIndex = CellType.logs.rawValue
         updateView(newView: .logs)
     }
     
-    func displayCardsView() {
+    @objc func displayCardsView() {
         segmentControl?.selectedSegmentIndex = CellType.cards.rawValue
         updateView(newView: .cards)
     }

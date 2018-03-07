@@ -93,11 +93,12 @@
 		3AE7F6971E64924C00D67889 /* DroneProtoZeroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE7F6961E64924C00D67889 /* DroneProtoZeroUITests.swift */; };
 		682134E01E709D0A00B3BEC3 /* HardwareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682134DF1E709D0A00B3BEC3 /* HardwareManager.swift */; };
 		682134E41E70A17400B3BEC3 /* DroneTokensDJI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682134E31E70A17400B3BEC3 /* DroneTokensDJI.framework */; };
-		682134E61E70A29B00B3BEC3 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682134E51E70A29B00B3BEC3 /* DJISDK.framework */; };
 		682134E81E70B0FD00B3BEC3 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682134E71E70B0FD00B3BEC3 /* AppConfig.swift */; };
 		6851A9851E72313F00079D0B /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851A9841E72313F00079D0B /* UIViewExtension.swift */; };
 		6851F90C1E734B1D007422AF /* LogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851F90B1E734B1D007422AF /* LogsManager.swift */; };
 		6851F90E1E73574B007422AF /* UITextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851F90D1E73574B007422AF /* UITextViewExtension.swift */; };
+		CCF5401F2050921D00022405 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF5401E2050921C00022405 /* DJISDK.framework */; };
+		CCF54025205094A200022405 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF54024205094A200022405 /* DJISDK.framework */; };
 		D51E32A01E687F2B002DC319 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51E329F1E687F2B002DC319 /* CardDetail.storyboard */; };
 		D51E32A21E687FB9002DC319 /* CardDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */; };
 		D51E32A81E68BF26002DC319 /* CardDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */; };
@@ -108,7 +109,6 @@
 		D530A3121E65E280003974CB /* CardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30E1E65E280003974CB /* CardKit.framework */; };
 		D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A30F1E65E280003974CB /* CardKitRuntime.framework */; };
 		D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3101E65E280003974CB /* DroneCardKit.framework */; };
-		D530A3151E65E280003974CB /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D530A3111E65E280003974CB /* Freddy.framework */; };
 		D530A3191E670F69003974CB /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530A3181E670F69003974CB /* SplitViewController.swift */; };
 		D576663D1E71F197000241FB /* MultipleChoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576663C1E71F197000241FB /* MultipleChoiceCell.swift */; };
 		D576663F1E72E6ED000241FB /* MultipleChoicePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = D576663E1E72E6ED000241FB /* MultipleChoicePopover.swift */; };
@@ -190,6 +190,8 @@
 		6851F90B1E734B1D007422AF /* LogsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsManager.swift; sourceTree = "<group>"; };
 		6851F90D1E73574B007422AF /* UITextViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewExtension.swift; sourceTree = "<group>"; };
 		CCF5401B205070C900022405 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CCF5401E2050921C00022405 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DJISDK.framework; path = "../cardkit-drone-dji/Frameworks/DJISDK.framework"; sourceTree = "<group>"; };
+		CCF54024205094A200022405 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DJISDK.framework; path = Frameworks/DJISDK.framework; sourceTree = SOURCE_ROOT; };
 		D51E329F1E687F2B002DC319 /* CardDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
 		D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailTableViewController.swift; sourceTree = "<group>"; };
 		D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailHeaderView.swift; sourceTree = "<group>"; };
@@ -240,13 +242,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCF5401F2050921D00022405 /* DJISDK.framework in Frameworks */,
 				D51E32AF1E6A0132002DC319 /* MapKit.framework in Frameworks */,
 				D530A3121E65E280003974CB /* CardKit.framework in Frameworks */,
 				D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */,
 				D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */,
+				CCF54025205094A200022405 /* DJISDK.framework in Frameworks */,
 				682134E41E70A17400B3BEC3 /* DroneTokensDJI.framework in Frameworks */,
-				D530A3151E65E280003974CB /* Freddy.framework in Frameworks */,
-				682134E61E70A29B00B3BEC3 /* DJISDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +399,7 @@
 				3ACEF1EB1E70691D0047CE08 /* Services */,
 				3AB3977D1E667A5B00DA1800 /* Supporting Files */,
 				3AB3977F1E667A5B00DA1800 /* Utils */,
+				CCF540202050924C00022405 /* Frameworks */,
 				D530A3181E670F69003974CB /* SplitViewController.swift */,
 				3AE7F67D1E64924C00D67889 /* Assets.xcassets */,
 				3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */,
@@ -421,6 +424,14 @@
 				3AE7F6981E64924C00D67889 /* Info.plist */,
 			);
 			path = DroneProtoZeroUITests;
+			sourceTree = "<group>";
+		};
+		CCF540202050924C00022405 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CCF54024205094A200022405 /* DJISDK.framework */,
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		D51E329E1E687E3A002DC319 /* CardDetail */ = {
@@ -467,6 +478,7 @@
 			isa = PBXGroup;
 			children = (
 				682134E51E70A29B00B3BEC3 /* DJISDK.framework */,
+				CCF5401E2050921C00022405 /* DJISDK.framework */,
 				682134E31E70A17400B3BEC3 /* DroneTokensDJI.framework */,
 				D51E32AE1E6A0132002DC319 /* MapKit.framework */,
 				3A89F34D1E6763EE005A9D48 /* RestKit.framework */,
@@ -508,6 +520,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3AE7F69B1E64924C00D67889 /* Build configuration list for PBXNativeTarget "DroneProtoZero" */;
 			buildPhases = (
+				CCF54023205093B900022405 /* Fetch DJI SDK */,
 				3AE7F66F1E64924C00D67889 /* Sources */,
 				3AE7F6701E64924C00D67889 /* Frameworks */,
 				3AE7F6711E64924C00D67889 /* Resources */,
@@ -566,7 +579,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "IBM Research";
 				TargetAttributes = {
 					3A2F62501E77263E008653C7 = {
@@ -575,17 +588,20 @@
 					3AE7F6721E64924C00D67889 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 76CMF53Q35;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					3AE7F6861E64924C00D67889 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 76CMF53Q35;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3AE7F6721E64924C00D67889;
 					};
 					3AE7F6911E64924C00D67889 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 76CMF53Q35;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3AE7F6721E64924C00D67889;
 					};
@@ -702,6 +718,20 @@
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"/usr/local/bin:$PATH\"\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		CCF54023205093B900022405 /* Fetch DJI SDK */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fetch DJI SDK";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "python2.7 scripts/fetchDJISDK.py";
+		};
 		D530A30D1E65DC40003974CB /* Carthage Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -711,9 +741,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/CardKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CardKitRuntime.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DroneCardKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
-				"$(SRCROOT)/Carthage/Checkouts/drone-tokens-dji/Frameworks/DJISDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DroneTokensDJI.framework",
+				"$(SRCROOT)/Carthage/Checkouts/cardkit-drone-dji/Frameworks/DJISDK.framework",
 			);
 			name = "Carthage Run Script";
 			outputPaths = (
@@ -899,7 +928,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -907,7 +938,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -949,7 +984,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -957,7 +994,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -993,12 +1034,15 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Checkouts/drone-tokens-dji/Frameworks",
+					"$(PROJECT_DIR)/DroneProtoZero/Frameworks",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = DroneProtoZero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1013,12 +1057,15 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Checkouts/drone-tokens-dji/Frameworks",
+					"$(PROJECT_DIR)/DroneProtoZero/Frameworks",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = DroneProtoZero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1038,7 +1085,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZeroTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DroneProtoZero.app/DroneProtoZero";
 			};
 			name = Debug;
@@ -1058,7 +1106,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZeroTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DroneProtoZero.app/DroneProtoZero";
 			};
 			name = Release;
@@ -1072,7 +1121,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZeroUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = DroneProtoZero;
 			};
 			name = Debug;
@@ -1086,7 +1136,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZeroUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = DroneProtoZero;
 			};
 			name = Release;

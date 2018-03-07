@@ -47,7 +47,7 @@ class NameCell: CardDetailTableViewCell, CardDetailCell {
         
         // creating a view that fills up the remaining space so we can force the items to be right aligned
         let stretchingView = UIView()
-        stretchingView.setContentHuggingPriority(1, for: .horizontal)
+        stretchingView.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         stretchingView.backgroundColor = .clear
         stretchingView.translatesAutoresizingMaskIntoConstraints = false
         hardwareStackview.addArrangedSubview(stretchingView)
@@ -59,13 +59,13 @@ class NameCell: CardDetailTableViewCell, CardDetailCell {
             var imageName = "token-empty"
             
             switch tokenName {
-            case DroneCardKit.TokenSlotNames.drone.rawValue:
+            case "Drone":
                 imageName = "token-drone"
-            case DroneCardKit.TokenSlotNames.camera.rawValue:
+            case "Camera":
                 imageName = "token-camera"
-            case DroneCardKit.TokenSlotNames.gimbal.rawValue:
+            case "Gimbal":
                 imageName = "token-gimbal"
-            case DroneCardKit.TokenSlotNames.telemetry.rawValue:
+            case "Telemetry":
                 imageName = "token-telemetry"
             default:
                 break

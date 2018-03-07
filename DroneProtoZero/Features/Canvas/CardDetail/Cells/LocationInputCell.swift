@@ -150,7 +150,7 @@ class Location2DInput: CardDetailTableViewCell, CardDetailInputCell, MKMapViewDe
             return
         }
         do {
-            let inputCard = try inputSlot.descriptor <- coordinate
+            let inputCard = try inputSlot.descriptor.makeCard() <- coordinate
             try actionCard.bind(with: inputCard, in: inputSlot)
         } catch {
             print("error \(error)")

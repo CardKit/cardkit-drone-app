@@ -87,7 +87,7 @@ class Logger: NSObject {
     /// Handling readCompletionNotification to listen in on any logs that were printed
     ///
     /// - Parameter notification: notification contains info on what was printed/logged
-    func handlePipeNotification(notification: Notification) {
+    @objc func handlePipeNotification(notification: Notification) {
         inputPipe?.fileHandleForReading.readInBackgroundAndNotify()
         
         if let data = notification.userInfo?[NSFileHandleNotificationDataItem] as? Data {

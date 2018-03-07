@@ -48,7 +48,7 @@ class SplitViewController: UISplitViewController {
     
     // MARK: - Drag and Drop
     
-    func onLongPressGesture(gesture: UIGestureRecognizer) {
+    @objc func onLongPressGesture(gesture: UIGestureRecognizer) {
         
         guard let touchPoint: CGPoint = (gestureRecognizer?.location(in: self.view)) else { return }
         

@@ -285,7 +285,7 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
         
     }
     
-    func tapRemovePointCell(sender: UIButton) {
+    @objc func tapRemovePointCell(sender: UIButton) {
         guard let header = sender.superview as? PathInputHeader,
             let section = header.section else {
             return
@@ -325,7 +325,7 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
     
     // MARK: - Points on Map
     
-    func onLongPress(gesture: UILongPressGestureRecognizer) {
+    @objc func onLongPress(gesture: UILongPressGestureRecognizer) {
         
         if gesture.state == .ended {
             let touchLocation = gesture.location(ofTouch: 0, in: map)
@@ -335,7 +335,7 @@ class PathInputCell: CardDetailTableViewCell, CardDetailInputCell, UITableViewDa
         }
     }
     
-    func tapRemovePoint(sender: RemoveWaypointButton) {
+    @objc func tapRemovePoint(sender: RemoveWaypointButton) {
         if let annotation = sender.annotation {
             removeMapPoint(at: annotation.coordinate)
         }

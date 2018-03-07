@@ -15,8 +15,8 @@
  */
 
 import Foundation
-import Freddy
 import UIKit
+
 import CardKit
 import DroneCardKit
 

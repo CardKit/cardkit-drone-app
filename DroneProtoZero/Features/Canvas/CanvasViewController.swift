@@ -125,7 +125,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func addNewStep(sender: UIButton) {
+    @objc func addNewStep(sender: UIButton) {
         let currentCount = viewModel.sectionCount
         let _ = viewModel.addHand()
         tableView.beginUpdates()

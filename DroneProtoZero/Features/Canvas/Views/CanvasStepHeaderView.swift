@@ -38,7 +38,7 @@ class CanvasStepHeaderView: UIView {
         }
     }
     
-    func removeStepSectionButtonPressed(sender: UIButton) {
+    @objc func removeStepSectionButtonPressed(sender: UIButton) {
         delegate?.removeStepSection(for: sectionID)
     }
     

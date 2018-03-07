@@ -24,7 +24,7 @@ struct DroneCardDescriptors {
     
     var all: [String: [ActionCardDescriptor]]
     
-    init() {        
+    init() {
         all = DroneCardKit.descriptorsByPath
     }
     

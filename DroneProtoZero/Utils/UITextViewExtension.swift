@@ -20,7 +20,7 @@ extension UITextView {
     func scrollToBottom() {
         //disabling this swift lint warning since scrollRangeToVisible requires an NSRange obj
         //swiftlint:disable:next legacy_constructor
-        let range = NSMakeRange(self.text.characters.count - 1, 0)
+        let range = NSMakeRange(self.text.count - 1, 0)
         self.scrollRangeToVisible(range)
     }
 }
