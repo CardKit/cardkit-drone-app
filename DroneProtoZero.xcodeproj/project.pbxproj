@@ -98,7 +98,9 @@
 		6851F90C1E734B1D007422AF /* LogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851F90B1E734B1D007422AF /* LogsManager.swift */; };
 		6851F90E1E73574B007422AF /* UITextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851F90D1E73574B007422AF /* UITextViewExtension.swift */; };
 		CCF5401F2050921D00022405 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF5401E2050921C00022405 /* DJISDK.framework */; };
-		CCF54025205094A200022405 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF54024205094A200022405 /* DJISDK.framework */; };
+		CCF540272051576700022405 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CCF540262051576700022405 /* Default-568h@2x.png */; };
+		CCF5402B2051695300022405 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CCF540292051695200022405 /* .gitignore */; };
+		CCF5402C2051695300022405 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF5402A2051695200022405 /* DJISDK.framework */; };
 		D51E32A01E687F2B002DC319 /* CardDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51E329F1E687F2B002DC319 /* CardDetail.storyboard */; };
 		D51E32A21E687FB9002DC319 /* CardDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */; };
 		D51E32A81E68BF26002DC319 /* CardDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */; };
@@ -191,7 +193,9 @@
 		6851F90D1E73574B007422AF /* UITextViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewExtension.swift; sourceTree = "<group>"; };
 		CCF5401B205070C900022405 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CCF5401E2050921C00022405 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DJISDK.framework; path = "../cardkit-drone-dji/Frameworks/DJISDK.framework"; sourceTree = "<group>"; };
-		CCF54024205094A200022405 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DJISDK.framework; path = Frameworks/DJISDK.framework; sourceTree = SOURCE_ROOT; };
+		CCF540262051576700022405 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CCF540292051695200022405 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		CCF5402A2051695200022405 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
 		D51E329F1E687F2B002DC319 /* CardDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CardDetail.storyboard; sourceTree = "<group>"; };
 		D51E32A11E687FB9002DC319 /* CardDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailTableViewController.swift; sourceTree = "<group>"; };
 		D51E32A71E68BF26002DC319 /* CardDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailHeaderView.swift; sourceTree = "<group>"; };
@@ -247,7 +251,7 @@
 				D530A3121E65E280003974CB /* CardKit.framework in Frameworks */,
 				D530A3131E65E280003974CB /* CardKitRuntime.framework in Frameworks */,
 				D530A3141E65E280003974CB /* DroneCardKit.framework in Frameworks */,
-				CCF54025205094A200022405 /* DJISDK.framework in Frameworks */,
+				CCF5402C2051695300022405 /* DJISDK.framework in Frameworks */,
 				682134E41E70A17400B3BEC3 /* DroneTokensDJI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +342,7 @@
 		3AB3977D1E667A5B00DA1800 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CCF540262051576700022405 /* Default-568h@2x.png */,
 				3AB3977E1E667A5B00DA1800 /* Localizable.strings */,
 			);
 			path = "Supporting Files";
@@ -399,7 +404,7 @@
 				3ACEF1EB1E70691D0047CE08 /* Services */,
 				3AB3977D1E667A5B00DA1800 /* Supporting Files */,
 				3AB3977F1E667A5B00DA1800 /* Utils */,
-				CCF540202050924C00022405 /* Frameworks */,
+				CCF540282051695200022405 /* Frameworks */,
 				D530A3181E670F69003974CB /* SplitViewController.swift */,
 				3AE7F67D1E64924C00D67889 /* Assets.xcassets */,
 				3AE7F67F1E64924C00D67889 /* LaunchScreen.storyboard */,
@@ -426,13 +431,14 @@
 			path = DroneProtoZeroUITests;
 			sourceTree = "<group>";
 		};
-		CCF540202050924C00022405 /* Frameworks */ = {
+		CCF540282051695200022405 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CCF54024205094A200022405 /* DJISDK.framework */,
+				CCF540292051695200022405 /* .gitignore */,
+				CCF5402A2051695200022405 /* DJISDK.framework */,
 			);
 			path = Frameworks;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		D51E329E1E687E3A002DC319 /* CardDetail */ = {
 			isa = PBXGroup;
@@ -634,6 +640,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A2F62711E77263E008653C7 /* AddStepFooterView.xib in Resources */,
+				CCF540272051576700022405 /* Default-568h@2x.png in Resources */,
 				3A2F62721E77263E008653C7 /* Cards.storyboard in Resources */,
 				3A2F62731E77263E008653C7 /* CardDetail.storyboard in Resources */,
 				3A2F62741E77263E008653C7 /* LaunchScreen.storyboard in Resources */,
@@ -660,6 +667,7 @@
 				3AB397911E667A5B00DA1800 /* Localizable.strings in Resources */,
 				3AB3978F1E667A5B00DA1800 /* Logs.storyboard in Resources */,
 				D5FA71D61E7AE5C200E416F5 /* CardDetailHeader.xib in Resources */,
+				CCF5402B2051695300022405 /* .gitignore in Resources */,
 				3A89F3571E6769FC005A9D48 /* CanvasStepHeaderView.xib in Resources */,
 				D57FA55F1E817D3D007A66FE /* PathInputAnnotationView.xib in Resources */,
 				3AB397841E667A5B00DA1800 /* Canvas.storyboard in Resources */,
@@ -1041,7 +1049,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1064,7 +1071,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.research.DroneProtoZero;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

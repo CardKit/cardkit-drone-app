@@ -42,7 +42,7 @@ class Location2DInput: CardDetailTableViewCell, CardDetailInputCell, MKMapViewDe
         map?.showsUserLocation = true
         
         //gesture
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap(gesture:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("onTap:"))
         map?.addGestureRecognizer(tapGesture)
         
         setupMap()
@@ -89,7 +89,6 @@ class Location2DInput: CardDetailTableViewCell, CardDetailInputCell, MKMapViewDe
                 longitudeTextField?.text = "\(mapCoordinates.longitude)"
             
                 saveToCard(coordinate: createInput())
-                
             }
         }
     }
@@ -131,7 +130,7 @@ class Location2DInput: CardDetailTableViewCell, CardDetailInputCell, MKMapViewDe
     
     // MARK: - Instance methods
     
-    func createInput() -> Any? {
+    func createInput() -> DCKCoordinate2D? {
         guard let latitudeText = latitudeTextField?.text, !latitudeText.isEmpty,
             let longitudeText = longitudeTextField?.text, !longitudeText.isEmpty,
             let latitude = Double(latitudeText),
@@ -143,14 +142,14 @@ class Location2DInput: CardDetailTableViewCell, CardDetailInputCell, MKMapViewDe
         return coordinate2D
     }
     
-    func saveToCard(coordinate: Any?) {
+    func saveToCard(coordinate: DCKCoordinate2D?) {
         guard let inputSlot = self.inputSlot,
             let actionCard = self.actionCard,
             let coordinate = coordinate else {
             return
         }
         do {
-            let inputCard = try inputSlot.descriptor.makeCard() <- coordinate
+            let inputCard = try inputSlot.descriptor.makeCard().bound(withValue: coordinate)
             try actionCard.bind(with: inputCard, in: inputSlot)
         } catch {
             print("error \(error)")
@@ -200,7 +199,7 @@ class Location3DInput: Location2DInput {
     
     // MARK: - Instance methods
     
-    override func createInput() -> Any? {
+    func createInput() -> DCKCoordinate3D? {
         guard let latitudeText = latitudeTextField?.text, !latitudeText.isEmpty,
             let longitudeText = longitudeTextField?.text, !longitudeText.isEmpty,
             let altitudeText = altitudeTextField?.text, !altitudeText.isEmpty,
@@ -214,5 +213,4 @@ class Location3DInput: Location2DInput {
         let coordinate3D = DCKCoordinate3D(latitude: latitude, longitude: longitude, altitude: dckAltitude)
         return coordinate3D
     }
-    
 }

@@ -70,16 +70,13 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch  sectionType {
         case .status:
             cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as DroneStatusCell
-            break
         case .hardware:
             cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as AvailableHardwareCell
-            break
         default:
             cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HandTableViewCell
             if let handCell = cell as? HandTableViewCell {
                 handCell.setupHand(sectionID: indexPath.section, delegate: self)
             }
-            break
         }
         cell.layer.cornerRadius = 11.0
         cell.layer.masksToBounds = true
@@ -127,7 +124,7 @@ class CanvasViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @objc func addNewStep(sender: UIButton) {
         let currentCount = viewModel.sectionCount
-        let _ = viewModel.addHand()
+        _ = viewModel.addHand()
         tableView.beginUpdates()
         let index = [currentCount]
         tableView.insertSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
@@ -171,7 +168,7 @@ extension CanvasViewController: CanvasStepHeaderDelegate {
     
     func removeStepSection(for section: Int) {
         //how do i get the identifier from the section?
-        let _ = viewModel.removeHand(sectionID: section)
+        _ = viewModel.removeHand(sectionID: section)
         tableView.beginUpdates()
         let index = [section]
         tableView.deleteSections(IndexSet(index), with: UITableViewRowAnimation.bottom)
@@ -243,8 +240,7 @@ extension CanvasViewController: CardViewDelegate {
 extension CanvasViewController: CardDetailDelegate {
     
     func removeCardWasPressed(card: ActionCard) {
-        guard let handID = viewModel.selectedHandID,
-            let _ = viewModel.getHand(by: handID) else { return }
+        guard let handID = viewModel.selectedHandID, let _ = viewModel.getHand(by: handID) else { return }
         
         if let cardDetailNC = parent?.presentedViewController,
             let cardIndex = viewModel.removeCard(cardID: card.identifier, fromHand: handID) {

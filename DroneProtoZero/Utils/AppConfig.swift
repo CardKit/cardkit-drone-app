@@ -19,7 +19,7 @@ import Foundation
 class AppConfig {
     // Info.plist Keys
     public enum Keys: String {
-        case djiAPIKey = "DJI API KEY"
+        case djiAPIKey = "DJISDKAppKey"
     }
     
     static var infoPlistDict: [String: Any]? {

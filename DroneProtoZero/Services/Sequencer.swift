@@ -41,7 +41,7 @@ class Sequencer {
         tokenCards = [droneTokenCard, cameraTokenCard, gimbalTokenCard, telemetryTokenCard]
         
         hands = [Hand]()
-        let _ = createHand()
+        _ = createHand()
     }
     
     func createHand() -> Hand {
@@ -100,23 +100,21 @@ class Sequencer {
         
         for tokenSlot in card.tokenSlots {
             switch tokenSlot.name {
-            case DroneCardKit.TokenSlotNames.drone.rawValue:
-                tokenBindings.append((DroneCardKit.TokenSlotNames.drone.rawValue, droneTokenCard))
-            case DroneCardKit.TokenSlotNames.gimbal.rawValue:
-                tokenBindings.append((DroneCardKit.TokenSlotNames.gimbal.rawValue, gimbalTokenCard))
-            case DroneCardKit.TokenSlotNames.camera.rawValue:
-                tokenBindings.append((DroneCardKit.TokenSlotNames.camera.rawValue, cameraTokenCard))
-            case DroneCardKit.TokenSlotNames.telemetry.rawValue:
-                tokenBindings.append((DroneCardKit.TokenSlotNames.telemetry.rawValue, telemetryTokenCard))
-                break
+            case "Drone":
+                tokenBindings.append(("Drone", droneTokenCard))
+            case "Gimbal":
+                tokenBindings.append(("Gimbal", gimbalTokenCard))
+            case "Camera":
+                tokenBindings.append(("Camera", cameraTokenCard))
+            case "Telemetry":
+                tokenBindings.append(("Telemetry", telemetryTokenCard))
             default:
                 break
             }
         }
         
         cardInstance = try cardInstance <- tokenBindings
-        
-        let _ = hand ++ cardInstance
+        hand.add(cardInstance)
         
         return cardInstance
     }
@@ -170,7 +168,8 @@ class Sequencer {
         
         // create executable engine and all all executable actions
         let engine = ExecutionEngine(with: deck)
-        engine.setExecutableActionTypes(DroneCardKit.executableActionTypes)
+        let catalog = DroneCardCatalog()
+        engine.registerDescriptorCatalog(catalog)
         
         // create executable tokens and add to execution engine
         let djiHardwareManager: DJIHardwareManager = DJIHardwareManager.sharedInstance

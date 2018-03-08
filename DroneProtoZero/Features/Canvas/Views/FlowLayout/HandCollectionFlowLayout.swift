@@ -74,15 +74,12 @@ class HandCollectionFlowLayout: UICollectionViewFlowLayout {
             switch updatedItem.updateAction {
             case .insert:
                 indexPathsToAnimateOnScreen = updatedItem.indexPathAfterUpdate
-                break
             case .delete:
                 indexPathToAnimateOffScreen = updatedItem.indexPathBeforeUpdate
                 //nil out the saved animate on screen index otherwise it will attempt to animate on screen again after this one is done disappearing
                 indexPathsToAnimateOnScreen = nil
-                break
             case .reload:
                 indexPathsToAnimateOnScreen = nil
-                break
             default:
                 //All other animations flow through here
                 break

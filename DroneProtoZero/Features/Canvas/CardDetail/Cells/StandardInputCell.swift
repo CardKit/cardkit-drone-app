@@ -45,7 +45,7 @@ class StandardInputCell: CardDetailTableViewCell, CardDetailInputCell {
         //TODO: set this based on input type
         input?.keyboardType = .numberPad
         
-        input?.addTarget(self, action: #selector(inputTextChanged), for: .editingChanged)
+        input?.addTarget(self, action: Selector(("inputTextChanged")), for: .editingChanged)
         
         input?.text = getSelectedInputOption()
     }
@@ -88,7 +88,6 @@ class StandardInputCell: CardDetailTableViewCell, CardDetailInputCell {
     }
     
     func inputTextChanged() {
-        
         guard let inputSlot = self.inputSlot,
             let inputValueString = input?.text,
             let inputValue = Double(inputValueString) else {
@@ -96,33 +95,29 @@ class StandardInputCell: CardDetailTableViewCell, CardDetailInputCell {
         }
         
         let inputTypeString = inputSlot.descriptor.inputType
-        var value: Any?
+        var inputCard: InputCard = inputSlot.descriptor.makeCard()
         
-        switch inputTypeString {
-        case String(describing: DCKRelativeAltitude.self):
-            value = DCKRelativeAltitude(metersAboveGroundAtTakeoff: inputValue)
-        case String(describing: DCKDistance.self):
-            value = DCKDistance(meters: inputValue)
-        case String(describing: DCKSpeed.self):
-            value = DCKSpeed(metersPerSecond: inputValue)
-        case String(describing: DCKAngularVelocity.self):
-            value = DCKAngularVelocity(degreesPerSecond: inputValue)
-        case String(describing: DCKAngle.self):
-            value = DCKAngle(degrees: inputValue)
-        case String(describing: Double.self):
-            value = inputValue
-        default:
-            break
-        }
-        
-        if let valueUR = value {
-            do {
-                let inputCard = try inputSlot.descriptor <- valueUR
-                try actionCard?.bind(with: inputCard, in: inputSlot)
-            } catch {
-                print("error \(error)")
+        do {
+            switch inputTypeString {
+            case String(describing: DCKRelativeAltitude.self):
+                inputCard = try inputCard.bound(withValue: DCKRelativeAltitude(metersAboveGroundAtTakeoff: inputValue))
+            case String(describing: DCKDistance.self):
+                inputCard = try inputCard.bound(withValue: DCKDistance(meters: inputValue))
+            case String(describing: DCKSpeed.self):
+                inputCard = try inputCard.bound(withValue: DCKSpeed(metersPerSecond: inputValue))
+            case String(describing: DCKAngularVelocity.self):
+                inputCard = try inputCard.bound(withValue: DCKAngularVelocity(degreesPerSecond: inputValue))
+            case String(describing: DCKAngle.self):
+                inputCard = try inputCard.bound(withValue: DCKAngle(degrees: inputValue))
+            case String(describing: Double.self):
+                inputCard = try inputCard.bound(withValue: inputValue)
+            default:
+                break
             }
+            
+            try actionCard?.bind(with: inputCard, in: inputSlot)
+        } catch {
+            print("error \(error)")
         }
     }
-    
 }

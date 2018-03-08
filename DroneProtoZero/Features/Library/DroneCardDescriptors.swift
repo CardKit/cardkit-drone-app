@@ -22,10 +22,16 @@ struct DroneCardDescriptors {
     
     static let sharedInstance = DroneCardDescriptors()
     
-    var all: [String: [ActionCardDescriptor]]
+    var all: [String: [ActionCardDescriptor]] = [:]
     
     init() {
-        all = DroneCardKit.descriptorsByPath
+        let catalog = DroneCardCatalog()
+        for desc in catalog.executableActionTypes.keys {
+            if all[desc.path.description] == nil {
+                all[desc.path.description] = []
+            }
+            all[desc.path.description]?.append(desc)
+        }
     }
     
     func keyAtIndex(index: Int) -> String? {

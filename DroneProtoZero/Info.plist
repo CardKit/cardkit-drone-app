@@ -15,8 +15,8 @@
 		<string>com.dji.protocol</string>
 		<string>com.dji.common</string>
 	</array>
-	<key>DJI API KEY</key>
-	<string>ce1650a20598e02f9faecc8c</string>
+	<key>DJISDKAppKey</key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

@@ -46,7 +46,7 @@ class DroneProtoZeroTests: XCTestCase {
     func testAddStepSection() {
         let viewModel = CanvasViewModel()
         let currentCount = viewModel.sectionCount
-        let _ = viewModel.addHand()
+        _ = viewModel.addHand()
         XCTAssertEqual(currentCount+1, viewModel.sectionCount)
     }
     
@@ -69,17 +69,17 @@ class DroneProtoZeroTests: XCTestCase {
         XCTAssertEqual(currentCount, viewModel.sectionCount)
         currentCount = viewModel.sectionCount
         //2 hands
-        let _ = viewModel.addHand()
+        _ = viewModel.addHand()
         XCTAssertEqual(currentCount+1, viewModel.sectionCount)
         //1 hands
-        let _ = viewModel.removeHand(sectionID: currentCount)
+        _ = viewModel.removeHand(sectionID: currentCount)
         //check that all the hands are removed
         XCTAssertEqual(currentCount, viewModel.sectionCount)
     }
     
     func testAddCardToStep() throws {
         let viewModel = CanvasViewModel()
-        let _ = viewModel.addHand()
+        _ = viewModel.addHand()
         let handID = 3
         
         guard let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0) else {
@@ -94,14 +94,14 @@ class DroneProtoZeroTests: XCTestCase {
             return
         }
         
-        let _ = try viewModel.addCard(cardDescriptor: circleCard, toHand: handID)
+        _ = try viewModel.addCard(cardDescriptor: circleCard, toHand: handID)
         let hand = viewModel.getHand(by: handID)
         XCTAssertEqual(circleCard.cardType, hand?.cards.first?.cardType)
     }
     
     func testGetCardFromStep() {
         let viewModel = CanvasViewModel()
-        let _ = viewModel.addHand()
+        _ = viewModel.addHand()
         let handID = 3
         guard let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0) else {
             XCTFail("no keys")
@@ -114,7 +114,7 @@ class DroneProtoZeroTests: XCTestCase {
             return
         }
         do {
-            let _ = try viewModel.addCard(cardDescriptor: circleCardDescriptor, toHand: handID)
+            _ = try viewModel.addCard(cardDescriptor: circleCardDescriptor, toHand: handID)
         } catch {
             XCTFail("Could not add a card")
         }
@@ -128,7 +128,7 @@ class DroneProtoZeroTests: XCTestCase {
     
     func testRemoveCardFromStep() {
         let viewModel = CanvasViewModel()
-        let _ = viewModel.addHand()
+        _ = viewModel.addHand()
         let handID = 3
         guard let key = DroneCardDescriptors.sharedInstance.keyAtIndex(index: 0) else {
             XCTFail("no keys")
@@ -141,7 +141,7 @@ class DroneProtoZeroTests: XCTestCase {
             return
         }
         do {
-            let _ = try viewModel.addCard(cardDescriptor: circleCardDescriptor, toHand: handID)
+            _ = try viewModel.addCard(cardDescriptor: circleCardDescriptor, toHand: handID)
         } catch {
             XCTFail("Could not add a card")
         }
@@ -151,7 +151,7 @@ class DroneProtoZeroTests: XCTestCase {
             XCTFail("NO CARD FOUND")
             return
         }
-        let _ = viewModel.removeCard(cardID: cardFound.identifier, fromHand: handID)
+        _ = viewModel.removeCard(cardID: cardFound.identifier, fromHand: handID)
         guard let checkHand = viewModel.getHand(by: handID) else {
             XCTFail("Cound not get the hand after removing a card")
             return

@@ -54,7 +54,7 @@ extension UIColor {
         } else {
             print("invalid hex color string, missing '#' as prefix")
         }
-        self.init(red:red, green:green, blue:blue, alpha:alpha)
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 }
 

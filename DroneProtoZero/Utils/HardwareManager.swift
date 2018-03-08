@@ -92,28 +92,21 @@ class DJIHardwareManager: NSObject, HardwareManager {
         Logger.log("\nConnecting to drone.")
         
         switch status {
-        case .connectionSuccessful(_):
+        case .connectionSuccessful:
             Logger.log("Already connected to drone.")
             return
         default:
             break
         }
         
-        guard let apiKey = AppConfig.djiAPIKey else {
-            let errorMessage = "API Key was not set in Info.plist. Please add the API Key in Info.plist with the name as \"DJI API Key\"."
-            Logger.log(errorMessage)
-            throw DJIConnectionError.apiKeyNotSet(errorMessage)
-        }
-        
         Logger.log("Registering App with DJI SDK")
-        DJISDKManager.registerApp(apiKey, with: self)
+        DJISDKManager.registerApp(with: self)
     }
 }
 
 extension DJIHardwareManager: DJISDKManagerDelegate {
-    
     /// Gets called when the SDK has registered succesfully. Once registered, we will begin connection to the drone.
-    func sdkManagerDidRegisterAppWithError(_ error: Error?) {
+    func appRegisteredWithError(_ error: Error?) {
         if let error = error {
             Logger.log("Error with registering with DJI SDK. \(error.localizedDescription)")
             self.status = .failedToConnectToSDK(error.localizedDescription)
@@ -123,7 +116,7 @@ extension DJIHardwareManager: DJISDKManagerDelegate {
             switch connectionConfig {
             case .debug(let ipAddress):
                 Logger.log("Searching for drones in debug mode with this IP: \(ipAddress). Make sure the bridge app is up and running.")
-                DJISDKManager.enterDebugMode(withDebugId: ipAddress)
+                DJISDKManager.enableBridgeMode(withBridgeAppIP: ipAddress)
             case .release:
                 let connStatus = DJISDKManager.startConnectionToProduct()
                 

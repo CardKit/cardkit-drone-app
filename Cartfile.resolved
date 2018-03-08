@@ -1,5 +1,5 @@
 git "git@github.ibm.com:CardKit/cardkit-drone-dji.git" "08c6f154f9dd604403dbdb7cbb45e1318067d8c1"
-git "git@github.ibm.com:CardKit/cardkit-drone.git" "edc38fcacbebfa643826e047c178ae4518988143"
+git "git@github.ibm.com:CardKit/cardkit-drone.git" "8403ada21b7b63fd7dee6d17dfcee2565c29f659"
 git "git@github.ibm.com:CardKit/cardkit-runtime.git" "6cf10267cdb3dcbf76ea561444eb40c0f2c96460"
 git "git@github.ibm.com:CardKit/cardkit-watson.git" "cadb82841aec3fa56423b3318250c660dcc6453b"
 git "git@github.ibm.com:CardKit/cardkit.git" "905bc72e6a48b051f9ad721d3c014ef292b34c0e"

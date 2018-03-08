@@ -53,7 +53,7 @@ class BinaryChoiceCell: CardDetailTableViewCell, CardDetailInputCell {
             }
         }
         
-        segControl?.addTarget(self, action: #selector(selectionChanged(segControl:)), for: .valueChanged)
+        segControl?.addTarget(self, action: "selectionChanged:", for: .valueChanged)
     }
     
     func getSelectedInputOption() -> String {
@@ -75,7 +75,7 @@ class BinaryChoiceCell: CardDetailTableViewCell, CardDetailInputCell {
         let inputValue = inputOptions[segControl.selectedSegmentIndex]
         
         let inputTypeString = inputSlot.descriptor.inputType
-        var value: Any?
+        var value: Bool?
         
         do {
             switch inputTypeString {
@@ -86,7 +86,7 @@ class BinaryChoiceCell: CardDetailTableViewCell, CardDetailInputCell {
             }
             
             if let valueUR = value {
-                let inputCard = try inputSlot.descriptor.makeCard() <- valueUR
+                let inputCard = try inputSlot.descriptor.makeCard().bound(withValue: valueUR)
                 try actionCard?.bind(with: inputCard, in: inputSlot)
             }
         } catch {

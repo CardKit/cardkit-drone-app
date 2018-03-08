@@ -54,8 +54,8 @@ class MultipleChoiceCell: CardDetailTableViewCell, CardDetailInputCell, Multiple
         
         mainLabel?.text = inputSlot.descriptor.inputDescription
         
-        if let inputOptions = DroneCardKit.allInputTypes[inputSlot.descriptor.inputType] as? StringEnumerable.Type {
-            self.choices.append(contentsOf: inputOptions.stringValues)
+        if let inputOptions = inputSlot.descriptor.availableOptions() {
+            self.choices.append(contentsOf: inputOptions)
             
             let selectedOption = getSelectedInputOption()
             
@@ -96,28 +96,25 @@ class MultipleChoiceCell: CardDetailTableViewCell, CardDetailInputCell, Multiple
         let inputValue = inputOptions[selection-1]
         
         let inputTypeString = inputSlot.descriptor.inputType
-        var value: Any?
+        var inputCard = inputSlot.descriptor.makeCard()
         
         do {
             switch inputTypeString {
             case String(describing: DCKVideoFramerate.self):
-                value = DCKVideoFramerate(rawValue: inputValue)
+                inputCard = try inputCard.bound(withValue: DCKVideoFramerate(rawValue: inputValue))
             case String(describing: DCKVideoResolution.self):
-                value = DCKVideoResolution(rawValue: inputValue)
+                inputCard = try inputCard.bound(withValue: DCKVideoResolution(rawValue: inputValue))
             case String(describing: DCKPhotoAspectRatio.self):
-                value = DCKPhotoAspectRatio(rawValue: inputValue)
-            case String(describing: DCKPhotoQuality.self):
-                value = DCKPhotoQuality(rawValue: inputValue)
-            case String(describing: DCKPhotoBurstCount.self):
-                value = DCKPhotoBurstCount(rawValue: inputValue)
+                inputCard = try inputCard.bound(withValue: DCKPhotoAspectRatio(rawValue: inputValue))
+            case "DCKPhotoBurstCount":
+                if let intVal = Int(inputValue) {
+                    inputCard = try inputCard.bound(withValue: DCKPhotoBurstCount(rawValue: intVal))
+                }
             default:
                 break
             }
             
-            if let valueUR = value {
-                let inputCard = try inputSlot.descriptor <- valueUR
-                try actionCard?.bind(with: inputCard, in: inputSlot)
-            }
+            try actionCard?.bind(with: inputCard, in: inputSlot)
         } catch {
             print("error \(error)")
         }

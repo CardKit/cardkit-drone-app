@@ -20,10 +20,19 @@ import DroneCardKit
 
 extension InputCardDescriptor {
     func availableOptions() -> [String]? {
-        let inputTypeStr = self.inputType
-        guard let inputType = DroneCardKit.allInputTypes[inputTypeStr], let enumInputType = inputType as? StringEnumerable.Type else {
+        switch self.inputType {
+        case "Bool":
+            return Bool.self.stringValues
+        case "DCKVideoFramerate":
+            return DCKVideoFramerate.self.stringValues
+        case "DCKPhotoBurstCount":
+            return DCKPhotoBurstCount.self.values.map { String($0.rawValue) }
+        case "DCKVideoResolution":
+            return DCKVideoResolution.self.stringValues
+        case "DCKPhotoAspectRatio":
+            return DCKPhotoAspectRatio.self.stringValues
+        default:
             return nil
         }
-        return enumInputType.stringValues
     }
 }

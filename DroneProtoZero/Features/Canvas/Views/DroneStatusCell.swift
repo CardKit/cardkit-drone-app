@@ -32,7 +32,7 @@ class DroneStatusCell: UITableViewCell, Reusable {
         NotificationCenter.default.addObserver(self, selector: #selector(DroneStatusCell.connectionStatusChanged), name: DJIHardwareManager.NotificationName.statusUpdated, object: nil)
         
         statusLabel?.isUserInteractionEnabled = true
-        statusLabel?.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(handleLabelTap)))
+        statusLabel?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLabelTap)))
         
         updateStatus(status: DJIHardwareManager.sharedInstance.status)
     }
@@ -66,7 +66,7 @@ class DroneStatusCell: UITableViewCell, Reusable {
                 print(error)
             }
         case let val where val == validateButton:
-            let _ = Sequencer.shared.validate()
+            _ = Sequencer.shared.validate()
         case let val where val == executeButton:
             do {
                 try Sequencer.shared.execute()
@@ -109,7 +109,7 @@ class DroneStatusCell: UITableViewCell, Reusable {
     
     func updateStatus(status: ConnectionStatus) {
         switch status {
-        case .connectionSuccessful(_):
+        case .connectionSuccessful:
             executeButton?.isEnabled = true
             connectToDroneButton?.isEnabled = false
         default:
@@ -140,9 +140,9 @@ class DroneStatusCell: UITableViewCell, Reusable {
         }
         
         let newStatusLabelText = "Status: \(statusTitle)"
-        if let _ = statusDetails {
+        if statusDetails != nil {
             let attributedString = NSMutableAttributedString(string: newStatusLabelText, attributes: [:])
-            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.cornflowerBlue, range: NSRange(location:8, length:newStatusLabelText.count-8))
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.cornflowerBlue, range: NSRange(location: 8, length: newStatusLabelText.count-8))
             
             statusLabel?.attributedText = attributedString
         } else {

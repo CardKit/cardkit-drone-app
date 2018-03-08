@@ -78,7 +78,7 @@ class HandTableViewCell: UITableViewCell, Reusable {
         if let cards = currentHand?.cards, let collectionView = self.collectionView {
             if cards.count > 0 {
                 let deleteCardPath = IndexPath(item: cardIndex, section: 0)
-                collectionView.deleteItems(at:[deleteCardPath])
+                collectionView.deleteItems(at: [deleteCardPath])
             }
         }
         
